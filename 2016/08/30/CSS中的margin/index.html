@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          CSS中的margin - Kaijun的博客 | Kaijun&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://rubicker.github.io/2016/08/30/CSS中的margin/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Kaijun&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('header-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#CSS" title="CSS">CSS</a>
+                        
+                          <a class="tag" href="/tags/#margin" title="margin">margin</a>
+                        
+                    </div>
+                    <h1>CSS中的margin</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by “Rubicker” on
+                        2016-08-30
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>本文总结自张鑫旭老师的课程<a href="http://www.imooc.com/learn/680" target="_blank" rel="external">CSS深入理解之margin</a><br><a id="more"></a></p>
+<h2 id="margin与容器的尺寸"><a href="#margin与容器的尺寸" class="headerlink" title="margin与容器的尺寸"></a>margin与容器的尺寸</h2><p>CSS margin可以改变容器的尺寸。<br>可视尺寸:clientWidth，即不包括margin在内的盒模型大小<br>占据尺寸:包括margin在内的盒模型大小</p>
+<h3 id="margin与可视尺寸"><a href="#margin与可视尺寸" class="headerlink" title="margin与可视尺寸"></a>margin与可视尺寸</h3><ul>
+<li>未设定width/height的普通<strong>block水平</strong>元素。<s>float元素 absolute/fixed元素 inline元素</s></li>
+<li><p>水平方向尺寸，即垂直方向尺寸不受影响<br>以上为适用条件。<br>示例如下:<br>1.原始样式</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"wrap"</span>&gt;</div><div class="line">  &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"test"</span>&gt;test&lt;/<span class="keyword">div</span>&gt;</div><div class="line">&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.wrap</span>&#123;</div><div class="line">  <span class="attribute">width</span>:<span class="number">300px</span>;</div><div class="line">  <span class="attribute">height</span>:<span class="number">200px</span>;</div><div class="line">  <span class="attribute">border</span>:<span class="number">2px</span> solid <span class="number">#000</span>;</div><div class="line">  <span class="attribute">margin</span>:<span class="number">100px</span> auto;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.test</span>&#123;</div><div class="line">  <span class="attribute">border</span>:<span class="number">2px</span> solid red;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="1.jpg" alt="1.jpg"><br>2.设置其<code>margin-left</code>和<code>margin-right</code>为负值:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*其余样式保持不变*/</span></div><div class="line"><span class="selector-class">.test</span>&#123;</div><div class="line">  <span class="attribute">margin-left</span>:-<span class="number">50px</span>;</div><div class="line">  <span class="attribute">margin-right</span>:-<span class="number">50px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="2.jpg" alt="2.jpg"><br>同理，当左右<code>margin</code>设置为负值时元素会进行收缩。<br>具体应用:<br>一侧定宽自适应布局</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">img</span> <span class="attribute">width</span>=<span class="string">"180px"</span> style=<span class="string">"float:left"</span> src=<span class="string">"url..."</span> /&gt;</div><div class="line">&lt;<span class="selector-tag">p</span> style=<span class="string">"margin-left:-200px"</span>&gt;金正恩...&lt;/p&gt;</div></pre></td></tr></table></figure>
+<p><img src="3.gif" alt="3.gif"></p>
+</li>
+</ul>
+<h3 id="margin与占据尺寸"><a href="#margin与占据尺寸" class="headerlink" title="margin与占据尺寸"></a>margin与占据尺寸</h3><ul>
+<li>block/inline-block水平元素均适用</li>
+<li>有无width/height值均适用</li>
+<li><p>水平/垂直方向均适用<br>具体应用:<br>滚动容器内上下留白</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">div</span> style=<span class="string">"height:300px;overflow:auto;border:1px solid red"</span>&gt;</div><div class="line">  &lt;<span class="selector-tag">img</span> <span class="attribute">height</span>=<span class="string">"400"</span> style=<span class="string">"margin:50px 0;"</span> src=<span class="string">"url..."</span>/&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<div style="float:left"><img src="4.gif" alt="4.gif"></div><div style="clear:both"></div>
+
+</li>
+</ul>
+<h2 id="margin与百分比单位"><a href="#margin与百分比单位" class="headerlink" title="margin与百分比单位"></a>margin与百分比单位</h2><h4 id="百分比margin计算规则"><a href="#百分比margin计算规则" class="headerlink" title="百分比margin计算规则"></a>百分比margin计算规则</h4><ul>
+<li>普通元素，百分比margin都是相对于容器的宽的计算的</li>
+<li>绝对定位的元素，百分比margin是相对于第一个定位祖先元素(absolute/relative/fixed)的宽度计算的</li>
+</ul>
+<h2 id="margin重叠"><a href="#margin重叠" class="headerlink" title="margin重叠"></a>margin重叠</h2><h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><ul>
+<li>block水平元素(不包括float和absolute元素)</li>
+<li>重叠只发生在垂直方向</li>
+</ul>
+<h4 id="情景"><a href="#情景" class="headerlink" title="情景"></a>情景</h4><ul>
+<li>相邻的兄弟元素</li>
+<li><p>父级和第一个/最后一个子元素</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"dad"</span>&gt;</div><div class="line">  &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"son"</span> style=<span class="string">"margin-top:50px"</span>&gt;This <span class="keyword">is</span> son.&lt;/<span class="keyword">div</span>&gt;</div><div class="line">&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"dad"</span> style=<span class="string">"margin-top:50px"</span>&gt;</div><div class="line">  &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"son"</span>&gt;This <span class="keyword">is</span> son.&lt;/<span class="keyword">div</span>&gt;</div><div class="line">&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"dad"</span> style=<span class="string">"margin-top:50px"</span>&gt;</div><div class="line">  &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"son"</span> style=<span class="string">"margin-top:50px"</span>&gt;This <span class="keyword">is</span> son.&lt;/<span class="keyword">div</span>&gt;</div><div class="line">&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure>
+<p>以上三种情形得到的父子盒模型是一样的，都相当于父元素<code>margin-top:50px</code><br><strong>父子margin重叠条件</strong>:</p>
+<ul>
+<li><code>margin-top</code>/<code>margin-bottom</code><br>父元素非BFC<br>父元素无border-top<br>父元素无padding-top<br>父元素和第一个/最后一个子元素之间无inline元素分隔</li>
+<li><code>margin-bottom</code>还有额外一条<br>父元素无height,min-height,max-height</li>
+</ul>
+</li>
+<li>空的block元素<br><strong>空block元素margin重叠条件</strong>:<ul>
+<li>元素无border</li>
+<li>元素无padding</li>
+<li>内部无inline元素</li>
+<li>没有height或min-height</li>
+</ul>
+</li>
+</ul>
+<h4 id="计算规则"><a href="#计算规则" class="headerlink" title="计算规则"></a>计算规则</h4><ul>
+<li>正正/负负取绝对值最大值(空元素负负时，高度为0，但会影响相邻元素)</li>
+<li>正负值相加</li>
+</ul>
+<h4 id="善用margin"><a href="#善用margin" class="headerlink" title="善用margin"></a>善用margin</h4><p>若有多个垂直元素排列，设置margin使其有序隔开:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.list</span>&#123;</div><div class="line">  <span class="attribute">margin-top</span>:<span class="number">15px</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">/*下面这个更具有健壮性，防止最后一个元素意外移除后破坏原本布局*/</span></div><div class="line"><span class="selector-class">.list</span>&#123;</div><div class="line">  <span class="attribute">margin-top</span>:<span class="number">15px</span>;</div><div class="line">  <span class="attribute">margin-bottom</span>:<span class="number">15px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="设置margin-auto"><a href="#设置margin-auto" class="headerlink" title="设置margin:auto"></a>设置<code>margin:auto</code></h2><p>对于不设置宽度而水平方向充满容器的元素:<br>若<code>margin-left``margin-right</code>一侧定值，一侧<code>auto</code>,则<code>auto</code>侧为剩余空间大小;<br>若两侧均为<code>auto</code>，则平分剩余空间，元素居中显示。</p>
+<h3 id="图片为何不居中"><a href="#图片为何不居中" class="headerlink" title="图片为何不居中?"></a>图片为何不居中?</h3><p>因为图片是inline水平，即没有设置width也不会占据整个容器</p>
+<h3 id="margin-auto为何不能垂直居中？"><a href="#margin-auto为何不能垂直居中？" class="headerlink" title="margin:auto为何不能垂直居中？"></a><code>margin:auto</code>为何不能垂直居中？</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"height:200px;width:300px;background:blue;margin:100px auto;"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"height:100px;width:200px;margin:auto;background:orange"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p> <img src="5.jpg" alt="5.jpg"><br>我们来想个问题:若不设置子元素<code>height:100px</code>，它在垂直方向上会充满容器吗？不会！<br>那么答案显而易见，<code>auto</code>是用来分配占用剩余空间的，垂直方向显然是没有充满的</p>
+<h3 id="如何实现垂直居中"><a href="#如何实现垂直居中" class="headerlink" title="如何实现垂直居中"></a>如何实现垂直居中</h3><p><code>writing-mode</code>实现<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"height:200px;width:300px;background:blue;margin:100px auto;writing-mode:vertical-lr;"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"height:100px;width:200px;margin:auto;background:orange"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><img src="6.jpg" alt="6.jpg"><br><code>absolute</code>实现1<br>实现原理:top/left是以自身边界到第一个定位祖先元素的距离，而这个自身边界是由margin决定的，当margin为正时，边界向外延伸；margin为负时，边界向内收缩。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.element</span>&#123;</div><div class="line">  <span class="attribute">width</span>:<span class="number">400px</span>;</div><div class="line">  <span class="attribute">height</span>:<span class="number">400px</span>;</div><div class="line">  <span class="attribute">position</span>:absolute;</div><div class="line">  <span class="attribute">left</span>:<span class="number">50%</span>;</div><div class="line">  <span class="attribute">top</span>:<span class="number">50%</span>;</div><div class="line">  <span class="attribute">margin-top</span>:-<span class="number">200px</span>;<span class="comment">/*自身高度一半*/</span></div><div class="line">  <span class="attribute">margin-left</span>:-<span class="number">200px</span>;<span class="comment">/*自身宽度一半*/</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><code>absolute</code>实现2<br>此实现支持IE8+<br>首先设置绝对定位以及<code>top</code>,<code>right</code>,<code>bottom</code>,<code>left</code>值为0使得子元素充满容器<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"height:200px;width:300px;margin:100px auto;position:relative;background:blue"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"position:absolute;top:0;right:0;bottom:0;left:0;background:orange;"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><img src="7.jpg" alt="7.jpg"><br>之后给子元素加上<code>margin:auto;width:200px;height:100px;</code>，效果如下:<br><img src="8.jpg" alt="8.jpg"></p>
+<h2 id="margin负值定位"><a href="#margin负值定位" class="headerlink" title="margin负值定位"></a>margin负值定位</h2><h3 id="margin负值下的两端对齐"><a href="#margin负值下的两端对齐" class="headerlink" title="margin负值下的两端对齐"></a>margin负值下的两端对齐</h3><p>有时候会出现下列情形:<br>  <div style="float:left"><img src="9.jpg" alt="9.jpg"></div><div style="clear:both"></div><br>即在<code>ul</code>中有多个设置<code>margin-right:10px</code>的<code>li</code>元素，此时在ul内部右侧出现了间隔.<br>如何消除这些间隔?<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">ul</span>&#123;</div><div class="line">  <span class="attribute">margin-right</span>:-<span class="number">10px</span>;</div><div class="line">  <span class="comment">/*将ul进行拉伸，使其间隔"消失"*/</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="margin负值下的等高布局"><a href="#margin负值下的等高布局" class="headerlink" title="margin负值下的等高布局"></a>margin负值下的等高布局</h3><h2 id="margin失效情形"><a href="#margin失效情形" class="headerlink" title="margin失效情形"></a>margin失效情形</h2><h3 id="inline水平元素的垂直margin无效"><a href="#inline水平元素的垂直margin无效" class="headerlink" title="inline水平元素的垂直margin无效"></a>inline水平元素的垂直margin无效</h3><p>前提:1. 非替换元素 2.正常书写模式(writing-mode)</p>
+<h3 id="margin重叠-1"><a href="#margin重叠-1" class="headerlink" title="margin重叠"></a>margin重叠</h3><h3 id="display-table-cell与margin"><a href="#display-table-cell与margin" class="headerlink" title="display:table-cell与margin"></a><code>display:table-cell</code>与margin</h3><p><code>display:table-cell</code> <code>display:table-row</code>等相关声明会使margin无效</p>
+<p>例外：</p>
+<ul>
+<li>对于图片，设置其为<code>display:table-cell</code>不会影响margin</li>
+<li>对于按钮，在chrome中设置其为<code>display:table-cell</code> 但实际上显示为<code>display:inline-block</code>，同样不会影响margin</li>
+</ul>
+<h3 id="position-absolute与margin"><a href="#position-absolute与margin" class="headerlink" title="position:absolute与margin"></a><code>position:absolute</code>与margin</h3><p>绝对定位元素非定位方位(即未设定边距的方位)的margin值”无效”</p>
+<h3 id="内联特性导致的margin无效"><a href="#内联特性导致的margin无效" class="headerlink" title="内联特性导致的margin无效"></a>内联特性导致的margin无效</h3><p>要与基线对齐，所以margin设置到一定大小，内联元素就不再随margin值改变位置了<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"wrap"</span> style=<span class="string">"height:300px;background:#00E3E3;margin:100px auto"</span>&gt;</div><div class="line">	<span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"url..."</span> <span class="attr">alt</span>=<span class="string">"css"</span>&gt;</span>X</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>此时图片位置如下:<br><img src="10.jpg" alt="10.jpg"><br>设置图片<code>margin-top:-300px</code>或者更大，均显示如下位置:<br><img src="11.jpg" alt="11.jpg"><br>原因是图片底部要与文字基线对齐，受制于此，图片不能再向上移动了。</p>
+<h2 id="margin-start和margin-end"><a href="#margin-start和margin-end" class="headerlink" title="margin-start和margin-end"></a><code>margin-start</code>和<code>margin-end</code></h2><ul>
+<li>正常流向中(左至右)，<code>margin-start</code>相当于<code>margin-left</code></li>
+<li>若水平流向为右至左，<code>margin-start</code>相当于<code>margin-right</code></li>
+<li>在垂直流下(<code>writing-mode:vertical-;</code>),<code>margin-start</code>相当于<code>margin-top</code></li>
+</ul>
+<h2 id="margin-collapse"><a href="#margin-collapse" class="headerlink" title="margin-collapse"></a><code>margin-collapse</code></h2><p><code>-webkit-margin-collapse:&lt;collapse&gt;|&lt;discard&gt;|&lt;separate&gt;</code></p>
+<ul>
+<li>collapse 默认重叠</li>
+<li>discard 忽略margin值</li>
+<li>separate 不重叠</li>
+</ul>
+<p>参考文章:</p>
+<blockquote>
+<p><a href="http://www.cnblogs.com/jscode/archive/2012/08/28/2660078.html" target="_blank" rel="external">负值之美：负margin在页面布局中的应用</a><br><a href="http://www.51xuediannao.com/html+css/htmlcssjq/css-margin.html" target="_blank" rel="external">css的负边距（margin负值）的绝招</a></p>
+</blockquote>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/08/31/CSS中的padding/" data-toggle="tooltip" data-placement="top" title="CSS中的padding">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/08/28/CSS动画实用技巧/" data-toggle="tooltip" data-placement="top" title="CSS动画实用技巧">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#CSS" title="CSS">CSS</a>
+                        
+                          <a class="tag" href="/tags/#margin" title="margin">margin</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.kaijun.rocks" target="_blank">Kaijun&#39;s Blog</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">Foo</a></li>
+                    
+                        <li><a href="#" target="_blank">Bar</a></li>
+                    
+                        <li><a href="#" target="_blank">Example Friends</a></li>
+                    
+                        <li><a href="#" target="_blank">It helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hexo-theme-huxblog";
+    var disqus_identifier = "http://rubicker.github.io/2016/08/30/CSS中的margin/";
+    var disqus_url = "http://rubicker.github.io/2016/08/30/CSS中的margin/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/Demonbane_x">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/Demonbane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/Demonbane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/demonbane.cn">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Kaijun">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/kaijun-chen-42089354">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Kaijun&#39;s Blog 2016 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://rubicker.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'huangxuan.me';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

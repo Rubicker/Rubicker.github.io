@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          关于Chrome DevTools - Kaijun的博客 | Kaijun&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://rubicker.github.io/2016/05/02/2016-05-02-关于Chrome-DevTools/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Kaijun&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#chrome" title="chrome">chrome</a>
+                        
+                          <a class="tag" href="/tags/#devtools" title="devtools">devtools</a>
+                        
+                    </div>
+                    <h1>关于Chrome DevTools</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Kaijun Chen on
+                        2016-05-02
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <blockquote>
+<p>相当强大的开发者工具，好好利用必然会给前端开发带来极大便利。此文是结合<a href="https://developers.google.com/web/tools/chrome-devtools/iterate/inspect-styles/?hl=en" target="_blank" rel="external">官方文档</a>写下来的。</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="Iterate"><a href="#Iterate" class="headerlink" title="Iterate"></a>Iterate</h1><h2 id="审查编辑页面及样式"><a href="#审查编辑页面及样式" class="headerlink" title="审查编辑页面及样式"></a>审查编辑页面及样式</h2><h3 id="实时编辑DOM节点"><a href="#实时编辑DOM节点" class="headerlink" title="实时编辑DOM节点"></a>实时编辑DOM节点</h3><hr>
+<h4 id="审查元素"><a href="#审查元素" class="headerlink" title="审查元素"></a>审查元素</h4><ul>
+<li>直接在面板点击<br><img src="https://ooo.0o0.ooo/2016/05/01/5726c77575982.png" alt="审查元素按钮.png"></li>
+<li>快捷键<br><code>Ctrl</code> + <code>Shift</code> +<code>C</code>开启审查模式</li>
+<li>直接在网页中右键某元素，点击<code>inspect</code>或者<code>检查</code>选项</li>
+</ul>
+<h4 id="浏览DOM节点"><a href="#浏览DOM节点" class="headerlink" title="浏览DOM节点"></a>浏览DOM节点</h4><ul>
+<li>鼠标<br>1.点击你想要折叠或者展开的某一行，此时该行高亮（蓝色背景）<br>2.若要展开，则双击该行任意位置或者点击该行前方箭头；若要折叠，点击该行前面向下的箭头</li>
+<li>键盘<br>1.方向键上下键用来选择哪一行<br>2.方向键左键折叠该行，右键展开该行  </li>
+</ul>
+<p>另外，当指向某一行时，该行对应的元素所属的位置会在下方显示<br><img src="https://ooo.0o0.ooo/2016/05/01/5726ce891eb0d.png" alt="显示结构层次png.png"></p>
+<h4 id="编辑DOM节点及其特性"><a href="#编辑DOM节点及其特性" class="headerlink" title="编辑DOM节点及其特性"></a>编辑DOM节点及其特性</h4><ul>
+<li>直接双击某个节点名字或其特性进行编辑</li>
+<li>高亮某行，按下<code>Enter</code>，然后按下<code>Tab</code>选择你想要编辑的特性</li>
+<li>在想要编辑的那一行右键弹出菜单，选择<code>Add Attribute</code>或者<code>Edit Attribute</code></li>
+<li>在HTML中编辑某个节点及其子节点：<ul>
+<li>在某行右键单击，在弹出的菜单中选择<code>Edit as HTML</code>  或者  选中某行后按下<code>F2</code></li>
+<li>按下<code>Ctrl</code> +<code>Enter</code> 保存更改</li>
+<li>按下<code>Esc</code> 退出编辑器且不保存更改</li>
+</ul>
+</li>
+</ul>
+<h4 id="移动DOM节点"><a href="#移动DOM节点" class="headerlink" title="移动DOM节点"></a>移动DOM节点</h4><p>利用鼠标拖拽即可</p>
+<h4 id="删除节点"><a href="#删除节点" class="headerlink" title="删除节点"></a>删除节点</h4><ul>
+<li>右键某节点，在弹出菜单上选择删除节点</li>
+<li>选择某节点，按下<code>Delete</code>键</li>
+</ul>
+<h4 id="右键弹出菜单"><a href="#右键弹出菜单" class="headerlink" title="右键弹出菜单"></a>右键弹出菜单</h4><p><img src="https://ooo.0o0.ooo/2016/05/01/5726d6ba0eaed.png" alt="弹出菜单.png"></p>
+<h4 id="关于断点的一些操作"><a href="#关于断点的一些操作" class="headerlink" title="关于断点的一些操作"></a>关于断点的一些操作</h4><p><img src="https://ooo.0o0.ooo/2016/05/02/5727067545b37.png" alt="DOM Breakpoints.png"></p>
+<h4 id="事件侦听器"><a href="#事件侦听器" class="headerlink" title="事件侦听器"></a>事件侦听器</h4><p><img src="https://ooo.0o0.ooo/2016/05/02/57270cd5c9a7a.png" alt="事件侦听器1.png"><br><img src="https://ooo.0o0.ooo/2016/05/02/57270f028c756.png" alt="事件侦听器2.png"><br><img src="https://ooo.0o0.ooo/2016/05/02/5727115664c7c.png" alt="事件侦听器3.png"></p>
+<h3 id="实时编辑样式"><a href="#实时编辑样式" class="headerlink" title="实时编辑样式"></a>实时编辑样式</h3><hr>
+<p>实时编辑CSS样式<br>在Elements面板中指定要更改样式的元素，然后在侧边栏Style中单击要更改的样式即可。<br><img src="https://ooo.0o0.ooo/2016/05/02/57271461a5545.png" alt="styles-annotated.png"></p>
+<ul>
+<li>最顶端的element.style指的是行内样式</li>
+<li>1处是CSS文件中直接指定该元素的样式；</li>
+<li>2处是用户代理样式表中相关样式；</li>
+<li>3处是根据层叠规则被覆盖的样式（用横线划掉）</li>
+<li>4处是继承样式inherted from<node>，单击<node>可以跳转到该位置</node></node></li>
+<li>5处是虽未定义但是在渲染过程中自动计算出来的样式</li>
+</ul>
+<h4 id="审查被CSS选择器影响的元素"><a href="#审查被CSS选择器影响的元素" class="headerlink" title="审查被CSS选择器影响的元素"></a>审查被CSS选择器影响的元素</h4><p>将鼠标移到某个样式上，此时在视图中会高亮收到影响的元素</p>
+<h4 id="增加，禁用或者开启CSS类名"><a href="#增加，禁用或者开启CSS类名" class="headerlink" title="增加，禁用或者开启CSS类名"></a>增加，禁用或者开启CSS类名</h4><p><img src="https://ooo.0o0.ooo/2016/05/02/5727399f4463b.png" alt="style.png"></p>
+<h4 id="编辑已存在的属性名值对"><a href="#编辑已存在的属性名值对" class="headerlink" title="编辑已存在的属性名值对"></a>编辑已存在的属性名值对</h4><p>单击属性名或者值即可进入编辑模式<br>按<code>Tab</code>切换下一个属性名/值，按住<code>Shift</code>+<code>Tab</code>切换上一个属性名/值</p>
+<p>当编辑某个数字属性值时：</p>
+<ul>
+<li><code>Up</code> 和 <code>Down</code>使数字值以1为单位增减</li>
+<li><code>Alt</code> + <code>Up</code> 和 <code>Alt</code>+<code>Down</code> 使值以0.1为单位增减</li>
+<li><code>Shift</code> +<code>Up</code> 和<code>Shift</code> + <code>Down</code>使值以10为单位增减</li>
+<li><code>Shift</code>+ <code>Page Up</code> 和<code>Shift</code> + <code>Page Down</code>使值以100为单位增减</li>
+</ul>
+<h4 id="增加一个新的属性声明"><a href="#增加一个新的属性声明" class="headerlink" title="增加一个新的属性声明"></a>增加一个新的属性声明</h4><p>任意点击空白处即可在该选择器下增加新的属性声明(可在每条属性名值对前勾选是否开启)</p>
+<h4 id="增加一个新的样式"><a href="#增加一个新的样式" class="headerlink" title="增加一个新的样式"></a>增加一个新的样式</h4><p>选中某个元素后，单击”+” 这个按钮即可<br>长时间按住”+”按钮可以选择将该规则加入到哪个样式表中<br><img src="https://ooo.0o0.ooo/2016/05/02/57273dce4d22c.png" alt="style1.png"></p>
+<h4 id="增加动态伪类样式"><a href="#增加动态伪类样式" class="headerlink" title="增加动态伪类样式"></a>增加动态伪类样式</h4><p>通过右键单击元素，在弹出菜单中设置<br><img src="https://ooo.0o0.ooo/2016/05/02/57273faaa270b.png" alt="dynastic.png"><br>在Styles面板中设置<br><img src="https://ooo.0o0.ooo/2016/05/02/57273fafed173.png" alt="dynastic1.png"></p>
+<h4 id="增加-background-color-以及color-属性"><a href="#增加-background-color-以及color-属性" class="headerlink" title="增加 background-color 以及color 属性"></a>增加 background-color 以及color 属性</h4><p><img src="https://ooo.0o0.ooo/2016/05/02/57274306db233.png" alt="修改背景.png"><br>鼠标移上去后：<br><img src="https://ooo.0o0.ooo/2016/05/02/57274336a57b8.png" alt="添加背景色.png"></p>
+<h4 id="利用Color-Picker修改颜色"><a href="#利用Color-Picker修改颜色" class="headerlink" title="利用Color Picker修改颜色"></a>利用Color Picker修改颜色</h4><p><img src="https://ooo.0o0.ooo/2016/05/02/5727442a20837.png" alt="color picker.png"></p>
+<h2 id="审查管理本地数据资源"><a href="#审查管理本地数据资源" class="headerlink" title="审查管理本地数据资源"></a>审查管理本地数据资源</h2><h3 id="浏览资源文件"><a href="#浏览资源文件" class="headerlink" title="浏览资源文件"></a>浏览资源文件</h3><p><img src="https://ooo.0o0.ooo/2016/05/02/572748d9ce2f2.png" alt="source1.png"><br><img src="https://ooo.0o0.ooo/2016/05/02/57274a517af2b.png" alt="source2.png"><br>点击Reveal in Network Panel后：<br><img src="https://ooo.0o0.ooo/2016/05/02/5727495946f33.png" alt="source3.png"></p>
+<h2 id="利用设备模式模拟手机设备"><a href="#利用设备模式模拟手机设备" class="headerlink" title="利用设备模式模拟手机设备"></a>利用设备模式模拟手机设备</h2><p>如何开启/关闭设备模式？<br><img src="https://ooo.0o0.ooo/2016/05/02/5728032c0d3cd.png" alt="设备模式1.png"></p>
+<h3 id="测试自适应或者自定义视口"><a href="#测试自适应或者自定义视口" class="headerlink" title="测试自适应或者自定义视口"></a>测试自适应或者自定义视口</h3><hr>
+<h4 id="使用视口控制"><a href="#使用视口控制" class="headerlink" title="使用视口控制"></a>使用视口控制</h4><p><img src="https://ooo.0o0.ooo/2016/05/02/572806bd86ac5.png" alt="设备模式2.png">  </p>
+<p>如何添加某种设备？<br><img src="https://ooo.0o0.ooo/2016/05/02/572808507e9c5.png" alt="设备模式3.png"></p>
+<ul>
+<li>按下F1进入DevTools Settings；</li>
+<li>选择Devices</li>
+<li>选择Add custom device</li>
+<li>输入设备信息</li>
+<li>点击Add</li>
+</ul>
+<h3 id="模拟传感器：GPS-amp-加速传感器"><a href="#模拟传感器：GPS-amp-加速传感器" class="headerlink" title="模拟传感器：GPS&amp;加速传感器"></a>模拟传感器：GPS&amp;加速传感器</h3><p><img src="https://ooo.0o0.ooo/2016/05/02/57280ecfe11e4.png" alt="设备模式4.png"></p>
+<h1 id="Debug"><a href="#Debug" class="headerlink" title="Debug"></a>Debug</h1><h2 id="使用JavaScript-Snippets"><a href="#使用JavaScript-Snippets" class="headerlink" title="使用JavaScript Snippets"></a>使用JavaScript Snippets</h2><p><img src="https://ooo.0o0.ooo/2016/05/02/57281357ddd46.png" alt="snippets1`.png"></p>
+<p><img src="https://ooo.0o0.ooo/2016/05/02/57281551302c0.png" alt="snippets4.png"><br>点击Reveal in console之后如下：<br><img src="https://ooo.0o0.ooo/2016/05/02/5728152d7d8bf.png" alt="snippets3.png"></p>
+<p>查看Snippets更改历史<br><img src="https://ooo.0o0.ooo/2016/05/02/572816cac059e.png" alt="snippets5.png"></p>
+<h2 id="Debug-JS混淆代码"><a href="#Debug-JS混淆代码" class="headerlink" title="Debug JS混淆代码"></a>Debug JS混淆代码</h2><p>使用Pretty-Print使得代码可读性增强，操作如下：<br><img src="https://ooo.0o0.ooo/2016/05/02/572818d971fde.png" alt="混淆1.png"><br>点击之后：<br><img src="https://ooo.0o0.ooo/2016/05/02/572819228f09e.png" alt="混淆2.png"></p>
+<h2 id="用断点进行Debug"><a href="#用断点进行Debug" class="headerlink" title="用断点进行Debug"></a>用断点进行Debug</h2><p><img src="https://ooo.0o0.ooo/2016/05/02/572820b76b07d.png" alt="断点.png"></p>
+<h3 id="如何设置断点"><a href="#如何设置断点" class="headerlink" title="如何设置断点"></a>如何设置断点</h3><hr>
+<h4 id="创建manual断点"><a href="#创建manual断点" class="headerlink" title="创建manual断点"></a>创建manual断点</h4><p>直接在JS界面点击行号即可创建断点；<br>可以取消勾选来暂时禁用某个断点；<br>再次点选行号即可移除断点（右键单击选择Remove breakpoint也可）</p>
+<h4 id="创建条件断点"><a href="#创建条件断点" class="headerlink" title="创建条件断点"></a>创建条件断点</h4><h5 id="DOM修改事件断点-insertions-modifications-deletions"><a href="#DOM修改事件断点-insertions-modifications-deletions" class="headerlink" title="DOM修改事件断点 (insertions, modifications, deletions)"></a>DOM修改事件断点 (insertions, modifications, deletions)</h5><p>在Elements面板中右键即可添加此类断点</p>
+<h5 id="XMLHttp请求断点"><a href="#XMLHttp请求断点" class="headerlink" title="XMLHttp请求断点"></a>XMLHttp请求断点</h5><ul>
+<li><p>当Http请求包含特殊字符串时打断</p>
+<blockquote>
+<p>When the URL of a request contains a specified string. DevTools breaks before the request is sent.</p>
+</blockquote>
+<p><img src="https://ooo.0o0.ooo/2016/05/02/5728275226141.png" alt="断点3.png"></p>
+</li>
+<li><p>在特定的XMLHttp请求事件之前打断<br><img src="https://ooo.0o0.ooo/2016/05/02/572828e70be97.png" alt="http1.png"><br><img src="https://ooo.0o0.ooo/2016/05/02/572828df817cc.png" alt="http2.png"></p>
+</li>
+</ul>
+<h5 id="在没有捕捉的错误对象处打断"><a href="#在没有捕捉的错误对象处打断" class="headerlink" title="在没有捕捉的错误对象处打断"></a>在没有捕捉的错误对象处打断</h5><blockquote>
+<p>When an error occurs within a method, the method creates an object and hands it off to the runtime system. The object, called an exception object, contains information about the error, including its type and the state of the program when the error occurred. Creating an exception object and handing it to the runtime system is called throwing an <strong>exception</strong>.</p>
+</blockquote>
+<p><img src="https://ooo.0o0.ooo/2016/05/03/57284e6c8d250.png" alt="断点.png"></p>
+<h5 id="设置永不打断的断点"><a href="#设置永不打断的断点" class="headerlink" title="设置永不打断的断点"></a>设置永不打断的断点</h5><p><img src="https://ooo.0o0.ooo/2016/05/03/57284ffcbff78.png" alt="never stop.png"></p>
+<h3 id="如何逐步调试代码"><a href="#如何逐步调试代码" class="headerlink" title="如何逐步调试代码"></a>如何逐步调试代码</h3><p><img src="https://ooo.0o0.ooo/2016/05/03/5728573138ce5.png" alt="调试按钮.png"><br>各按钮功能说明：<br><img src="https://ooo.0o0.ooo/2016/05/03/57285ace2240f.png" alt="调试按钮.png"></p>
+<h4 id="Blackbox功能介绍"><a href="#Blackbox功能介绍" class="headerlink" title="Blackbox功能介绍"></a>Blackbox功能介绍</h4><p>某些时候需要”拉黑“某些引入的库代码（如jQuery等），Blackbox就是为此而生的。它允许屏蔽指定的JS文件。</p>
+<ul>
+<li><p>如何屏蔽文件？</p>
+<ul>
+<li>通过F1进入Settings设置<br><img src="https://ooo.0o0.ooo/2016/05/03/57286033c4d7e.png" alt="blackbox.png"><br>有如下几种方式配置<ul>
+<li>输入文件名称</li>
+<li>用正则表达式匹配<ul>
+<li>包含特定名称的文件，比如/backbone.js$</li>
+<li>特定类型的文件，比如.min.js$</li>
+</ul>
+</li>
+<li>输入整个文件夹，比如bower_components</li>
+</ul>
+</li>
+<li>直接在Sources面板中指定<br><img src="https://ooo.0o0.ooo/2016/05/03/57286261b7f35.png" alt="blackbox1.png"><br>点击后：<br><img src="https://ooo.0o0.ooo/2016/05/03/57286252b8acd.png" alt="blackbox3.png"></li>
+</ul>
+</li>
+<li><p>屏蔽后的效果</p>
+<ul>
+<li>库代码（被屏蔽的文件）里抛出异常时不会暂停（当设置为Pause on exceptions时）</li>
+<li>调试时Stepping into/out/over都会忽略库代码</li>
+<li>事件断点也会忽略库代码</li>
+<li>库代码里设置的任何断点也不会起作用<br>最终的结果就是只会调试应用代码而忽略第三方代码（配置了Blackbox的代码）。</li>
+</ul>
+</li>
+</ul>
+<h2 id="在Sources面板中监视变量"><a href="#在Sources面板中监视变量" class="headerlink" title="在Sources面板中监视变量"></a>在Sources面板中监视变量</h2><p><img src="https://ooo.0o0.ooo/2016/05/03/5728832dca46f.png" alt="watch.png"></p>
+<p>参考文章：<a href="http://it.taocms.org/01/6565.htm" target="_blank" rel="external">调试时屏蔽JavaScript库代码 –Chrome DevTools Blackbox功能介绍</a></p>
+<p>Update：<br>2016.5.3更新至“在Sources面板中监视变量”</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/05/04/2016-05-04-焦点轮播特效/" data-toggle="tooltip" data-placement="top" title="焦点轮播特效">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/04/24/2016-04-24-锋利的jQuery第二版读书笔记/" data-toggle="tooltip" data-placement="top" title="锋利的jQuery第二版读书笔记">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#chrome" title="chrome">chrome</a>
+                        
+                          <a class="tag" href="/tags/#devtools" title="devtools">devtools</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.kaijun.rocks" target="_blank">Kaijun&#39;s Blog</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">Foo</a></li>
+                    
+                        <li><a href="#" target="_blank">Bar</a></li>
+                    
+                        <li><a href="#" target="_blank">Example Friends</a></li>
+                    
+                        <li><a href="#" target="_blank">It helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hexo-theme-huxblog";
+    var disqus_identifier = "http://rubicker.github.io/2016/05/02/2016-05-02-关于Chrome-DevTools/";
+    var disqus_url = "http://rubicker.github.io/2016/05/02/2016-05-02-关于Chrome-DevTools/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/Demonbane_x">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/Demonbane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/Demonbane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/demonbane.cn">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Kaijun">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/kaijun-chen-42089354">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Kaijun&#39;s Blog 2016 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://rubicker.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'huangxuan.me';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

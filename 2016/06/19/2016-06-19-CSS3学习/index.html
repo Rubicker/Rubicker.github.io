@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          CSS3学习 - Kaijun的博客 | Kaijun&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://rubicker.github.io/2016/06/19/2016-06-19-CSS3学习/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Kaijun&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#css" title="css">css</a>
+                        
+                    </div>
+                    <h1>CSS3学习</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Kaijun Chen on
+                        2016-06-19
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <blockquote>
+<p>掌握CSS3中新特性</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a>属性选择器</h2><p>E[attr]<br>E[attr=value]<br>E[attr^=value]  attr属性以value值开头的元素<br>E[attr$=value]  attr属性以value值结尾的元素<br>E[attr*=value]   attr属性中有value值的元素<br>E[attr~=value]  attr属性中有value词的元素，注意此时属性值为一个词列表<br>E[attr|=value]  attr属性中以value或者value-开头的值 </p>
+<h2 id="结构性伪类"><a href="#结构性伪类" class="headerlink" title="结构性伪类"></a>结构性伪类</h2><p>E:nth-child(x)  E标签<strong>父级</strong>下第x个子元素，且该元素若不是E元素则不起作用。x从1开始；x可取odd，even，2n-1类似的算法(n从0开始算)<br>E:nth-last-child(x)  从最后一个算起，用法同上<br>E:nth-of-type(x)  E标签父级下第x个E元素，只匹配E元素<br>E:nth-last-of-type(x) 从后算起  </p>
+<p>E:first-child == E:nth-child(1)<br>E:last-child == E:nth-last-child(1)<br>E:first-of-type == E:nth-of-type(1)<br>E:last-of-type == E:nth-last-of-type(1)  </p>
+<p>E:empty 选取无子节点的E标签。注意：文本节点也算子节点  </p>
+<p>E:only-of-type  选取父元素只有唯一一个E标签的E标签。注意：子节点不包含文本节点</p>
+<h2 id="伪类"><a href="#伪类" class="headerlink" title="伪类"></a>伪类</h2><p>E:target 表示当前URL片段的元素类型。这个元素必须是E。匹配相关URL指向的E元素，即哈希值（#后面的）<br>E:disabled 表示不可点击的表单控件<br>E:enabled 表示可点击的表单控件<br>E:checked 表示已选中的checkbox或radio<br>E:first-line 表示E元素中的第一行<br>E:first-letter 表示E元素中的第一个字符<br>E::selection 表示E元素在用户选中文字时<br>E::before 生成内容在E元素前<br>E::after 生成内容在E元素后   content属性<br>E:not(s) 表示E元素中不包含s的元素<br>E~F 表示E元素之后的所有F元素</p>
+<h2 id="新增文本属性"><a href="#新增文本属性" class="headerlink" title="新增文本属性"></a>新增文本属性</h2><h3 id="新增颜色模式"><a href="#新增颜色模式" class="headerlink" title="新增颜色模式"></a>新增颜色模式</h3><p>rgba ——a指alpha，透明度0-1</p>
+<h3 id="文字阴影"><a href="#文字阴影" class="headerlink" title="文字阴影"></a>文字阴影</h3><p>text-shadow<br>阴影可以叠加，每层用逗号隔开。</p>
+<h3 id="文字描边"><a href="#文字描边" class="headerlink" title="文字描边"></a>文字描边</h3><p>-webkit-text-stroke:宽度 颜色</p>
+<h2 id="新增文本功能"><a href="#新增文本功能" class="headerlink" title="新增文本功能"></a>新增文本功能</h2><h3 id="Direction-定义文字排列方式（全兼容）"><a href="#Direction-定义文字排列方式（全兼容）" class="headerlink" title="Direction 定义文字排列方式（全兼容）"></a>Direction 定义文字排列方式（全兼容）</h3><ul>
+<li>Rtl 从右向左排列</li>
+<li>Ltr 从左向右排列</li>
+<li>配合unicode-bidi一块使用  同时设置unicode-bidi:bidi-override才可生效  </li>
+</ul>
+<h3 id="Text-overflow定义省略文本的处理方式"><a href="#Text-overflow定义省略文本的处理方式" class="headerlink" title="Text-overflow定义省略文本的处理方式"></a>Text-overflow定义省略文本的处理方式</h3><ul>
+<li>clip 无省略号</li>
+<li>ellipsis 有省略号(配合overflow:hidden和white-space:nowrap(强制不换行)一起使用)  </li>
+</ul>
+<h3 id="font-face"><a href="#font-face" class="headerlink" title="@font-face"></a>@font-face</h3><p>自定义文本字体</p>
+<h2 id="弹性盒模型"><a href="#弹性盒模型" class="headerlink" title="弹性盒模型"></a>弹性盒模型</h2><ul>
+<li>注意在使用弹性盒模型的时候，父元素必须要加display:box或display:inline-box</li>
+<li>box-orient定义盒模型的布局方向<ul>
+<li>horizontal 水平显示</li>
+<li>vertical 垂直显示</li>
+</ul>
+</li>
+<li>box-direction 元素排列顺序<ul>
+<li>normal 正序</li>
+<li>reverse 反序</li>
+</ul>
+</li>
+<li>box-ordinal-group 设置元素的具体位置</li>
+<li>box-flex 定义盒子的弹性空间<br>子元素的尺寸=盒子的尺寸*（子元素的box-flex属性值/所有子元素的box-flex属性值的和）</li>
+<li>box-pack对盒子富余的空间进行管理<ul>
+<li>start 所有子元素在盒子左侧显示，富余空间在右侧</li>
+<li>end 所有子元素在盒子右侧显示，富余空间在左侧</li>
+<li>center 所有子元素居中</li>
+<li>justify 富余空间在子元素之间平均分布</li>
+</ul>
+</li>
+<li>box-align 在垂直方向上对元素的位置进行管理<ul>
+<li>start 所有子元素在最顶</li>
+<li>end 所有子元素在最底</li>
+<li>center 所有子元素居中</li>
+</ul>
+</li>
+</ul>
+<h3 id="盒模型阴影"><a href="#盒模型阴影" class="headerlink" title="盒模型阴影"></a>盒模型阴影</h3><ul>
+<li>box-shadow:[inset]  x y blur [spread] color<ul>
+<li>inset:投影方式为内投影，不给则为外投影</li>
+<li>x,y 阴影偏移量</li>
+<li>blur 模糊半径</li>
+<li>spread 扩展阴影半径 (先扩展原有形状，再开始画阴影)</li>
+<li>color 阴影颜色</li>
+</ul>
+</li>
+</ul>
+<h3 id="其他新增属性"><a href="#其他新增属性" class="headerlink" title="其他新增属性"></a>其他新增属性</h3><ul>
+<li>box-relect 倒影<ul>
+<li>direction 方向   above|below|left|right</li>
+<li>距离</li>
+<li>渐变(可选)</li>
+</ul>
+</li>
+<li>resize 自由缩放，可拖拽<ul>
+<li>both 水平垂直都可以缩放</li>
+<li>horizontal只有水平方向可以缩放</li>
+<li>vertical 只有垂直方向可以缩放</li>
+<li>注意：一定要配合overflow:auto一块使用</li>
+</ul>
+</li>
+<li>box-sizing 盒模型解析模式<ul>
+<li>content-box 标准盒模型</li>
+<li>border-box 怪异盒模型</li>
+</ul>
+</li>
+</ul>
+<h2 id="CSS3响应式布局"><a href="#CSS3响应式布局" class="headerlink" title="CSS3响应式布局"></a>CSS3响应式布局</h2><h3 id="分栏布局"><a href="#分栏布局" class="headerlink" title="分栏布局"></a>分栏布局</h3><ul>
+<li>column-width  栏目宽度</li>
+<li>column-count 栏目列数</li>
+<li>column-gap 栏目距离</li>
+<li>column-rule 栏目间隔线</li>
+</ul>
+<h3 id="媒体查询"><a href="#媒体查询" class="headerlink" title="媒体查询"></a>媒体查询</h3><h2 id="CSS3新增UI"><a href="#CSS3新增UI" class="headerlink" title="CSS3新增UI"></a>CSS3新增UI</h2><h3 id="border-radius"><a href="#border-radius" class="headerlink" title="border-radius"></a>border-radius</h3><p>可以分别设置x，y轴半径，用/分隔<br>各种长度都可以：px,%</p>
+<h3 id="边框"><a href="#边框" class="headerlink" title="边框"></a>边框</h3><h4 id="边框图片-border-image"><a href="#边框图片-border-image" class="headerlink" title="边框图片 border-image"></a>边框图片 border-image</h4><ul>
+<li>border-image-source  引入图片</li>
+<li>border-image-slice 切割图片  数字 但是不写px</li>
+<li>border-image-width 边框宽度</li>
+<li>border-image-repeat 图片排列方式  round 平铺  repeat  stretch</li>
+</ul>
+<h4 id="边框颜色-border-colors"><a href="#边框颜色-border-colors" class="headerlink" title="边框颜色 border-colors"></a>边框颜色 border-colors</h4><p>多层颜色  用空格间隔</p>
+<h3 id="线性渐变"><a href="#线性渐变" class="headerlink" title="线性渐变"></a>线性渐变</h3><ul>
+<li>linear-gradient([&lt;起点&gt;||&lt;角度&gt;]？&lt;点&gt;，&lt;点&gt;…)</li>
+<li>只能用在background上<ul>
+<li>IE<br>filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=”#ffffff”,endColorstr=”#ff0000”,GradientType=”1”)</li>
+</ul>
+</li>
+<li>参数<ul>
+<li>起点：从什么方向开始渐变  默认为top<ul>
+<li>left，top，left top</li>
+</ul>
+</li>
+<li>角度：从什么角度开始渐变<ul>
+<li>xxx deg的形式</li>
+</ul>
+</li>
+<li>点：渐变点的颜色和位置<ul>
+<li>black  50%  位置可选 </li>
+</ul>
+</li>
+<li>平铺<ul>
+<li>默认的background-repeat：repeat对渐变不起作用；</li>
+<li>可以使用repeating-linear-gradient 进行渐变平铺</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="径向渐变"><a href="#径向渐变" class="headerlink" title="径向渐变"></a>径向渐变</h3><ul>
+<li>radial-gradient([&lt;起点&gt;]?[&lt;形状&gt;||&lt;大小&gt;]?&lt;点&gt;,&lt;点&gt;)<ul>
+<li>起点，可以是关键字(left top right bottom),具体数值或百分比</li>
+<li>形状，ellipse,circle</li>
+<li>大小，具体数值或百分比，也可为关键字(closest-side,closest-corner,farthest-side,farthest-corner,contain or cover)<ul>
+<li>firefox 目前只支持关键字</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/06/19/2016-06-19-HTML5学习/" data-toggle="tooltip" data-placement="top" title="HTML5学习">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/06/16/2016-06-16-CSS，JS，jQuery实用代码片段集合/" data-toggle="tooltip" data-placement="top" title="CSS，JS，jQuery实用代码片段集合">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#css" title="css">css</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.kaijun.rocks" target="_blank">Kaijun&#39;s Blog</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">Foo</a></li>
+                    
+                        <li><a href="#" target="_blank">Bar</a></li>
+                    
+                        <li><a href="#" target="_blank">Example Friends</a></li>
+                    
+                        <li><a href="#" target="_blank">It helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hexo-theme-huxblog";
+    var disqus_identifier = "http://rubicker.github.io/2016/06/19/2016-06-19-CSS3学习/";
+    var disqus_url = "http://rubicker.github.io/2016/06/19/2016-06-19-CSS3学习/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/Demonbane_x">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/Demonbane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/Demonbane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/demonbane.cn">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Kaijun">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/kaijun-chen-42089354">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Kaijun&#39;s Blog 2016 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://rubicker.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'huangxuan.me';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

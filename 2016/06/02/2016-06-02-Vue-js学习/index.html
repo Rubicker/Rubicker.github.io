@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Vue.js学习 - Kaijun的博客 | Kaijun&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://rubicker.github.io/2016/06/02/2016-06-02-Vue-js学习/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Kaijun&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#MVVM" title="MVVM">MVVM</a>
+                        
+                          <a class="tag" href="/tags/#js" title="js">js</a>
+                        
+                    </div>
+                    <h1>Vue.js学习</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Kaijun Chen on
+                        2016-06-02
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <blockquote>
+<p>Vue.js一款构建数据驱动的web界面的库，只聚焦于视图层，易于学习</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="Vue实例"><a href="#Vue实例" class="headerlink" title="Vue实例"></a>Vue实例</h2><h3 id="构造器"><a href="#构造器" class="headerlink" title="构造器"></a>构造器</h3><hr>
+<p>Vue实例即为MVVM模式中所描述的ViewModel。<br>在实例化Vue时，需要传入一个选项对象，可以包含数据，模板，挂载元素，方法，生命周期钩子等选项。<br>全部选项在此  <a href="http://cn.vuejs.org/api/#全局配置" target="_blank" rel="external">Vue.js API文档</a><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</div><div class="line">    <span class="comment">//选项</span></div><div class="line">&#125;)；</div></pre></td></tr></table></figure></p>
+<h3 id="属性方法"><a href="#属性方法" class="headerlink" title="属性方法"></a>属性方法</h3><hr>
+<p>每个Vue实例都会代理其data对象里的所有属性<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">var</span> <span class="built_in">data</span> = &#123;a:<span class="number">1</span>&#125;;</div><div class="line"><span class="built_in">var</span> vm = <span class="literal">new</span> Vue(&#123;</div><div class="line">    <span class="built_in">data</span>:<span class="built_in">data</span>;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">vm.a ===<span class="built_in">data</span>.a  <span class="comment">// -&gt;true</span></div><div class="line"><span class="comment">//设置属性也会影响到原始数据，反之亦然</span></div></pre></td></tr></table></figure></p>
+<p>除此之外，Vue实例暴露了一些有用的实例属性与方法，均带有$前缀以便区分<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">var</span> <span class="built_in">data</span> = &#123;a:<span class="number">1</span>&#125;;</div><div class="line"><span class="built_in">var</span> vm = <span class="literal">new</span> Vue(&#123;</div><div class="line">     el: <span class="string">"#example"</span>,</div><div class="line">    <span class="built_in">data</span>:<span class="built_in">data</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">vm.$data === <span class="built_in">data</span>;  <span class="comment">// -&gt;true</span></div><div class="line">vm.$el === document.getElementById(<span class="string">"example"</span>);  <span class="comment">//-&gt;true</span></div><div class="line"></div><div class="line">vm.$watch(<span class="string">"a"</span>,function(newVal,OldVal)&#123;</div><div class="line">    <span class="comment">//该回调将在“vm.a”改变之后调用</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h3 id="实例生命周期"><a href="#实例生命周期" class="headerlink" title="实例生命周期"></a>实例生命周期</h3><hr>
+<p>Vue实例在创建时有一系列初始化步骤，例如它需要建立数据观察，编译模板，创建必要的数据绑定。<br>在这个过程中会调用一些生命周期钩子，给自定义逻辑提供运行机会。<br>因此 ，Vue.js中没有”控制器”概念，组件自定义逻辑分割在这些钩子中。</p>
+<h2 id="数据绑定语法"><a href="#数据绑定语法" class="headerlink" title="数据绑定语法"></a>数据绑定语法</h2><p>Vue模板是基于DOM实现的，即所有模板都是可解析的有效的HTML，且通过一些特性做了增强，因此Vue模板从根本上不同域基于字符串的模板</p>
+<h3 id="插值"><a href="#插值" class="headerlink" title="插值"></a>插值</h3><hr>
+<h4 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h4><p>文本插值使用”Mustache”语法，双大括号<br><figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span> Message:</span><span class="template-variable">&#123;&#123; msg &#125;&#125;</span><span class="xml"></span></div></pre></td></tr></table></figure></p>
+<h4 id="原始的HTML"><a href="#原始的HTML" class="headerlink" title="原始的HTML"></a>原始的HTML</h4><p>双Mustache标签将数据解析为纯文本而不是HTML，为了输出真的HTML字符串需要用三Mustache标签:<br><figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><span class="template-variable">&#123;&#123;&#123; raw_html &#125;&#125;</span><span class="xml">&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>在网页上动态渲染HTML易遭受XSS攻击。记住永远对可信内容使用HTML插值，<strong>永不</strong>用于用户提交的内容</p>
+</blockquote>
+<h4 id="HTML特性"><a href="#HTML特性" class="headerlink" title="HTML特性"></a>HTML特性</h4><p>Mustache标签也可以用在HTML特性(Attributes)中:<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span> <span class="built_in">id</span>=<span class="string">"item-&#123;&#123;  id&#125;&#125;"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="绑定表达式"><a href="#绑定表达式" class="headerlink" title="绑定表达式"></a>绑定表达式</h3><hr>
+<p>放在Mustache标签内的文本称为绑定表达式。在Vue.js中，一段绑定表达式由一个简单的JavaScript表达式和可选的一个或多个过滤器组成。</p>
+<h4 id="JS表达式"><a href="#JS表达式" class="headerlink" title="JS表达式"></a>JS表达式</h4><p>Vue.js在数据绑定内支持全功能的JS表达式，但是每个绑定只能包含单个表达式，且只能是表达式不能是语句。<br><figure class="highlight clojure"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;&#123; number + <span class="number">1</span> &#125;&#125;</div><div class="line"></div><div class="line">&#123;&#123; ok ? 'YES' : 'NO' &#125;&#125;</div><div class="line"></div><div class="line">&#123;&#123; message.split(<span class="name">''</span>).reverse().join(<span class="name">''</span>) &#125;&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h4><p>Vue.js允许在表达式之后添加可选的过滤器(Filter)，以管道符指示:<br><figure class="highlight protobuf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;&#123; <span class="class"><span class="keyword">message</span> | <span class="title">capitalize</span>&#125;&#125;</span></div><div class="line">//过滤器可以串联</div><div class="line">&#123;&#123;<span class="class"><span class="keyword">message</span> | <span class="title">filterA</span> | filterB&#125;&#125;</span></div></pre></td></tr></table></figure></p>
+<p>过滤器接收参数<br><figure class="highlight clojure"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;&#123; message | filter <span class="string">"arg1"</span> arg2&#125;&#125;</div></pre></td></tr></table></figure></p>
+<p>过滤器函数始终以表达式的值作为第一个参数，带引号的参数视为字符串，而不带引号的参数按表达式计算</p>
+<h3 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h3><hr>
+<p>指令的值限定为绑定表达式，指令职责是当其表达式的值改变时把某些特殊的行为应用在DOM上<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">p</span> v-<span class="keyword">if</span>=<span class="string">"greeting"</span>&gt;Hello&lt;/p&gt;</div></pre></td></tr></table></figure></p>
+<p>v-if指令将根据表达式greeting的真假删除/插入<code>&lt;p&gt;</code>元素</p>
+<h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><p>某些指令可以在其名称后面带一个参数，中间放一个冒号隔开</p>
+<h4 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h4><p>以半角句号.开始的特殊后缀，用于表示指令应该以特殊方式绑定</p>
+<h3 id="缩写"><a href="#缩写" class="headerlink" title="缩写"></a>缩写</h3><hr>
+<h4 id="v-bind缩写"><a href="#v-bind缩写" class="headerlink" title="v-bind缩写"></a>v-bind缩写</h4><p><code>v-bind:href=&quot;url&quot;</code>简写为<code>:href=&quot;url&quot;</code></p>
+<h4 id="v-on缩写"><a href="#v-on缩写" class="headerlink" title="v-on缩写"></a>v-on缩写</h4><p><code>v-on:click=&quot;doSomething&quot;</code>简写为<code>@click=&quot;doSomething&quot;</code></p>
+<h2 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h2><p>在模板中放入过多的逻辑会让模板难以维护，因此Vue.js将绑定表达式限制为一个表达式，若需要多于一个表达式的逻辑，应当使用计算属性</p>
+<h3 id="基础例子"><a href="#基础例子" class="headerlink" title="基础例子"></a>基础例子</h3><hr>
+<p>当 vm.a 发生改变时，依赖于 vm.b 的绑定也会更新<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example"</span>&gt;</span></div><div class="line">  a=&#123;&#123; a &#125;&#125;, b=&#123;&#123; b &#125;&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="attr">el</span>: <span class="string">'#example'</span>,</div><div class="line">  <span class="attr">data</span>: &#123;</div><div class="line">    <span class="attr">a</span>: <span class="number">1</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">computed</span>: &#123;</div><div class="line">    <span class="comment">// 一个计算属性的 getter</span></div><div class="line">    b: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// `this` 指向 vm 实例</span></div><div class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.a + <span class="number">1</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>结果：a=1，b=2<br>这个案例中，为b设置的函数相当于属性vm.b的getter</p>
+<h3 id="计算属性-vs-watch"><a href="#计算属性-vs-watch" class="headerlink" title="计算属性 vs  .$watch"></a>计算属性 vs  .$watch</h3><hr>
+<p>Vue.js提供一个方法$watch用于观察Vue实例上的数据变化，不过相比较一个命令式的$watch回调，显然计算属性更加简单清晰</p>
+<p>下面是$watch回调：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span> <span class="built_in">id</span>=<span class="string">"demo"</span>&gt;&#123;&#123;fullName&#125;&#125;&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> vm = new Vue(&#123;</div><div class="line">  <span class="keyword">data</span>: &#123;</div><div class="line">    firstName: <span class="string">'Foo'</span>,</div><div class="line">    lastName: <span class="string">'Bar'</span>,</div><div class="line">    fullName: <span class="string">'Foo Bar'</span></div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line">vm.$watch(<span class="string">'firstName'</span>, function (<span class="keyword">val</span>) &#123;</div><div class="line">  <span class="keyword">this</span>.fullName = <span class="keyword">val</span> + <span class="string">' '</span> + <span class="keyword">this</span>.lastName</div><div class="line">&#125;)</div><div class="line"></div><div class="line">vm.$watch(<span class="string">'lastName'</span>, function (<span class="keyword">val</span>) &#123;</div><div class="line">  <span class="keyword">this</span>.fullName = <span class="keyword">this</span>.firstName + <span class="string">' '</span> + <span class="keyword">val</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>下面是计算属性<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="attr">data</span>: &#123;</div><div class="line">    <span class="attr">firstName</span>: <span class="string">'Foo'</span>,</div><div class="line">    <span class="attr">lastName</span>: <span class="string">'Bar'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">computed</span>: &#123;</div><div class="line">    <span class="attr">fullName</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.firstName + <span class="string">' '</span> + <span class="keyword">this</span>.lastName</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>相比较，显然计算属性更加简洁合理</p>
+<h3 id="计算setter"><a href="#计算setter" class="headerlink" title="计算setter"></a>计算setter</h3><hr>
+<p>计算属性默认只是getter，但是我们也可以设置setter:<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ...</span></div><div class="line">computed: &#123;</div><div class="line">  fullName: &#123;</div><div class="line">    <span class="comment">// getter</span></div><div class="line">    <span class="keyword">get</span>: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</div><div class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.firstName + <span class="string">' '</span> + <span class="keyword">this</span>.lastName</div><div class="line">    &#125;,</div><div class="line">    <span class="comment">// setter</span></div><div class="line">    <span class="keyword">set</span>: <span class="function"><span class="keyword">function</span> <span class="params">(newValue)</span> </span>&#123;</div><div class="line">      <span class="keyword">var</span> names = newValue.split(<span class="string">' '</span>)</div><div class="line">      <span class="keyword">this</span>.firstName = names[<span class="number">0</span>]</div><div class="line">      <span class="keyword">this</span>.lastName = names[names.length - <span class="number">1</span>]</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">// ...</span></div></pre></td></tr></table></figure></p>
+<p>调用vm.fullName = “John Doe”时，setter会被调用，vm.firstName和vm.lastName也会有相应更新</p>
+<h2 id="Class与Style绑定"><a href="#Class与Style绑定" class="headerlink" title="Class与Style绑定"></a>Class与Style绑定</h2><h3 id="绑定HTML-Class"><a href="#绑定HTML-Class" class="headerlink" title="绑定HTML Class"></a>绑定HTML Class</h3><hr>
+<blockquote>
+<p>虽然可以用Mustache标签绑定class，如`class = ““，但是不推荐这种写法和v-bind:class混用！</p>
+</blockquote>
+<h4 id="对象语法"><a href="#对象语法" class="headerlink" title="对象语法"></a>对象语法</h4><p>传给v-bind:class一个对象以动态切换class，注意v-bind:class指令可以与普通的class特性共存<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"static"</span> v-bind:<span class="class"><span class="keyword">class</span></span>=<span class="string">"&#123;‘class-a’:isA,'class-b':isB&#125;"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="attr">data:</span>&#123;</div><div class="line"><span class="attr">    isA:</span><span class="literal">true</span>,</div><div class="line"><span class="attr">    isB:</span><span class="literal">false</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>渲染结果:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"static class-a"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
+<p>也可以直接传给一个对象<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div v-bind:<span class="class"><span class="keyword">class</span></span>=<span class="string">"classObject"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">data</span>:&#123;</div><div class="line">    <span class="attribute">classObject</span>:&#123;</div><div class="line">        <span class="string">'class-a'</span>:true,</div><div class="line">        <span class="string">'class-b'</span>:false</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="数组语法"><a href="#数组语法" class="headerlink" title="数组语法"></a>数组语法</h4><p>可以把一个数组传给v-bind:class，以应用class列表<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div v-bind:<span class="class"><span class="keyword">class</span></span>=<span class="string">"[classA, classB]"</span>&gt;</div></pre></td></tr></table></figure></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">data</span>: &#123;</div><div class="line">  <span class="attribute">classA</span>: <span class="string">'class-a'</span>,</div><div class="line">  classB: <span class="string">'class-b'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>渲染结果<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"class-a class-b"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
+<p>在 1.0.19+ 中，可以在数组语法中使用对象语法：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div v-<span class="string">bind:</span><span class="class"><span class="keyword">class</span>="[<span class="title">classA</span>, &#123;</span> <span class="string">classB:</span> isB, <span class="string">classC:</span> isC &#125;]<span class="string">"&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="绑定内联样式"><a href="#绑定内联样式" class="headerlink" title="绑定内联样式"></a>绑定内联样式</h3><hr>
+<h4 id="对象语法-1"><a href="#对象语法-1" class="headerlink" title="对象语法"></a>对象语法</h4><p>跟上述绑定CSS类似<br><figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:style</span>=<span class="string">"</span></span></span><span class="template-variable">&#123; color: activeColor, fontSize: fontSize + 'px' &#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">data</span>: &#123;</div><div class="line">  <span class="attribute">activeColor</span>: <span class="string">'red'</span>,</div><div class="line">  fontSize: <span class="number">30</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>同样也可以直接绑定到一个样式对象<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span> v-<span class="keyword">bind</span>:style=<span class="string">"styleObject"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">data</span>: &#123;</div><div class="line">  <span class="attribute">styleObject</span>: &#123;</div><div class="line">    color: <span class="string">'red'</span>,</div><div class="line">    fontSize: <span class="string">'13px'</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="数组语法-1"><a href="#数组语法-1" class="headerlink" title="数组语法"></a>数组语法</h4><p>可以将多个样式对象应用到一个元素上<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span> v-<span class="keyword">bind</span>:style=<span class="string">"[styleObjectA, styleObjectB]"</span>&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="自动添加前缀"><a href="#自动添加前缀" class="headerlink" title="自动添加前缀"></a>自动添加前缀</h4><p>当v-bind:style使用需要厂商前缀的CSS属性时，Vue.js会自动侦测并添加相应的前缀</p>
+<h2 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h2><h3 id="v-if"><a href="#v-if" class="headerlink" title="v-if"></a>v-if</h3><hr>
+<p>在Vue.js中使用v-if实现条件功能<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">h1</span> v-<span class="keyword">if</span>=<span class="string">"ok"</span>&gt;Yes&lt;/h1&gt;</div><div class="line">&lt;<span class="selector-tag">h1</span> v-<span class="keyword">else</span>&gt;No&lt;/h1&gt;</div></pre></td></tr></table></figure></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"><span class="selector-tag">data</span>:&#123;</div><div class="line">    <span class="attribute">ok</span>:true</div><div class="line">&#125;</div><div class="line">...</div></pre></td></tr></table></figure>
+<p>如果想切换多个元素,可以使用template-if,最终渲染效果不会包含template元素<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">v-if</span>=<span class="string">"ok"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Paragraph<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="v-show"><a href="#v-show" class="headerlink" title="v-show"></a>v-show</h3><hr>
+<p>用法与v-if大体一致，相当于切换display。但是v-show不支持<code>&lt;template&gt;</code>语法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;h1 v-show=<span class="string">"ok"</span>&gt;Hello!<span class="xml"><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
+<h3 id="v-else"><a href="#v-else" class="headerlink" title="v-else"></a>v-else</h3><hr>
+<p>可以为v-if或v-show添加一个“else”块<br>但是v-else元素必须立即跟在v-if或v-show元素后，否则不能识别</p>
+<h3 id="v-if-vs-v-show"><a href="#v-if-vs-v-show" class="headerlink" title="v-if vs. v-show"></a>v-if vs. v-show</h3><hr>
+<p>在切换 v-if 块时，Vue.js 有一个局部编译/卸载过程，因为 v-if 之中的模板也可能包括数据绑定或子组件。v-if 是真实的条件渲染，因为它会确保条件块在切换当中合适地销毁与重建条件块内的事件监听器和子组件。</p>
+<p>v-if 也是惰性的：如果在初始渲染时条件为假，则什么也不做——在条件第一次变为真时才开始局部编译（编译会被缓存起来）。</p>
+<p>相比之下，v-show 简单得多——元素始终被编译并保留，只是简单地基于 CSS 切换。</p>
+<p>一般来说，v-if 有更高的切换消耗而 v-show 有更高的初始渲染消耗。因此，如果需要频繁切换 v-show 较好，如果在运行时条件不大可能改变 v-if 较好。</p>
+<h2 id="列表渲染"><a href="#列表渲染" class="headerlink" title="列表渲染"></a>列表渲染</h2><h3 id="v-for"><a href="#v-for" class="headerlink" title="v-for"></a>v-for</h3><hr>
+<p>形式为item in items, items是数据数组，item是当前数组元素的别名<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">ul</span> id=<span class="string">"example-1"</span>&gt;</div><div class="line">  &lt;<span class="selector-tag">li</span> v-<span class="keyword">for</span>=<span class="string">"item in items"</span>&gt;</div><div class="line">    &#123;&#123; item<span class="selector-class">.message</span> &#125;&#125;</div><div class="line">  &lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure></p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var example1 = <span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="keyword">e</span><span class="variable">l:</span> <span class="string">'#example-1'</span>,</div><div class="line">  dat<span class="variable">a:</span> &#123;</div><div class="line">    item<span class="variable">s:</span> [</div><div class="line">      &#123; message: <span class="string">'Foo'</span> &#125;,</div><div class="line">      &#123; message: <span class="string">'Bar'</span> &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>在v-for块内我们能完全访问父组件作用域内所有属性，另外还有一个特殊变量$index代表当前数组元素的索引<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">ul</span> id=<span class="string">"example-2"</span>&gt;</div><div class="line">  &lt;<span class="selector-tag">li</span> v-<span class="keyword">for</span>=<span class="string">"item in items"</span>&gt;</div><div class="line">    &#123;&#123; parentMessage &#125;&#125; - &#123;&#123; <span class="variable">$index</span> &#125;&#125; - &#123;&#123; item<span class="selector-class">.message</span> &#125;&#125;</div><div class="line">  &lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure></p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var example2 = <span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="keyword">e</span><span class="variable">l:</span> <span class="string">'#example-2'</span>,</div><div class="line">  dat<span class="variable">a:</span> &#123;</div><div class="line">    parentMessage: <span class="string">'Parent'</span>,</div><div class="line">    item<span class="variable">s:</span> [</div><div class="line">      &#123; message: <span class="string">'Foo'</span> &#125;,</div><div class="line">      &#123; message: <span class="string">'Bar'</span> &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>结果：<br> Parent-0-Foo<br> Parent-1-Bar<br>从 1.0.17 开始可以使用 of 分隔符<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div v-<span class="keyword">for</span>=<span class="string">"item of items"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
+<h4 id="template-v-for"><a href="#template-v-for" class="headerlink" title="template v-for"></a>template v-for</h4><p>可以将v-for用在<template>上渲染一个包含多个元素的块</template></p>
+<h3 id="数组变动检测"><a href="#数组变动检测" class="headerlink" title="数组变动检测"></a>数组变动检测</h3><hr>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/06/06/2016-06-06-Bootstrap3学习笔记/" data-toggle="tooltip" data-placement="top" title="Boorstrap3学习笔记">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/05/30/2016-05-30-HTML和CSS-常见问题总结/" data-toggle="tooltip" data-placement="top" title="HTML和CSS 常见问题总结">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#MVVM" title="MVVM">MVVM</a>
+                        
+                          <a class="tag" href="/tags/#js" title="js">js</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.kaijun.rocks" target="_blank">Kaijun&#39;s Blog</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">Foo</a></li>
+                    
+                        <li><a href="#" target="_blank">Bar</a></li>
+                    
+                        <li><a href="#" target="_blank">Example Friends</a></li>
+                    
+                        <li><a href="#" target="_blank">It helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hexo-theme-huxblog";
+    var disqus_identifier = "http://rubicker.github.io/2016/06/02/2016-06-02-Vue-js学习/";
+    var disqus_url = "http://rubicker.github.io/2016/06/02/2016-06-02-Vue-js学习/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/Demonbane_x">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/Demonbane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/Demonbane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/demonbane.cn">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Kaijun">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/kaijun-chen-42089354">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Kaijun&#39;s Blog 2016 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://rubicker.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'huangxuan.me';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

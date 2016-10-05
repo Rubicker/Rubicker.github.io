@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          《精通CSS》读书笔记 - Kaijun的博客 | Kaijun&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://rubicker.github.io/2016/04/16/2016-04-16-精通CSS/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Kaijun&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#css" title="css">css</a>
+                        
+                    </div>
+                    <h1>《精通CSS》读书笔记</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Kaijun Chen on
+                        2016-04-16
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <blockquote>
+<p>重读必有新收获！</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="基础知识-amp-amp-为样式找到目标"><a href="#基础知识-amp-amp-为样式找到目标" class="headerlink" title="基础知识&amp;&amp;为样式找到目标"></a>基础知识&amp;&amp;为样式找到目标</h3><h4 id="特殊性a，b，c，d"><a href="#特殊性a，b，c，d" class="headerlink" title="特殊性a，b，c，d"></a>特殊性a，b，c，d</h4><hr>
+<ul>
+<li>行内样式  a=1</li>
+<li>b=ID选择器总数</li>
+<li>c=类+伪类+属性选择器的数量</li>
+<li>d=类型选择器+伪元素选择器数量（：before  /：after…）</li>
+<li>连接符和通配符不具有特殊性，即特殊性为0，0，0，0</li>
+<li><p>继承同样不具有特殊性，不同于0，0，0，0，<strong>它是连0都没有</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">p</span>&#123; <span class="attribute">color</span>:blue;&#125; <span class="comment">/* 0.0.0.1 */</span>			</div><div class="line"> *&#123; <span class="attribute">color</span>:red;&#125; <span class="comment">/* 0.0.0.0 */</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"blue"</span>&gt;</span>这里的文字<span class="tag">&lt;<span class="name">em</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span>  </div><div class="line"><span class="comment">&lt;!--hello仍为红色，因为继承不具有任何特殊性（干不过通配符的0，0，0，0)--&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="如何对文档应用样式表"><a href="#如何对文档应用样式表" class="headerlink" title="如何对文档应用样式表"></a>如何对文档应用样式表</h4><hr>
+<ul>
+<li><p><strong>使用<code>&lt;link&gt;</code>标签</strong>(在<code>&lt;head&gt;</code>标签中)</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">""</span> <span class="attr">ref</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>使用import</strong>（将一个样式表引入另一个样式表）</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">media</span>=<span class="string">"screen"</span>&gt;</span><span class="css">   </span></div><div class="line">@<span class="keyword">import</span> url(<span class="string">"CSS文件"</span>);   </div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>两者区别：</strong></p>
+<p>区别1：link是XHTML标签，除了加载CSS外，还可以定义RSS等其他事务；@import属于CSS范畴，只能加载CSS。<br>区别2：link引用CSS时，在页面载入时同时加载；@import需要页面网页完全载入以后加载。<br>区别3：link是XHTML标签，无兼容问题；@import是在CSS2.1提出的，低版本的浏览器不支持。<br>区别4：ink支持使用Javascript控制DOM去改变样式；而@import不支持。</p>
+</li>
+</ul>
+<h3 id="可视化格式模型"><a href="#可视化格式模型" class="headerlink" title="可视化格式模型"></a>可视化格式模型</h3><h4 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h4><hr>
+<ul>
+<li><p><strong>为何要有内边距这种东西？</strong></p>
+<p>内边距出现在内容区域四周，若在元素上添加背景，背景会应用于由内容和内边距组成的区域，因此需要设定内边距使内容不会和背景混在一起。</p>
+</li>
+<li><p><strong>outline属性（css2.1）</strong></p>
+<p>轮廓绘制在元素框之上，所以它不影响元素的大小或者定位</p>
+</li>
+<li><p><strong>内边距，边框，外边距默认值是0，但是很多用户代理样式表设置有外边距据和内边距</strong></p>
+ <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">*&#123;</div><div class="line">   <span class="attribute">margin</span>:<span class="number">0</span>;</div><div class="line">   <span class="attribute">padding</span>:<span class="number">0</span>;</div><div class="line"> &#125;</div><div class="line"> <span class="comment">/*这个方法不区分元素，会对option等元素有不利影响；*/</span></div><div class="line"> <span class="comment">/*使用全局reset把内边距和外边距显式地设置为0比较安全。*/</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p><strong>width和height属性</strong></p>
+<p> 指的是内容区域的宽度和高度<br> 在IE盒模型中（混杂模式），width属性指的是内容内边距和边框的宽度总和</p>
+</li>
+<li><p><strong>外边距的叠加</strong><br> 当一个元素出现在另一个元素上面时，第一个元素的底外边距与第二个元素的顶外边距发生叠加<br> 当一个元素包含在另一个元素中时，他们的顶和（或）底外边距也会发生叠加<br> 当一个元素是空元素时，顶底外边距碰到了一起，也会发生叠加</p>
+<p> 只有<strong>普通文档流</strong>中<strong>块框</strong>的<strong>垂直</strong>外边框才会发生外边距叠加，行内框，浮动框或绝对定位框之间不会发生外边距叠加</p>
+<p> 所谓叠加就是取两者最大值，作为叠加后的值</p>
+</li>
+</ul>
+<h4 id="定位概述"><a href="#定位概述" class="headerlink" title="定位概述"></a>定位概述</h4><hr>
+<p>CSS中有三种定位机制：普通流，浮动和绝对定位。（默认都是普通文档流）<br>普通流中元素框的位置由元素在HTML中的位置决定。</p>
+<ul>
+<li><p><strong>display属性</strong>  </p>
+<p> 设置为block时，可以让行内元素表现为块级元素<br> 设置为none时，不显示内容不占用空间<br> 设置为inline-block时，可以像行内元素一样水平排列，但是框内容仍然符合块级框的行为</p>
+</li>
+<li><p><strong>行内框</strong>  </p>
+<p> 修改行内框尺寸高度的唯一方法是：修改<strong>行高</strong><br> 修改行内框尺寸宽度的方法是：修改水平内边距，边框和外边框</p>
+<p> 以上陈述只在不修改行框display值的时候成立。</p>
+<p> 若将行内框display设置为inline-block，则可以让行框依旧水平依次排列，但是可以像块级框那样显示设置宽高，垂直外边距内边距等</p>
+</li>
+<li><p><strong>相对定位与绝对定位</strong></p>
+<p> 设置一个元素相对定位，它将出现在他所在的位置上，然后通过设置垂直或水平位置，让该元素相对于它的起点移动，无论是否移动，元素<strong>始终占据原来的空间</strong>，移动元素会导致它覆盖其他框。</p>
+<p> 绝对定位使元素位置与文档流无关，因此<strong>不占据空间</strong>，普通文档流中的其他元素布局就当绝对定位的元素不存在一样。</p>
+<p> 绝对定位元素的位置是相对于距离它<strong>最近的已定位的祖先元素</strong>确定</p>
+<p> 绝对定位会覆盖其他框，可以通过设置z-index属性来控制这些框的叠放次序；z-index值越高，框在栈中位置就越高。</p>
+<p> 若希望绝对定位元素定位于某框，则只需要将该框设置为相对定位</p>
+<p> 固定定位是绝对定位的一种，差异在于固定定位元素的包含块是视口（viewport），也就是说固定定位元素可以始终出现在窗口中的相同位置</p>
+</li>
+<li><p><strong>浮动</strong></p>
+<ul>
+<li><p>不在文档普通流中，因此其他元素的表现就像该浮动元素不存在一样<br>并不完全如上述，若一个文本框紧随一个浮动元素之后，那么这个元素的框会表现的向浮动不存在一样，<strong>但是</strong> 框中的文本内容会受到浮动元素的影响，从而移动以流出空间，也就是说浮动元素旁边的行框缩短了，因此行框围绕浮动框。</p>
+</li>
+<li><p>要想阻止上述围绕现象，需对行框元素应用clear属性（有 left,right,both none四个值），在清理元素的时候浏览器会在该元素顶上添加足够的外边距使它垂直下降到浮动框的下面<br>这个规则只能影响使用清除的元素本身，不能影响其他元素<br>对元素清理实际上是为浮动元素腾出了垂直空间（类似于未脱离文档流的感觉）</p>
+</li>
+<li><p>假如某个div元素A是浮动的，如果A元素上一个元素也是浮动的，那么A元素会跟随在上一个元素的后边(如果一行放不下这两个元素，那么A元素会被挤到下一行)；如果A元素上一个元素是标准流中的元素，那么A的相对垂直位置不会改变，也就是说A的顶部总是和上一个元素的底部对齐。</p>
+</li>
+<li><p>清理浮动的方法</p>
+<ul>
+<li>在div末尾添加无关标记，赋予属性clear：both</li>
+<li><p>设置overflow属性（定义包含的内容超过指定尺寸情况下元素的行为）<br>默认情况下超过尺寸，内容会溢出到框外，进入相邻的空间<br>应用值为auto或者hidden的overflow属性会自动清理任何浮动元素，但是也有副作用：在某些情况下会产生滚动条或截断内容</p>
+</li>
+<li><p>添加伪类</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.clear</span><span class="selector-pseudo">:after</span>&#123;</div><div class="line">    <span class="attribute">content</span>:<span class="string">"."</span>;</div><div class="line">    <span class="attribute">height</span>:<span class="number">0</span>;</div><div class="line">    <span class="attribute">visibility</span>:hidden;</div><div class="line">    <span class="attribute">display</span>:block;</div><div class="line">    <span class="attribute">clear</span>:both;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="背景图像效果"><a href="#背景图像效果" class="headerlink" title="背景图像效果"></a>背景图像效果</h3><h4 id="背景图像基础"><a href="#背景图像基础" class="headerlink" title="背景图像基础"></a>背景图像基础</h4><hr>
+<ul>
+<li>默认情况下，浏览器水平和垂直地重复显示背景图像，让图像平铺在整个页面上。</li>
+<li>背景图像总是出现在背景颜色的上面</li>
+<li>确定背景图像位置的时候，若使用像素定位，此时参照图像的左上角；若使用百分数定位，此时参照图像上的对应位置<h4 id="圆角框"><a href="#圆角框" class="headerlink" title="圆角框"></a>圆角框</h4></li>
+</ul>
+<hr>
+<ul>
+<li>border-radius  CSS3实现圆角边框</li>
+<li>border-image  CSS3中用来指定一个图像作为某个元素的边框<br>border-image-source    用在边框的图片的路径。<br>border-image-width    图片边框的宽度。<br>border-image-repeat    图像边框是否应平铺(repeated)、铺满(rounded)或拉伸(stretched)。<h4 id="投影"><a href="#投影" class="headerlink" title="投影"></a>投影</h4></li>
+</ul>
+<hr>
+<ul>
+<li>box-shadow:为盒子添加阴影 需要四个值：垂直和水平位移，投影宽度和颜色。与border-radius完美配合，生成圆角阴影。<h4 id="不透明度"><a href="#不透明度" class="headerlink" title="不透明度"></a>不透明度</h4></li>
+</ul>
+<hr>
+<ul>
+<li><p>CSS不透明度</p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.alert</span> &#123;</div><div class="line"><span class="attribute">background-color</span>: <span class="number">#000</span>;</div><div class="line"><span class="attribute">border-radius</span>: <span class="number">2em</span>;</div><div class="line"><span class="attribute">opacity</span>:<span class="number">0.8</span>;</div><div class="line"><span class="attribute">filter</span>:<span class="built_in">alpha</span>(opacity = 80);  <span class="comment">/*兼容IE，IE不支持opacity属性*/</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> 缺点是：除了对背景生效，其余元素内容也会继承它。里面的文字内容也会有不透明度。</p>
+</li>
+<li><p>RGBa</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.alert</span> &#123;</div><div class="line">    <span class="attribute">background-color</span>: rgba（<span class="number">0</span>，<span class="number">0</span>，<span class="number">0</span>，<span class="number">0.8</span>）；</div><div class="line">    border-radius :<span class="number">2em</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> 此时不透明度只对背景生效</p>
+</li>
+<li><p>PNG透明度</p>
+</li>
+<li><p>CSS视差效果</p>
+</li>
+</ul>
+<h3 id="对链接应用样式"><a href="#对链接应用样式" class="headerlink" title="对链接应用样式"></a>对链接应用样式</h3>
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/04/16/2016-04-16-JavaScript语言精粹/" data-toggle="tooltip" data-placement="top" title="《JavaScript语言精粹》读书笔记">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/04/12/2016-04-12-老友记/" data-toggle="tooltip" data-placement="top" title="老友记">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#css" title="css">css</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.kaijun.rocks" target="_blank">Kaijun&#39;s Blog</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">Foo</a></li>
+                    
+                        <li><a href="#" target="_blank">Bar</a></li>
+                    
+                        <li><a href="#" target="_blank">Example Friends</a></li>
+                    
+                        <li><a href="#" target="_blank">It helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hexo-theme-huxblog";
+    var disqus_identifier = "http://rubicker.github.io/2016/04/16/2016-04-16-精通CSS/";
+    var disqus_url = "http://rubicker.github.io/2016/04/16/2016-04-16-精通CSS/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/Demonbane_x">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/Demonbane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/Demonbane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/demonbane.cn">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Kaijun">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/kaijun-chen-42089354">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Kaijun&#39;s Blog 2016 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://rubicker.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'huangxuan.me';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

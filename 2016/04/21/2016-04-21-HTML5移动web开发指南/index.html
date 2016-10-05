@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          HTML5移动web开发指南 - Kaijun的博客 | Kaijun&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://rubicker.github.io/2016/04/21/2016-04-21-HTML5移动web开发指南/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Kaijun&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#HTML5" title="HTML5">HTML5</a>
+                        
+                          <a class="tag" href="/tags/#移动web" title="移动web">移动web</a>
+                        
+                    </div>
+                    <h1>HTML5移动web开发指南</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Kaijun Chen on
+                        2016-04-21
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <blockquote>
+<p>了解HTML5，了解移动Web应用开发</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="第一章-移动互联网时代的Web技术"><a href="#第一章-移动互联网时代的Web技术" class="headerlink" title="第一章 移动互联网时代的Web技术"></a>第一章 移动互联网时代的Web技术</h3><ul>
+<li><p>智能手机的移动Web浏览器特点</p>
+<ul>
+<li>有限的屏幕尺寸</li>
+<li>触屏，缩放</li>
+<li>硬件设备的提升</li>
+<li>基于Webkit内核</li>
+</ul>
+</li>
+</ul>
+<h3 id="第二章-移动设备HTML5页面布局"><a href="#第二章-移动设备HTML5页面布局" class="headerlink" title="第二章 移动设备HTML5页面布局"></a>第二章 移动设备HTML5页面布局</h3><h4 id="页面语义化简介"><a href="#页面语义化简介" class="headerlink" title="页面语义化简介"></a>页面语义化简介</h4><hr>
+<ul>
+<li><p>HTML5新语义元素概述</p>
+<ul>
+<li><p><code>&lt;header&gt;</code></p>
+<p>   定义文档的页面组合，通常是一些引导和导航信息</p>
+</li>
+<li><p><code>&lt;footer&gt;</code></p>
+<p>   定义文档或章节的末尾部分，通常包含一些章节的基本信息，如作者信息，版权信息等</p>
+<p>   一个HTML页面上可以允许有一个或多个header和footer</p>
+</li>
+<li><p><code>&lt;nav&gt;</code></p>
+<p>   用来构建导航，显示导航链接</p>
+</li>
+<li><p><code>&lt;aside&gt;</code></p>
+<p>   定义边栏，显示非正文内容 </p>
+</li>
+<li><p><code>&lt;article&gt;</code></p>
+<p>   表示文档，页面，用来显示一块独立的文章内容。可以相互嵌套</p>
+</li>
+<li><p><code>&lt;section&gt;</code></p>
+<p>   定义为文档中的节，比如章节，页眉，页脚或其他部分</p>
+</li>
+<li><p><code>&lt;hgroup&gt;</code></p>
+<p>   对网页或区段的标题元素进行组合</p>
+</li>
+</ul>
+</li>
+<li><p>页面结构与移动设备的布局</p>
+</li>
+</ul>
+<h3 id="第三章-HTML5规范的本地存储"><a href="#第三章-HTML5规范的本地存储" class="headerlink" title="第三章 HTML5规范的本地存储"></a>第三章 HTML5规范的本地存储</h3><p>HTML5本地存储规范中定义了两个API：Web Storage和本地数据库Web SQL Database</p>
+<p>Web Storage实际上是HTML4中Cookies存储机制的一个改进版本，其作用是在网站中把有用的信息存储到本地的计算机或移动设备上，然后根据实际需要从本地读取信息</p>
+<p>Web Storage提供了两种存储类型API接口：sessionStorage和localStorage;sessionStorage生命周期仅在会话期间有效，而localStorage存储在本地，永久存储，除非用户删除。</p>
+<h4 id="移动设备的支持"><a href="#移动设备的支持" class="headerlink" title="移动设备的支持"></a>移动设备的支持</h4><hr>
+<pre><code>if(window.localStrorage){
+//浏览器支持localStorage
+}
+
+if(window.sessionStorage){
+//浏览器支持sessionStorage
+}
+</code></pre><h4 id="localStorage"><a href="#localStorage" class="headerlink" title="localStorage"></a>localStorage</h4><hr>
+<ul>
+<li><p>安全性方面</p>
+<p> 基于域，然和该域内的页面都可以访问localStorage数据；</p>
+<p> 存在问题，各个浏览器之间数据是相互独立的，不能跨域访问。</p>
+</li>
+<li><p>API</p>
+<ul>
+<li><p>如何存储一个数据?</p>
+<pre><code>localStorage.setItem(&quot;name&quot;,&quot;John&quot;);
+//以key/ value 形式存储
+</code></pre></li>
+<li><p>如何读取一个数据？</p>
+<pre><code>localStorage.getItem(&quot;name&quot;);
+
+localStorage.key(1);   //该方法效果同上，但要确定存储列表中只有一个item
+</code></pre></li>
+<li><p>如何删除数据？</p>
+<pre><code>localStorage.removeItem(&quot;name&quot;);  //删除指定key为“name”的键值对item
+
+localStorage.clear();//删除所有键值对
+</code></pre><ul>
+<li><p>如何存储和读取JSON格式数据？</p>
+<pre><code>var userData = {
+      name = &quot;wang wu&quot;;
+      sex = &quot;male&quot;;
+      age = &quot;55&quot;
+ };
+
+// 存储userData数据
+localStorage.setItem(&quot;userData&quot;,JSON.stringify(userData));
+// 读取userData数据并且赋值给新变量
+var newUserData = JSON.parse(localStorage.getItem(&quot;userData&quot;));
+//删除本地item
+localStorage.remove(&quot;userData&quot;);
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="sessionStorage"><a href="#sessionStorage" class="headerlink" title="sessionStorage"></a>sessionStorage</h4><hr>
+<p>   API用法与localStorage相似</p>
+<h4 id="Storage事件监听"><a href="#Storage事件监听" class="headerlink" title="Storage事件监听"></a>Storage事件监听</h4><hr>
+<p>Storage事件可以使用W3C标准的注册事件方法addEventListener进行注册监听</p>
+<pre><code>window.addEventListener(&quot;storage&quot;,showStorageEvent,true);
+</code></pre><h3 id="第四章-移动Web的离线应用"><a href="#第四章-移动Web的离线应用" class="headerlink" title="第四章 移动Web的离线应用"></a>第四章 移动Web的离线应用</h3><p>网页缓存与离线应用的区别：</p>
+<ul>
+<li>网页缓存依赖于网络存在，而离线应用在离线状态下仍然可以使用</li>
+<li>网页缓存主要缓存当前页面相关内容，也仅限于当前页面的读取；离线应用则主要缓存文件，只要设置缓存该文件的页面，都能在离线状态下读取该文件</li>
+</ul>
+<h4 id="移动设备的支持-1"><a href="#移动设备的支持-1" class="headerlink" title="移动设备的支持"></a>移动设备的支持</h4><hr>
+<pre><code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(<span class="built_in">window</span>.applicationCache)&#123;</div><div class="line">    <span class="comment">// 浏览器支持离线应用</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</code></pre><h4 id="applicationCache和manifest"><a href="#applicationCache和manifest" class="headerlink" title="applicationCache和manifest"></a>applicationCache和manifest</h4><hr>
+<ul>
+<li><p>manifest文件</p>
+<p> 离线应用包含一个manifest文件，此文件记录那些资源文件需要离线应用缓存，哪些资源需要通过网络访问等信息。</p>
+<p> 如何使用？</p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">manifest</span> = <span class="string">"cache.manifest"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span> = <span class="string">"utf-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>manifest使用方法<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p> manifest文件的MIME类型是text/cache-manifest属性，因此web服务器需要配置MIME类型才能识别manifest文件。</p>
+</li>
+<li><p>applicationCache对象和事件<br> 这个对象记录本地缓存的各种状态及事件。缓存状态包括6种，可以通过<code>window.applicationCache.status</code>获得。<br> <img src="https://ooo.0o0.ooo/2016/04/21/57188b6fea21d.jpg" alt="zhuangtai.jpg"><br> <img src="https://ooo.0o0.ooo/2016/04/21/57188b4de6d41.jpg" alt="事件.jpg"></p>
+<p> 在实际应用中我们可以通过事件监听，根据当前applicationCache对象的状态处理相关业务：</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">applicationCache.addEventListener(<span class="string">'updateready'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   <span class="comment">//资源文件下载中，添加相关代码</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p> 判断当前浏览器在线还是离线：</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(<span class="built_in">window</span>.navigator.online)&#123;</div><div class="line">       <span class="comment">//当前浏览器在线</span></div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">       <span class="comment">//当前浏览器离线</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="第五章-移动设备的常见HTML5表单元素"><a href="#第五章-移动设备的常见HTML5表单元素" class="headerlink" title="第五章 移动设备的常见HTML5表单元素"></a>第五章 移动设备的常见HTML5表单元素</h3><h4 id="丰富的表单属性"><a href="#丰富的表单属性" class="headerlink" title="丰富的表单属性"></a>丰富的表单属性</h4><hr>
+<ul>
+<li><p>form属性</p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span> = <span class="string">"testform"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span> = <span class="string">"text"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">form</span> = <span class="string">testform/</span>&gt;</span></div></pre></td></tr></table></figure>
+<p> 在HTML4中，form外的<code>&lt;input&gt;</code>不从属于form表单，提交表单时并不会一并提交；<br> 但是在HTML5中，只需要给外部的<code>&lt;input&gt;</code>增加form属性并指定其值为formID值，外部的<code>&lt;input&gt;</code>就属于form表单范围。既可以脱离form，又能保持从属关系。</p>
+</li>
+<li><p>placeholder属性</p>
+<p>主要作用是当文本框处于未输入状态并且内容为空时给出的提示内容</p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">placeholder</span>=<span class="string">"请输入内容"</span> /&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>autofocus属性</p>
+<p> 指定控件自动获得焦点（<strong>一个HTML页面上只能有一个控件具有该属性</strong>）</p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">“text”</span> <span class="attr">autofocus</span> /&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>List属性和datalist属性</p>
+<p>list属性主要作用是提示文本框输入，提示的数据源由datalist元素提供。  </p>
+</li>
+<li><p>autocomplete属性</p>
+<p>自动完成功能 on/off</p>
+</li>
+<li><p>reruired属性</p>
+<p>必填属性。如果某个元素存在required属性且该元素值为空，则无法提交表单</p>
+</li>
+</ul>
+<h4 id="移动web表单的input类型"><a href="#移动web表单的input类型" class="headerlink" title="移动web表单的input类型"></a>移动web表单的input类型</h4><hr>
+<ul>
+<li><p>search类型文本</p>
+<p> 用于制作搜索框</p>
+</li>
+<li><p>email类型文本</p>
+<p> 用于输入邮箱（某些设备点击时可能会切换输入法）</p>
+</li>
+<li><p>number类型文本</p>
+<p> 用于输入数字</p>
+</li>
+<li><p>range类型文本</p>
+<p> 数值范围输入文本框，提供的是一种滑动输入方式（需要配合min，max，range属性使用）</p>
+</li>
+<li><p>tel类型文本</p>
+<p> 用于输入电话号码</p>
+</li>
+<li><p>url类型文本</p>
+<p>用于输入URL地址的文本框类型</p>
+</li>
+</ul>
+<h3 id="第六章-移动Web界面样式"><a href="#第六章-移动Web界面样式" class="headerlink" title="第六章　移动Web界面样式"></a>第六章　移动Web界面样式</h3><h4 id="CSS3"><a href="#CSS3" class="headerlink" title="CSS3"></a>CSS3</h4><hr>
+<p>移动设备的Web浏览器都支持CSS3，对于不同浏览器之间的兼容性问题差异很小。</p>
+<h4 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h4><hr>
+<h5 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a>属性选择器</h5><ul>
+<li>完全匹配属性选择器<br>语法：[attr=value]</li>
+<li>包含匹配选择器<br>语法：[attr*=value]</li>
+<li>首字符匹配选择器<br>语法：[attr^=value]</li>
+<li>尾字符匹配选择器<br>语法：[attr$=value]<h5 id="伪类选择器"><a href="#伪类选择器" class="headerlink" title="伪类选择器"></a>伪类选择器</h5></li>
+<li><p>before<br>主要作用是在选择某个元素之前插入内容，一般用于清除浮动<br>语法：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">元素标签<span class="selector-pseudo">:before</span>&#123;</div><div class="line">     <span class="attribute">content</span>:<span class="string">"插入的内容"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>after<br>语法：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">元素标签<span class="selector-pseudo">:after</span>&#123;</div><div class="line">     <span class="attribute">content</span>:<span class="string">"插入的内容"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>first-child<br>指定元素列表中第一个元素的样式</p>
+</li>
+<li>last-child<br>指定元素列表中最后一个元素的样式</li>
+<li>nth-child()和nth-last-child()<br>指定某个元素的样式或从后数起某个元素的样式</li>
+</ul>
+<h4 id="阴影"><a href="#阴影" class="headerlink" title="阴影"></a>阴影</h4><hr>
+<h5 id="box-shadow"><a href="#box-shadow" class="headerlink" title="box-shadow"></a>box-shadow</h5><p>语法：box-shadow:<length><length><length>||color<br>第一个length是水平阴影偏移值；<br>第二个length是垂直阴影偏移值；<br>第三个length是阴影模糊值；<br>color是阴影的颜色<br>前两个可以取负值<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">div</span>&#123;</div><div class="line">    <span class="comment">/*其他浏览器*/</span></div><div class="line">   <span class="attribute">box-shadow</span>:<span class="number">3px</span> <span class="number">4px</span> <span class="number">2px</span> <span class="number">#000</span>;</div><div class="line">   <span class="comment">/*webkit浏览器*/</span></div><div class="line">   <span class="attribute">-webkit-box-shadow</span>:<span class="number">3px</span> <span class="number">4px</span> <span class="number">2px</span> <span class="number">#000</span>;</div><div class="line">   <span class="comment">/*Firefox浏览器*/</span></div><div class="line">   <span class="attribute">-moz-box-shadow</span>:<span class="number">3px</span> <span class="number">4px</span> <span class="number">2px</span> <span class="number">#000</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></length></length></length></p>
+<h5 id="text-shadow"><a href="#text-shadow" class="headerlink" title="text-shadow"></a>text-shadow</h5><p>设置文本内容的阴影效果<br>语法与box-shadow一致<br>IE8以下均不支持  </p>
+<h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><hr>
+<h5 id="background-size"><a href="#background-size" class="headerlink" title="background-size"></a>background-size</h5><p>设置背景图像的大小<br>基于Webkit的Chrome和Safari浏览器下写法为：-webkit-background-size<br>在Opera浏览器下则不需要前缀</p>
+<h5 id="background-clip"><a href="#background-clip" class="headerlink" title="background-clip"></a>background-clip</h5><p>语法：<br>background-clip:border-box | padding-box | content-box | no-clip<br>border-box 是从border区域向外裁剪背景<br>padding-box是从padding区域向外裁剪背景<br>content-box是从内容区域向外裁剪背景<br>no-clip是从border区域向外裁剪背景</p>
+<h5 id="background-origin"><a href="#background-origin" class="headerlink" title="background-origin"></a>background-origin</h5><p>指定background-position属性的参考坐标的起始位置<br>有三种值：<br>border指定从边框的左上角坐标开始<br>content指定从内容区域的左上角坐标开始<br>padding指定从padding区域左上角开始</p>
+<h5 id="backgound"><a href="#backgound" class="headerlink" title="backgound"></a>backgound</h5><p>支持设置多重背景<br>在移动端采用图片方式设置背景影响体验，因此可以使用webkit中的一个特性<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">background</span>:-webkit-gradient(linear,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span> <span class="number">100%</span>,from(<span class="number">#FFF</span>),to(<span class="number">#000</span>));</div><div class="line"><span class="comment">/*线性渐变，前两个0指渐变开始坐标，后面的指渐变结束坐标*/</span></div></pre></td></tr></table></figure></p>
+<h4 id="圆角边框"><a href="#圆角边框" class="headerlink" title="圆角边框"></a>圆角边框</h4><hr>
+<p>定义border-radius即可实现圆角效果，注意属性值为0时，该值对应的角为矩形<br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">border</span>-<span class="built_in">radius</span>:10px 5px;</div><div class="line">-moz-<span class="built_in">border</span>-<span class="built_in">radius</span>:10px 5px;</div><div class="line">-webkit-<span class="built_in">border</span>-<span class="built_in">radius</span>:10px 5px;</div><div class="line"><span class="comment">/*Opera浏览器不需要前缀*/</span></div></pre></td></tr></table></figure></p>
+<h4 id="媒体查询Media-Queries"><a href="#媒体查询Media-Queries" class="headerlink" title="媒体查询Media Queries"></a>媒体查询Media Queries</h4><hr>
+<h5 id="viewport设置适应移动设备屏幕大小"><a href="#viewport设置适应移动设备屏幕大小" class="headerlink" title="viewport设置适应移动设备屏幕大小"></a>viewport设置适应移动设备屏幕大小</h5><ul>
+<li>什么是viewport<br>Apple为了解决移动版Safari的屏幕分辨率大小问题，定义了viewport虚拟窗口，主要作用是允许开发者创建一个虚拟的窗口并定义其窗口大小或缩放功能；<br>若开发者没有定义这个虚拟窗口  <ul>
+<li>Android Browser浏览器默认大小为800px；</li>
+<li>IE 974px；</li>
+<li>Opera 850px;</li>
+<li>Safari 980px</li>
+</ul>
+</li>
+<li><p>如何使用viewport<br>在meta标签的content属性下设置</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta <span class="attr">name="viewport"</span> <span class="attr">content="width=device-width,</span> <span class="attr">initial-scale=1.0,</span> <span class="attr">maximum-scale=1.0,</span> <span class="attr">user-scalable=0"&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>Media Queries语法总结<br>@media [media_query] media_type and media_feature<br>media_query表示查询关键字，可以使用no和only  </p>
+<ul>
+<li>no表示对后面的样式表达式执行取反操作</li>
+<li><p>only关键字作用是让不支持Media Queries的设备但能读取Media Type类型的浏览器忽略这个样式</p>
+ <figure class="highlight hsp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@media only <span class="keyword">screen</span> <span class="keyword">and</span> (max-device-<span class="keyword">width</span>:<span class="number">480</span>px)</div></pre></td></tr></table></figure>
+<p> 对于支持媒体查询的设备来说，若存在only关键字会忽略并根据后面表达式应用样式文件；对于不支持媒体查询的设备会忽略这个样式文件  </p>
+</li>
+</ul>
+<p>media_type作用是指定设备类型，通称为媒体类型。screen即代表显示器，笔记本，移动端等设备<br>media_feature作用是定义CSS中的设备特性，大部分移动设备特性都允许接受min/max前缀<br>width，height指浏览器窗口高宽；device-width和device-height指移动设备的屏幕分辨率高宽 </p>
+</li>
+</ul>
+<h3 id="第七章-Geolocation地理定位"><a href="#第七章-Geolocation地理定位" class="headerlink" title="第七章 Geolocation地理定位"></a>第七章 Geolocation地理定位</h3><h4 id="如何使用Geolocation-API"><a href="#如何使用Geolocation-API" class="headerlink" title="如何使用Geolocation API"></a>如何使用Geolocation API</h4><hr>
+<p>Geolocation API是通过window.navigator.geolocation获取对地理定位的访问</p>
+<h5 id="首次获取当前位置"><a href="#首次获取当前位置" class="headerlink" title="首次获取当前位置"></a>首次获取当前位置</h5><p>通过<code>getCurrentPosition(successCallback,errorCallback,options)</code>获取当前地理位置信息<br>其中第一个参数是必选参数，其余均为可选，第三个是可选属性参数设置<br>options选项：</p>
+<ul>
+<li>enableHighAccuracy<br> 指定浏览器或移动设备尝试更精确地读取经纬度，默认为false。</li>
+<li>timeout<br> 告诉geolocation允许以毫秒为单位的最大时间间隔</li>
+<li>maximunAge<br> 当该缓存的位置信息的时间不大于此参数设定值时，应用程序将接受一个缓存的位置信息。单位是毫秒<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">navigator.geolocation.getCurrentPosition(<span class="function"><span class="keyword">function</span>(<span class="params">pos</span>)</span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">"当前地理位置的纬度："</span>+pos.coords.latitude);</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">"当前地理位置的经度："</span>+pos.coords.longitude);</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">"当前经纬度的精度："</span>+pos.coords.accuracy);</div><div class="line">&#125;)</div><div class="line">...</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>在调用该方法成功后返回的函数中，可以通过其中的参数对象获取当前用户访问Web页面时的地理位置信息<br>pos对象包含coords属性和timestamp属性<br>coords属性：</p>
+<ul>
+<li>latitude 以十进制数表示的纬度</li>
+<li>longtitude 以十进制数表示的经度</li>
+<li>altitude 位置相对于椭圆球面的高度</li>
+<li>accuracy 以米为单位的经纬度坐标的精度水平</li>
+<li>altitudeAccuracy 以米为单位的高度坐标精度水平</li>
+<li>heading 运动方向 通过相对正北做顺时针旋转的角度指定</li>
+<li>speed 以米/秒为单位的设备当前地面速度<br>timestamp属性：<br>用于返回创建pos对象时以毫秒为单位创建的时间戳</li>
+</ul>
+<h5 id="监视移动设备的位置变化"><a href="#监视移动设备的位置变化" class="headerlink" title="监视移动设备的位置变化"></a>监视移动设备的位置变化</h5><p><code>watchPosition</code>和<code>clearWatch</code>是一对方法<br><code>watchPosition</code>语法与<code>getCurrentPosition</code>相同，<code>clearWatch</code>用来清除<code>watchPosition</code>方法的监听</p>
+<h3 id="第八章-轻量级框架jQuery-Mobile初探"><a href="#第八章-轻量级框架jQuery-Mobile初探" class="headerlink" title="第八章 轻量级框架jQuery Mobile初探"></a>第八章 轻量级框架jQuery Mobile初探</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><hr>
+<p>jQuery Mobile是基于jQuery，HTML5，CSS3构建的，目的是提供一个丰富的，交互性强的接口来兼容不同的移动平台</p>
+<h4 id="基于HTML5的自定义属性驱动组件"><a href="#基于HTML5的自定义属性驱动组件" class="headerlink" title="基于HTML5的自定义属性驱动组件"></a>基于HTML5的自定义属性驱动组件</h4><hr>
+<h5 id="dataset自定义属性"><a href="#dataset自定义属性" class="headerlink" title="dataset自定义属性"></a>dataset自定义属性</h5><p>在JS中使用dataset自定义属性时需进行能力检测：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> title = <span class="built_in">document</span>.getElementByID(<span class="string">"title"</span>);</div><div class="line"><span class="keyword">if</span>(title.dataset)&#123;</div><div class="line">    <span class="comment">//浏览器支持dataset属性</span></div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">   <span class="comment">//浏览器不支持dataset属性</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>通过能力检测后可通过dataset来读取自定义属性值<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">&lt;<span class="selector-tag">div</span> id=<span class="string">"title"</span> data-category=<span class="string">"前端技术"</span>&gt;</div><div class="line">...</div><div class="line"><span class="function"><span class="title">alert</span><span class="params">(title.dataset.category)</span></span>  <span class="comment">//"前端技术"</span></div><div class="line">...</div></pre></td></tr></table></figure></p>
+<h5 id="使用dataset属性驱动jQuery-Mobile组件"><a href="#使用dataset属性驱动jQuery-Mobile组件" class="headerlink" title="使用dataset属性驱动jQuery Mobile组件"></a>使用dataset属性驱动jQuery Mobile组件</h5><p>jQuery Mobile提供丰富的UI界面库，使用dataset自定义属性赋予HTML元素不同功能，例如定义视图，UI组件等</p>
+<h4 id="页面与视图"><a href="#页面与视图" class="headerlink" title="页面与视图"></a>页面与视图</h4><hr>
+<p>实现多视图页面非常简单，只需将多个页面分别用div包围，并设置data-role值为page<br>设置data-transition实现动画效果<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">a</span> href=<span class="string">"#firstview"</span> data-<span class="attribute">transition</span>=<span class="string">"pop"</span>&gt;切换第二视图&lt;/a&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="button按钮"><a href="#button按钮" class="headerlink" title="button按钮"></a>button按钮</h4><hr>
+<p>指定超链接的属性data-role=“button”可以将超链接变为button按钮<br>除此之外input元素也会自动转换为JM的按钮风格</p>
+<h5 id="具有icon图标的button组件"><a href="#具有icon图标的button组件" class="headerlink" title="具有icon图标的button组件"></a>具有icon图标的button组件</h5><p>修改设置data-icon属性值实现<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">a</span> href=<span class="string">"#home"</span> data-role=<span class="string">"button"</span> data-<span class="attribute">icon</span>=<span class="string">"home"</span>&gt;首页&lt;/a&gt;</div></pre></td></tr></table></figure></p>
+<p>修改data-iconpos属性修改icon在按钮上的位置(默认在最左侧),有left，right，top，bottom四个值<br>通过设置data-iconpos=”notext”可以创建一个没有文字只有icon图标的按钮<br><strong>如何自定义图标按钮？</strong><br>举个例子，将data-icon设置为“myapp-email”，之后在css中将.ui-icon-myapp-email将自定义图标设置为背景</p>
+<h5 id="具有内联样式的button"><a href="#具有内联样式的button" class="headerlink" title="具有内联样式的button"></a>具有内联样式的button</h5><p>默认情况下button按钮时占满整个屏幕的，如何改变这种效果？<br>设置data-inline属性值为true，此时button宽度会自适应按钮文本内容和图标组合的长度</p>
+<h5 id="具有分组功能的button按钮"><a href="#具有分组功能的button按钮" class="headerlink" title="具有分组功能的button按钮"></a>具有分组功能的button按钮</h5><p>默认分组按钮显示是垂直的，可通过设置data-type值使其水平排列<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">data-role</span>=<span class="string">"controlgroup"</span> <span class="attr">data-type</span>=<span class="string">"horizontal"</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">data-role</span>=<span class="string">"button"</span>&gt;</span>返回<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">data-role</span>=<span class="string">"button"</span>&gt;</span>首页<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">data-role</span>=<span class="string">"button"</span>&gt;</span>前进<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h4 id="Bar工具栏"><a href="#Bar工具栏" class="headerlink" title="Bar工具栏"></a>Bar工具栏</h4><hr>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/04/22/2016-04-22-Daily-Code-3-全屏滑动效果/" data-toggle="tooltip" data-placement="top" title="Daily Code(3).全屏滑动效果">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/04/21/2016-04-21-Daily-Code-2-回到顶部的制作/" data-toggle="tooltip" data-placement="top" title="Daily Code(2):回到顶部的制作">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#HTML5" title="HTML5">HTML5</a>
+                        
+                          <a class="tag" href="/tags/#移动web" title="移动web">移动web</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.kaijun.rocks" target="_blank">Kaijun&#39;s Blog</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">Foo</a></li>
+                    
+                        <li><a href="#" target="_blank">Bar</a></li>
+                    
+                        <li><a href="#" target="_blank">Example Friends</a></li>
+                    
+                        <li><a href="#" target="_blank">It helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hexo-theme-huxblog";
+    var disqus_identifier = "http://rubicker.github.io/2016/04/21/2016-04-21-HTML5移动web开发指南/";
+    var disqus_url = "http://rubicker.github.io/2016/04/21/2016-04-21-HTML5移动web开发指南/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/Demonbane_x">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/Demonbane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/Demonbane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/demonbane.cn">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Kaijun">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/kaijun-chen-42089354">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Kaijun&#39;s Blog 2016 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://rubicker.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'huangxuan.me';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Node.js学习 - Kaijun的博客 | Kaijun&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://rubicker.github.io/2016/06/28/2016-06-28-Node-js学习/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Kaijun&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#node.js" title="node.js">node.js</a>
+                        
+                    </div>
+                    <h1>Node.js学习</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Kaijun Chen on
+                        2016-06-28
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <blockquote>
+<p>学习了JS，怎么能不去了解下Node.js呢？</p>
+</blockquote>
+<a id="more"></a> 
+<h2 id="走进Node-js"><a href="#走进Node-js" class="headerlink" title="走进Node.js"></a>走进Node.js</h2><h3 id="模块加载"><a href="#模块加载" class="headerlink" title="模块加载"></a>模块加载</h3><ul>
+<li>什么是模块？<br>一个文件就是一个模块，每个模块都有自己的作用域<br>也就是说我们在某个js中用var声明的一个变量，并不属于全局变量，而是属于当前模块    </li>
+<li>模块加载机制<br>路径：绝对路径/相对路径<br>查找：<ul>
+<li>首先按照加载的模块文件名称进行查找</li>
+<li>若没有找到，则在模块文件名称后加上.js后缀进行查找；</li>
+<li>还是没找到？加上.json后缀查找；</li>
+<li>仍然没找到? 加上.node后缀查找</li>
+</ul>
+</li>
+</ul>
+<h3 id="访问变量"><a href="#访问变量" class="headerlink" title="访问变量"></a>访问变量</h3><p>不能直接从一个模块中访问加载模块中用var定义的局部变量，那么应该如何访问？</p>
+<ul>
+<li>直接在加载模块中定义global全局属性，此时可以访问，但是不推荐此种做法；</li>
+<li><p>使用module对象方法</p>
+   <figure class="highlight lasso"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="params">...</span></div><div class="line"><span class="comment">//在加载模块2.js中定义变量，并设置对外接口</span></div><div class="line"><span class="built_in">var</span> a = <span class="number">10</span>;</div><div class="line">module.exports.a = a;</div><div class="line"><span class="params">...</span></div><div class="line"><span class="comment">//在模块1.js中引入2.js模块，并接收返回对象</span></div><div class="line"><span class="built_in">var</span> ml = <span class="keyword">require</span>(./<span class="number">2.</span>js);<span class="comment">//require对象返回module.exports对象</span></div><div class="line">console.<span class="keyword">log</span>(ml.a);<span class="comment">//此时可以输出a值</span></div><div class="line"><span class="params">...</span></div></pre></td></tr></table></figure>
+<p> 注意：exports和module.exports指向同一个对象</p>
+</li>
+</ul>
+<h3 id="Global对象"><a href="#Global对象" class="headerlink" title="Global对象"></a>Global对象</h3><h4 id="filename属性"><a href="#filename属性" class="headerlink" title="_filename属性"></a>_filename属性</h4><p>返回当前模块文件的绝对路径<br>该属性并非全局，而是模块作用域下的  </p>
+<h4 id="dirname属性"><a href="#dirname属性" class="headerlink" title="_dirname属性"></a>_dirname属性</h4><p>返回当前模块文件所在目录的绝对路径<br>同样属于每个模块的作用域</p>
+<h4 id="process对象"><a href="#process对象" class="headerlink" title="process对象"></a>process对象</h4><p>全局对象，通过该对象提供的属性和方法可以对当前运行程序的进程进行访问和控制</p>
+<ul>
+<li>process.argv<br>包含命令行参数的数组，第一个元素是“node”，第二个元素是该文件的名称，第三个是命令行传入的参数</li>
+<li>process.env<br>返回用户环境信息</li>
+<li>peocess.pid<br>返回当前进程pid<blockquote>
+<p>PID<br>只要运行一程序，系统会自动分配一个标识。<br>是暂时唯一：进程中止后，这个号码就会被回收，并可能被分配给另一个新进程。<br>只要没有成功运行其他程序，这个PID会继续分配给当前要运行的程序。<br>如果成功运行一个程序，然后再运行别的程序时，系统会自动分配另一个PID。</p>
+</blockquote>
+</li>
+<li>process.arch<br>返回当前CPU处理器架构  arm/ia32/x64</li>
+<li><p>stdin,stdout  标准输入输出流（IO）<br>输入设备，输出设备<br>提供操作输入数据和输出数据的方法，通常称作IO操作<br>默认情况下，输入流是关闭的，要监听处理输入流数据，首先要打开输入流</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">process</span><span class="selector-class">.stdin</span><span class="selector-class">.resume</span>();</div></pre></td></tr></table></figure>
+<p><img src="http://i2.piimg.com/4851/eb0a38ef3155cbf6.gif" alt=""></p>
+</li>
+</ul>
+<h3 id="Buffer类"><a href="#Buffer类" class="headerlink" title="Buffer类"></a>Buffer类</h3><p>一个用于更好地操作二进制数据的类,为全局的类</p>
+<h4 id="构造方式"><a href="#构造方式" class="headerlink" title="构造方式"></a>构造方式</h4><p>必须传入参数以指定长度，否则会抛出错误</p>
+<ul>
+<li>new Buffer(size)<br>创建一个大小为size的Buffer对象，长度将不能更改</li>
+<li>new Buffer(array)<br>长度同样不可更改</li>
+<li>new Buffer(string,[encoding])<br>将字符串转换为Buffer对象，encoding为编码方式，默认为”utf-8”</li>
+</ul>
+<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><ul>
+<li>buf.length<br>buffer的字节长度</li>
+<li>buf[index]<br>获取或者设置在指定index索引位置的8位字节内容<blockquote>
+<p>The index operator [index] can be used to get and set the octet at position index in the Buffer. The values refer to individual bytes, so the legal value range is between 0x00 and 0xFF (hex) or 0 and 255 (decimal). </p>
+</blockquote>
+</li>
+<li>buf.write(string,[offset],[length],[encoding])<br>将参数string数据写入buffer</li>
+<li>buf.toString([encoding],[start],[end])<br>根据编码方式返回解码的string类型</li>
+<li>buf.toJSON()<br>返回一个JSON表示的Buffer实例<br> JSON.stringify将会默认调用来字符串化这个Buffer实例</li>
+<li>buf.slice([start],[end])<br>返回一个新的buffer，这个buffer和旧的引用相同的内存地址</li>
+<li>buf.copy(targetBuffer,[targetStart],[sourceStart],[sourceEnd])<br>进行buffer的拷贝，buf指的是被拷贝对象</li>
+</ul>
+<h3 id="File-System文件系统模块"><a href="#File-System文件系统模块" class="headerlink" title="File System文件系统模块"></a>File System文件系统模块</h3><p>该模块为核心模块，需使用require导入后使用<br>即require(“fs”)</p>
+<ul>
+<li><strong>fs.open(path,flags,[mode],callback)</strong><br><strong>异步</strong>打开文件<br>path:要打开的文件的路径<br>flags:打开文件的方式 读/写<br>mode:设置文件的模式 读/写/执行  4/2/1<br>callback:回调函数   参数有两个:err(文件打开失败的错误，若成功则为null)  fd(被打开文件的标识)</li>
+<li><strong>fs.openSync(path,flags,[mode])</strong><br>fs.open()的<strong>同步</strong>版  </li>
+<li><strong>fs.read(fd,buffer,offset,length,position,callback)</strong><br>从指定的文档标识符fd读取文件数据，并添加到buffer对象中</li>
+<li><strong>fs.readSync(fd,buffer,offset,length,position)</strong><br>同步版</li>
+<li><strong>fs.write(fd,buffer,offset,length[,position],callback)</strong><br>将buffer对象写入fd  </li>
+<li><strong>fs.write(fd,data[,position[,encoding]],callback)</strong><br>将data写入到文档中，若data不是buffer对象实例则强制转换为字符串</li>
+<li><strong>fs.close(fd,callback)</strong><br>关闭指定文档</li>
+<li><strong>fs.writeFile(filename,data,[options],callback)</strong><br>异步将数据写入一个文件，若文件不存在则新建，若存在新内容会覆盖旧内容。data可以是一个string，也可以是buffer</li>
+<li><strong>fs.writeFileSync(filename,data,[options])</strong><br>同步版本</li>
+<li><strong>fs.appendFile(filename,data,[options],callback)</strong><br>异步将数据添加到一个文件的尾部，若不存在会创建新文件，同样data可以是string，也可是buffer</li>
+<li><strong>fs.appendFileSync(filename,data,[options])</strong><br>同步版本</li>
+<li><strong>fs.exists(path,callback)</strong><br>检测该路径文件是否存在</li>
+<li><strong>fs.readFile(filename,[options],callback)</strong><br>异步读取一个文件的全部内容</li>
+<li><strong>fs.unlink(filename,callback)</strong><br>删除文件</li>
+<li><strong>fs.rename(oldPath,newPath,callback)</strong><br>重命名</li>
+<li><strong>fs.stat(path,callback)</strong><br>读取文件信息</li>
+<li><strong>fs.watch(filename,[options],listener)</strong><br>监听文件改变</li>
+<li><strong>fs.mkdir(path,[mode],callback)</strong><br>创建文件夹</li>
+<li><strong>fs.rmdir(path,callback)</strong><br>移除文件夹</li>
+<li>fs.readdir(path,callback)<br>读取文件夹</li>
+</ul>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/06/29/2016-06-29-css3实现卡片翻转效果/" data-toggle="tooltip" data-placement="top" title="CSS3实现卡片翻转效果">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/06/26/2016-06-26-Don-t-make-me-think读书笔记/" data-toggle="tooltip" data-placement="top" title="Don't make me think读书笔记">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#node.js" title="node.js">node.js</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.kaijun.rocks" target="_blank">Kaijun&#39;s Blog</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">Foo</a></li>
+                    
+                        <li><a href="#" target="_blank">Bar</a></li>
+                    
+                        <li><a href="#" target="_blank">Example Friends</a></li>
+                    
+                        <li><a href="#" target="_blank">It helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hexo-theme-huxblog";
+    var disqus_identifier = "http://rubicker.github.io/2016/06/28/2016-06-28-Node-js学习/";
+    var disqus_url = "http://rubicker.github.io/2016/06/28/2016-06-28-Node-js学习/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/Demonbane_x">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/Demonbane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/Demonbane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/demonbane.cn">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Kaijun">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/kaijun-chen-42089354">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Kaijun&#39;s Blog 2016 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://rubicker.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'huangxuan.me';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

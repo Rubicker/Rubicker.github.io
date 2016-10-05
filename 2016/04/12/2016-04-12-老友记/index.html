@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          老友记 - Kaijun的博客 | Kaijun&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://rubicker.github.io/2016/04/12/2016-04-12-老友记/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Kaijun&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#老友记" title="老友记">老友记</a>
+                        
+                    </div>
+                    <h1>老友记</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Kaijun Chen on
+                        2016-04-12
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <blockquote>
+<p>Friends拯救我的英语</p>
+</blockquote>
+<a id="more"></a>
+<p>##Season 1</p>
+<h3 id="The-One-Where-Monica-Gets-a-New-Roommate-The-Pilot"><a href="#The-One-Where-Monica-Gets-a-New-Roommate-The-Pilot" class="headerlink" title="The One Where Monica Gets a New Roommate (The Pilot)"></a>The One Where Monica Gets a New Roommate (The Pilot)</h3><hr>
+<p>1.01 Pilot</p>
+<blockquote>
+<p>Rachel leaves Barry at the alter and moves in with Monica. </p>
+<p>Monica goes on a date with Paul the wine guy, who turns out to be less than sincere. </p>
+<p>Ross is depressed about his failed marriage. </p>
+<p>Joey compares women to ice cream. </p>
+<p>Everyone watches Spanish soaps. </p>
+<p>Ross reveals his high school crush on Rachel.</p>
+</blockquote>
+<p>[Scene: Central Perk, Chandler, Joey, Phoebe, and Monica are there.]</p>
+<p><strong>Monica</strong>: There’s nothing to tell! He’s just some guy I work with!</p>
+<p><strong>Joey</strong>: C’mon, you’re going out with the guy! There’s gotta be something wrong with him!</p>
+<blockquote>
+<p>go out with &lt;俚&gt;约会</p>
+</blockquote>
+<p><strong>Chandler</strong>:  Alright,Joey.Be nice.So does he have a hump? A hump and a hairpiece?</p>
+<blockquote>
+<p>hump n.驼背/<br>hairpiece n.false hair;wig n.假发</p>
+</blockquote>
+<p><strong>Phoebe</strong>: Wait, does he eat chalk?</p>
+<p>(They all stare, bemused.)</p>
+<blockquote>
+<p>bemused: puzzled adj.困惑的 发呆的</p>
+</blockquote>
+<p><strong>Phoebe</strong>: Just ‘cause I don’t want her to go through what I went through with Carl- oh!</p>
+<p><strong>Monica</strong>: Okay, everybody relax. This is not even a date. It’s just two people going out to dinner and- not having sex.</p>
+<p><strong>Chandler</strong>: Sounds like a date to me.</p>
+<p>(Time Lapse)</p>
+<blockquote>
+<p>lapse v.(时间)流逝</p>
+</blockquote>
+<p><strong>Chandler</strong>: Alright, so I’m back in high school, I’m standing in the middle of the cafeteria, and I realize I am totally…naked.</p>
+<blockquote>
+<p>cafeteria n.自助食堂</p>
+</blockquote>
+<p><strong>All</strong>: Oh, yeah. Had that dream.</p>
+<p><strong>Chandler</strong>: Then I look down, and I realize there’s a phone… there.</p>
+<p><strong>Joey</strong>: Instead of…?</p>
+<p><strong>Chandler</strong>: That’s right.</p>
+<p><strong>Joey</strong>: Never had that dream.</p>
+<p><strong>Phoebe</strong>: No.</p>
+<p><strong>Chandler</strong>: All of a sudden, the phone starts to ring，Now I don’t know what to do,everybody starts loooking at me.</p>
+<blockquote>
+<p>all of a sudden adv.突然之间地</p>
+</blockquote>
+<p><strong>Monica</strong>:They weren’t looking at you before?</p>
+<p><strong>Chandler</strong>:Finally,I figure I’d better answer it. And it turns out it’s my mother, which is very-very weird, because- she never calls me! </p>
+<p>(Time Lapse, Ross has entered.)</p>
+<p><strong>Ross</strong>: (mortified) Hi.</p>
+<blockquote>
+<p>mortified adj.受羞辱的 窘迫的/mortify v.使感屈辱 使失面子 使羞愧[eg:The teacher was mortified by his own inability to answer such a simple question]</p>
+</blockquote>
+<p><strong>Joey</strong>: This guy says hello, I wanna kill myself.</p>
+<p><strong>Monica</strong>: Are you okay, sweetie?</p>
+<p><strong>Ross</strong>: I just feel like someone reached down my throat, grabbed my small intestine, pulled it out of my mouth and tied it around my neck…</p>
+<blockquote>
+<p>intestine n.肠</p>
+</blockquote>
+<p><strong>Chandler</strong>: Cookie?</p>
+<p><strong>Monica</strong>: (explaining to the others) Carol moved her stuff out today. </p>
+<p><strong>Joey</strong>: Ohh.</p>
+<p><strong>Monica</strong>: (to Ross) Let me get you some coffee.</p>
+<p><strong>Ross</strong>: Thanks.</p>
+<p><strong>Phoebe</strong>: Ooh! Oh! (She starts to pluck at the air just in front of Ross.)</p>
+<blockquote>
+<p>pluck v.拔去(鸡鸭等)毛 扯 拉[eg:He plucked the letter from her hands]/pluck at：To remove abruptly(adv.唐突地) or forcibly(adv.强制地)</p>
+</blockquote>
+<p><strong>Ross</strong>: No, no don’t! Stop cleansing my aura! No, just leave my aura alone, okay? </p>
+<blockquote>
+<p>aura：a distinctive atmosphere surrounding a given source n.气氛 灵气 光环[eg: the place had an aura of mystery]</p>
+</blockquote>
+<p><strong>Phoebe</strong>:Fine,be murky.</p>
+<p><strong>Ross</strong>:I’ll be fine, alright? Really, everyone. I hope she’ll be very happy.</p>
+<p><strong>Monica</strong>: No you don’t.</p>
+<p><strong>Ross</strong>: No I don’t, to hell with her, she left me!</p>
+<blockquote>
+<p>to hell with&lt;口&gt;让…见鬼去 去(她)该死的</p>
+</blockquote>
+<p><strong>Joey</strong>: And you never knew she was a lesbian…</p>
+<p><strong>Ross</strong>: No!! Okay?! Why does everyone keep fixating on that? She didn’t know, how should I know?</p>
+<blockquote>
+<p>fixate on v.to focus one’s gaze or attention on sth关注某事</p>
+</blockquote>
+<p><strong>Chandler</strong>: Sometimes I wish I was a lesbian… (They all stare at him.) Did I say that out loud?</p>
+<p><strong>Ross</strong>: I told Mod and Dad last night.They seemed to take it pretty well.</p>
+<p><strong>Monica</strong>: Oh really?So that hysterical phone call I got from a woman sobbing at 3 am.”I’ll never have grandchildren..I’ll never have grandchildren..”was what?A wrong number?</p>
+<p><strong>Ross</strong>:Sorry.</p>
+<p><strong>Joey</strong>: Alright Ross, look. You’re feeling a lot of pain right now. You’re angry. You’re hurting. Can I tell you what the answer is?</p>
+<p>(Ross gestures his consent.)</p>
+<blockquote>
+<p>consent vi.同意 赞成 </p>
+</blockquote>
+<p><strong>Joey</strong>: Strip joint! C’mon, you’re single! Have some hormones. </p>
+<blockquote>
+<p>hormone n. 荷尔蒙 激素/strip v.剥去/joint &lt;俚&gt;下流娱乐场所(通常指不那么高雅的地方)/Strip joint: A nightclub(n.夜总会) or other establishment where striptease(n.脱衣舞) is performed n.脱衣舞酒吧</p>
+</blockquote>
+<p><strong>Ross</strong>: I don’t want to be single, okay? I just… I just- I just wanna be married again!</p>
+<p>(Rachel enters in a wet wedding dress and starts to search the room.)</p>
+<p><strong>Chandler</strong>: And I just want a million dollars! (He extends his hand hopefully.)</p>
+<p><strong>Monica</strong>: Rachel?!</p>
+<p><strong>Rachel</strong>: Oh God Monica hi! Thank God! I just went to your building and you weren’t there and then this guy with a big hammer said you might be here and you are, you are!</p>
+<p><strong>Waitress</strong>: Can I get you some coffee?</p>
+<p><strong>Monica</strong>: (pointing at Rachel) De-caff. (to All) Okay, everybody, this is Rachel, another Lincoln High survivor. (to Rachel) This is everybody, this is Chandler, and Phoebe, and Joey, and- you remember my brother Ross? </p>
+<blockquote>
+<p>De-caff是不含咖啡因的咖啡。</p>
+</blockquote>
+<p><strong>Rachel</strong>: Sure!</p>
+<p><strong>Ross</strong>: Hi. </p>
+<p>(They go to hug but Ross’s umbrella opens. He sits back down defeated again.A moment of silence follows as Rachel sits and the others expect her to explain.)</p>
+<p>Monica: So you wanna tell us now, or are we waiting for four wet bridesmaids?</p>
+<blockquote>
+<p>bridesmaid n.伴娘</p>
+</blockquote>
+<p><strong>Rachel</strong>: Oh God… well, it started about a half hour before the wedding. I was in this room where we were keeping all the presents, and I was looking at this gravy boat. This really gorgeous Limoges gravy boat. When all of a sudden- (to the waitress that brought her coffee)Sweet ‘n Low?- I realized that I was more turned on by this gravy boat than by Barry! And then I got really freaked out, and that’s when it hit me: how much Barry looks like Mr. Potato Head. Y’know, I mean, I always knew looked familiar, but… Anyway, I just had to get out of there, and I started wondering ‘Why am I doing this, and who am I doing this for?’. (to Monica) So anyway I just didn’t know where to go, and I know that you and I have kinda drifted apart, but you’re the only person I knew who lived here in the city.</p>
+<blockquote>
+<p>gravy boat 船型盘（难怪会turn on…）<br>gravy n.肉汁<br>gorgeous adj.极好的 非常漂亮的<br>turn on &lt;俚&gt;if someone or something turns you on, that means they make you interested or excited sexually<br>hit vt.&lt;口&gt;使…想起[eg:It hit me all of a sudden that I had forgotten her birthday]<br>Sweet’N Low 低脂糖<br>drift apart 感情疏远<br>Mr. Potato Head is a popular children’s doll, consisting of a plastic model of a potato. Originally, the potato is blank(adj.没有表情的); however, it can be decorated with numerous attachable plastic parts to make a face, including a mustache, hat, nose and other features</p>
+</blockquote>
+<p><strong>Monica</strong>: Who wasn’t invited to the wedding.</p>
+<p><strong>Rachel</strong>: Ooh, I was kinda hoping that wouldn’t be an issue.</p>
+<p>[Scene: Monica’s Apartment, everyone is there and watching a Spanish Soap on TV and are trying to figure out what is going on.]</p>
+<p><strong>Monica</strong>: Now I’m guessing that he bought her the big pipe organ, and she’s really not happy about it. </p>
+<blockquote>
+<p>pipe organ n.管风琴</p>
+</blockquote>
+<p><strong>Rachel</strong>: (on phone) Daddy, I just… I can’t marry him! I’m sorry. I just don’t love him. Well, it matters to me! </p>
+<p>(The scene on TV has changed to show two women, one is holding her hair.)</p>
+<p><strong>Chandler</strong>: Ooh, she should not be wearing those pants. </p>
+<p><strong>Joey</strong>: I say push her down the stairs. </p>
+<p><strong>Phoebe, Ross, Chandler, and Joey</strong>:  Push her down the stairs! Push her down the stairs! Push her down the stairs!</p>
+<p>(She is pushed down the stairs and everyone cheers.)</p>
+<p><strong>Rachel</strong>: C’mon Daddy, listen to me! It’s like, it’s like, all of my life, everyone has always told me, ‘You’re a shoe! You’re a shoe, you’re a shoe, you’re a shoe!’. And today I just stopped and I said, ‘What if I don’t wanna be a shoe? What if I wanna be a purse, y’know? Or a hat! No, I’m not saying I want you to buy me a hat, I’m saying I am a ha- It’s a metaphor, Daddy!</p>
+<blockquote>
+<p>metaphor n.analogy 隐喻 类比</p>
+</blockquote>
+<p><strong>Ross</strong>: You can see where he’d have trouble.</p>
+<blockquote>
+<p>You can see where he’d have trouble:Apparently, we can tell that Rach’s dad made fun of Rach’s metaphor by saying “buy her a hat”, and pretended that he didn’t know what Rach was talking about. But what’s even worse is that Rach didn’t get her dad’s little trick either.So she yelled at the phone that “It’s a metaphor,Daddy!”. Once she realized how rude and unladily(adj.不淑女的) she was just now, her eyes met with Ross’s, which made Ross rather embarrassing. So he ended up saying that “You can see where he’d have trouble.” That means “you can see misunderstanding your metaphor is where he’d have trouble to communicate with you smoothly. </p>
+</blockquote>
+<p><strong>Rachel</strong>: Look Daddy, it’s my life. Well maybe I’ll just stay here with Monica. </p>
+<p><strong>Monica:</strong> Well, I guess we’ve established who’s staying here with Monica…</p>
+<blockquote>
+<p>Well, I guess we’ve established who’s staying here with Monica：Monica has no idea why Rachel said that. But she can’t just abandon Rach at this critical time, so when her friends turned to her for a verification, she can’t think of nothing to say except that: “Well, it seems to Rachel that I have already agreed on the whole moving in thing( that is established an agreement on her moving in), although I have nothing to do with it!!(Don’t look at me in this weird way, guys!)”</p>
+</blockquote>
+<p>(Time Lapse, Rachel is breathing into a paper bag.)</p>
+<p><strong>Monica</strong>: Just breathe, breathe.. that’s it. Just try to think of nice calm things… </p>
+<p><strong>Phoebe</strong>: (sings) Raindrops on roses and rabbits and kittens, (Rachel and Monica turn to look at her.) bluebells and sleighbells and- something with mittens… La la la la…something and noodles with string.  These are a few…</p>
+<blockquote>
+<p>raindrop n.雨滴<br>kitten n.小猫<br>bluebell n.野风信子<br>sleighbell n.雪橇<br>mitten n.棒球手套<br>“My Favorite Things” is a song from the musical The Sound of Music. The music for “My Favorite Things” was composed by Richard Rodgers, and the lyrics were written by Oscar Hammerstein II. In the musical, the lyrics to the song are a litany(n.冗长而枯燥的事) of things that Maria loves, such as “raindrops on roses and whiskers on kittens, bright copper kettles and warm woolen mittens.” These are the things she selects to fill her mind with when times get bad and sad.The wintertime imagery(n.比喻) of some of the lyrics has made “My Favorite Things” a popular song during the Christmas season, and it often appears on holiday-themed albums and compilations, although in the show and movie it is sung during a summer thunderstorm.</p>
+</blockquote>
+<p><strong>Rachel</strong>: I’m all better now.</p>
+<p><strong>Phoebe</strong>: (grins and walks to the kitchen and says to Chandler and Joey.) I helped!</p>
+<blockquote>
+<p>grin v.露齿而笑</p>
+</blockquote>
+<p><strong>Monica</strong>: Okay, look, this is probably for the best, y’know? Independence. Taking control of your life.The whole hat thing.</p>
+<blockquote>
+<p>be for the best 是一个极其口语化的表达法，表示某件事情可能并不像看上去那么糟，也颇有点良药虽苦，其利于病的意思，比如：I know it’s hard for you to leave him, but it’s for the best.</p>
+</blockquote>
+<p><strong>Joey</strong>: (comforting her) And hey, you need anything, you can always come to Joey. Me and Chandler live across the hall. And he’s away a lot.</p>
+<p><strong>Monica</strong>: Joey, stop hitting on her! It’s her wedding day!</p>
+<blockquote>
+<p>hit on &lt;俚&gt;to pay unsolicited(adj.主动提供的) and usually unwanted(adj.不必要的) sexual attention to(=flirt with someone/ to make a pass at someone/ to come on to someone)</p>
+</blockquote>
+<p><strong>Joey</strong>: What, like there’s a rule or something?</p>
+<p>(The door buzzer sounds and Chandler gets it.)</p>
+<blockquote>
+<p>buzzer n.蜂鸣器</p>
+</blockquote>
+<p><strong>Chandler</strong>: Please don’t do that again, it’s a horrible sound.</p>
+<p><strong>Paul</strong>: (over the intercom) It’s, uh, it’s Paul.</p>
+<blockquote>
+<p>intercom n.communication system linking different rooms 内部通信联络系统</p>
+</blockquote>
+<p><strong>Monica</strong>: Buzz him in!</p>
+<blockquote>
+<p>buzz him in v.make a signal using the buzzer to let him in</p>
+</blockquote>
+<p><strong>Joey</strong>: Who’s Paul?</p>
+<p><strong>Ross</strong>: Paul the Wine Guy, Paul?</p>
+<p><strong>Monica</strong>: Maybe. </p>
+<p><strong>Joey</strong>: Wait a minure. Your“not a real date tonight” is with Paul, the wine guy?</p>
+<p><strong>Ross</strong>: He finally asked you out?</p>
+<p><strong>Monica</strong>: Yes!</p>
+<p><strong>Chandler</strong>: Ooh, this is a Dear Diary moment.<br>a Dear Diary moment: when Americans keep the diary(n.日记), normally, the first words they write down must be “Dear Diary”, apparently, Chandler mocks Monica that she is so attracted to Paul with his stereotyped(adj.成年老调的) Chandler sarcastic tone. </p>
+<p><strong>Monica</strong>: Rach, wait, I can cancel…</p>
+<p><strong>Rachel</strong>: Please, no, go, that’d be fine!</p>
+<p><strong>Monica</strong>: (to Ross) Are, are you okay? I mean, do you want me to stay?</p>
+<p><strong>Ross</strong>: (choked voice) That’d be good…</p>
+<ul>
+<li>choke v.阻塞</li>
+<li><strong>Monica</strong>: (horrified) Really?<br>horrified adj.惊悸的</li>
+</ul>
+<p><strong>Ross</strong>: (normal voice) No, go on! It’s Paul the Wine Guy!</p>
+<p><strong>Phoebe</strong>: what’s that mean?Does he sell it,drink it? Or he just complains a lot?</p>
+<p>(There’s a knock on the door and it’s Paul.)</p>
+<p><strong>Monica</strong>: Hi, come in! Paul, this is.. (They are all lined up next to the door.)… everybody, everybody, this is Paul.</p>
+<blockquote>
+<p>line up v.整队 排列起</p>
+</blockquote>
+<p><strong>All</strong>: Hey! Paul! Hi! The Wine Guy! Hey!</p>
+<p><strong>Chandler</strong>: I’m sorry, I didn’t catch your name. Paul, was it?</p>
+<p><strong>Monica</strong>: Ok,I’ll be right back.I’ve just gotta go..</p>
+<p><strong>Ross</strong>: A wandering?</p>
+<p><strong>Monica</strong>: Change!  Okay, sit down. (Shows Paul in) Two seconds.</p>
+<p><strong>Phoebe</strong>: Ooh, I just pulled out four eyelashes. That can’t be good.</p>
+<blockquote>
+<p>eyelashes n.The fringe of hair edging the eyelid(n.眼睑).Usually used in plural(adj.复数的) 睫毛</p>
+</blockquote>
+<p>(Monica goes to change.)</p>
+<p><strong>Joe</strong>: Hey,Paul,here’s a littile tip.She really likes it when you rub her neck in the same spot over and over and over again until it starts to get red.</p>
+<p><strong>Ross</strong>: So Rachel, what’re you, uh… what’re you up to tonight?</p>
+<blockquote>
+<p>be up to v. Busy or occupied with</p>
+</blockquote>
+<p><strong>Rachel</strong>: Well, I was kinda supposed to be headed for Aruba on my honeymoon, so nothing!</p>
+<blockquote>
+<p>be headed for v.前往</p>
+</blockquote>
+<p><strong>Ross</strong>: Right, you’re not even getting your honeymoon, God.. No, no, although, Aruba, this time of year… talk about your(thinks) big lizards… Anyway, if you don’t feel like being alone tonight, Joey and Chandler are coming over to help me put together my new furniture.</p>
+<blockquote>
+<p>lizard n.蜥蜴/put together v.装配</p>
+<p><strong>Chandler</strong>: (deadpan) Yes, and we’re very excited about it.<br>deadpan n.a completely expressionless face </p>
+</blockquote>
+<p><strong>Rachel</strong>: Well actually thanks, but I think I’m just gonna hang out here tonight.It’s been kinda a long day.</p>
+<blockquote>
+<p>hang out here：呆在这儿。朋友之间相处，象FRIENDS他们一起喝咖啡，在MON家聊天之类的，都是hang out。</p>
+</blockquote>
+<p><strong>Ross</strong>: Okay, sure.</p>
+<p><strong>Joey</strong>: Hey Pheebs, you wanna help?</p>
+<p><strong>Phoebe</strong>: Oh, I wish I could, but I don’t want to.</p>
+<p>Commercial Break<br>[Scene: Ross’s Apartment, the guys are there assembling furniture.]</p>
+<p><strong>Ross</strong>: (squatting and reading the instructions) I’m supposed to attach a brackety thing to the side things, using a bunch of these little worm guys. I have no brackety thing, I see no whom guys whatsoever and- I cannot feel my legs.</p>
+<blockquote>
+<p>squat v.蹲坐<br>bracket n.支架<br>brackety：means an L-shaped support projecting(adj.突出的) from a wall (as to hold a shelf)<br>whatsoever =whatever(语气比whatever强)  </p>
+</blockquote>
+<p>(Joey and Chandler are finishing assembling the bookcase.)</p>
+<blockquote>
+<p>bookcase n.书架 书柜</p>
+</blockquote>
+<p><strong>Joey</strong>: (picking up a leftover part) What’s this?</p>
+<blockquote>
+<p>leftover adj.剩余的</p>
+</blockquote>
+<p><strong>Chandler</strong>: I would have to say that is an L-shaped bracket.</p>
+<p><strong>Joey</strong>: Which goes where?</p>
+<p><strong>Chandler</strong>: I have no idea.<br>.<br>(Joey checks that Ross is not looking and dumps it in a plant.)</p>
+<p><strong>Joey</strong>: Done with the bookcase!</p>
+<p><strong>Chandler</strong>: All finished!</p>
+<p><strong>Ross</strong>: (clutching a beer can and sniffing) This was Carol’s favorite beer. She always drank it out of the can, I should have known.</p>
+<blockquote>
+<p>clutch v.抓住<br>sniff v.用力吸气<br>out of the can adv.(罐头)指一直用杯子来喝  </p>
+</blockquote>
+<p><strong>Joey</strong>: You are gonna start with that,we’re out of here.</p>
+<p>Chandler: Yes,please don’t spoil all this fun.</p>
+<p><strong>Joey</strong>: Ross, let me ask you a question. She got the furniture, the stereo, the good TV, what did you get?</p>
+<p><strong>Ross</strong>: You guys.</p>
+<p><strong>Chandler</strong>: Oh, God.</p>
+<p><strong>Joey</strong>: You got screwed.</p>
+<blockquote>
+<p>got screwed&lt;俚&gt;to cheat or deceive someone</p>
+<p><strong>Chandler</strong>: Oh my God!</p>
+</blockquote>
+<p>[Scene: A Restaurant, Monica and Paul are eating.]</p>
+<p><strong>Monica</strong>: Oh my God!</p>
+<p><strong>Paul</strong>: I know, I know, I’m such an idiot. I guess I should have caught on when she started going to the dentist four and five times a week. I mean, how clean can teeth get?</p>
+<p><strong>Monica</strong>: My brother’s going through that right now, he’s such a mess. How did you get through it?</p>
+<p><strong>Paul</strong>: Well, you might try accidentally breaking something valuable of hers, say her…</p>
+<p><strong>Monica</strong>: leg?</p>
+<p><strong>Paul</strong>: (laughing) That’s one way! Me, I went for the watch.</p>
+<p><strong>Monica</strong>: You actually broke her watch? well,the worst thing I ever did was I shredded my old boyfriend’s favorite bath towel.</p>
+<blockquote>
+<p>shred:A strip of material, such as paper, cloth, or food, that has been torn, cut, or scraped from something larger:</p>
+</blockquote>
+<p>Paul: Steer clear of you.</p>
+<p>Monica: That’s right.</p>
+<p>[Scene: Monica’s Apartment, Rachel is talking on the phone and pacing.]</p>
+<p><strong>Rachel</strong>: Barry, I’m sorry… I am so sorry… I know you probably think that this is all about what I said the other day about you making love with your socks on, but it isn’t… it isn’t, it’s about me, and I ju- (She stops talking and dials the phone.) Hi, machine cut me off again… anyway..  Look,I know that some girls is going to  be incredibly lucky to become Mrs.Barry Finkel.But it isn’t me.It’s not me.And not that I have any idea who me is right now, but you just have to give me a chance too…(The maching cuts her off again and she redials.)</p>
+<blockquote>
+<p>cut off  v.disconnect;terminate;and shut off</p>
+</blockquote>
+<p>[Scene: Ross’s Apartment; Ross is pacing while Joey and Chandler are working on some more furniture.]</p>
+<p><strong>Ross</strong>: I’m divorced! I’m only 26 and I’m divorced!</p>
+<p><strong>Joey</strong>: Shut up!</p>
+<p><strong>Chandler</strong>: You must stop! (Chandler hits what he is working on with a hammer and it collapses.)</p>
+<p><strong>Ross</strong>: That only took me an hour.</p>
+<p><strong>Chandler</strong>: Look, Ross, you gotta understand, between us we haven’t had a relationship that has lasted longer than a Mento. You, however have had the love of a woman for four years. Four years of closeness and sharing at the end of which she ripped your heart out, and that is why we don’t do it! I don’t think that was my point!</p>
+<p><strong>Ross</strong>: You know what the scariest part is? What if there’s only one woman for everybody, y’know? I mean what if you get one woman- and that’s it? Unfortunately in my case, there was only one woman- for her…</p>
+<p><strong>Joey</strong>: What are you talking about? ‘One woman’? That’s like saying there’s only one flavor of ice cream for you. Lemme tell you something, Ross. There’s lots of flavors out there. There’s Rocky Road, and Cookie Dough, and Bing! Cherry Vanilla. You could get ‘em with Jimmies, or nuts, or whipped cream! This is the best thing that ever happened to you! You got married, you were like, what, eight? Welcome back to the world! Grab a spoon!</p>
+<p><strong>Ross</strong>: I honestly don’t know if I’m hungry or horny.</p>
+<blockquote>
+<p>horny &lt;俚&gt; feeling great sexual desire欲火焚身的</p>
+<p><strong>Chandler:</strong> Stay out of my freezer! </p>
+</blockquote>
+<p>[Scene: A Restaurant, Monica and Paul are still eating.]</p>
+<p><strong>Paul</strong>: Ever since she walked out on me, I uh…</p>
+<blockquote>
+<p>walk out on v.abandon;run out on 遗弃 抛弃[eg:He just walked out on his wife and family without saying a word]</p>
+</blockquote>
+<p><strong>Monica</strong>: What?….. What, you wanna spell it out with noodles?</p>
+<blockquote>
+<p>spell out v.make explicit 讲清楚 清楚地说明</p>
+</blockquote>
+<p><strong>Paul</strong>: No, it’s more of a fifth date kinda revelation.</p>
+<blockquote>
+<p>revelation n.揭示 告白</p>
+</blockquote>
+<p><strong>Monica</strong>: Oh, so there is gonna be a fifth date?</p>
+<p><strong>Paul</strong>: Isn’t there?</p>
+<p><strong>Monica</strong>: Yeah… yeah, I think there is. What were you gonna say?</p>
+<p><strong>Paul</strong>: Well, ever… ever since she left me, um, I haven’t been able to perform. (Monica takes a sip of her drink.) …sexually. </p>
+<blockquote>
+<p>perform sexually v.have a sex</p>
+</blockquote>
+<p><strong>Monica</strong>: (spitting out her drink in shock) Oh God, oh God, I am sorry… I am so sorry…</p>
+<blockquote>
+<p>spit out v.吐出</p>
+</blockquote>
+<p><strong>Paul</strong>: It’s okay…</p>
+<p><strong>Monica</strong>: I know being spit on is probably not what you need right now. Um… how long?</p>
+<p><strong>Paul</strong>: Two years.</p>
+<p><strong>Monica</strong>: Wow! I’m glad you smashed her watch! </p>
+<p><strong>Paul</strong>: So you still think you … might want that fifth date?</p>
+<p><strong>Monica</strong>: (pause)…Yeah. Yeah, I do.</p>
+<p>[Scene: Monica’s Apartment, Rachel is watching Joanie Loves Chachi.]</p>
+<p><strong>Joanie on TV</strong>： I, Joanie take you, Chachi, as my lawful husband.</p>
+<p><strong>Priest on TV</strong>: Do you take Joanie…</p>
+<p><strong>Rachel</strong>: Oh…see… but Joanie loved Chachi! That’s the difference!</p>
+<blockquote>
+<p>Oh…see… but Joanne loved Chachi! That’s the difference! ：What Rachel said is funny because Rachel here was sarcastic about her running away from altar.She was deeply moved by the true love between Joanne and Chachi which leads to a successful holy matrimony,while she and Barry had almost everything but love and that results in her disappointment in their matrimony.So she felt right to have escaped from a doomed marrige with a person she would never love. </p>
+</blockquote>
+<p>[Scene: Ross’s Apartment, they’re all sitting around and talking.]</p>
+<p><strong>Ross</strong>: (scornful) Grab a spoon. Do you know how long it’s been since I’ve grabbed a spoon? Do the words ‘Billy, don’t be a hero’ mean anything to you? </p>
+<blockquote>
+<p>Billy, don’t be a hero: A hit by Bo Donaldson and the Heywoods in 1974, written about a young man named Billy who headed to Vietnam War and had to leave his lovely fiancée(n.&lt;法&gt;未婚妻). Here, I assume, Ross likens it to(与……相比) his tragic love affair in a sappy(adj.易动感情的) manner, you know, his wife is a lesbian</p>
+</blockquote>
+<p><strong>Joey</strong>: Great story! But, I uh, I gotta go, I got a date with Andrea–Angela–Andrea… Oh man, (looks to Chandler)</p>
+<p><strong>Chandler</strong>: Angela’s the screamer, Andrea has cats.</p>
+<p><strong>Joey</strong>: Right. Thanks. It’s June. I’m outta here. (Exits.)</p>
+<p><strong>Ross</strong>: Y’know, here’s the thing. Even if I could get it together enough to ask a woman out,… who am I gonna ask? (He gazes out of the window.)</p>
+<blockquote>
+<p>gaze out v.向外注视<br>get it together&lt;俚&gt;succeed in controlling your feelings</p>
+</blockquote>
+<p>(Cut to Rachel staring out of her window.)</p>
+<p>Commercial Break</p>
+<p>[Scene: Monica’s Apartment, Rachel is making coffee for Joey and Chandler.]</p>
+<p><strong>Rachel</strong>: Isn’t this amazing? I mean, I have never made coffee before in my entire life.</p>
+<p><strong>Chandler</strong>: That is amazing.</p>
+<p><strong>Rachel</strong>: Y’know, I figure if I can make coffee, there isn’t anything I can’t do.</p>
+<p><strong>Chandler</strong>: If can invade Poland, there isn’t anything I can’t do.</p>
+<p><strong>Joey</strong>: Congratulations. While you’re on a roll, if you feel like you gotta make like a western omelet or something… (Joey and Chandler taste the coffee, grimace, and pour it into a plant pot.) Although actually I’m really not that hungry…</p>
+<blockquote>
+<p>on a roll&lt;俚&gt;undergoing or experiencing sustained, even increasing good fortune or success<br>omelet n.煎蛋卷<br>grimace vi.作苦相<br>plant pot花盆</p>
+</blockquote>
+<p><strong>Monica</strong>: (entering, to herself) Oh good, Lenny and Squigy are here.</p>
+<p><strong>All</strong>: Morning. Good morning.</p>
+<p><strong>Paul</strong>: (entering from Monica’s room) Morning.</p>
+<p><strong>Joey</strong>: Morning, Paul.</p>
+<p><strong>Rachel</strong>: Hello, Paul.</p>
+<p><strong>Chandler</strong>: Hi, Paul, is it?</p>
+<p><strong>Monica</strong>: I had a really great time last night.</p>
+<p>(Monica and Paul walk to the door and talk in a low voice so the others can’t hear.  The others move Monica’s table closer to the door so that they can.)</p>
+<p><strong>Paul</strong>: Thank you!  Thank you so much!</p>
+<p><strong>Monica</strong>: Stop!</p>
+<p><strong>Paul</strong>: No, I’m telling you last night was like umm, all my birthdays, both graduations, plus the barn raising scene in Witness.</p>
+<p><strong>Monica</strong>: We’ll talk later.</p>
+<p><strong>Paul</strong>: Yeah. (They kiss) Thank you. (Exits)</p>
+<p>Joey: That wasn’t a real date?! What the hell do you do on a real date?</p>
+<p><strong>Monica</strong>: Shut up, and put my table back.</p>
+<p><strong>All</strong>: Okayyy! (They do so.) </p>
+<p><strong>Chandler</strong>: All right, kids, I gotta get to work. If I don’t input those numbers,… it doesn’t make much of a difference… </p>
+<blockquote>
+<p>make a difference v.紧要 有区别</p>
+</blockquote>
+<p><strong>Rachel</strong>: So, like, you guys all have jobs?</p>
+<p><strong>Monica</strong>: Yeah, we all have jobs. See, that’s how we buy stuff.</p>
+<p><strong>Joey</strong>: Yeah, I’m an actor.</p>
+<p><strong>Rachel</strong>: Wow! Would I have seen you in anything?</p>
+<p><strong>Joey</strong>: I doubt it. Mostly regional work.</p>
+<p><strong>Monica</strong>: Oh wait, wait, unless you happened to catch the reruns’ production of Pinocchio.</p>
+<blockquote>
+<p>rerun n.重播<br>Pinocchio和Geppetto 从小耳熟能详的《木偶奇遇记》，英文就叫做Pinocchio，这也是“小木偶”的名字，而造出它的老木匠则叫做Geppetto。这里Chandler就是故意拿这句话讽刺Joey一个大男人，演的却是小木偶，可见他根本没什么演艺代表作品<br>Geppetto is the old carpenter who creates Pinocchio, when the wooden structure is done, the first words said by Pinocchio are “I’m a real live boy!”</p>
+</blockquote>
+<p><strong>Joey</strong>: It was a job, all right?</p>
+<p><strong>Chandler</strong>: ‘Look, Gippetto, I’m a real live boy.’</p>
+<p><strong>Joey</strong>: I will not take this abuse. (Walks to the door and opens it to leave.)</p>
+<blockquote>
+<p>take abuse v.recoil(vi.畏缩) as to someone else’s language offense</p>
+</blockquote>
+<p><strong>Chandler</strong>: You’re right, I’m sorry. (Burst into song and dances out of the door.) “Once I was a wooden boy, a little wooden boy…”</p>
+<p><strong>Joey</strong>: You should both know, that he’s a dead man. Oh, Chandler? (Starts after Chandler.)</p>
+<p><strong>Monica</strong>: So how you doing today? Did you sleep okay? Talk to Barry? I can’t stop smiling.</p>
+<p><strong>Rachel</strong>: I can see that. You look like you slept with a hanger in your mouth.</p>
+<blockquote>
+<p>hanger n.衣架</p>
+</blockquote>
+<p><strong>Monica</strong>: I know, he’s just so, so… Do you remember you and Tony DeMarco?</p>
+<p><strong>Rachel</strong>: Oh, yeah.</p>
+<p><strong>Monica</strong>: Well, it’s like that. With feelings.</p>
+<p><strong>Rachel</strong>: Oh wow. Are you in trouble.</p>
+<p><strong>Monica</strong>: Big time!</p>
+<p><strong>Rachel</strong>: Want a wedding dress? Hardly used.</p>
+<p>Monica: Okay. Okay. I am just going to get up, go to work and not think about him all day. Or else I’m just<br>gonna get up and go to work and not think about him all day. Or else I’m just gonna get up and go to work.</p>
+<blockquote>
+<p>or else adv.要不然</p>
+</blockquote>
+<p><strong>Rachel</strong>: Oh, wish me luck!</p>
+<p><strong>Monica</strong>: What for? </p>
+<p><strong>Rachel</strong>: I’m gonna go get one of those (Thinks) job things.</p>
+<p>(Monica exits.)</p>
+<p>[Scene: Iridium, Monica is working as Frannie enters.] </p>
+<p><strong>Frannie</strong>: Hey, Monica! </p>
+<p><strong>Monica</strong>: Hey Frannie, welcome back! How was Florida? </p>
+<p><strong>Frannie</strong>: You had sex, didn’t you? </p>
+<p><strong>Monica</strong>: How do you do that?</p>
+<p><strong>Frannie</strong>: Oh, I hate you, I’m pushing my Aunt Roz through Parrot Jungle and you’re having sex! So? Who?</p>
+<p><strong>Monica</strong>: You know Paul? </p>
+<p><strong>Frannie</strong>: Oh yeah, I know Paul. </p>
+<p><strong>Monica</strong>: You mean you know Paul like I know Paul? </p>
+<p><strong>Frannie</strong>: Are you kidding? I take credit for Paul. Y’know before me, there was no snap in his turtle for two years. </p>
+<blockquote>
+<p>take credit for&lt;俚&gt;if A takes credit for B,that means B is indebted to(adj.感激的)<br>snap in his turtle&lt;俚&gt; sexual performance, it’s kind of a “clean” way of saying a vulgar idea (also known as a euphemism). A man who has no snap in his turtle is impotent; or, unable to have an erection<br>turtle &lt;俚&gt;a vulgar expression to refer to male’s genitalia </p>
+</blockquote>
+<p>[Scene: Central Perk, everyone but Rachel is there.]</p>
+<p><strong>Joey</strong>: (sitting on the arm of the couch)Of course it was a line! </p>
+<blockquote>
+<p>line&lt;俚&gt; glib(adj.油腔滑调的) or insincere(adj.不真诚的) talk, usually intended to deceive or impress</p>
+</blockquote>
+<p><strong>Monica</strong>: Why?! Why? Why, why would anybody do something like that? </p>
+<p><strong>Ross</strong>: I assume we’re looking for an answer more sophisticated than ‘to get you into bed’. </p>
+<blockquote>
+<p>sophisticated adj.成熟稳重的</p>
+</blockquote>
+<p><strong>Monica</strong>: I hate men! I hate men!</p>
+<p><strong>Phoebe</strong>: Oh no, don’t hate, you don’t want to put that out into the universe.</p>
+<p><strong>Monica</strong>: Is it me? Is it like I have some sort of beacon that only dogs and men with severe emotional problems can hear? </p>
+<blockquote>
+<p>beacon n.灯塔 信标(电)台</p>
+</blockquote>
+<p><strong>Phoebe</strong>: All right, come here, gimme your feet. (She starts massaging them.) </p>
+<p><strong>Monica</strong>: I just thought he was nice, y’know? </p>
+<p><strong>Joey</strong>: (bursts out laughing again) I can’t believe you didn’t know it was a line! </p>
+<blockquote>
+<p>burst out laughing v.突然笑起来</p>
+</blockquote>
+<p>(Monica pushes him off of the sofa as Rachel enters with a shopping bag.) </p>
+<p><strong>Rachel</strong>: Guess what? </p>
+<p><strong>Ross</strong>: You got a job? </p>
+<p><strong>Rachel</strong>: Are you kidding? I’m trained for nothing! I was laughed out of twelve interviews today. </p>
+<p><strong>Chandler</strong>: And yet you’re surprisingly upbeat. </p>
+<blockquote>
+<p>and yet adv.可是<br>upbeat adj. cheerful;optimistic </p>
+</blockquote>
+<p><strong>Rachel</strong>: You would be too if you found John and David boots on sale, fifty percent off! </p>
+<p><strong>Chandler</strong>: Oh, how well you know me… </p>
+<p><strong>Rachel</strong>: They’re my new ‘I don’t need a job, I don’t need my parents, I’ve got great boots’ boots! </p>
+<p><strong>Monica</strong>: How’d you pay for them? </p>
+<p><strong>Rachel</strong>: Uh, credit card. </p>
+<p><strong>Monica</strong>: And who pays for that? </p>
+<p><strong>Rachel</strong>: Um… my… father. </p>
+<p>[Scene: Monica and Rachel’s, everyone is sitting around the kitchen table.Rachel’s credit cards are spread out on the table along with a pair of scissors.]</p>
+<blockquote>
+<p>spread out v.展开 铺开/along with adv.连同…一起</p>
+<p><strong>Rachel</strong>: Oh God, come on you guys, is this really necessary? I mean, I can stop charging anytime I want.</p>
+</blockquote>
+<p><strong>Monica</strong>: C’mon, you can’t live off your parents your whole life. </p>
+<blockquote>
+<p>live off v.靠…生活</p>
+</blockquote>
+<p><strong>Rachel</strong>: I know that. That’s why I was getting married. </p>
+<p><strong>Phoebe</strong>: Give her a break, it’s hard being on your own for the first time.</p>
+<blockquote>
+<p>give her a break 饶了她吧</p>
+</blockquote>
+<p><strong>Rachel</strong>: Thank you. </p>
+<p><strong>Phoebe</strong>: You’re welcome. I remember when I first came to this city. I was fourteen. My mom had just killed herself and my step-dad was back in prison, and I got here, and I didn’t know anybody. And I ended up living with this albino guy who was like cleaning windshields outside port authority, and then he killed himself, and then I found aromatherapy. So believe me, I know exactly how you feel. </p>
+<p><strong>Ross</strong>: The word you’re looking for is ‘Anyway’… </p>
+<p><strong>Monica</strong>: All right, you ready?</p>
+<p><strong>Rachel</strong>: No. No, no, I’m not ready! How can I be ready? “Hey, Rach! You ready to jump out the airplane without your parachute?” Come on, I can’t do this!</p>
+<p><strong>Monica</strong>: You can, I know you can!</p>
+<p><strong>Rachel</strong>: I don’t think so.</p>
+<p><strong>Ross</strong>: Come on, you made coffee! You can do anything! (Chandler slowly tries to hide the now dead plant from that morning when he and Joey poured their coffee into it.)</p>
+<p><strong>All</strong>: Cut, cut, cut, cut, cut, cut, cut… (She cuts one of them and they cheer.)</p>
+<p><strong>Rachel</strong>: Y’know what? I think we can just leave it at that. It’s kinda like a symbolic gesture…</p>
+<p><strong>Monica</strong>: Rachel! That was a library card!</p>
+<p><strong>All</strong>: Cut, cut, cut, cut, cut, cut, cut..</p>
+<p><strong>Chandler</strong>: (as Rachel is cutting up her cards) Y’know, if you listen closely, you can hear a thousand retailers scream.<br>(She finishes cutting them up and they all cheer.)</p>
+<p><strong>Monica</strong>: Welcome to the real world! It sucks. You’re gonna love it! </p>
+<p>(Time Lapse, Rachel and Ross are watching a TV channel finishes it’s broadcast day by playing the national anthem.)</p>
+<blockquote>
+<p>the national anthem n.国歌</p>
+</blockquote>
+<p><strong>Monica</strong>: Well, that’s it (To Ross) You gonna crash on the couch? </p>
+<blockquote>
+<p>crash&lt;俚&gt; to temporarily stay over or sleep at a place other than at one’s own usual abode(n.住处),</p>
+</blockquote>
+<p><strong>Ross</strong>: No. No, I gotta go home some time. </p>
+<p><strong>Monica</strong>: You be okay? </p>
+<p><strong>Ross</strong>: Yeah. </p>
+<p><strong>Rachel</strong>: Hey Mon, look what I just found on the floor. (Monica smiles.) What? </p>
+<p><strong>Monica</strong>: That’s Paul’s watch. You just put it back where you found it. Oh boy. Alright. Goodnight, everybody. </p>
+<p><strong>Ross &amp; Rachel</strong>: Goodnight.</p>
+<p>(Monica stomps on Paul’s watch and goes into her room.)</p>
+<blockquote>
+<p>stomp v.smash something by foot跺 践踏 </p>
+</blockquote>
+<p><strong>Ross</strong>: Mmm. (They both reach for the last cookie) Oh, no- </p>
+<p><strong>Rachel</strong>: Sorry.</p>
+<p><strong>Ross</strong>: No no no, go.</p>
+<p><strong>Rachel</strong>: No, you have it, really, I don’t want it.</p>
+<p><strong>Ross</strong>: Split it? </p>
+<p><strong>Rachel</strong>: Okay. </p>
+<p><strong>Ross</strong>: Okay. (They split it.) You know you probably didn’t know this, but back in high school, I had a…major crush on you.</p>
+<ul>
+<li>have a crush on sb&lt;俚&gt; have an intense and usually passing infatuation(n.醉心)[eg:If you are a crush on someone, you are in love with them but do not have a relationship with them]</li>
+</ul>
+<p><strong>Rachel</strong>: I knew. </p>
+<p><strong>Ross</strong>: You did! Oh…. I always figured you just thought I was Monica’s geeky older brother. </p>
+<ul>
+<li>geeky adj.&lt;俚&gt;书呆子气的 令人讨厌的</li>
+</ul>
+<p><strong>Rachel</strong>: I did. </p>
+<p><strong>Ross</strong>: Oh. Listen, do you think- and try not to let my intense vulnerability become any kind of a factor here- but do you think it would be okay if I asked you out? Sometime? Maybe? </p>
+<blockquote>
+<p>vulnerability n.易受责难 弱点/intense vulnerablility n.强烈的脆弱感</p>
+</blockquote>
+<p><strong>Rachel</strong>: Yeah, maybe… </p>
+<p><strong>Ross</strong>: Okay… okay, maybe I will… </p>
+<p><strong>Rachel</strong>: Goodnight. </p>
+<p><strong>Ross</strong>: Goodnight. </p>
+<p>(Rachel goes into her room and Monica enters the living room as Ross is leaving.) </p>
+<p><strong>Monica</strong>: See ya…. Waitwait, what’s with you? </p>
+<blockquote>
+<p>what’s with you？ = What’s the matter with you?</p>
+</blockquote>
+<p><strong>Ross</strong>: I just grabbed a spoon. (Ross exits and Monica has no idea what that means.) </p>
+<p>Closing Credits<br>[Scene: Central Perk, everyone is there.] </p>
+<p><strong>Joey</strong>: I can’t believe what I’m hearing here. </p>
+<p><strong>Phoebe</strong>: (sings) I can’t believe what I’m hearing here… </p>
+<p><strong>Monica</strong>: What? I said you had a- </p>
+<p><strong>Phoebe</strong>: (sings) What I said you had… </p>
+<p><strong>Monica</strong>: (to Phoebe) Would you stop? </p>
+<p><strong>Phoebe</strong>: Oh, was I doing it again?</p>
+<p><strong>All</strong>: Yes!</p>
+<p><strong>Monica</strong>: I said that you had a nice butt, it’s just not a great butt.</p>
+<p><strong>Joey</strong>: Oh, you wouldn’t know a great butt if it came up and bit ya.</p>
+<p><strong>Ross</strong>: There’s an image.</p>
+<p><strong>Rachel</strong>: (walks up with a pot of coffee) Would anybody like more coffee? </p>
+<p><strong>Chandler</strong>: Did you make it, or are you just serving it? </p>
+<p><strong>Rachel</strong>: I’m just serving it. </p>
+<p><strong>All</strong>: Yeah. Yeah, I’ll have a cup of coffee. </p>
+<p><strong>Chandler</strong>: Kids, new dream… (Rachel sits down to hear Chandler’s dream.) I’m in Las Vegas</p>
+<p><strong>Customer</strong>: (To Rachel) Ahh, miss? More coffee?</p>
+<p><strong>Rachel</strong>: Ugh. (To another customer that’s leaving.) Excuse me, could you give this to that guy over there? (Hands him the coffee pot.) Go ahead. (He does so.) Thank you. (To the gang.) Sorry. Okay, Las Vegas.</p>
+<p><strong>Chandler</strong>: Okay, so, I’m in Las Vegas… I’m Liza Minelli-… I’m Liza Minelli…</p>
+<blockquote>
+<p>Liza Minnelli (born March 12, 1946 in Los Angeles, California) American actress and singer. She is the daughter of legendary actress and singer Judy Garland and her second husband, film director Vincente Minnelli. In 1972, she won an Academy Award for Best Actress for her role in Cabaret. She used to be a duet(n.二重唱)-mate of Pavarotti</p>
+</blockquote>
+<p>End</p>
+<h3 id="The-One-With-the-Sonogram-at-the-End"><a href="#The-One-With-the-Sonogram-at-the-End" class="headerlink" title="The One With the Sonogram at the End"></a>The One With the Sonogram at the End</h3><hr>
+<p>1.02 The One With the Sonogram at the End  </p>
+<blockquote>
+<p>Ross finds out his ex-wife (Carol) is pregnant, and he has to attend the sonogram along with Carol’s lesbian life-partner, Susan.<br>Ugly Naked Guy gets a thigh-master.<br>Ross and Monica’s parents come for dinner, which stresses Monica out.<br>Ross and Rachel console each other.<br>Rachel returns the ring to Barry, who is much less upset about the break-up than expected.   </p>
+</blockquote>
+<p>[Scene Central Perk, everyone’s there.]</p>
+<p>Monica: What you guys don’t understand is, for us, kissing is as important as any part of it. </p>
+<p>Joey: Yeah, right!…….Y’serious? </p>
+<p>Phoebe: Oh, yeah!</p>
+<p>Rachel: Everything you need to know is in that first kiss. </p>
+<blockquote>
+<p>Everything you need to know is in that first kiss： 初吻可以让你明白一切。</p>
+</blockquote>
+<p>Monica: Absolutely. </p>
+<p>Chandler: Yeah, I think for us, kissing is pretty much like an opening act, y’know? I mean it’s like the stand-up comedian you have to sit through before Pink Floyd comes out. </p>
+<blockquote>
+<p>sit through v. 耐着性子看完(或听完)<br>Stand-up comedy 一种美国的表演艺术，类似于中国的单口相声，但是更加注重与台下观众的互动。目前在香港有这种表演，名字被翻译为“栋笃笑”，代表人物是黄子华<br>Pink Floyd  英国摇滚乐队</p>
+</blockquote>
+<p>Ross: Yeah, and it’s not that we don’t like the comedian, it’s that… that’s not why we bought the ticket. </p>
+<p>Chandler: The problem is, though, after the concert’s over, no matter how great the show was, you girls are always looking for the comedian again, y’know? I mean, we’re in the car, we’re fighting traffic… basically just trying to stay awake. </p>
+<p>Rachel: Yeah, well, word of advice: Bring back the comedian. Otherwise next time you’re gonna find yourself sitting at home, listening to that album alone. </p>
+<blockquote>
+<p>word of advice建议如下</p>
+</blockquote>
+<p>Joey: (pause)….Are we still talking about sex?</p>
+<p>Opening Credits</p>
+<blockquote>
+<p>opening credits 开场</p>
+</blockquote>
+<p>[Scene: Museum of Prehistoric History, Ross and a co-worker (Marsha) are setting up an exhibit which includes some mannequins of cave people.] </p>
+<blockquote>
+<p>Museum of Prehistoric History n.史前历史博物馆<br>mannequin n. 服装模特儿 人体模型</p>
+</blockquote>
+<p>Ross: No, it’s good, it is good, it’s just that- mm- doesn’t she seem a little angry? </p>
+<p>Marsha: Well, she has issues.</p>
+<blockquote>
+<p>Well, she has issues: Issues在这里是烦恼、问题的意思</p>
+</blockquote>
+<p>Ross: Does she. </p>
+<p>Marsha: He’s out banging other women over the head with a club, while she sits at home trying to get the mastodon smell out of the carpet! </p>
+<blockquote>
+<p>bang v.重击;<br>over the head with a club 同上<br>mastodon n.&lt;古生&gt;乳齿象<br>banging other women over the head with a club 他在外面沾花惹草？</p>
+</blockquote>
+<p>Ross: Marsha, these are cave people. Okay? They have issues like ‘Gee, that glacier’s getting kinda close.’ See? </p>
+<blockquote>
+<p>gee int.惊讶时所发声音/glacier n.冰川 冰河</p>
+</blockquote>
+<p>Marsha: Speaking of issues, isn’t that your ex-wife? </p>
+<p>(Carol, Ross’s ex-wife, has entered behind them and is standing outstide the exhibit.) </p>
+<p>Ross: (trying to ignore her) No. No. </p>
+<p>Marsha: Yes, it is. Carol! Hi! </p>
+<p>Ross: Okay, okay, yes, it is. (waves) How about I’ll, uh, catch up with you in the Ice Age. </p>
+<p>(Marsha extis and Ross waves Carol into the exhibit.) </p>
+<p>Ross: Hi. </p>
+<p>Carol: So. </p>
+<p>Ross: You look great. I, uh… I hate that. </p>
+<p>Carol: Sorry.Thanks. You look good too. </p>
+<p>Ross: Ah, well, in here, anyone who… stands erect… So what’s new? Still, uh… </p>
+<p>Carol: A lesbian? </p>
+<p>Ross: Well… you never know. How’s, um.. how’s the family? </p>
+<p>Carol: Marty’s still totally paranoid. Oh, and, uh- </p>
+<blockquote>
+<p>paranoid adj.类似妄想狂的</p>
+</blockquote>
+<p>Ross: Why- why are you here, Carol? </p>
+<p>Carol: I’m pregnant. </p>
+<p>Ross: Pregnant?! </p>
+<p>[Scene: Monica and Rachel’s, Chandler, Joey, Phoebe, and Monica are watching Three’s Company.]</p>
+<p>Chandler: Oh, I think this is the episode of Three’s Company where there’s some kind of misunderstanding. </p>
+<blockquote>
+<p>Three’s Company is an American sitcom that ran from 1977 to 1984 on ABC. It is a remake of the British sitcom Man About the House. Jack, Janet and Chrissy lived in apartment 201, directly above the landlord unit</p>
+</blockquote>
+<p>Phoebe: Then I’ve already seen this one! (Turns off the TV.) </p>
+<p>Monica: (taking a drink from Joey) Are you through with that? </p>
+<p>Joey: Yeah, sorry, the swallowing slowed me down. </p>
+<blockquote>
+<p>slow sb down使某人慢下来</p>
+</blockquote>
+<p>Monica: Whose little ball of paper is this?! </p>
+<p>Chandler: Oh, uh, that would be mine. See, I wrote a note to myself, and then I realised I didn’t need it, so I balled it up and… (sees that Monica is glaring at him) …now I wish I was dead. </p>
+<blockquote>
+<p>ball it up v.揉成纸团</p>
+</blockquote>
+<p>(Monica starts to fluff a pillow.) </p>
+<blockquote>
+<p>fluff vi.抖松/pillow n.枕头</p>
+</blockquote>
+<p>Phoebe: She’s already fluffed that pillow… Monica, you know, you’ve already fluffed that (Monica glares at her.) but, it’s fine! </p>
+<p>Monica: Look , I’m sorry guys, I just don’t wanna give them any more ammunition than they already have. </p>
+<blockquote>
+<p>ammunition n.&lt;喻&gt;”炮弹”(指抨击别人的材料 手段或依据等)</p>
+</blockquote>
+<p>Chandler: Yes, and we all know how cruel a parent can be about the flatness of a child’s pillow. </p>
+<blockquote>
+<p>flatness n.平整</p>
+</blockquote>
+<p>Phoebe: Monica, Hi! Um, Monica, you’re scaring me. I mean, you’re like all chaotic and twirly. And not in a good way. </p>
+<blockquote>
+<p>chaotic adj.混乱的 无秩序的<br>twirl v.旋转 捻弄[eg:She was twirling her hair absent-mindedly] </p>
+</blockquote>
+<p>Joey: Yeah, calm down. You don’t see Ross getting all chaotic and twirly every time they come. </p>
+<p>Monica: That’s because as far as my parents are concerned, Ross can do no wrong. Y’see, he’s the Prince. Apparently they had some big ceremony before I was born. </p>
+<blockquote>
+<p>as far as…be concerned就…而言</p>
+</blockquote>
+<p>Chandler: (looking out the window) Ew, ew, ew, ew ew ew ew ew! </p>
+<p>Monica: What? </p>
+<p>Chandler: Ugly Naked Guy got a Thighmaster!<br>thigh-master n.美腿器</p>
+<p>All: Eeaagh! </p>
+<p>(Rachel enters from her room.) </p>
+<p>Rachel: Has anybody seen my engagement ring? </p>
+<p>Phoebe: Yeah, it’s beautiful. </p>
+<p>Rachel: Oh God, oh God, oh God oh God oh God oh God…. (Starts to look under the couch cushions.) </p>
+<blockquote>
+<p>couch cushion 沙发垫</p>
+</blockquote>
+<p>Phoebe: No, look, don’t touch that! </p>
+<p>Rachel: Oh, like I wasn’t dreading tomorrow enough having to give it back to him… ‘Hi Barry! Remember me? I’m the girl in the veil who stomped on your heart in front of your entire family!’ Oh God and now I’m gonna have to return the ring, without the ring, which makes it so much harder… </p>
+<blockquote>
+<p>veil婚纱<br>stomp on your heart伤透了你的心</p>
+</blockquote>
+<p>Monica: Easy Rach, we’ll find it. (To all) Won’t we! </p>
+<p>Chandler &amp; Joey: Oh! Yeah!</p>
+<p>Joey: Alright, when’d ya have it on last?</p>
+<p>Phoebe: Doy! Probably right before she lost it! </p>
+<blockquote>
+<p>duh int.表示犹豫、不快或轻蔑等咄/doy&lt;俚&gt;first people used to say “duh” which is a sound that indicated stupidity, but for a little while, it turned into “doy” which has the same meaning. it just SOUNDS stupid. </p>
+</blockquote>
+<p>Chandler: You don’t get a lot of ‘doy’ these days… </p>
+<p>Rachel: I know I had it this morning, and I know I had it when I was in the kitchen with… </p>
+<p>Chandler: …Dinah? </p>
+<p>Rachel: (looks at the lasagna and realizes something) Ohhhhh, don’t be mad… </p>
+<blockquote>
+<p>lasagna n.烤宽面条</p>
+</blockquote>
+<p>Monica: You didn’t. </p>
+<p>Rachel: Oh, I am sorry… </p>
+<p>Monica: I gave you one job (Starts to examine the lasagne through the bottom of the glass pan.) </p>
+<p>Rachel: Oh, but look how straight those noodles are! </p>
+<p>Chandler: Now, Monica, you know that’s not how you look for an engagement ring in a lasagne… </p>
+<p>Monica: (puts down the lasagne) I just… can’t do it. </p>
+<p>Chandler: Boys? We’re going in. </p>
+<p>(Chandler, Joey, and Phoebe start to pick through the lasagne as there’s a knock on the door which Monica answers.) </p>
+<p>Ross: (standing outside the door)…..Hi. </p>
+<p>Monica: Wow. That is not a happy hi. </p>
+<p>Ross: Carol’s pregnant. </p>
+<p>Phoebe: (while everyone else is stunned) Ooh! I found it! </p>
+<p>Monica: W-w-wh-… wha-… w-w-w-… </p>
+<p>Ross: Yeah. Do that for another two hours, you might be where I am right about now.(He enters) </p>
+<p>Chandler: Kinda puts that whole pillow thing in perspective, huh, Mon? </p>
+<blockquote>
+<p>in perspective adv.正确地[eg：You must learn to see things in perspective]/Kinda puts that whole pillow thing in perspective:kinda在片中出现的次数非常频繁，也是口语中非常实用的词语，意思是有一点儿，相当于kind of.这样的话，枕头的事就可先放在一旁?是不是，mon？” </p>
+</blockquote>
+<p>Rachel: Well now, how do you fit into this whole thing?</p>
+<blockquote>
+<p>fit into v.适应 协调</p>
+</blockquote>
+<p>Ross: Well, Carol says she and Susan want me to be involved, but if I’m not comfortable with it, I don’t have to be involved.. basically it’s totally up to me. </p>
+<p>Phoebe: She is so great! I miss her. </p>
+<p>Monica: What does she mean by ‘involved’? </p>
+<p>Chandler: I mean presumably, the biggest part of your job is done. </p>
+<p>Ross: Anyway, they want me to go down to this sonogram thing with them tomorrow. </p>
+<blockquote>
+<p>sonogram n.B超</p>
+</blockquote>
+<p>Rachel: So what are you gonna do? </p>
+<p>Ross: I have no idea. No matter what I do, though, I’m still gonna be a father. </p>
+<p>(Joey starts to eat the rest of the lasagne and everyone turns and stares at him.) </p>
+<p>Joey: …..Well, this is still ruined, right?</p>
+<p>[Scene, Monica and Rachel’s, Monica and Ross are pouring wine for their parents.] </p>
+<p>Mrs. Geller: Oh, Martha Ludwin’s daughter is gonna call you. (Tastes a snack) Mmm! What’s that curry taste? </p>
+<p>Monica: Curry. </p>
+<p>Mrs. Geller: Mmmm! </p>
+<p>Ross: I think they’re great! I really do. </p>
+<p>Mr. Geller: (To Ross) Do you remember the Ludwins? The big one had a thing for you, didn’t she? </p>
+<blockquote>
+<p>have a thing for v.对…特别感兴趣</p>
+</blockquote>
+<p>Mrs. Geller: They all had a thing for him. </p>
+<p>Ross: Aw, Mom… </p>
+<p>Monica: I’m sorry, why is this girl going to call me? </p>
+<p>Mrs. Geller: Oh, she just graduated, and she wants to be something in cooking, or food, or…. I don’t know. Anyway, I told her you had a restaurant- </p>
+<p>Monica: No Mom, I don’t have a restaurant, I work in a restaurant. </p>
+<p>Mrs. Geller: Well, they don’t have to know that… (She starts to fluff the same pillow Monica fluffed multiple times earlier.) </p>
+<p>Monica: Ross, could you come and help me with the spaghetti, please? </p>
+<p>Ross: Yeah. (They go to the kitchen.) </p>
+<p>Mrs. Geller: Oh, we’re having spaghetti! That’s…. easy. </p>
+<p>Monica: I know this is going to sound unbelievably selfish, but, were you planning on bringing up the whole baby/lesbian thing? Because I think it might take some of the heat off me.<br>Ross和Monica的父母来看望他们，由于从小父母就喜欢Ross（因为Ross成绩优异，为人老实，而Monica性格独立，而且那时候还很胖chubby）,所以在吃饭的时候老是无意识的讽刺Monica,于是Monica想让Ross提提自己老婆是Lesbian而且有了孩子的事儿转移注意力。Take some of the heat off sb,这里是帮Monica减轻压力的意思。</p>
+<p>(Time Lapse, everyone is now eating.)</p>
+<p>Mrs. Geller: What that Rachel did to her life…. We ran into her parents at the club, they were not playing very well. </p>
+<blockquote>
+<p>run into v.偶遇</p>
+</blockquote>
+<p>Mr. Geller: I’m not gonna tell you what they spent on that wedding… but forty thousand dollars is a lot of money! </p>
+<p>Mrs. Geller: Well, at least she had the chance to leave a man at the altar… </p>
+<blockquote>
+<p>altar n.(教堂内的)圣坛 祭坛</p>
+</blockquote>
+<p>Monica: What’s that supposed to mean? </p>
+<p>Mrs. Geller: Nothing! It’s an expression. </p>
+<p>Monica: No it’s not.<br>Mr. Geller: Don’t listen to your mother. You’re independent, and you always have been! Even when you were a kid… and you were chubby, and you had no friends, you were just fine! And you would read alone in your room, and your puzzles… </p>
+<blockquote>
+<p>chubby adj.丰满的 圆胖的/puzzle n.拼图</p>
+</blockquote>
+<p>(Time Lapse.)</p>
+<p>Mr. Geller: Look, there are people like Ross who need to shoot for the stars, with his museum, and his papers getting published. Other people are satisfied with staying where they are- I’m telling you, these are the people who never get cancer. </p>
+<blockquote>
+<p>shoot for v.争取 得到 </p>
+</blockquote>
+<p>[Time Lapse.] </p>
+<p>Mr. Geller: …And I read about these women trying to have it all, and I thank God ‘Our Little Harmonica’ doesn’t seem to have that problem. </p>
+<blockquote>
+<p>harmonica n.口琴</p>
+</blockquote>
+<p>Monica: (trying desperately to change the subject) So, Ross, what’s going on with you? Any stories? (Digs her elbow into his hand.) No news, no little anecdotes to share with the folks? </p>
+<blockquote>
+<p>try desperately to 拼命地想做某事<br>dig her elbow into his hand 将肘部往他的手上钻<br>anecdote n.轶事 八卦<br>the folks n.父母</p>
+</blockquote>
+<p>Ross: (pulls his hand away) Okay! Okay. (To his parents) Look, I, uh- I realise you guys have been wondering what exactly happened between Carol and me, and, so, well, here’s the deal. Carol’s a lesbian. She’s living with a woman named Susan. She’s pregnant with my child, and she and Susan are going to raise the baby. </p>
+<p>(Stunned silence ensues.) </p>
+<blockquote>
+<p>ensue vi.跟着发生</p>
+</blockquote>
+<p>Mrs. Geller: (To Monica) And you knew about this?!<br>——————————————————————————————————————————————————<br>Commercial Break<br>[Scene: Central Park, everyone’s there.]<br>Joey: Your folks are really that bad, huh?<br>Ross: Well, y’know, these people are pros. They know what they’re doing, they take their time, they get the job done.<br>pro n.专家(=professional)[eg:Mathew plays tennis like a pro]/take one’s time v.从容不迫<br>Monica: Boy, I know they say you can’t change your parents,… boy, if you could- (To Ross) I’d want yours.<br>Ross: Must pee. (Goes to pee.)<br>pee v.n.小便<br>Phoebe: Y’know, it’s even worse when you’re twins.<br>Rachel: You’re twins?<br>Phoebe: Yeah. We don’t speak. She’s like this high-powered, driven-career type.<br>high-powered adj.精力充沛的 干劲足的<br>Chandler: What does she do?<br>Phoebe: She’s a waitress.<br>Rachel: All right, you guys, I kinda gotta clean up now. (They all start to leave.)<br>clean up v.打扫<br>Monica: Chandler, you’re an only child, right? You don’t have any of this.<br>only child n.独生子<br>Chandler: Well, no, although I did have an imaginary friend, who… my parents actually preferred.<br>imaginary adj.假想的 想象的<br>Rachel: The lights, please.<br>(Joey turns off the lights, and they all leave as Rachel starts to clean up.Ross enters from the bathroom.)<br>bathroom n.厕所<br>Ross: …How long was I in there?<br>Rachel: I’m just cleaning up.<br>Ross: D’ya.. uh.. d’ya need any help?<br>Rachel: Uh.. okay, sure! Thanks! (She hands him the broom and sits down.)<br>broom n.扫帚<br>Ross: Anyway.. um.. (Starts to sweep.) So, you- uh- you nervous about Barry tomorrow?<br>Rachel: Oh.. a little..<br>Ross: Mm-hmm..<br>Rachel: A lot.<br>Ross: Mm.<br>Rachel: So, got any advice? Y’know, as someone who’s recently been dumped?<br>Ross: Well, you may wanna steer clear of the word ‘dumped’. Chances are he’s gonna be this broken shell of a man, y’know, so you should try not to look too terrific, I know it’ll be hard. Or, y’know, uh, hey!, I’ll go down there, and I’ll give Barry back his ring, and you can go with Carol and Susan to the OB/GYN…<br>steer clear of v.避开 绕开/shell n.壳/terrific adj.光彩照人/Chances are…(很有)可能[eg:Chances are she’s already heard the news]/OB/GYN abbr.obstetrics(n.产科学)and gynaecology(n.妇科医学)<br>Rachel: Oh, you’ve got Carol tomorrow. When did it get so complicated?<br>Ross: Got me.<br>got me&lt;口&gt;这你可把我问倒了<br>Rachel: Remember when we were in high school together?<br>Ross: Yeah.<br>Rachel: I mean, didn’t you think you were just gonna meet somone, fall in love- and that’d be it? (Ross gazes at her.) ..Ross?<br>gaze at v.盯着<br>Ross: Yes, yes!<br>Rachel: Oh! Man, I never thought I’d be here.. (She leans back onto his hand.)<br>Ross: Me either… (He pulls up a stool so that he doesn’t have to move his hand.)<br>stool n.凳子<br>[Scene: Carol’s OB/GYN, Carol is waiting.]<br>Ross: (entering) Sorry I’m late, I got stuck at work. There was this big dinosaur.. thing.. anyway.<br>(Susan enters holding a drink.)<br>Susan: Hi.<br>Carol: Ross, you remember Susan?<br>Ross: How could I forget?<br>How could I forget? 我觉得这句话应该熟记，这样你就可以咬牙切齿的对某个人，某件事说“how could I forget?”，我怎么能忘记呢？打死我也不会忘记的。可以想见Ross当时的神态了吧，真有种欲杀Susan而后快的感觉。<br>Susan: Ross.<br>Ross: (they shake hands) Hello, Susan. (To Carol) Good shake. Good shake. So, we’re just waiting for…?<br>Carol: Dr. Oberman.<br>Ross: ..Dr. Oberman. Okay. And is he-<br>Susan: She.<br>Ross: She, of course, she- uh- familiar with our.. special situation?<br>Carol: Yes, and she’s very supportive.<br>Ross: Okay, that’s great. (Susan gives her drink to Carol.) No, I’m- Oh.<br>Carol: Thanks.<br>Ross: (picks up a surgical instrument and mimes a duck with it) Quack, quack..<br>instrument n.工具 器械/mime v.模仿/quack n.鸭叫<br>Carol: Ross? That opens my cervix. (He drops it in horror.)<br>cervix n.子宫颈<br>[Scene Barry’s office, Barry is working on patient, Robbie, as Rachel enters.]<br>Rachel: Barry?<br>Barry: C’mon in.<br>Rachel: (hesitates) Are you sure?<br>Barry: Yeah! It’s fine, it’s fine. Robbie’s gonna be here for hours.<br>Robbie: Huh?!<br>Barry: So, how ya doin?<br>Rachel: I’m- uh- I’m okay… You look great!<br>Barry: Yeah, well..<br>Bernice: (over intercom) Dr. Farber, Jason Greenstein’s gagging.<br>intercom n.内部通信系统/gag vt.使窒息<br>Barry: (answering the intercom) Be right there. (To Robbie and Rachel) Be back in a sec.<br>(As Barry exits Robbie stares at Rachel.)<br>Rachel: I dumped him.<br>Robbie: Okay.<br>[Scene: Carol’s OB/GYN, they’re talking about how this is going to work.]<br>Ross: So how’s this, uh, how’s this gonna work? Y’know, with us? Y’know, when, like, important decisions have to be made?<br>Carol: Give me a ‘for instance’.<br>Ross: Well, I don’t know, okay, okay, how about with the, uh, with the baby’s name?<br>Carol: Marlon-<br>Ross: Marlon?!<br>Carol: If it’s a boy, Minnie if it’s a girl.<br>Minerva “Minnie” Mouse is an animated cartoon of the Mickey Mouse universe featured in animated cartoons, comic strips(n.连环画) and comic book by The Walt Disney Company. The comic strip story “The Gleam” (published January 19-May 2, 1942) by Merrill De Maris and Floyd Gottfredson first gave her full name as Minerva Mouse. Minerva has since been a recurring alias(n.化名) for her.The comic strip story “Mr. Slicker and the Egg Robbers” (published September 22–December 26, 1930) introduced her father Marcus Mouse and her unnamed mother, both farmers. The same story featured photographs of her grandparents Marshall Mouse and Matilda Mouse. Her best known relatives however remains her uncle Mortimer Mouse and her twin nieces, Millie and Melody, though most often a single niece, Melody, appears. In many appearances, Minnie is presented as a close friend of Daisy Duck, and occasionally to Clarabelle Cow. Minnie’s sister Mandie Mouse was a recurring character once in a while, but soon be a supporting character later in the early life.</p>
+<p>Ross: …As in Mouse?<br>Carol: As in my grandmother.<br>Ross: Still, you say Minnie, you hear Mouse. Um, how about, um.. how about Julia?<br>Carol: Julia..<br>Susan: We agreed on Minnie.<br>Ross: So funny, we agreed we’d spend the rest of our lives together. Things change, roll with the punches. I believe Julia’s on the table?<br>punch n.打击的意思/roll with the punches&lt;俚&gt; when things dont go your way and you adapt to the changes and keep moving ahead instead of flipin out/on the table adv.在桌面上 在讨论的范围<br>[Scene: Barry’s office, Rachel is doing her makeup in the mirror on Barry’s lamp as Barry enters.]<br>Barry: Sorry about that. So. What have you been up to?<br>Rachel: Oh, not much. I got a job.<br>Barry: Oh, that’s great.<br>Rachel: Why are you so tanned?<br>tanned adj.晒黑的<br>Barry: Oh, I went to Aruba.<br>Rachel: Oh no. You went on our honeymoon alone?<br>Barry: No. I went with, uh.. Now, this may hurt.<br>Robbie: Me?!<br>Barry: No! (To Rachel) I went with Mindy.<br>Rachel: Mindy?! My maid of honour, Mindy?!<br>maid of honour n.伴娘<br>Barry: Yeah, well, we’re kind of a thing now.<br>Rachel: Oh! Well, um.. (Grabs his forehand) You’ve got plugs!<br>got plugs v.植发<br>Barry: Careful! They haven’t quite taken yet.<br>Rachel: And you’ve got lenses! But you hate sticking your finger in your eye!<br>lens n.隐形眼镜(=contact lens)<br>Barry: Not for her. Listen, I really wanted to thank you.<br>Rachel: Okay..<br>Barry: See, about a month ago, I wanted to hurt you. More than I’ve ever wanted to hurt anyone in my life. And I’m an orthodontist<br>orthodontist n.正牙医生<br>Rachel: Wow.<br>Barry: You know, you were right? I mean, I thought we were happy. We weren’t happy. But with Mindy, now I’m happy. Spit.<br>Rachel: What?<br>Robbie: Me. (Spits.)<br>Rachel: Anyway, um, (Gets the ring out of her purse.) I guess this belongs to you. And thank you for giving it to me.<br>Barry: Well, thank you for giving it back.<br>(Barry and Rachel look at each other.)<br>Robbie: Hello?!<br>[Scene: Carol’s OB/GYN, they’re still arguing about what to name the baby.]<br>Susan: Oh, please! What’s wrong with Helen?<br>Ross: Helen Geller? I don’t think so.<br>Helen Adams Keller (June 27, 1880 – June 1, 1968) was an American author, activist and lecturer. She was the first deafblind person to graduate from college. The story of how a remarkable teacher broke through the isolation the lack of language had imposed on the child, who blossomed as she learned to communicate, are staples of American folklore(n.民间传说). What is less well known is how Keller’s life developed after she completed her education: she became a radical campaigner for workers’ rights and an advocate for many other progressive causes.</p>
+<p>Carol: Hello? It’s not gonna be Helen Geller.<br>Ross: Thank you!<br>Carol: No, I mean it’s not Geller.<br>Ross: What, it’s gonna be Helen Willick?<br>Carol: No, actually, we talked about Helen Willick-Bunch.<br>Ross: Well, wait a minute, why is she in the title?<br>Susan: Because it’s my baby too.<br>Ross: Oh, so funny, really? Um, I don’t remember you making any sperm.<br>sperm n.精液 精子<br>Susan: Yeah, and we all know what a challenge that is!<br>Carol: All right, you two, stop it!<br>Ross: No no no, she gets a credit, hey, I’m in there too.<br>get a credit v.得到功劳<br>Carol: Ross. You’re not actually suggesting Helen Willick-Bunch-Geller? ‘Cause I think that borders on child abuse.<br>border on与……接壤/abuse n.v.虐待/that border on child abuse那有虐待儿童之嫌<br>Ross: Of course not, I’m… suggesting Geller-Willick-Bunch.<br>Susan: Oh, no, nonononono, you see what he’s doing? He knows no-one’s gonna say all those names, so they’ll wind up calling her Geller, then he gets his way!<br>wind up doing=end up doing最终…/get his way他就得逞 随心所欲[eg:A: George is so stubborn.B: I know. He always gets his way in the end]<br>Ross: My way?! You-you think this is my way? Believe me, of all the ways I ever imagined this moment in my life being, this is not my way- y’know what? Uh, um, this is too hard. I’m not, I can’t do-<br>Dr. Oberman: (entering) Knock knock!How are we today? Any nausea?<br>nausea n.恶心<br>All: Yeah. Yeah. A little.<br>Dr. Oberman: Well, I was just wondering about the mother-to-be, but.. thanks for sharing. (To Carol) Uh, lie back..<br>the mother-to-be n.准妈妈/lie back v.依靠<br>Ross: Y’know what, I’m gonna go. I don’t think I can be involved in this particular family thing right now.<br>(He turns to go, but the sound of the sonogram catches his ear.  He returns and stares at it.)<br>Ross: Oh my God.<br>Susan: Look at that.<br>Carol: I know.<br>Closing Credits<br>[Scene: Monica and Rachel’s apartment, everyone is watching the tape of the sonogram. Rachel is on the phone.]<br>Ross: Well? Isn’t that amazing?<br>Joey: What are we supposed to be seeing here?<br>Chandler: I dunno, but.. I think it’s about to attack the Enterprise.<br>Chandler: I dunno, but.. I think it’s about to attack the Enterprise. “dunno”是don’t know的缩写，Chandler和Joey被逼着看sonogram的录像带，可是看得一头雾水，Chandler居然说似乎是胎儿要进攻了。“哥伦比亚”号是美国第一艘航天飞机，就是几个月前掉下来的那艘，也是美国曾有的五艘航天飞机之一（但是现在就剩三艘了，1986年“挑战者”爆炸）”企业号”(ENTERPRISE)是电影《星际迷航》系列里的那艘母舰,并是真实的历史原型/The Space Shuttle Enterprise (NASA Orbiter Vehicle Designation: OV-101) was the first Space Shuttle built for NASA. It was constructed without engines or a functional heat shield, and was therefore not capable of space operations; its purpose was to perform test flights in the atmosphere.Originally, Enterprise had been intended to be refitted(v.改装) for orbital flight, which would have made it the second space shuttle[n.(往返于地球和太空站之间运载人和物资的)航天飞机] to fly after Columbia. However, during the construction of Columbia, details of the final design changed, particularly with regard to the weight of the fuselage(n.机身) and wings. Refitting Enterprise for flight would have involved dismantling(v.拆除) the orbiter(n.人造卫星) and returning the sections to subcontractors(n. 分包者) across the country. As this was an expensive proposition, it was determined to be less costly to build Challenger around a body frame (“STA-099”) that had been created as a test article. Similarly, Enterprise was considered for refit to replace Challenger after the latter was destroyed, but Endeavour was built from structural spares instead. </p>
+<p>Phoebe: You know, if you tilt your head to the left, and relax your eyes, it kinda looks like an old potato.<br>tilt vt.(使)倾斜<br>Ross: Then don’t do that, alright?<br>Phoebe: Okay!<br>Ross: (walks over to where Monica is standing) Monica. What do you think?<br>Monica: (welling up) Mm-hmm.<br>Ross: Are you welling up?<br>Monica: No.<br>Ross: You are, you’re welling up.<br>well up v.热泪盈眶<br>Monica: Am not!<br>Ross: You’re gonna be an aunt.<br>Monica: (pushes him and starts to cry) Oh shut up!<br>Rachel: (on phone) Hi, Mindy. Hi, it’s Rachel. Yeah, I’m fine. I saw Barry today. Oh, yeah, yeah he told me. No, no, it’s okay. I hope you two are very happy, I really do. Oh, oh, and Mind, y’know, if everything works out, and you guys end up getting married and having kids- and everything- I just hope they have his old hairline and your old nose. (Slams the phone down.) (To everyone) Okay, I know it was a cheap shot, but I feel so much better now.<br>hairline n.头发际线 发型轮廓/a cheap shot n.贱招<br>End</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/04/16/2016-04-16-精通CSS/" data-toggle="tooltip" data-placement="top" title="《精通CSS》读书笔记">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/04/12/2016-04-12-しんのすけ/" data-toggle="tooltip" data-placement="top" title="蜡笔小新">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#老友记" title="老友记">老友记</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.kaijun.rocks" target="_blank">Kaijun&#39;s Blog</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">Foo</a></li>
+                    
+                        <li><a href="#" target="_blank">Bar</a></li>
+                    
+                        <li><a href="#" target="_blank">Example Friends</a></li>
+                    
+                        <li><a href="#" target="_blank">It helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hexo-theme-huxblog";
+    var disqus_identifier = "http://rubicker.github.io/2016/04/12/2016-04-12-老友记/";
+    var disqus_url = "http://rubicker.github.io/2016/04/12/2016-04-12-老友记/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/Demonbane_x">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/Demonbane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/Demonbane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/demonbane.cn">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Kaijun">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/kaijun-chen-42089354">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Kaijun&#39;s Blog 2016 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://rubicker.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'huangxuan.me';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

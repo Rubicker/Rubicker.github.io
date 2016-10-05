@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          jQuery技术内幕读书笔记 - Kaijun的博客 | Kaijun&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://rubicker.github.io/2016/05/13/2016-05-13-jQuery技术内幕读书笔记/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Kaijun&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('header-bg.png')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#jQuery" title="jQuery">jQuery</a>
+                        
+                    </div>
+                    <h1>jQuery技术内幕读书笔记</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Kaijun Chen on
+                        2016-05-13
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>对于jQuery，不仅仅是要熟练掌握它的API，更重要的是了解它的架构思想。这样才能真正地“write less，do more”。</p>
+<a id="more"></a>
+<h2 id="总体架构"><a href="#总体架构" class="headerlink" title="总体架构"></a>总体架构</h2><h3 id="设计理念"><a href="#设计理念" class="headerlink" title="设计理念"></a>设计理念</h3><hr>
+<p>核心特性：(以1.7.x为准)</p>
+<ul>
+<li>兼容主流浏览器</li>
+<li>具有独特链式语法和短小清晰的多功能接口</li>
+<li>具有高效灵活的CSS选择器，并且可对CSS选择器进行扩展</li>
+<li>拥有便捷的插件扩展机制和丰富的插件</li>
+</ul>
+<h3 id="总体架构-1"><a href="#总体架构-1" class="headerlink" title="总体架构"></a>总体架构</h3><hr>
+<ul>
+<li>入口模块</li>
+<li>底层支持模块</li>
+<li>功能模块<br><img src="jQmodules.png" alt="jQmodules.png"><br><small class="img-hint">图片来源于本书</small></li>
+</ul>
+<h3 id="自调用匿名函数"><a href="#自调用匿名函数" class="headerlink" title="自调用匿名函数"></a>自调用匿名函数</h3><hr>
+<p>jQuery所有代码都被包裹在一个立即执行的匿名函数表达式中<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"> <span class="built_in">window</span>, <span class="literal">undefined</span> </span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> jQuery = ...</div><div class="line">  <span class="comment">// ...</span></div><div class="line">  <span class="built_in">window</span>.jQuery = <span class="built_in">window</span>.$ = jQuery;</div><div class="line">&#125;)(<span class="built_in">window</span>);</div></pre></td></tr></table></figure></p>
+<p><u>为何要创建这样一个自调用匿名函数？</u><br>  防止变量全局污染。<br>  最后通过声明<code>window.jQuery = window.$ = jQuery;</code>将jQuery添加到window对象上，只暴露其为全局变量<br><u>为何要为函数设置参数window，并传入window对象？</u></p>
+<ul>
+<li>通过传入window对象，可以使window对象变为局部变量，这样在代码块中访问window对象时，就不需要将作用域链回退到顶层作用域链，从而更快地访问window对象；  </li>
+<li>将window对象作为参数传入可以在压缩代码时进行优化，在压缩文件中可以看到下面代码： <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123; ... &#125;)(<span class="built_in">window</span>);</div><div class="line"><span class="comment">// 参数 window 被压缩为 a，参数 undefined 被压缩为 b</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><u>为何要为函数设置参数undefined？</u></p>
+<ul>
+<li>缩短查找undefined时的作用域链(undefined其实是window对象的一个属性)</li>
+<li>优化压缩(如上代码所示)</li>
+<li>可以确保参数undefined值为undefined  </li>
+</ul>
+<p><strong>最好不要省略自调用匿名函数之前和之后的分号</strong></p>
+<h2 id="构造jQuery对象"><a href="#构造jQuery对象" class="headerlink" title="构造jQuery对象"></a>构造jQuery对象</h2><h3 id="构造函数jQuery"><a href="#构造函数jQuery" class="headerlink" title="构造函数jQuery()"></a>构造函数jQuery()</h3><hr>
+<p>构造函数jQuery()有七种用法：</p>
+<h4 id="jQuery-selector-context"><a href="#jQuery-selector-context" class="headerlink" title="jQuery(selector[,context])"></a>jQuery(selector[,context])</h4><p>  字符串参数是选择表达式，则遍历文档查找与之匹配的DOM元素，并创建一个包含这些DOM引用的jQuery对象；若没有元素与之匹配则创建一个空jQUery对象。<br>  <strong>这一点与原生JS不同，原生JS找不到会报错</strong><br>  显然jQuery的处理更加合理<br>  若selector是简单的<code>#id</code>，且没有指定上下文<code>context</code>，则直接调用浏览器原生方法<code>document.getElementById()</code>查找；如果是比<code>#id</code>复杂的选择器或指定了上下文，则通过<code>jQuery.find()</code>查找</p>
+<blockquote>
+<p><code>find()</code>方法是由选择器引擎Sizzle实现</p>
+</blockquote>
+<h4 id="jQuery-html-ownerDocument-jQuery-html-props"><a href="#jQuery-html-ownerDocument-jQuery-html-props" class="headerlink" title="jQuery(html[,ownerDocument]),jQuery(html,props)"></a>jQuery(html[,ownerDocument]),jQuery(html,props)</h4><p>传入的字符串参数为HTML代码 ：</p>
+<ul>
+<li>若HTML代码是一个单独标签，则会调用原生方法<code>document.createElement()</code>创建DOM元素</li>
+<li>若比单标签复杂，则利用浏览器的<code>innerHTML</code>机制创建DOM元素，这过程由方法<code>jQuery.buildFragment()</code>和方法<code>jQuery.clean()</code>实现</li>
+<li>还可以传入属性，以及事件   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"&lt;div/&gt;"</span>, &#123;</div><div class="line"><span class="string">"class"</span>: <span class="string">"test"</span>, <span class="comment">//class是js保留字，所以需要引号</span></div><div class="line">text: <span class="string">"Click me!"</span>,</div><div class="line"><span class="attr">click</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">$(<span class="keyword">this</span>).toggleClass(<span class="string">"test"</span>);</div><div class="line">&#125;</div><div class="line">&#125;).appendTo(<span class="string">"body"</span>);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="jQuery-element-jQuery-elementArray"><a href="#jQuery-element-jQuery-elementArray" class="headerlink" title="jQuery(element),jQuery(elementArray)"></a>jQuery(element),jQuery(elementArray)</h4><p>  传入一个DOM元素或元素数组，将其封装到jQuery对象中并返回<br>  常见于事件监听函数，即把关键字this引用的DOM元素封装为jQuery对象，然后在该jQuery对象上调用jQuery方法<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'div.foo'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  $(<span class="keyword">this</span>).slideUp();</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h4 id="jQuery-object"><a href="#jQuery-object" class="headerlink" title="jQuery(object)"></a>jQuery(object)</h4><p>  传入一个普通的JS对象，则把该对象封装到jQuery对象中并返回。<br>  方便于在普通JS对象上实现自定义事件的绑定和触发<br>  <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = &#123;foo:<span class="string">'bar'</span>, hello:<span class="string">'world'</span>&#125;;<span class="comment">// 定义一个普通 JavaScript 对象</span></div><div class="line"><span class="keyword">var</span> $foo = $(foo);<span class="comment">// 封装成 jQuery 对象</span></div><div class="line">$foo.on(<span class="string">'custom'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span></span>&#123;</div><div class="line">  console.log(<span class="string">'custom event was called'</span>);</div><div class="line">&#125;);<span class="comment">//绑定自定义事件</span></div><div class="line">$foo.trigger(<span class="string">'custom'</span>); <span class="comment">//触发这个事件</span></div></pre></td></tr></table></figure></p>
+<h4 id="jQuery-callback"><a href="#jQuery-callback" class="headerlink" title="jQuery(callback)"></a>jQuery(callback)</h4><p>  若传入一个函数，则在document上绑定一个ready事件监听函数，当DOM结构加载完成时执行。<br>  <figure class="highlight fortran"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</div><div class="line">  //<span class="keyword">do</span> something</div><div class="line">  //取代了window.onload = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;&#125;  </div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h4 id="jQuery-jQuery-object"><a href="#jQuery-jQuery-object" class="headerlink" title="jQuery(jQuery object)"></a>jQuery(jQuery object)</h4><p>  若传入一个jQUery对象则创建该对象的一个副本并返回</p>
+<h4 id="jQuery"><a href="#jQuery" class="headerlink" title="jQuery()"></a>jQuery()</h4><p>  若不传入任何参数则返回一个空的jQuery对象</p>
+<h3 id="总体结构"><a href="#总体结构" class="headerlink" title="总体结构"></a>总体结构</h3><hr>
+<p>代码结构如下：<br><img src="https://ooo.0o0.ooo/2016/05/12/57354f01bbfb7.png" alt="1.png"><br><img src="https://ooo.0o0.ooo/2016/05/12/57354f192a952.png" alt="2.png"></p>
+<ul>
+<li>为何要在jQuery内部用new创建并返回另一个构造函数的实例？<br>答：为了书写方便，我们在创建jQuery对象时可以省略new直接写<code>jQuery()</code></li>
+<li>为何在97行执行jQuery.fn = jQuery.prototype?<br>答：简写，方便拼写、</li>
+<li>既然调用构造函数<code>jQuery()</code>返回的jQuery 对象实际上是构造函数<code>jQuery.fn.init()</code> 的<br>实例，为什么能在构造函数<code>jQuery.fn.init()</code> 的实例上调用构造函数<code>jQuery()</code> 的原型方法和属<br>性？例如，<code>$(&#39;#id&#39;).length</code> 和<code>$(&#39;#id&#39;).size()</code>。<br>答：322行<code>jQuery.fn.init.prototype = jQuery.fn;</code></li>
+<li>为什么要把第25 ～ 955 行的代码包裹在一个自调用匿名函数中，然后把第25 行定<br>义的构造函数<code>jQuery()</code> 作为返回值赋值给第22 行的jQuery 变量？去掉这个自调用匿名函<br>数，直接在第25 行定义构造函数<code>jQuery()</code> 不也可以吗？去掉了不是更容易阅读和理解吗？<br>答：去掉第25 ～ 955 行的自调用匿名函数当然可以，但会潜在地增加构造jQuery 对象模块<br>与其他模块的耦合度。在第25 ～ 97 行之间还定义了很多其他的局部变量，这些局部变量只<br>在构造jQuery 对象模块内部使用。通过把这些局部变量包裹在一个自调用匿名函数中，实现<br>了<strong>高内聚低耦合</strong>的设计思想。</li>
+<li>在原型对象<code>jQuery.prototype</code> 上定义的属性和方法会被所有jQuery 对象继承，可以有<br>效减少每个jQuery 对象所需的内存。</li>
+</ul>
+<h3 id="jQuery-fn-init-selector-context-rootjQuery"><a href="#jQuery-fn-init-selector-context-rootjQuery" class="headerlink" title="jQuery.fn.init(selector,context,rootjQuery)"></a>jQuery.fn.init(selector,context,rootjQuery)</h3><hr>
+<h4 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h4><ul>
+<li><p>定义<br> 定义构造函数<code>jQuery.fn.init</code>( selector, context, rootjQuery )，它接受3 个参数：</p>
+<ul>
+<li>参数 selector：可以是任意类型的值，但只有 undefined、DOM 元素、字符串、函数、<br>jQuery 对象、普通 JavaScript 对象这几种类型是有效的，其他类型的值也可以接受但<br>没有意义。</li>
+<li>参数 context：可以不传入，或者传入 DOM 元素、jQuery 对象、普通 JavaScript 对象<br>之一。</li>
+<li><p>参数 rootjQuery：包含了 document 对象的 jQuery 对象(也即document对象)，用于 <code>document.getElementById()</code> 查找失败、selector 是选择器表达式且未指定context、selector 是函数的情况。</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// document.getElementById() 查找失败</span></div><div class="line"><span class="built_in">return</span> rootjQuery.<span class="built_in">find</span>( selector );</div><div class="line"><span class="comment">// selector 是选择器表达式且未指定 context</span></div><div class="line"><span class="built_in">return</span> ( context || rootjQuery ).<span class="built_in">find</span>( selector );</div><div class="line"><span class="comment">// selector 是函数</span></div><div class="line"><span class="built_in">return</span> rootjQuery.<span class="built_in">ready</span>( selector );</div><div class="line"><span class="comment">// 定义 rootjQuery</span></div><div class="line"><span class="comment">// All jQuery objects should point back to these</span></div><div class="line"> rootjQuery = jQuery(document);</div></pre></td></tr></table></figure>
+<p>第100 行：变量match、elem、ret、doc 的功能会在接下来的分析过程中介绍。</p>
+</li>
+</ul>
+</li>
+<li><p>参数selector可以转换为false<br>此时说明传入的参数为undefined，空字符串，null等，直接返回this(空jQuery对象)</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="regexp">//</span> Handle $(<span class="string">""</span>), $(<span class="literal">null</span>), <span class="keyword">or</span> $( <span class="literal">undefined</span> )</div><div class="line"><span class="keyword">if</span> ( !selector ) &#123;</div><div class="line"><span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>参数selector是DOM元素<br>若参数selector有属性NodeType，则认为selector是DOM元素，手动设置第一个元素和属性context指向该DOM元素，属性length为1，然后返回包含了该DOM元素引用的jQuery对象</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">// Handle $(DOMElement)</span></div><div class="line"><span class="keyword">if</span> ( selector.nodeType ) &#123;</div><div class="line">  <span class="keyword">this</span>.context = <span class="keyword">this</span>[<span class="number">0</span>] = selector; <span class="comment">//存疑</span></div><div class="line">  <span class="keyword">this</span>.length = <span class="number">1</span>;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>参数selector是字符串”body”<br>由于文档树中只存在一个body元素，这里是对查找“body”的优化</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">// The body element only exists once, optimize finding it</span></div><div class="line"> <span class="keyword">if</span> ( selector === <span class="string">"body"</span> &amp;&amp; !context &amp;&amp; document.body ) &#123;</div><div class="line">   <span class="keyword">this</span>.context = document;</div><div class="line">   <span class="keyword">this</span>[<span class="number">0</span>] = document.body;</div><div class="line">   <span class="keyword">this</span>.selector = selector;</div><div class="line">   <span class="keyword">this</span>.length = <span class="number">1</span>;</div><div class="line">   <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>参数selector是其他字符串<br>若参数selector是其他字符串，则先检测selector是HTML代码还是#id</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// Handle HTML <span class="keyword">strings</span></div><div class="line"><span class="symbol">if</span>( typeof <span class="keyword">selector </span>=== <span class="string">"string"</span> )&#123;</div><div class="line">// Are we dealing with HTML <span class="keyword">string </span>or an ID?</div><div class="line">  <span class="meta">if</span>( <span class="keyword">selector.charAt(0) </span>=== <span class="string">"&lt;"</span> &amp;&amp; <span class="keyword">selector.charAt( </span><span class="keyword">selector.length </span>- <span class="number">1</span> ) === <span class="string">"&gt;"</span> &amp;&amp; <span class="keyword">selector.length </span>&gt;= <span class="number">3</span> )&#123;</div><div class="line">// Assume that <span class="keyword">strings </span>that start <span class="keyword">and </span><span class="meta">end</span> with &lt;&gt; are HTML <span class="keyword">and </span>skip the regex check</div><div class="line">    match = [ null, <span class="keyword">selector, </span>null ]<span class="comment">;</span></div><div class="line">  &#125;<span class="meta">else</span>&#123;</div><div class="line">    match = quickExpr.exec( <span class="keyword">selector </span>)<span class="comment">;</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> 第126 ～ 128 行：如果参数selector 以“ &lt;”开头、以“ &gt;”结尾，且长度大于等于3， 则假设这个字符串是HTML 片段，跳过正则quickExpr 的检查。注意这里仅仅是假设，并不一定表示它是真正合法的HTML 代码，如”<code>&lt;div&gt;&lt;/p&gt;</code>“。<br> 第131 行：否则，用正则quickExpr 检测参数selector 是否是稍微复杂一些的HTML 代<br> 码（如“<code>abc&lt;div&gt;</code>”）或#id，匹配结果存放在数组match 中。正则quickExpr 的定义如下：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">//A simple way to<span class="built_in"> check </span>for HTML strings<span class="built_in"> or </span>ID strings</div><div class="line">//Prioritize <span class="comment">#id over &lt;tag&gt; to avoid XSS via location.hash (#9521)</span></div><div class="line">quickExpr = /^(?:[^<span class="comment">#&lt;]*(&lt;[\w\W]+&gt;)[^&gt;]*$|#([\w\-]*)$)/,</span></div></pre></td></tr></table></figure>
+<p> <img src="reg1.svg" alt="reg1.svg"><br> 正则quickExpr 包含两个分组，依次匹配HTML 代码和id。如果匹配成功，则数组<br>  match 的第一个元素为参数selector，第二个元素为匹配的HTML 代码或undefined，第三个<br>  元素为匹配的id 或undefined。下面的例子测试了正则quickExpr 的功能：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">quickExpr.exec( <span class="string">'#target'</span> ); <span class="regexp">//</span> [<span class="string">"#target"</span>, undefined, <span class="string">"target"</span>]</div><div class="line">quickExpr.exec( <span class="string">'&lt;div&gt;'</span> ); <span class="regexp">//</span> [<span class="string">"&lt;div&gt;"</span>, <span class="string">"&lt;div&gt;"</span>, undefined]</div><div class="line">quickExpr.exec( <span class="string">'abc&lt;div&gt;'</span> ); <span class="regexp">//</span> [<span class="string">"abc&lt;div&gt;"</span>, <span class="string">"&lt;div&gt;"</span>, undefined]</div><div class="line">quickExpr.exec( <span class="string">'abc&lt;div&gt;abc#id'</span> ); <span class="regexp">//</span> [<span class="string">"abc&lt;div&gt;abc#id"</span>, <span class="string">"&lt;div&gt;"</span>, undefined]</div><div class="line">quickExpr.exec( <span class="string">'div'</span> ); <span class="regexp">//</span> null</div><div class="line">quickExpr.exec( <span class="string">'&lt;div&gt;&lt;img&gt;&lt;/div&gt;'</span> );</div><div class="line"><span class="regexp">//</span> [<span class="string">"&lt;div&gt;&lt;img&gt;&lt;/div&gt;"</span>,<span class="string">"&lt;div&gt;&lt;img&gt;&lt;/div&gt;"</span>, undefined]</div></pre></td></tr></table></figure>
+<blockquote>
+<p><u><code>exec()</code>为何物？？</u><br>如果 <code>exec()</code>找到了匹配的文本，则返回一个结果数组。否则，返回 null。此数组的第 0 个元素是与正则表达式相匹配的文本，第 1 个元素是与 <code>RegExpObject</code> 的第 1 个子表达式相匹配的文本（如果有的话），第 2 个元素是与 <code>RegExpObject</code> 的第 2 个子表达式相匹配的文本（如果有的话），以此类推。除了数组元素和 <code>length</code> 属性之外，<code>exec()</code> 方法还返回两个属性。<code>index</code> 属性声明的是匹配文本的第一个字符的位置。<code>input</code>属性则存放的是被检索的字符串string。<br>  <u>为何<code>quickExpr</code>中第一个分组group#1开头匹配要排除<code>#</code>这个字符？</u><br>防止恶意XSS攻击，假设没有这个限制,在代码中有<code>$(location.hash)</code>,用户修改hash值为<code>#&lt;img src=/ onerror=alert(1)&gt;</code>，并刷新页面，此时<code>$(location.hash)</code>就被执行为创建一个<code>&lt;img&gt;</code>,但是显然这个标签没有输入正确的<code>src</code>,所以会报错并触发<code>onerror</code>事件，这样的话，攻击者就可以在<code>onerror</code>中编写恶意代码，进行攻击</p>
+</blockquote>
+<p><strong>参数selector是单独标签</strong><br>此时则调用<code>document.createElement()</code>创建标签对应的DOM元素</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">// Verify a match, <span class="keyword">and</span> that no <span class="built_in">context</span> was specified <span class="keyword">for</span> #id</div><div class="line"><span class="keyword">if</span> ( match &amp;&amp; (match[<span class="number">1</span>] || !<span class="built_in">context</span>) ) &#123;</div><div class="line">// HANDLE: $(html) -&gt; $(<span class="built_in">array</span>)</div><div class="line">  <span class="keyword">if</span> ( match[<span class="number">1</span>] ) &#123;</div><div class="line">    <span class="built_in">context</span> = <span class="built_in">context</span> instanceof jQuery ? <span class="built_in">context</span>[<span class="number">0</span>] : <span class="built_in">context</span>;</div><div class="line">    doc = ( <span class="built_in">context</span> ? <span class="built_in">context</span>.ownerDocument || <span class="built_in">context</span> : document );</div><div class="line">    // If a single <span class="built_in">string</span> <span class="built_in">is</span> passed <span class="keyword">in</span> <span class="keyword">and</span> it's a single tag</div><div class="line">    // just <span class="keyword">do</span> a createElement <span class="keyword">and</span> skip the <span class="built_in">rest</span></div><div class="line">    ret = rsingleTag.exec( selector );</div><div class="line">    <span class="keyword">if</span> ( ret ) &#123;</div><div class="line">      <span class="keyword">if</span> ( jQuery.isPlainObject( <span class="built_in">context</span> ) ) &#123;</div><div class="line">        selector = [ document.createElement( ret[<span class="number">1</span>] ) ];</div><div class="line">        jQuery.fn.attr.call( selector, <span class="built_in">context</span>, <span class="literal">true</span> );</div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">        selector = [ doc.createElement( ret[<span class="number">1</span>] ) ];</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>第135 行：检测正则quickExpr 匹配参数selector 的结果，如果match[1] 不是undefined，即参数selector 是HTML 代码，或者match[2] 不是undefined，即参数selector 是#id，并且未传入参数context。这行代码利用布尔表达式的计算顺序，省略了对match[2] 的判断，完整的表达式如下：</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> ( <span class="keyword">match</span> &amp;&amp; (<span class="keyword">match</span>[<span class="number">1</span>] |<span class="type">| match</span>[<span class="number">2</span>] &amp;&amp; !context) ) &#123;</div></pre></td></tr></table></figure>
+<p>如果match 不是null 且match[1] 是undefined，那么此时match[2] 必然不是undefined，所以对match[2] 的判断可以省略。<br>第138 ～ 140 行：开始处理参数selector 是HTML 代码的情况，先修正context、doc，然后用正则rsingleTag 检测HTML 代码是否是单独标签，匹配结果存放在数组ret 中。<br>正则 rsingleTag 的定义如下：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Match a standalone tag</span></div><div class="line">rsingleTag = <span class="regexp">/^&lt;(\w+)\s*\/</span>?&gt;(?:&lt;\<span class="regexp">/\1&gt;)?$/</span>,</div></pre></td></tr></table></figure>
+<p><img src="reg2.svg" alt="reg2.svg"><br>  正则<code>rsingleTag</code> 包含一个分组<code>(\w+)</code>，该分组中不包含左右尖括号、不能包含属性、可以自关闭或不关闭；<code>\1</code>指向匹配的第一个分组<code>(\w+)</code>。<br>  第146 ～ 153 行： 如果数组ret 不是null， 则认为参数<code>selector</code> 是单独标签， 调用<code>document.createElement()</code> 创建标签对应的DOM 元素；如果参数<code>context</code> 是普通对象，则调用jQuery 方法<code>.attr()</code>并传入参数<code>context</code>，同时把参数<code>context</code> 中的属性、事件设置到新创建的DOM 元素上。<br>  之所以把创建的DOM 元素放入数组中，是为了在后面第160 行方便地调用<code>jQuery.merge()</code> 方法。方法<code>jQuery.merge()</code> 用于合并两个数组的元素到第一个数组，相关内容在后面介绍和分析。<br>  方法<code>jQuery.isPlainObject()</code> 用于检测对象是否是“纯粹”的对象，即用对象直接量<code>{}</code> 或<code>new Object()</code>创建的对象。<br> <strong>参数selector是复杂HTML代码</strong></p>
+ <figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">  <span class="keyword">ret</span> = jQuery.buildFragment([match[1]],[doc]);</div><div class="line">  selector = (<span class="keyword">ret</span>.cacheable?jQuery.clone(<span class="keyword">ret</span>.fragment):<span class="keyword">ret</span>.fragment).childNodes;</div><div class="line">&#125;</div><div class="line"><span class="keyword">return</span> jQuery.<span class="keyword">merge</span>(this,selector);</div></pre></td></tr></table></figure>
+<p> <code>jQuery.buildFragment()</code>这个函数返回:</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line"> <span class="comment">//fragment:含有转换后的DOM元素的文档片段</span></div><div class="line"> <span class="comment">//cacheable:HTML代码是否满足缓存条件</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  最后将新创建的DOM元素数组合并到当前jQuery对象中返回<br>  <strong>参数selector是<code>#id</code>,且未指定参数<code>context</code></strong><br>  此时直接调用<code>document.getElentById()</code>查找，源码如下:</p>
+  <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">  elem = document.getElementById(match[<span class="number">2</span>]);</div><div class="line">  <span class="comment">//检测parentNode属性，因为在Blackberry4.6中会返回已经不存在的节点</span></div><div class="line">  <span class="keyword">if</span>(elem &amp;&amp; elem.parentNode)&#123;</div><div class="line">    <span class="comment">//处理在IE低版本和Opera中返回的元素name为对应值，而非Id</span></div><div class="line">    <span class="keyword">if</span>(elem.id !== match[<span class="number">2</span>])&#123;</div><div class="line">      <span class="keyword">return</span> rootjQuery.find(selector);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.length = <span class="number">1</span>;</div><div class="line">    <span class="keyword">this</span>[<span class="number">0</span>] = elem;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">this</span>.context = document;</div><div class="line">  <span class="keyword">this</span>.selector = selector;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  <strong>参数selector是选择器表达式</strong></p>
+  <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(!context || context.jquery)&#123;</div><div class="line">  <span class="comment">//若没有指定上下文，则指定rootjQuery为上下文；</span></div><div class="line">  <span class="comment">//若指定上下文，且上下文为jQuery对象则直接使用find()</span></div><div class="line">  <span class="keyword">return</span> (context || rootjQuery).find(selector);</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">  <span class="comment">//若指定了上下文且上下文不是jQuery对象，则将其包装为JQ对象再进行查找</span></div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.<span class="keyword">constructor</span>(context).find(selector);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>参数selector是函数</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#125;<span class="built_in">else</span> <span class="built_in">if</span>(jQuery.isFunction(selector))&#123;</div><div class="line">  <span class="built_in">return</span> rootjQuery.<span class="built_in">ready</span>(selector);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>从此也可得知:<code>$(function)</code>是<code>$(document).ready(function)</code>的简写</p>
+</li>
+</ul>
+<h3 id="jQuery-buildFragment-args-nodes-scripts"><a href="#jQuery-buildFragment-args-nodes-scripts" class="headerlink" title="jQuery.buildFragment(args,nodes,scripts)"></a>jQuery.buildFragment(args,nodes,scripts)</h3><p>该方法先创建一个文档片段<code>DocumentFragment</code>，然后调用<code>jQuery.clean(elems,context,fragment,scripts)</code>将HTML代码转换为DOM元素，并存储在创建的文档片段中<br><img src="fragment.png" alt="fragment.png"></p>
+<h3 id="jQuery-clean-elems-context-fragment-scripts"><a href="#jQuery-clean-elems-context-fragment-scripts" class="headerlink" title="jQuery.clean(elems,context,fragment,scripts)"></a>jQuery.clean(elems,context,fragment,scripts)</h3><h4 id="定义方法"><a href="#定义方法" class="headerlink" title="定义方法"></a>定义方法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">clean: <span class="function"><span class="keyword">function</span>(<span class="params">elems,context,fragment,scripts</span>)</span>&#123;</div><div class="line">  <span class="comment">//do something</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/05/13/2016-05-13-如何通过CSS美化加载失败的图片/" data-toggle="tooltip" data-placement="top" title="如何通过CSS美化加载失败的图片">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/05/11/2016-05-11-JavaScript秘密花园读书笔记/" data-toggle="tooltip" data-placement="top" title="JavaScript秘密花园读书笔记">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#jQuery" title="jQuery">jQuery</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.kaijun.rocks" target="_blank">Kaijun&#39;s Blog</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">Foo</a></li>
+                    
+                        <li><a href="#" target="_blank">Bar</a></li>
+                    
+                        <li><a href="#" target="_blank">Example Friends</a></li>
+                    
+                        <li><a href="#" target="_blank">It helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hexo-theme-huxblog";
+    var disqus_identifier = "http://rubicker.github.io/2016/05/13/2016-05-13-jQuery技术内幕读书笔记/";
+    var disqus_url = "http://rubicker.github.io/2016/05/13/2016-05-13-jQuery技术内幕读书笔记/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/Demonbane_x">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/Demonbane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/Demonbane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/demonbane.cn">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Kaijun">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/kaijun-chen-42089354">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Kaijun&#39;s Blog 2016 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://rubicker.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'huangxuan.me';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;    
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

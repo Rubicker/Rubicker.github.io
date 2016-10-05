@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          蜡笔小新 - Kaijun的博客 | Kaijun&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://rubicker.github.io/2016/04/12/2016-04-12-しんのすけ/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Kaijun&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#蜡笔小新" title="蜡笔小新">蜡笔小新</a>
+                        
+                    </div>
+                    <h1>蜡笔小新</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Kaijun Chen on
+                        2016-04-12
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <blockquote>
+<p>用于挽救我日渐贫瘠的日语…新之助少年</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="884-お風呂はイヤイヤ！だぞ-amp-amp-オラと雪の合戦だぞ"><a href="#884-お風呂はイヤイヤ！だぞ-amp-amp-オラと雪の合戦だぞ" class="headerlink" title="884. お風呂はイヤイヤ！だぞ&amp;&amp;オラと雪の合戦だぞ"></a>884. お風呂はイヤイヤ！だぞ&amp;&amp;オラと雪の合戦だぞ</h3><h4 id="だぞ"><a href="#だぞ" class="headerlink" title="だぞ"></a>だぞ</h4><hr>
+<p>だぞ<br>ですぞ/ですよ/ぞ</p>
+<p>1.表示自言自语,一种断定或决意,是说给自己听的意思.</p>
+<p>2.一般是男性用语,强调自己的主张或是提醒,警告等.</p>
+<p>3.表示不确定的语气,接在疑问词后面.</p>
+<h4 id="たわわ"><a href="#たわわ" class="headerlink" title="たわわ"></a>たわわ</h4><hr>
+<blockquote>
+<p>たわわに実った柿「かき」　　</p>
+<p>熟透了的（在枝头晃晃悠悠）弯下来的柿子</p>
+</blockquote>
+<h4 id="ジェットコースター"><a href="#ジェットコースター" class="headerlink" title="ジェットコースター"></a>ジェットコースター</h4><hr>
+<blockquote>
+<p>Jet Coaster</p>
+<p>云霄飞车</p>
+</blockquote>
+<h4 id="にかけて"><a href="#にかけて" class="headerlink" title="にかけて"></a>にかけて</h4><hr>
+<blockquote>
+<p>春から秋にかけて 从春天到秋天</p>
+<p>首にかけて保证する／用头颅保证.   用；按；凭</p>
+<p>日本语にかけては彼はだれにも负けない／论日语他不比任何人差  在某方面上…</p>
+</blockquote>
+<h4 id="ちょっと-amp-amp-ちょうど"><a href="#ちょっと-amp-amp-ちょうど" class="headerlink" title="ちょっと&amp;&amp;ちょうど"></a>ちょっと&amp;&amp;ちょうど</h4><hr>
+<blockquote>
+<p>ちょっと　有一点…</p>
+<p>ちょうど    正好</p>
+</blockquote>
+<h4 id="のに"><a href="#のに" class="headerlink" title="のに"></a>のに</h4><hr>
+<p>のに前接活用语连体形</p>
+<p>1、表示逆态因果关系，与ので相似。即后项的内容与作为既定条件的前项的本在应有的结果相反。多有意外或不满的语气。</p>
+<blockquote>
+<p>一度も宜伝はしなかったのに、多くの注文が殺到した。一次也没做广告，可却有很多订单蜂拥而至。</p>
+</blockquote>
+<p>2、以上用法中，常将后项的逆态结果部分省略，然后补充针对这一逆态结果的命令、评价等。</p>
+<blockquote>
+<p>そんなに咳がひどいのに、タバゴをやめてください。      咳嗽那么厉害，请你把烟戒掉吧。</p>
+</blockquote>
+<p>3、以不理解、不合理、惊讶等语气表示两项间的对比、对照。</p>
+<blockquote>
+<p>山田さんはビールは飲めるのに、日本酒は飲めません。   山田能喝啤酒，却不能喝日本酒。</p>
+</blockquote>
+<p>4、以厌倦、伤感之类的语气表示意外事件的连续发生。</p>
+<blockquote>
+<p>昨日も雪だったのに、今日も雪だね。       昨天就下雪，今天又下。</p>
+</blockquote>
+<p>5、终助词用法：のに用于句子的末尾。对于意外、不合常理的事表示惊讶、不满、不甘心等意思。</p>
+<blockquote>
+<p>これほど勉強したのに。     可惜我如此用功啊。</p>
+</blockquote>
+<p>6、终助词用法：表示愿望、想法未能实现而懊丧、后悔等语气。多和ば、たら等假定性呼应使用。</p>
+<blockquote>
+<p>知らせておいてくれたら、きれいにしておいたのに。 假如事先告诉我一声，本来会收拾干净的。</p>
+<p>广志： 一人でゆっくり入ってたいのに…  本来我想一个人独自享受的…</p>
+</blockquote>
+<p>7、终助词用法：表示自己的主张、愿望得不到对方理解和呼应而强求或责备对方的焦急语气。</p>
+<blockquote>
+<p>「要らないよ。」「あら、あげるのに。」     “我不要”“你看，我给你呢。”</p>
+</blockquote>
+<h4 id="とっとと-amp-amp-さっさと"><a href="#とっとと-amp-amp-さっさと" class="headerlink" title="とっとと&amp;&amp;さっさと"></a>とっとと&amp;&amp;さっさと</h4><hr>
+<blockquote>
+<p>とっとと　　「とっと」は「疾（と）く疾（と）くと」の転〕はやく。急いで。</p>
+<p>さっさと　　ぐずぐずしないで、すばやく行動するさま。いそいで。はやく。</p>
+</blockquote>
+<h4 id="手が離せない"><a href="#手が離せない" class="headerlink" title="手が離せない"></a>手が離せない</h4><hr>
+<blockquote>
+<p>「作業中なので、要求されたことを今は実行できない、後にしてほしい」の意味</p>
+</blockquote>
+<h4 id="ったく"><a href="#ったく" class="headerlink" title="ったく"></a>ったく</h4><hr>
+<blockquote>
+<p>ったく、まったく、もう　　真是的！ 抱怨语气</p>
+</blockquote>
+<h4 id="もん"><a href="#もん" class="headerlink" title="もん"></a>もん</h4><hr>
+<blockquote>
+<ul>
+<li><p>もん是终助词もの的口语音变现象后的发音，常见于ですもの/だもの的句式，表示事物/事情的原因、理由，常常含有对个人行为做出辨解或坚持自己主张等意。</p>
+</li>
+<li><p>もん前序可接说明事情原因的形容词、形容动词或动词短句，</p>
+</li>
+</ul>
+<p>もらったお菓子、弟にあげたいんの。あたしはお姉ちゃんなんだもの。我想把别人送我的点心给弟弟吃，因为我是做姐姐的。</p>
+<p>毎日2时间の通学は大変なんだもの。每天要花2个小时上学，太累了。</p>
+<ul>
+<li>另外，もん与句首与だって连用，更有撒娇的意味，翻译的时候常常加“嘛”。</li>
+</ul>
+<p>だって、一人では寂しいだもん。因为我一个人寂寞嘛。<br>だって毎日忙しいもん。因为每天都太忙了嘛。</p>
+</blockquote>
+<h4 id="おとなし・い「大人しい」"><a href="#おとなし・い「大人しい」" class="headerlink" title="おとなし・い「大人しい」"></a>おとなし・い「大人しい」</h4><hr>
+<h4 id="ながびく「長引く」"><a href="#ながびく「長引く」" class="headerlink" title="ながびく「長引く」"></a>ながびく「長引く」</h4><hr>
+<blockquote>
+<p>拖延；延长</p>
+</blockquote>
+<h4 id="どうせ"><a href="#どうせ" class="headerlink" title="どうせ"></a>どうせ</h4><hr>
+<blockquote>
+<p> 宿命的にそう决まっており、それ以外に选択の余地はないことを表す。  反正</p>
+<p>どうせ　イケメンじゃないよ？　　/谁叫我不是帅哥呢</p>
+</blockquote>
+<h4 id="ちまった"><a href="#ちまった" class="headerlink" title="ちまった"></a>ちまった</h4><hr>
+<blockquote>
+<p>完全にバカにされちまった。 彻底被愚弄了</p>
+<p>ちまう＝てしまう 口语化</p>
+</blockquote>
+<h4 id="ほんで"><a href="#ほんで" class="headerlink" title="ほんで"></a>ほんで</h4><hr>
+<blockquote>
+<p>それで（接続）</p>
+<p>前述の事柄を理由として次の帰結へ続ける場合に用いる語。それだから。そのために。<br>「天候が不順になった。―登頂を断念した」</p>
+<p>話題を新しく発展させる場合や相手の話を先へ促す場合に用いる語。そして。<br>「―これからどうするつもりだ」「―どうした」「ふんふん、―」</p>
+</blockquote>
+<h4 id="雪だるま"><a href="#雪だるま" class="headerlink" title="雪だるま"></a>雪だるま</h4><hr>
+<blockquote>
+<p>堆雪人</p>
+<p>雪だるま式。/滚雪球般，形容越来越大，越来越多。</p>
+<p>雪玉「ゆきたま」　　/雪球</p>
+<h4 id="がき"><a href="#がき" class="headerlink" title="がき"></a>がき</h4><hr>
+<p>饿鬼</p>
+<p>对小孩子的蔑称</p>
+</blockquote>
+<h4 id="出てけ"><a href="#出てけ" class="headerlink" title="出てけ"></a>出てけ</h4><hr>
+<blockquote>
+<p>出て行け 是 “滚！”，“走开！”的意思。生气的时候说的。</p>
+<p>出てけ 也是 “滚开” “走开”的意思，在开玩笑时说的。</p>
+</blockquote>
+<h4 id="素直「すなお」"><a href="#素直「すなお」" class="headerlink" title="素直「すなお」"></a>素直「すなお」</h4><hr>
+<blockquote>
+<p>坦率，直爽，不隐瞒，痛痛快快</p>
+</blockquote>
+<h4 id="楽勝「らくしょう」"><a href="#楽勝「らくしょう」" class="headerlink" title="楽勝「らくしょう」"></a>楽勝「らくしょう」</h4><hr>
+<blockquote>
+<p>轻松获胜</p>
+</blockquote>
+<h4 id="すれ違う"><a href="#すれ違う" class="headerlink" title="すれ違う"></a>すれ違う</h4><hr>
+<blockquote>
+<p>会车，会让。交错，错过去。在几乎相互擦着的近处相向通过。<br>肩と肩とが擦れ違う。</p>
+<p>错过，走两岔。本应遇上而没遇上。</p>
+<p>不一致，不统一，有分歧。议论等的论点谈不到一块。<br>話がすれ違う。/话不投机；谈不拢。</p>
+</blockquote>
+<h4 id="しゃあない"><a href="#しゃあない" class="headerlink" title="しゃあない"></a>しゃあない</h4><hr>
+<blockquote>
+<p>大阪弁で「しかたない」の意味である</p>
+</blockquote>
+<h4 id="というわけで"><a href="#というわけで" class="headerlink" title="というわけで"></a>というわけで</h4><hr>
+<blockquote>
+<p>因此，所以、那么，综上所述，也就是说　＝それで</p>
+</blockquote>
+<h4 id="クビ"><a href="#クビ" class="headerlink" title="クビ"></a>クビ</h4><hr>
+<blockquote>
+<p>解雇すること。馘首かくしゅ。「会社を―になった」</p>
+</blockquote>
+<h4 id="役に立つ"><a href="#役に立つ" class="headerlink" title="役に立つ"></a>役に立つ</h4><hr>
+<blockquote>
+<p>有用处，有益处  この機械は古いが、まだ役に立つ。 /这台机器虽然很旧，但仍然有用。</p>
+</blockquote>
+<h4 id="ヘッドハンティング"><a href="#ヘッドハンティング" class="headerlink" title="ヘッドハンティング"></a>ヘッドハンティング</h4><hr>
+<blockquote>
+<p>headhunting</p>
+<p>他社から優秀な人材を引き抜くこと。</p>
+</blockquote>
+<h4 id="油断"><a href="#油断" class="headerlink" title="油断"></a>油断</h4><hr>
+<blockquote>
+<p>麻痹大意。缺乏警惕。（気をゆるして、注意を怠ること。</p>
+<p>あの人には油断をするな。/对他要提高警惕。</p>
+</blockquote>
+<h4 id="激レア"><a href="#激レア" class="headerlink" title="激レア"></a>激レア</h4><hr>
+<blockquote>
+<p>非常珍贵，稀少的东西。</p>
+</blockquote>
+<h4 id="ゲット"><a href="#ゲット" class="headerlink" title="ゲット"></a>ゲット</h4><hr>
+<blockquote>
+<p>get 得到</p>
+</blockquote>
+<h4 id="ならず者"><a href="#ならず者" class="headerlink" title="ならず者"></a>ならず者</h4><hr>
+<blockquote>
+<p>よくよくのならず者。／大坏蛋。</p>
+</blockquote>
+<h4 id="おままごと"><a href="#おままごと" class="headerlink" title="おままごと"></a>おままごと</h4><hr>
+<blockquote>
+<p>子供が、炊事・食事など家庭生活のまねをする遊び。  / 过家家</p>
+</blockquote>
+<h4 id="ギャラ"><a href="#ギャラ" class="headerlink" title="ギャラ"></a>ギャラ</h4><hr>
+<blockquote>
+<p> guarantee ;演出费；表演的酬金。「ギャランティー」的缩略语</p>
+</blockquote>
+<h4 id="始末"><a href="#始末" class="headerlink" title="始末"></a>始末</h4><hr>
+<blockquote>
+<p> (事情的）始末原委。事の始末を語る/讲述事情的始末。</p>
+<p>情形，情况；（坏的）结果，结局，地步，（落到）……样子。 なんだこの始末は/这是怎么回事?怎么搞成这个样子?</p>
+<p>处理，应付。 彼は自分の始末もできない/他连自己都不能照顾了。</p>
+<p> 俭省，节约，撙节。  もっと始末して暮らそう/要更节约地过日子。</p>
+</blockquote>
+<h4 id="仕切る"><a href="#仕切る" class="headerlink" title="仕切る"></a>仕切る</h4><hr>
+<blockquote>
+<p>隔开，间隔开，区分开。カーテンで部屋を仕切る/用帘子把房间隔开。</p>
+<p> 结帐，清账。月末で仕切る/月底结算。</p>
+<p>掌管，主持。彼は宴会を仕切るのがなかなかうまい/他很会主持宴会。</p>
+<p>（相扑）摆架势。相扑比赛时，力士在交手之前站在比赛场上，两手向下，采取进攻姿势。（すもうで、力士がくみあうまえに、土俵の上で両手をおろして身がまえる。）</p>
+</blockquote>
+<h4 id="おにぎり"><a href="#おにぎり" class="headerlink" title="おにぎり"></a>おにぎり</h4><hr>
+<blockquote>
+<p>饭团</p>
+</blockquote>
+<h4 id="いないより増し「まし」だろ"><a href="#いないより増し「まし」だろ" class="headerlink" title="いないより増し「まし」だろ"></a>いないより増し「まし」だろ</h4><hr>
+<blockquote>
+<p>聊胜于无</p>
+<p>まし　　/ (比)好(强)些…</p>
+</blockquote>
+<h4 id="フィット"><a href="#フィット" class="headerlink" title="フィット"></a>フィット</h4><hr>
+<blockquote>
+<p>fit  合身</p>
+</blockquote>
+<h4 id="詰める"><a href="#詰める" class="headerlink" title="詰める"></a>詰める</h4><hr>
+<blockquote>
+<p>【自动词・一段/二类】 准备；等待；守候。</p>
+<p>【他动词・一段/二类】 塞满；填满。;缩小；缩短。;</p>
+<p>（热心地）继续做；持续做。;节约；简省。;</p>
+<p>深究；打破砂锅问到底。;</p>
+<p>（将棋）将军；将死。</p>
+<p>【接续】 （接动词连用形后）继续；连续。;（接动词连用形后）彻底。;（接动词连用形后）满；完全。</p>
+</blockquote>
+<h4 id="引き分け"><a href="#引き分け" class="headerlink" title="引き分け"></a>引き分け</h4><hr>
+<blockquote>
+<p>平局  引き分けになる。/打成平局。</p>
+</blockquote>
+<h3 id="885-シロが太っちゃったぞ-amp-amp-おらはファッションリーダーだぞ"><a href="#885-シロが太っちゃったぞ-amp-amp-おらはファッションリーダーだぞ" class="headerlink" title="885 シロが太っちゃったぞ&amp;&amp;おらはファッションリーダーだぞ"></a>885 シロが太っちゃったぞ&amp;&amp;おらはファッションリーダーだぞ</h3><h4 id="ああ言えばこう言う"><a href="#ああ言えばこう言う" class="headerlink" title="ああ言えばこう言う"></a>ああ言えばこう言う</h4><hr>
+<blockquote>
+<p>强词夺理</p>
+</blockquote>
+<h4 id="こぶ「瘤」"><a href="#こぶ「瘤」" class="headerlink" title="こぶ「瘤」"></a>こぶ「瘤」</h4><hr>
+<blockquote>
+<p>包  打撲などにより皮膚が一時ふくれあがったもの。また、体内に見られる腫瘍などの異常な塊。</p>
+</blockquote>
+<h4 id="きつ‐きつ「屹屹」"><a href="#きつ‐きつ「屹屹」" class="headerlink" title="きつ‐きつ「屹屹」"></a>きつ‐きつ「屹屹」</h4><hr>
+<blockquote>
+<p> 山などが高く聳え立つさま。転じて、いかめしいさま。 凸出来的样子</p>
+</blockquote>
+<h4 id="余計なお世話-よけいなおせわ"><a href="#余計なお世話-よけいなおせわ" class="headerlink" title="余計なお世話  よけいなおせわ"></a>余計なお世話  よけいなおせわ</h4><hr>
+<blockquote>
+<p>多管闲事</p>
+</blockquote>
+<h4 id="呼び込み"><a href="#呼び込み" class="headerlink" title="呼び込み"></a>呼び込み</h4><hr>
+<blockquote>
+<p>招徕顾客的宣传员。（劇場・商店・飲食店・旅館などの前で、往来の人に呼びかけて客を誘い込むこと。また、その人。）</p>
+</blockquote>
+<h4 id="ちんちん"><a href="#ちんちん" class="headerlink" title="ちんちん"></a>ちんちん</h4><hr>
+<blockquote>
+<p>狗前脚举起、靠后脚站起的表演艺术。（犬がう後足で立って前足を上げる芸。）</p>
+<p>咕嘟咕嘟。水烧开发出的声音。（鉄瓶の湯の沸騰する音。）<br>湯がちんちんとたぎる。/水咕嘟咕嘟地沸腾。</p>
+<p>铃的丁丁响。（鈴の鳴る音。）</p>
+</blockquote>
+<h4 id="利口-「りこう」"><a href="#利口-「りこう」" class="headerlink" title="利口 「りこう」"></a>利口 「りこう」</h4><hr>
+<blockquote>
+<p>聪明伶俐，乖</p>
+</blockquote>
+<h4 id="カーニバル"><a href="#カーニバル" class="headerlink" title="カーニバル"></a>カーニバル</h4><hr>
+<blockquote>
+<p>carnival  狂欢</p>
+</blockquote>
+<h4 id="ダイエット"><a href="#ダイエット" class="headerlink" title="ダイエット"></a>ダイエット</h4><hr>
+<blockquote>
+<p>diet 减肥</p>
+</blockquote>
+<h4 id="挫ける「くじける」"><a href="#挫ける「くじける」" class="headerlink" title="挫ける「くじける」"></a>挫ける「くじける」</h4><hr>
+<blockquote>
+<p>气馁，颓丧</p>
+</blockquote>
+<h4 id="翌日「よくじつ」"><a href="#翌日「よくじつ」" class="headerlink" title="翌日「よくじつ」"></a>翌日「よくじつ」</h4><hr>
+<blockquote>
+<p>次日</p>
+</blockquote>
+<h4 id="食べっぷり"><a href="#食べっぷり" class="headerlink" title="食べっぷり"></a>食べっぷり</h4><hr>
+<blockquote>
+<p>接名词或动词ます形的ぶり（っぷり）、表样子或状态<br>食べっぷり 吃东西的样子</p>
+</blockquote>
+<h4 id="お洒落-「おしゃれ」"><a href="#お洒落-「おしゃれ」" class="headerlink" title="お洒落 「おしゃれ」"></a>お洒落 「おしゃれ」</h4><hr>
+<blockquote>
+<p>好打扮的，爱漂亮的</p>
+</blockquote>
+<h4 id="バラバラ"><a href="#バラバラ" class="headerlink" title="バラバラ"></a>バラバラ</h4><hr>
+<blockquote>
+<p>凌乱，散乱【形容词】</p>
+<p>吧嗒吧嗒的，粒状物持续落下的声音 ；乱哄哄的，纷纷的</p>
+</blockquote>
+<h4 id="アンシンメトリー"><a href="#アンシンメトリー" class="headerlink" title="アンシンメトリー"></a>アンシンメトリー</h4><hr>
+<blockquote>
+<p>unsymmetry 不对称</p>
+</blockquote>
+<h4 id="片方"><a href="#片方" class="headerlink" title="片方"></a>片方</h4><hr>
+<blockquote>
+<p>（两个中的）一个</p>
+</blockquote>
+<h4 id="同調圧力"><a href="#同調圧力" class="headerlink" title="同調圧力"></a>同調圧力</h4><hr>
+<blockquote>
+<p> 没有保持同一步调而产生的压力</p>
+</blockquote>
+<h4 id="トレンディー"><a href="#トレンディー" class="headerlink" title="トレンディー"></a>トレンディー</h4><hr>
+<blockquote>
+<p>trendy 潮流 流行</p>
+</blockquote>
+<h4 id="ダメージ加工"><a href="#ダメージ加工" class="headerlink" title="ダメージ加工"></a>ダメージ加工</h4><hr>
+<blockquote>
+<p>做旧加工</p>
+</blockquote>
+<h4 id="つべ‐こべ"><a href="#つべ‐こべ" class="headerlink" title="つべ‐こべ"></a>つべ‐こべ</h4><hr>
+<blockquote>
+<p>あれこれとしゃべるさま</p>
+</blockquote>
+<h4 id="流行る「はやる」"><a href="#流行る「はやる」" class="headerlink" title="流行る「はやる」"></a>流行る「はやる」</h4><hr>
+<blockquote>
+<p>流行</p>
+</blockquote>
+<h4 id="かかと"><a href="#かかと" class="headerlink" title="かかと"></a>かかと</h4><hr>
+<blockquote>
+<p>脚后跟<br>To be Continued…</p>
+</blockquote>
+<h3 id="886-ガラス越しの恋だぞ-amp-しゃっくりをとめたいぞ"><a href="#886-ガラス越しの恋だぞ-amp-しゃっくりをとめたいぞ" class="headerlink" title="886.ガラス越しの恋だぞ &amp; しゃっくりをとめたいぞ"></a>886.ガラス越しの恋だぞ &amp; しゃっくりをとめたいぞ</h3><p>####お片づけ　</p>
+<hr>
+<ul>
+<li>收拾，整理  片付ける「かたづける」   </li>
+</ul>
+<h4 id="おやつ"><a href="#おやつ" class="headerlink" title="おやつ"></a>おやつ</h4><hr>
+<ul>
+<li>点心，下午茶</li>
+</ul>
+<h4 id="ケチ"><a href="#ケチ" class="headerlink" title="ケチ"></a>ケチ</h4><hr>
+<ul>
+<li>小气鬼</li>
+</ul>
+<h4 id="耐える「たえる」"><a href="#耐える「たえる」" class="headerlink" title="耐える「たえる」"></a>耐える「たえる」</h4><hr>
+<ul>
+<li>忍受</li>
+</ul>
+<h4 id="ごっこ"><a href="#ごっこ" class="headerlink" title="ごっこ"></a>ごっこ</h4><hr>
+<p>【接头/接尾】</p>
+<ul>
+<li>(儿童)装……玩儿。(ある物事のまねをする遊戯にいう。)  <blockquote>
+<p>汽車ごっこ。/装开火车玩儿。<br>鬼ごっこ。/捉迷藏游戏。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="見積もり"><a href="#見積もり" class="headerlink" title="見積もり"></a>見積もり</h4><hr>
+<ul>
+<li>估计，估价</li>
+</ul>
+<h4 id="チラシ-散らし"><a href="#チラシ-散らし" class="headerlink" title="チラシ[散らし]"></a>チラシ[散らし]</h4><hr>
+<p>【名词】</p>
+<ul>
+<li>散开  </li>
+<li>广告单；传单</li>
+</ul>
+<h4 id="ワイドショー"><a href="#ワイドショー" class="headerlink" title="ワイドショー"></a>ワイドショー</h4><hr>
+<ul>
+<li>wide show  和製英語  综艺电视节目</li>
+</ul>
+<h4 id="そっくり"><a href="#そっくり" class="headerlink" title="そっくり"></a>そっくり</h4><hr>
+<p>【形容动词/な形容词】    </p>
+<ul>
+<li>一模一样，极像。（非常によく似ているさま）。<blockquote>
+<p>母にそっくりだ。长得像妈妈。  </p>
+</blockquote>
+</li>
+<li>全，全部，完全；原封未动。（余すところがない様。のこらず）。</li>
+</ul>
+<h4 id="マフラー"><a href="#マフラー" class="headerlink" title="マフラー"></a>マフラー</h4><hr>
+<ul>
+<li>maffler  围巾；消声器</li>
+</ul>
+<h4 id="ガサガサ"><a href="#ガサガサ" class="headerlink" title="ガサガサ"></a>ガサガサ</h4><hr>
+<p>【副词・自动词・サ变/三类】  </p>
+<ul>
+<li>发出沙沙的声音。（薄くて乾いたものが触れ合って発するやや濁った音。）  <blockquote>
+<p>がさがさと笹をかき分けて行く。/沙沙地拨开竹子往前走。</p>
+</blockquote>
+</li>
+<li>干燥，粗糙。（表面が荒れているさま。うるおいがないさま。）<blockquote>
+<p>がさがさの手。/粗糙的手。</p>
+</blockquote>
+</li>
+<li>粗野。（性格や言動が粗野でがさつなさま。）<blockquote>
+<p>がさがさした物言い。/粗野的说话方式。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="すべすべ"><a href="#すべすべ" class="headerlink" title="すべすべ"></a>すべすべ</h4><hr>
+<p>【自动词・サ变/三类】  </p>
+<ul>
+<li>光滑，滑溜溜<blockquote>
+<p>すべすべな窓ガラス/溜光晶亮的窗玻璃</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="丸見え"><a href="#丸見え" class="headerlink" title="丸見え"></a>丸見え</h4><hr>
+<ul>
+<li>完全看的见  <blockquote>
+<p>室内が外から丸見え。/从外面可以把室内看得清清楚楚</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="気が利く"><a href="#気が利く" class="headerlink" title="気が利く"></a>気が利く</h4><hr>
+<ul>
+<li>机灵，聪敏，心细，有眼力，善于察言观色；漂亮的打扮。（心配りがこまやかで、注意が行き届く。）<blockquote>
+<p>気が利かないやつだ。/真是个不机灵的家伙。<br>気の利いた服装。/好漂亮的衣服。  </p>
+</blockquote>
+</li>
+<li>机灵。（細かいところにまで注意が及ぶ。）  <blockquote>
+<p>若いのに気が利いている。/虽然很小，但是很机灵。  </p>
+</blockquote>
+</li>
+<li>漂亮，美观。（ しゃれている。粋である。）</li>
+</ul>
+<h4 id="観念"><a href="#観念" class="headerlink" title="観念"></a>観念</h4><hr>
+<p>【名・自他动・三类】</p>
+<ul>
+<li>观念。（物事についての意識内容。）  <blockquote>
+<p>時間の観念がない。／没有时间观念。</p>
+</blockquote>
+</li>
+<li>断念，死心，不抱希望。认透，听天由命。（あきらめること。覚悟すること。）<blockquote>
+<p>観念しろ。／死了心吧！</p>
+</blockquote>
+</li>
+<li>彻悟。（主観としての人間の意識内容。）<blockquote>
+<p>人生ははかないものと観念する。／大彻大悟人生的虚幻无常。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="愛おしい「いとおしい」"><a href="#愛おしい「いとおしい」" class="headerlink" title="愛おしい「いとおしい」"></a>愛おしい「いとおしい」</h4><hr>
+<p>【形容词/い形容词】</p>
+<ul>
+<li>可怜。可爱。（大事にして、かわいがりたくなるさま。たまらなくかわいい。）<blockquote>
+<p>子犬も愛おしく思う。/觉得小狗可爱。</p>
+</blockquote>
+</li>
+<li>可怜，怜悯。（かわいそうだ。気の毒だ。）<blockquote>
+<p>被害にあった子供たちが愛おしい。/受害的孩子很可怜。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="挟まる「はさまる」"><a href="#挟まる「はさまる」" class="headerlink" title="挟まる「はさまる」"></a>挟まる「はさまる」</h4><hr>
+<p>【自动词・五段/一类】</p>
+<ul>
+<li>夹，卡。（物と物との間の狭い所にはいる。）<blockquote>
+<p>指がドアに挟まった。/手指夹在门缝里了。<br>食べものが歯に挟まった。/吃的东西塞在牙缝了。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="落着「らくちゃく」"><a href="#落着「らくちゃく」" class="headerlink" title="落着「らくちゃく」"></a>落着「らくちゃく」</h4><hr>
+<p>【自动词・サ变/三类】</p>
+<ul>
+<li>着落，归结，解决。（物事のきまりのつくこと。決着。）<blockquote>
+<p>一件落着。/一桩事情解决了。<br>事件が落着する。/事情有着落了。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="請求書「せいきゅうしょ」"><a href="#請求書「せいきゅうしょ」" class="headerlink" title="請求書「せいきゅうしょ」"></a>請求書「せいきゅうしょ」</h4><hr>
+<ul>
+<li>订单，帐单，申请书。（品物の代価の支払などを請求するために差し出す文書。）<blockquote>
+<p>請求書を提出してください。/请提交申请书。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="後ほど「のちほど」"><a href="#後ほど「のちほど」" class="headerlink" title="後ほど「のちほど」"></a>後ほど「のちほど」</h4><hr>
+<ul>
+<li>稍后</li>
+</ul>
+<h4 id="真っ先に"><a href="#真っ先に" class="headerlink" title="真っ先に"></a>真っ先に</h4><hr>
+<ul>
+<li>首先，最先</li>
+</ul>
+<h4 id="しゃっくり"><a href="#しゃっくり" class="headerlink" title="しゃっくり"></a>しゃっくり</h4><hr>
+<ul>
+<li>打嗝</li>
+</ul>
+<p>####　蹴り飛ばす「けりとばす」</p>
+<hr>
+<ul>
+<li>踢飞</li>
+</ul>
+<h4 id="治る「なおる」"><a href="#治る「なおる」" class="headerlink" title="治る「なおる」"></a>治る「なおる」</h4><hr>
+<ul>
+<li>治好，痊愈</li>
+</ul>
+<h4 id="驚かす「おどろかす」"><a href="#驚かす「おどろかす」" class="headerlink" title="驚かす「おどろかす」"></a>驚かす「おどろかす」</h4><hr>
+<p>【他动词・五段/一类】</p>
+<ul>
+<li>吓唬，是害怕</li>
+</ul>
+<h4 id="苦手「にがて」"><a href="#苦手「にがて」" class="headerlink" title="苦手「にがて」"></a>苦手「にがて」</h4><hr>
+<ul>
+<li>难对付（的人)；棘手的事〔人〕。（扱いにくい相手。そりが合わない相手。）<blockquote>
+<p>いちばん苦手なチームと対戦することになった/决定与最难对付的队比赛。</p>
+</blockquote>
+</li>
+<li>不善于，不擅长，最怕。（得意でないこと。不得手。）<blockquote>
+<p>わたしは代数が苦手だ/我最憷〔怕〕代数。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="ドンマイ"><a href="#ドンマイ" class="headerlink" title="ドンマイ"></a>ドンマイ</h4><hr>
+<ul>
+<li>Don’t mind ;没关系，别介意</li>
+</ul>
+<h4 id="ほどほど"><a href="#ほどほど" class="headerlink" title="ほどほど"></a>ほどほど</h4><hr>
+<ul>
+<li>适当地；恰如其分地</li>
+</ul>
+<h4 id="いがぐり"><a href="#いがぐり" class="headerlink" title="いがぐり"></a>いがぐり</h4><hr>
+<ul>
+<li>带刺壳的栗子。（いがに包まれたままのクリ。）</li>
+<li>推光的头。（髪の毛を短く丸刈りにした（男子の）頭。いがぐりあたま。）</li>
+</ul>
+<h4 id="いざ"><a href="#いざ" class="headerlink" title="いざ"></a>いざ</h4><hr>
+<p>惯用句</p>
+<ul>
+<li>いざ鎌倉。（一旦有事）。<blockquote>
+<p>いざ鎌倉という時の用意しておく。做好应付紧急状况的准备。</p>
+</blockquote>
+</li>
+<li>いざ知らず。（其它的怎么样我不知道，但是……）。<blockquote>
+<p>君ならいざ知らず、俺にはできない。 若是你还或许可以，我可干不来。  </p>
+</blockquote>
+</li>
+</ul>
+<p>感叹词</p>
+<ul>
+<li>喂，唉；好啦，来吧；一旦；劝诱某人或决心做某事时说的词语。（人を誘ったり、気負いこんで何かしようとする時に発する語；さあ、どれ）。<blockquote>
+<p>いざ、出かけよう</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="根性「こんじょう」"><a href="#根性「こんじょう」" class="headerlink" title="根性「こんじょう」"></a>根性「こんじょう」</h4><hr>
+<ul>
+<li>脾气；性情，秉性，根性；赋性。（性質。性格。）<blockquote>
+<p>卑しい根性。/卑鄙的根性。<br>根性の曲がった人。/性情别扭（乖张）的人。</p>
+</blockquote>
+</li>
+<li>骨气，斗志，毅力。（強い性質。）<blockquote>
+<p>ど根性。/硬骨头精神。<br>あの男には根性がない。/他没有斗志。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="しぶとい"><a href="#しぶとい" class="headerlink" title="しぶとい"></a>しぶとい</h4><hr>
+<ul>
+<li>顽强的</li>
+</ul>
+<h4 id="パターン"><a href="#パターン" class="headerlink" title="パターン"></a>パターン</h4><hr>
+<ul>
+<li>pattern</li>
+</ul>
+<h4 id="ぶり返す"><a href="#ぶり返す" class="headerlink" title="ぶり返す"></a>ぶり返す</h4><hr>
+<ul>
+<li>复发，重来，死灰复燃。（一度よくなりかけていた病気・季候・事柄などが再びもとの悪い状態になる。）<blockquote>
+<p>暑さがぶり返す。/暑热又重来了。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="塞く「せく」"><a href="#塞く「せく」" class="headerlink" title="塞く「せく」"></a>塞く「せく」</h4><hr>
+<ul>
+<li>堵住；妨碍</li>
+</ul>
+<h3 id="887-お餅つきが楽しみだぞ-amp-スーパー実演販売士がきだぞ"><a href="#887-お餅つきが楽しみだぞ-amp-スーパー実演販売士がきだぞ" class="headerlink" title="887.お餅つきが楽しみだぞ&amp; スーパー実演販売士がきだぞ"></a>887.お餅つきが楽しみだぞ&amp; スーパー実演販売士がきだぞ</h3><h4 id="お餅「おもち」"><a href="#お餅「おもち」" class="headerlink" title="お餅「おもち」"></a>お餅「おもち」</h4><hr>
+<ul>
+<li>年糕<blockquote>
+<p>お餅つき　 打年糕</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="モチモチ"><a href="#モチモチ" class="headerlink" title="モチモチ"></a>モチモチ</h4><hr>
+<ul>
+<li>粘粘的，糯糯的感觉；柔软</li>
+</ul>
+<h4 id="バッチリ"><a href="#バッチリ" class="headerlink" title="バッチリ"></a>バッチリ</h4><hr>
+<ul>
+<li>（俗语）漂亮地，充分地，顺利地。（「見事に」「十分に」「うまく」などの意で俗に言う語。）<blockquote>
+<p>ばっちりきまった。/顺利地决定了。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="ぐっと"><a href="#ぐっと" class="headerlink" title="ぐっと"></a>ぐっと</h4><hr>
+<ul>
+<li>使劲儿,一（口）气地（）……。（力を入れて。）<blockquote>
+<p>ぐっと引く。/用劲一拉。<br>ぐっと飲む。/一气喝下。</p>
+</blockquote>
+</li>
+<li>更加，……得多，非常。（一段と。）<blockquote>
+<p>ぐっと引き立つ。/格外显眼。<br>ぐっといかす子。/非常好看〔帅〕的女〔男〕孩子。</p>
+</blockquote>
+</li>
+<li>哑口无言。（口ごもる。）<blockquote>
+<p>ことばにぐっとつまる。/哑口无言。</p>
+</blockquote>
+</li>
+<li>深受感动。（こみ上げる。）<blockquote>
+<p>胸にぐっとくる。/深受感动。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="仕込み「しこみ」"><a href="#仕込み「しこみ」" class="headerlink" title="仕込み「しこみ」"></a>仕込み「しこみ」</h4><hr>
+<ul>
+<li>训练，教导，教育。（教えこむこと。しつけること。）<blockquote>
+<p>このパンダは仕込みがいい。/这个熊猫训练有素。<br>あの人の英語は英国仕込みだ。/他的英语是在英国学得的。<br>先生のお仕込みのおかげ。/都是蒙老师教导所致。  </p>
+</blockquote>
+</li>
+<li>采购，买进；进货。（商店などで商品をあらかじめ仕入れること。）<blockquote>
+<p>仕込みをする。/采购； 进货。</p>
+</blockquote>
+</li>
+<li>装料，下料。（酒や味噌・醤油などの醸造で、原料を混ぜて桶などにつめること。）<blockquote>
+<p>酒の仕込みは冬に行われる。/酿酒要在冬季下料。</p>
+</blockquote>
+</li>
+<li>准备。（準備。仕度。）<blockquote>
+<p>いま仕込み中である。/正在准备中。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="塗す「まぶす」"><a href="#塗す「まぶす」" class="headerlink" title="塗す「まぶす」"></a>塗す「まぶす」</h4><hr>
+<ul>
+<li>满涂;满敷;满抹</li>
+</ul>
+<h4 id="お汁粉「おしるこ」"><a href="#お汁粉「おしるこ」" class="headerlink" title="お汁粉「おしるこ」"></a>お汁粉「おしるこ」</h4><hr>
+<ul>
+<li>年糕小豆汤</li>
+</ul>
+<h4 id="のり"><a href="#のり" class="headerlink" title="のり"></a>のり</h4><hr>
+<ul>
+<li>紫菜，海苔</li>
+</ul>
+<h4 id="はみ出し"><a href="#はみ出し" class="headerlink" title="はみ出し"></a>はみ出し</h4><hr>
+<ul>
+<li>挤压；露出；伸出</li>
+</ul>
+<h4 id="直「ひた」"><a href="#直「ひた」" class="headerlink" title="直「ひた」"></a>直「ひた」</h4><hr>
+<ul>
+<li>只顾，一个劲儿地。<blockquote>
+<p>直走る。/一个劲儿地跑。<br>直隠す。/一个劲儿地隐匿。<br>直押し。/一个劲儿地推。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="誤魔化す「ごまかす」"><a href="#誤魔化す「ごまかす」" class="headerlink" title="誤魔化す「ごまかす」"></a>誤魔化す「ごまかす」</h4><hr>
+<p>【他动词・五段/一类】</p>
+<ul>
+<li>欺骗，欺瞒，蒙混，愚弄〔だます〕。<blockquote>
+<p>2万円ごまかされる/被骗走两万日元。<br>年は取っても,お前にはごまかされないぞ/我虽然老了，你可骗不了我呀。</p>
+</blockquote>
+</li>
+<li>蒙蔽，掩盖，搪塞，敷衍〔とりつくろう）。<blockquote>
+<p>事実を誤魔化す/掩饰事实。</p>
+</blockquote>
+</li>
+<li>弄虚作假，捣鬼；舞弊；侵吞〔いんちきをする）。<blockquote>
+<p>勘定を誤魔化す/报假帐。<br>公金を誤魔化す/侵吞〔盗用〕公款。<br>税金を誤魔化す/偷税；逃税。<br>電気のメーターを誤魔化す/在电表上捣鬼；偷电。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="正直"><a href="#正直" class="headerlink" title="正直"></a>正直</h4><hr>
+<ul>
+<li>诚实，实在</li>
+</ul>
+<h4 id="頬っぺ「ほっぺ」"><a href="#頬っぺ「ほっぺ」" class="headerlink" title="頬っぺ「ほっぺ」"></a>頬っぺ「ほっぺ」</h4><hr>
+<ul>
+<li>脸蛋（幼儿用语）</li>
+</ul>
+<h4 id="口八丁手八丁「くちはっちょうてはっちょう」"><a href="#口八丁手八丁「くちはっちょうてはっちょう」" class="headerlink" title="口八丁手八丁「くちはっちょうてはっちょう」"></a>口八丁手八丁「くちはっちょうてはっちょう」</h4><hr>
+<ul>
+<li>能说能干</li>
+</ul>
+<h4 id="まな板「まないた」"><a href="#まな板「まないた」" class="headerlink" title="まな板「まないた」"></a>まな板「まないた」</h4><hr>
+<ul>
+<li>案板，切菜板</li>
+</ul>
+<h4 id="スカウト"><a href="#スカウト" class="headerlink" title="スカウト"></a>スカウト</h4><hr>
+<ul>
+<li>【英】scout ;用优厚条件搜罗，选拔；物色新人材者。星探。（有望な新人歌手や選手などを、さがし出すこと。また、そのような仕事をする人。）<blockquote>
+<p>スカウトして歩く。/四出物色人才；罗致人才。<br>スカウトの目にとまる。/被物色者发现。</p>
+</blockquote>
+</li>
+<li>男童子军。（ボーイスカウト。）</li>
+<li>女童子军。（ガールスカウト。）</li>
+</ul>
+<h4 id="玩具「おもちゃ」"><a href="#玩具「おもちゃ」" class="headerlink" title="玩具「おもちゃ」"></a>玩具「おもちゃ」</h4><hr>
+<ul>
+<li>玩具</li>
+</ul>
+<h4 id="呼び水「よびみず」"><a href="#呼び水「よびみず」" class="headerlink" title="呼び水「よびみず」"></a>呼び水「よびみず」</h4><hr>
+<p>【名】   </p>
+<ul>
+<li>泵的启动水。（もともとは井戸などのポンプで、くむ水をさそい出すために、上から別に入れてやる水のこと。）<blockquote>
+<p> 呼び水をする。／加启动水。</p>
+</blockquote>
+</li>
+<li>诱因，起因。（新しいことをおこすきっかけとなるものごと。）<blockquote>
+<p>彼女の立候補が呼び水になって,政変が起こった。／由于她的候选而发生了政变。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="一発屋芸人"><a href="#一発屋芸人" class="headerlink" title="一発屋芸人"></a>一発屋芸人</h4><hr>
+<ul>
+<li>一発屋（いっぱつや）とは、一時的な活躍を見せた歌手、映画監督、芸人、作家、漫画家等に対するやや侮蔑的な意味合いのある呼称として使用される表現。</li>
+</ul>
+<h4 id="おむつ"><a href="#おむつ" class="headerlink" title="おむつ"></a>おむつ</h4><hr>
+<ul>
+<li>尿布</li>
+</ul>
+<h4 id="ネタ"><a href="#ネタ" class="headerlink" title="ネタ"></a>ネタ</h4><hr>
+<ul>
+<li>戏法，秘密；八卦</li>
+</ul>
+<h4 id="ピーラー"><a href="#ピーラー" class="headerlink" title="ピーラー"></a>ピーラー</h4><hr>
+<ul>
+<li>peeler;削皮器</li>
+</ul>
+<p>####　包丁「ほうちょう」</p>
+<hr>
+<ul>
+<li>菜刀；刀工；厨师</li>
+</ul>
+<h4 id="大げさ"><a href="#大げさ" class="headerlink" title="大げさ"></a>大げさ</h4><hr>
+<p>【形容动词/な形容词】</p>
+<ul>
+<li>夸大，夸张；铺张，小题大做。（実際よりも大きく言ったりしたりするようす。）<blockquote>
+<p>大げさに言う/夸大其辞。<br>大げさにさわぎたてる/大惊小怪。<br>大げさな結婚披露宴はよしたほうがいい/大肆铺张的结婚喜宴还是不办的好。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="間際"><a href="#間際" class="headerlink" title="間際"></a>間際</h4><hr>
+<p>【名词】</p>
+<ul>
+<li>すぐそば。</li>
+<li>さし迫った際。まさに事に臨もうとする時。<blockquote>
+<p>試験間際になってあわてる。/临到考试才着急。<br>死ぬ間際に言い残す。/临死（临终）的时候留下了遗言。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="仕掛け「しかけ」"><a href="#仕掛け「しかけ」" class="headerlink" title="仕掛け「しかけ」"></a>仕掛け「しかけ」</h4><hr>
+<ul>
+<li>开始做，着手；做到中途，制作中。（やりかけであること。）<blockquote>
+<p>仕掛けの仕事/手头上的工作；还未做完的工作。</p>
+</blockquote>
+</li>
+<li>装置，结构。（物事をある目的にあわせて、作りこしらえること。装置。からくり）<blockquote>
+<p>電気仕掛けのおもちゃ/电动玩具。</p>
+</blockquote>
+</li>
+<li>规模。〔規模〕<blockquote>
+<p>仕掛けが大きい/规模巨大。</p>
+</blockquote>
+</li>
+<li>烟火。（仕掛け花火）</li>
+<li>手法，招数，诀窍。（計略。たくらみ。）<blockquote>
+<p>どんな仕掛けがあるかわからない/不知道用的什么手法。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="ベタ"><a href="#ベタ" class="headerlink" title="ベタ"></a>ベタ</h4><hr>
+<ul>
+<li>《若者言葉》ひねりがなく、面白味に欠けるさま。  /老套，不稀奇</li>
+</ul>
+<h4 id="磨く「みがく」"><a href="#磨く「みがく」" class="headerlink" title="磨く「みがく」"></a>磨く「みがく」</h4><hr>
+<ul>
+<li>磨练；磨光擦亮；美化保养</li>
+</ul>
+<h3 id="888-おらたちのハザードマップだぞ＆お肉をキャッチするぞ"><a href="#888-おらたちのハザードマップだぞ＆お肉をキャッチするぞ" class="headerlink" title="888.おらたちのハザードマップだぞ＆お肉をキャッチするぞ"></a>888.おらたちのハザードマップだぞ＆お肉をキャッチするぞ</h3><h4 id="ドアップ"><a href="#ドアップ" class="headerlink" title="ドアップ"></a>ドアップ</h4><hr>
+<ul>
+<li>近距离镜头、画面</li>
+</ul>
+<h4 id="あらかじめ"><a href="#あらかじめ" class="headerlink" title="あらかじめ"></a>あらかじめ</h4><hr>
+<ul>
+<li>预先，先，事先，事前<blockquote>
+<p>あらかじめ知らせておく  预先通知</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="備えあれば憂い無し「そなえあればうれいなし」"><a href="#備えあれば憂い無し「そなえあればうれいなし」" class="headerlink" title="備えあれば憂い無し「そなえあればうれいなし」"></a>備えあれば憂い無し「そなえあればうれいなし」</h4><hr>
+<ul>
+<li>有备无患；凡事预则立</li>
+</ul>
+<h4 id="しょっちゅう"><a href="#しょっちゅう" class="headerlink" title="しょっちゅう"></a>しょっちゅう</h4><hr>
+<p>【副词】</p>
+<ul>
+<li>经常，总是，老是。</li>
+</ul>
+<h4 id="押入れ「おしいれ」"><a href="#押入れ「おしいれ」" class="headerlink" title="押入れ「おしいれ」"></a>押入れ「おしいれ」</h4><hr>
+<ul>
+<li>壁橱，壁柜。在日式房间中设计制作的放被褥等物品的场所。推入式壁橱，和式房中放寝具等的壁橱。（寝具・衣類・道具などを収納するための空間。西洋建築にはない日本建築独特の空間で、洋風の住宅に見られる通常の収に比べて、大きいのが特徴。）</li>
+</ul>
+<h4 id="爪「つめ」"><a href="#爪「つめ」" class="headerlink" title="爪「つめ」"></a>爪「つめ」</h4><hr>
+<ul>
+<li>指甲；爪，钩子</li>
+</ul>
+<h4 id="ヒビ"><a href="#ヒビ" class="headerlink" title="ヒビ"></a>ヒビ</h4><hr>
+<ul>
+<li>裂缝；（人际关系）发生裂缝；身体发生毛病</li>
+</ul>
+<h4 id="合コン「ごうこん」"><a href="#合コン「ごうこん」" class="headerlink" title="合コン「ごうこん」"></a>合コン「ごうこん」</h4><hr>
+<ul>
+<li>联谊</li>
+</ul>
+<h4 id="キャバクラ"><a href="#キャバクラ" class="headerlink" title="キャバクラ"></a>キャバクラ</h4><hr>
+<ul>
+<li>cabaret club 夜总会</li>
+</ul>
+<h4 id="媒鳥「おとり」"><a href="#媒鳥「おとり」" class="headerlink" title="媒鳥「おとり」"></a>媒鳥「おとり」</h4><hr>
+<ul>
+<li>鸟媒；诱饵</li>
+</ul>
+<h4 id="クレーンゲーム"><a href="#クレーンゲーム" class="headerlink" title="クレーンゲーム"></a>クレーンゲーム</h4><hr>
+<ul>
+<li>抓娃娃机</li>
+</ul>
+<h4 id="漕ぎ着ける「こぎつける」"><a href="#漕ぎ着ける「こぎつける」" class="headerlink" title="漕ぎ着ける「こぎつける」"></a>漕ぎ着ける「こぎつける」</h4><hr>
+<ul>
+<li>努力做到（达到）</li>
+</ul>
+<h4 id="なんてこったい！"><a href="#なんてこったい！" class="headerlink" title="なんてこったい！"></a>なんてこったい！</h4><hr>
+<ul>
+<li>なんということだ　　的口语   这算什么事啊！</li>
+</ul>
+<p>####　きっぱり</p>
+<hr>
+<ul>
+<li>断然；干脆</li>
+</ul>
+<h3 id="889-男の沽券にかかわるぞ＆ななこおねいさんを探しにいくぞ"><a href="#889-男の沽券にかかわるぞ＆ななこおねいさんを探しにいくぞ" class="headerlink" title="889.男の沽券にかかわるぞ＆ななこおねいさんを探しにいくぞ"></a>889.男の沽券にかかわるぞ＆ななこおねいさんを探しにいくぞ</h3><h4 id="沽券"><a href="#沽券" class="headerlink" title="沽券"></a>沽券</h4><hr>
+<ul>
+<li>人品；尊严</li>
+</ul>
+<h4 id="リフォーム"><a href="#リフォーム" class="headerlink" title="リフォーム"></a>リフォーム</h4><hr>
+<ul>
+<li>reform 重制；改造</li>
+</ul>
+<h4 id="擦る「なする」"><a href="#擦る「なする」" class="headerlink" title="擦る「なする」"></a>擦る「なする」</h4><hr>
+<p>【他动词・五段/一类】</p>
+<ul>
+<li>涂上；擦上（ぬりつける）<blockquote>
+<p>手の汚れをズボンに擦る/把手的污渍擦在裤子上。</p>
+</blockquote>
+</li>
+<li>推诿；转嫁（罪や責任を他人に負わせる）<blockquote>
+<p>失敗の責任を部下に擦る/把失败的责任推给下属。<br>なすりつける</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="とんだ"><a href="#とんだ" class="headerlink" title="とんだ"></a>とんだ</h4><hr>
+<p>【连体词】</p>
+<ul>
+<li>意想不到的，想象不到，想不到，没想到；意外的。（思いもよらない。とんでもない。思いがけない。）<blockquote>
+<p>とんだ目に会う。/碰到意外的灾难〔飞来之祸〕。<br>とんだ長居をして申しわけありません。/没想到呆了这么久，太对不起啦。</p>
+</blockquote>
+</li>
+<li>严重；不可挽回的。（思いがけなく重大な。たいへんな。とりかえしのつかない。）<blockquote>
+<p>お前はとんだことをしたね。/你做了一件大错事。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="バッチリ-1"><a href="#バッチリ-1" class="headerlink" title="バッチリ"></a>バッチリ</h4><hr>
+<ul>
+<li>漂亮地；充分</li>
+</ul>
+<h4 id="揃う「そろう」"><a href="#揃う「そろう」" class="headerlink" title="揃う「そろう」"></a>揃う「そろう」</h4><hr>
+<p>【自动词・五段/一类】</p>
+<ul>
+<li>聚齐，到齐。;齐，齐全，齐备。;整齐。;（成对，成双的东西）配齐；备齐。</li>
+</ul>
+<h4 id="靴下「くつした」"><a href="#靴下「くつした」" class="headerlink" title="靴下「くつした」"></a>靴下「くつした」</h4><hr>
+<ul>
+<li>袜子</li>
+</ul>
+<h4 id="おっと"><a href="#おっと" class="headerlink" title="おっと"></a>おっと</h4><hr>
+<ul>
+<li>啊，哎呀，噢，喔。（驚き。）<blockquote>
+<p>おっとあぶない。/哎呀，危险!<br>おっとこぼれる。/噢，要撒!</p>
+</blockquote>
+</li>
+<li>且慢，慢来。（さえぎって。）<blockquote>
+<p>おっとどっこい。/噢，且慢!<br>おっと、その手はくわぬ。/慢着，我不上你的当（你少来那套）。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="存分「ぞんぶん」"><a href="#存分「ぞんぶん」" class="headerlink" title="存分「ぞんぶん」"></a>存分「ぞんぶん」</h4><hr>
+<p>【副词】</p>
+<ul>
+<li>尽量；充分；尽情（思いどおりにすること。思うままに行うこと。また，そのさま。十分なさま）。<blockquote>
+<p>思う存分発言する/想说什么就说什么。<br>思う存分遊んだ/尽兴地玩儿了。<br>存分に才能を発揮する/尽量发挥才能。<br>存分にやっつけてやった/狠狠地予以惩罚。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="軽んじる「かろんじる」"><a href="#軽んじる「かろんじる」" class="headerlink" title="軽んじる「かろんじる」"></a>軽んじる「かろんじる」</h4><hr>
+<p>【他动词・一段/二类】</p>
+<ul>
+<li>轻视，蔑视。（軽視する。）<blockquote>
+<p>敵を軽んじる。/轻敌。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="張り切る「はりきる」"><a href="#張り切る「はりきる」" class="headerlink" title="張り切る「はりきる」"></a>張り切る「はりきる」</h4><hr>
+<ul>
+<li>拉紧；干劲十足；紧张</li>
+</ul>
+<h4 id="ラブラブ"><a href="#ラブラブ" class="headerlink" title="ラブラブ"></a>ラブラブ</h4><hr>
+<ul>
+<li>卿卿我我，腻味</li>
+</ul>
+<h4 id="おかず"><a href="#おかず" class="headerlink" title="おかず"></a>おかず</h4><hr>
+<ul>
+<li>菜，菜肴。［备齐多种东西之意，原为女性用语。］</li>
+</ul>
+<h4 id="ささやか"><a href="#ささやか" class="headerlink" title="ささやか"></a>ささやか</h4><hr>
+<p>【形容动词/な形容词】</p>
+<ul>
+<li>细小，微小；简单，简朴</li>
+</ul>
+<h4 id="ボッシュート"><a href="#ボッシュート" class="headerlink" title="ボッシュート"></a>ボッシュート</h4><hr>
+<ul>
+<li>【合成词】 ;没收。从舞台消失。退场。</li>
+</ul>
+<h4 id="仕打ち「しうち」"><a href="#仕打ち「しうち」" class="headerlink" title="仕打ち「しうち」"></a>仕打ち「しうち」</h4><hr>
+<ul>
+<li>对待，行为。对他人的态度、举动，多用于贬义。（他人に対する振る舞い。人の取り扱い方。多く悪い意味に使う。）<blockquote>
+<p> ひどい仕打ちを受ける。／受到苛待。</p>
+</blockquote>
+</li>
+<li>作派。演员在舞台上的动作。（俳優の舞台でのしぐさ。）</li>
+<li>京阪歌舞伎界对专业演出组织者的称呼。（京阪の歌舞伎界で、興行主の称。）</li>
+</ul>
+<h4 id="よっぽど"><a href="#よっぽど" class="headerlink" title="よっぽど"></a>よっぽど</h4><hr>
+<p>【副词】</p>
+<ul>
+<li>很，更加<blockquote>
+<p>この方がよっぽどいい/这个好得多。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="手抜き「てぬき」"><a href="#手抜き「てぬき」" class="headerlink" title="手抜き「てぬき」"></a>手抜き「てぬき」</h4><hr>
+<ul>
+<li>偷工；手头空闲；腾出手来。</li>
+</ul>
+<h4 id="手を焼く「てをやく」"><a href="#手を焼く「てをやく」" class="headerlink" title="手を焼く「てをやく」"></a>手を焼く「てをやく」</h4><hr>
+<ul>
+<li>棘手<blockquote>
+<p>いたずらっ子に手を焼く。/对淘气的孩子感到棘手。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="ひょっとしたら"><a href="#ひょっとしたら" class="headerlink" title="ひょっとしたら"></a>ひょっとしたら</h4><hr>
+<ul>
+<li>也许，说不准</li>
+</ul>
+<h4 id="だらしない"><a href="#だらしない" class="headerlink" title="だらしない"></a>だらしない</h4><hr>
+<ul>
+<li>邋遢；吊儿郎当 ；不整洁。（整っていない）<blockquote>
+<p>あの人は身なりがだらしない 。 /他衣着不整洁。</p>
+</blockquote>
+</li>
+<li>散漫；马虎；不检点。（節度がない）</li>
+<li>窝囊；不争气 。（毅然としていない）</li>
+</ul>
+<h3 id="890-とうちゃんがおきない？！だぞ＆"><a href="#890-とうちゃんがおきない？！だぞ＆" class="headerlink" title="890.とうちゃんがおきない？！だぞ＆"></a>890.とうちゃんがおきない？！だぞ＆</h3><h4 id="気のせい"><a href="#気のせい" class="headerlink" title="気のせい"></a>気のせい</h4><hr>
+<ul>
+<li>错觉；心理作用<blockquote>
+<p>これは気のせいかな。/可能是我想多了吧。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="せめて"><a href="#せめて" class="headerlink" title="せめて"></a>せめて</h4><hr>
+<p>【副词】</p>
+<ul>
+<li>起码；至少，表达最低限度的愿望。（少なくとも）。例句<blockquote>
+<p>せめてこれだけはもらいたい。 至少给我这个。</p>
+</blockquote>
+</li>
+<li>总算；还算。（以「せめての」和「せめてもの」的形式）虽不能说充分，却是尽可能的。（「せめての」「せめてもの」の形で、十分とはいえないが、できるかぎりの。せいぜいの）</li>
+</ul>
+<h4 id="ぴったり"><a href="#ぴったり" class="headerlink" title="ぴったり"></a>ぴったり</h4><hr>
+<p>【副词】</p>
+<ul>
+<li>急速停止状；完全停止状。;紧密地；严实地；紧挨分不开状。<br>【副词・自动词・サ变/三类】</li>
+<li>恰好；合适；相称。;（物件、时间或数量等）准确无误；完全一致；正对；正中。</li>
+</ul>
+<h4 id="ぐっすり"><a href="#ぐっすり" class="headerlink" title="ぐっすり"></a>ぐっすり</h4><hr>
+<ul>
+<li>酣睡；熟睡貌</li>
+</ul>
+<h4 id="枕「まくら」"><a href="#枕「まくら」" class="headerlink" title="枕「まくら」"></a>枕「まくら」</h4><hr>
+<ul>
+<li>枕头</li>
+</ul>
+<h4 id="いい夢見ろよ"><a href="#いい夢見ろよ" class="headerlink" title="いい夢見ろよ"></a>いい夢見ろよ</h4><hr>
+<ul>
+<li>做个好梦吧</li>
+</ul>
+<h4 id="コント"><a href="#コント" class="headerlink" title="コント"></a>コント</h4><hr>
+<ul>
+<li>【法】 ;小故事，短篇小说。（短編小説。特に、風刺やひねりの利いた軽妙な短い物語。）<blockquote>
+<p>ショットコント。/短篇小说。</p>
+</blockquote>
+</li>
+<li>短滑稽戏。（風刺に富んだ軽妙な寸劇。）<blockquote>
+<p>新しいコントを披露してくれる。/向我们展示最新的小短剧。</p>
+</blockquote>
+</li>
+</ul>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/04/12/2016-04-12-老友记/" data-toggle="tooltip" data-placement="top" title="老友记">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/04/11/2016-04-11-《深入理解Bootstrap》笔记/" data-toggle="tooltip" data-placement="top" title="《深入理解Bootstrap》笔记">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#蜡笔小新" title="蜡笔小新">蜡笔小新</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.kaijun.rocks" target="_blank">Kaijun&#39;s Blog</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">Foo</a></li>
+                    
+                        <li><a href="#" target="_blank">Bar</a></li>
+                    
+                        <li><a href="#" target="_blank">Example Friends</a></li>
+                    
+                        <li><a href="#" target="_blank">It helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hexo-theme-huxblog";
+    var disqus_identifier = "http://rubicker.github.io/2016/04/12/2016-04-12-しんのすけ/";
+    var disqus_url = "http://rubicker.github.io/2016/04/12/2016-04-12-しんのすけ/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/Demonbane_x">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/Demonbane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/Demonbane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/demonbane.cn">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Kaijun">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/kaijun-chen-42089354">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Kaijun&#39;s Blog 2016 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://rubicker.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'huangxuan.me';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          《深入理解Bootstrap》笔记 - Kaijun的博客 | Kaijun&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://rubicker.github.io/2016/04/11/2016-04-11-《深入理解Bootstrap》笔记/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Kaijun&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('header-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Bootstrap" title="Bootstrap">Bootstrap</a>
+                        
+                    </div>
+                    <h1>《深入理解Bootstrap》笔记</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Kaijun Chen on
+                        2016-04-11
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <blockquote>
+<p>总结自徐涛(汤姆大叔)著《深入理解Bootstrap》<br><a id="more"></a></p>
+</blockquote>
+<h3 id="第一章-入门准备"><a href="#第一章-入门准备" class="headerlink" title="第一章 入门准备"></a>第一章 入门准备</h3><h4 id="框架简介"><a href="#框架简介" class="headerlink" title="框架简介"></a>框架简介</h4><hr>
+<p>Bootstrap特性：</p>
+<ul>
+<li>一套完整的基础CSS插件</li>
+<li>丰富的预定义样式表</li>
+<li>基于jQuery的JS插件集</li>
+<li>非常灵活的响应式栅格系统，崇尚移动先行的思想</li>
+</ul>
+<h4 id="文件结构"><a href="#文件结构" class="headerlink" title="文件结构"></a>文件结构</h4><hr>
+<p>2.x用来展示icon小图标的.png图片由fonts目录的5种类型的字体文件取代，这种方式叫做<strong>@font-face版本的icon实现</strong>。</p>
+<p>所谓<strong>@font-face</strong>，其实是通过CSS里的@font-face语法，将安全的Web字体即时下载到客户端，从而进行引用显示。</p>
+<p>好处是：图标可以被任意缩放，改变颜色（像修改文字样式那样修改即可）</p>
+<h4 id="HTML模板"><a href="#HTML模板" class="headerlink" title="HTML模板"></a>HTML模板</h4><hr>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span>  <span class="attr">name</span>=<span class="string">"viewport"</span>  <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>表示默认情况下，UI布局的宽度和移动设备的宽度一致，缩放大小为原始大小<br><strong>记住</strong>：content中各项必须用分号+空格形式隔开！否则不起作用<br>题外话：<br>看到Bootstrap官网上src以双斜杠开头的url，如下：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>这样写的原因是什么？详见<a href="http://www.paulirish.com/2010/the-protocol-relative-url/" target="_blank" rel="external">The Protocol-relative URL</a></p>
+<h4 id="CSS和JS基本语法"><a href="#CSS和JS基本语法" class="headerlink" title="CSS和JS基本语法"></a>CSS和JS基本语法</h4><hr>
+<ul>
+<li><p>媒体查询</p>
+  <figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@media(<span class="built_in">max</span>-<span class="built_in">width</span>:<span class="number">767</span>px)&#123;</div><div class="line"><span class="comment">/* 在小于等于767像素的屏幕里，这里的样式才生效*/</span></div><div class="line">&#125;</div><div class="line">@media(<span class="built_in">min</span>-<span class="built_in">width</span>:<span class="number">768</span>px) and (<span class="built_in">max</span>-<span class="built_in">width</span>:<span class="number">991</span>px)&#123;</div><div class="line"><span class="comment">/*768px～991px*/</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>事件绑定<br> 选择器变成了document，好处是只需在document绑定一个单击事件。 利用冒泡机制，在单击的时候检查是否是td元素，若是才处理。 而前面把td作为选择器的时候，一个页面有多少td元素就会绑定多少个单击事件，这样性能会大大降低。此模式即为享元模式。<br> 另外，注意到我们的绑定事件名称为click.tx，而非click，这样的命名空间方便在触发时只触发自己所关心的元素事件<br><code>$(&#39;td&#39;).on(&quot;click&quot;,function(e){//jQuery绑定click事件});</code><br> <code>$(document).on(&quot;click.tx&quot;,&quot;td&quot;,function(e){//Bootstrap绑定click事件})</code></p>
+</li>
+<li><p>获取自定义属性值<br>HTML5新支持的语法  以data-开头的自定义属性<br><code>$(&quot;#test&quot;).data(&quot;role&quot;)</code>获取data-role属性的值<br><code>$(&quot;#test&quot;).data()</code>获取所有以data-开头的属性的值</p>
+</li>
+</ul>
+<h3 id="第二章-整体结构"><a href="#第二章-整体结构" class="headerlink" title="第二章 整体结构"></a>第二章 整体结构</h3><h4 id="整体结构"><a href="#整体结构" class="headerlink" title="整体结构"></a>整体结构</h4><hr>
+<ul>
+<li>CSS12栅格系统<br>把网页的总宽度平分为12份，开发人员可以自由按份组合。另外，栅格系统所使用的总宽度可以不固定，可以针对一个div元素使用12等分的栅格(Bootstrap是按照百分比进行12等分的，保留15位小数点精度)</li>
+<li>基础布局组件<br>排版，表格，按钮，表单等基础组件的样式设置</li>
+<li>jQuery<br>Bootstrap所有JavaScript插件都依赖于jQuery</li>
+<li>响应式设计<br>指的是一个网站能够兼容多个终端</li>
+<li>CSS组件</li>
+<li>JavsScript组件</li>
+</ul>
+<h4 id="栅格系统"><a href="#栅格系统" class="headerlink" title="栅格系统"></a>栅格系统</h4><hr>
+<ul>
+<li><p>实现原理<br>通过定义容器大小，平分12份，再调整内外边距，最后结合媒体查询，实现了栅格系统。<br>这里利用了margin左右负值可以拉伸未定义宽度的元素。</p>
+<ul>
+<li>一行row必须包含于.container中</li>
+<li>列(column)必须是行(row)的直接子元素</li>
+<li>container宽度:<br>自动(&lt;=768px),750px(768px~992px),970px(992px~1220px),1170px(&gt;=1220px)<blockquote>
+<p>自动意思就是若12格布满则屏幕100%充满</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>基本用法(以md为例)<br>列组合:<code>col-md-*</code></p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"container"</span>&gt;</div><div class="line">  &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"row"</span>&gt;</div><div class="line">    &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"col-md-8"</span>&gt;col-md<span class="number">-8</span>&lt;/<span class="keyword">div</span>&gt;</div><div class="line">    &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"col-md-4"</span>&gt;col-md<span class="number">-4</span>&lt;/<span class="keyword">div</span>&gt;</div><div class="line">  &lt;/<span class="keyword">div</span>&gt;</div><div class="line">&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*实现方法:源码1937行起*/</span></div><div class="line"><span class="comment">/*左浮动+宽度百分比*/</span></div><div class="line">@media (<span class="attribute">min-width</span>: <span class="number">992px</span>) &#123;</div><div class="line">  <span class="selector-class">.col-md-1</span>, <span class="selector-class">.col-md-2</span>, <span class="selector-class">.col-md-3</span>, <span class="selector-class">.col-md-4</span>, <span class="selector-class">.col-md-5</span>, <span class="selector-class">.col-md-6</span>, <span class="selector-class">.col-md-7</span>, <span class="selector-class">.col-md-8</span>, <span class="selector-class">.col-md-9</span>, <span class="selector-class">.col-md-10</span>, <span class="selector-class">.col-md-11</span>, <span class="selector-class">.col-md-12</span> &#123;</div><div class="line">    <span class="attribute">float</span>: left;</div><div class="line">  &#125;</div><div class="line">  <span class="selector-class">.col-md-12</span> &#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="selector-class">.col-md-11</span> &#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">91.66666667%</span>;</div><div class="line">  &#125;</div><div class="line"><span class="comment">/*以下省略*/</span></div></pre></td></tr></table></figure>
+<p>列偏移:<code>col-md-offset-*</code></p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"container"</span>&gt;</div><div class="line">  &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"row"</span>&gt;</div><div class="line">    &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"col-md-4"</span>&gt;</div><div class="line">      col-md<span class="number">-4</span></div><div class="line">    &lt;/<span class="keyword">div</span>&gt;</div><div class="line">    &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"col-md-4 col-md-offset-4"</span>&gt;</div><div class="line">      col-md<span class="number">-4</span> col-md-<span class="built_in">offset</span><span class="number">-4</span></div><div class="line">    &lt;/<span class="keyword">div</span>&gt;</div><div class="line">  &lt;/<span class="keyword">div</span>&gt;</div><div class="line">&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*实现原理:源码2055行起*/</span></div><div class="line"><span class="selector-class">.col-md-offset-12</span> &#123;</div><div class="line">  <span class="attribute">margin-left</span>: <span class="number">100%</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.col-md-offset-11</span> &#123;</div><div class="line">  <span class="attribute">margin-left</span>: <span class="number">91.66666667%</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.col-md-offset-10</span> &#123;</div><div class="line">  <span class="attribute">margin-left</span>: <span class="number">83.33333333%</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">/*后省略*/</span></div></pre></td></tr></table></figure>
+<p>列嵌套:在一个列中可以再声明一个或多个row</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"container"</span>&gt;</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"row"</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-5"</span>&gt;</span></div><div class="line">      第一层:col-md-5</div><div class="line">      <span class="comment">&lt;!--将该层分成12份--&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"row"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-6"</span>&gt;</span>第二层:col-md-6<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-6"</span>&gt;</span>第二层:col-md-6<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">&lt;<span class="regexp">/div&gt;</span></div></pre></td></tr></table></figure>
+<p>列排序:<code>col-md-pull-*</code>&amp;<code>col-md-push-*</code><br>push向右推动，pull往左拉。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*实现原理:源码1977行起*/</span></div><div class="line"><span class="selector-class">.col-md-pull-12</span> &#123;</div><div class="line">  <span class="attribute">right</span>: <span class="number">100%</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.col-md-pull-11</span> &#123;</div><div class="line">  <span class="attribute">right</span>: <span class="number">91.66666667%</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">/*其余省略，push是left改变*/</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>栅格响应式设计<br>分为四种不同栅格样式:<code>xs</code>,<code>s</code>,<code>md</code>,<code>lg</code><br>通过跨设备组合设计，即可实现响应式布局。<br>关于清浮动:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--默认外层包裹.container--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"row"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-xs-6 col-sm-3"</span>&gt;</span>div1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-xs-6 col-sm-3"</span>&gt;</span>div2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!--清除样式只对超小屏幕设备生效--&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"clearfix visiable-xs"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-xs-6 col-sm-3"</span>&gt;</span>div3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-xs-6 col-sm-3"</span>&gt;</span>div4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="CSS组件架构的设计思想"><a href="#CSS组件架构的设计思想" class="headerlink" title="CSS组件架构的设计思想"></a>CSS组件架构的设计思想</h4><p>CSS组件设计思想：AO模式。（A-Append，O-Overwrite）</p>
+<ul>
+<li>基础样式</li>
+<li>颜色样式 (组件名称-颜色类型)<br>另外对于可点击元素如btn，还特殊处理了按钮在hover，focus，active状态时的颜色</li>
+<li>尺寸样式（组件名称-大小类型）<br>为组件设置大小:xs,sm,md,lg</li>
+<li>状态样式</li>
+<li>特殊元素样式</li>
+<li>并列元素样式<br>很多情况下，一个组件内部需要放置多个子元素，此时就需要处理这样并列元素的间距问题</li>
+<li>嵌套子元素样式</li>
+<li>动画样式</li>
+</ul>
+<h4 id="JavaScript插件架构"><a href="#JavaScript插件架构" class="headerlink" title="JavaScript插件架构"></a>JavaScript插件架构</h4><ul>
+<li><p>HTML布局规则<br>默认情况下，所有插件都可以通过设置特定的HTML代码和相应的属性/data属性来实现(加载网页的时候，JS代码会自动检测标记并绑定相应事件，而无需添加额外代码)</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"btn-group"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"btn btn-default dropdown-toggle"</span> <span class="attr">data-toggle</span>=<span class="string">"dropdown"</span>&gt;</span></div><div class="line">    我的最爱 <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"caret"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"dropdown-menu"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>NodeJs<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>HTML5<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>CSS3<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--设置分隔线--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"divider"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>PHP<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>效果如下:</p>
+<div style="float:left"><img src="1.gif" alt="1.gif"></div><div style="clear:both"></div>
+
+<blockquote>
+<p>JavaScript默认先检测data-target属性确认动作目标，若没有则检测href属性，若仍没有，则默认为父元素</p>
+</blockquote>
+</li>
+<li><p>JavaScript实现步骤</p>
+<ul>
+<li><p>声明立即调用函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</div><div class="line">  <span class="comment">//do something</span></div><div class="line">  &#125;)(<span class="built_in">window</span>.jQuery)</div><div class="line"><span class="comment">//将window.jQuery作为实参传入，形参为$,防止变量全局污染</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>定义插件类及相关原型方法(以alert.js为例)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> dismiss = <span class="string">'[data-dismiss='</span>alert<span class="string">']'</span>;</div><div class="line"><span class="keyword">var</span> Alert = <span class="function"><span class="keyword">function</span>(<span class="params">el</span>)</span>&#123;</div><div class="line">  <span class="comment">//传入元素，若元素内部有dismiss,则click事件会触发原型上的close方法</span></div><div class="line">  $(el).on(<span class="string">'click'</span>,dismiss,<span class="keyword">this</span>.close);</div><div class="line">&#125;</div><div class="line">Alert.prototype.close = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">  <span class="comment">//关闭警告框</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在jQuery上定义插件并重设插件构造函数<br>这一步专门为了用JS代码触发事件的人准备，但是若不声明这一步，第四步的noCOnflict也将无法使用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> old = $.fn.alert;</div><div class="line"><span class="comment">//保留其他插件的$.fn.alert代码(如果有定义),以便在noConflict之后可以继续使用</span></div><div class="line">$.fn.alert = <span class="function"><span class="keyword">function</span>(<span class="params">option</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      <span class="comment">//根据选择器遍历所有符合的元素并绑定事件</span></div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line">$.fn.alert.Constructor = Alert;</div><div class="line"><span class="comment">//重设插件的构造函数指向</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>防冲突处理(noConflict)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$.fn.alert.noConflict = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  $.fn.alert = old; <span class="comment">//恢复以前的代码</span></div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>;<span class="comment">//将$.fn.alert.noConflict()设置为Bootstrap的alert插件</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>绑定各种触发事件(data-api)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">document</span>).on(<span class="string">'click.bs.alert.data-api'</span>,dismiss,Alert.prototype.close);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="CSS布局"><a href="#CSS布局" class="headerlink" title="CSS布局"></a>CSS布局</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><ul>
+<li>HTML5文档类型<br>Bootstrap使用了HTML5特定的HTML元素和CSS属性，故使用它时需在HTML文件顶部声明DOCTYPE属性为HTML5</li>
+<li>移动先行</li>
+<li><p>响应式图片<br>为了让图片可以自适应缩放，Bootstrap在3.x版中添加了.img-responsive样式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*源码1119行起:*/</span></div><div class="line"><span class="selector-class">.img-responsive</span>&#123;</div><div class="line">    <span class="attribute">display</span>:block;</div><div class="line">    <span class="attribute">max-width</span>:<span class="number">100%</span>;</div><div class="line">    <span class="attribute">height</span>:auto;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>排版与链接</p>
+<ul>
+<li>在body上取消了margin设置，即改为margin:0</li>
+<li>在body上设置了背景色为白色，即background-color:#FFF</li>
+<li>在布局排版方面也进行了设置，字体大小为14px</li>
+</ul>
+</li>
+<li>Normalize.css<br>为了改进跨浏览器呈现，Bootstrap采用了第三方CSS库Normalize<br>Normalize.css是一个专门用于将不同浏览器的默认CSS特性设置为同一效果的CSS库</li>
+<li>居中容器<br>一个页面或元素要居中显示，可以在外部容器上应用.container样式即可</li>
+</ul>
+<h4 id="基础排版"><a href="#基础排版" class="headerlink" title="基础排版"></a>基础排版</h4><ul>
+<li><p>标题<br>重新定义<code>&lt;h1&gt;</code>标题，同时同步定义.h1-.h6样式；<br>与此相匹配，定义<code>&lt;small&gt;</code>标签为副标题,<code>&lt;small&gt;</code>内容字体均为灰色，行间距为1，大小随父级改变</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>h1. Bootstrap heading <span class="tag">&lt;<span class="name">small</span>&gt;</span>Secondary text<span class="tag">&lt;/<span class="name">small</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>页面主题<br>默认情况下全局设置字体14px,line-height为1.428(20px)<br>使用.lead可以使一个段落突出显示:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*源码1293行起:*/</span></div><div class="line"><span class="selector-class">.lead</span> &#123;</div><div class="line">  <span class="attribute">margin-bottom</span>: <span class="number">20px</span>;</div><div class="line">  <span class="attribute">font-size</span>: <span class="number">16px</span>;</div><div class="line">  <span class="attribute">font-weight</span>: <span class="number">300</span>;</div><div class="line">  <span class="attribute">line-height</span>: <span class="number">1.4</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>强调文本<br><code>&lt;small&gt;``&lt;strong&gt;``&lt;em&gt;``&lt;cite&gt;</code><br>文本对齐方式样式<br><code>text-left</code><br><code>text-center</code><br><code>text-right</code><br><code>text-justify</code></p>
+</li>
+<li><p>缩略语<br><code>&lt;abbr&gt;</code><br>鼠标移入缩略词时，显示声明在title内的属性值。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">abbr</span> <span class="attr">title</span>=<span class="string">"JavaScript"</span>&gt;</span>JS<span class="tag">&lt;/<span class="name">abbr</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--可以加入.initialism使其略微缩小--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">abbr</span> <span class="attr">title</span>=<span class="string">"JavaScript"</span> <span class="attr">class</span>=<span class="string">"initialism"</span>&gt;</span>JS<span class="tag">&lt;/<span class="name">abbr</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>地址元素<br><code>&lt;address&gt;</code><br>定义其样式，主要是行间距和底部margin<br>用法:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">address</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">strong</span>&gt;</span> Tom <span class="tag">&lt;/<span class="name">strong</span>&gt;</span><span class="tag">&lt;/<span class="name">br</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"mailto:#"</span>&gt;</span>xxx@gmail.com<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">address</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>引用<br><code>&lt;blockquote&gt;</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;blockquote <span class="class"><span class="keyword">class</span></span>=<span class="string">"pull-right"</span>&gt;</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>有一种不遵守多数原则的东西，那就是人的良心<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div><div class="line">  &lt;span&gt;——&lt;<span class="regexp">/span&gt;&lt;cite&gt;蒂姆·库克&lt;/</span>cite&gt;</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">block</span>&gt;</span></span></div></pre></td></tr></table></figure>
+</li>
+<li><p>列表<br>去除普通列表项前的圆点，只需在ul中添加类.list-unstyled</p>
+</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><ul>
+<li>使用<code>&lt;code&gt;</code>显示单行内联代码</li>
+<li>使用<code>&lt;kbd&gt;</code>显示用户输入代码</li>
+<li>使用<code>&lt;pre&gt;</code>显示多行代码块</li>
+</ul>
+<h4 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h4><ul>
+<li>基础表单<br>在<code>&lt;select&gt;</code>,<code>&lt;input&gt;</code>,<code>&lt;textarea&gt;</code>元素上应用<code>.form-control</code>样式，可使其显示宽度为100%。<br>当然，外层最好包一个<code>.form-group</code>的<code>div</code>，内置样式使得各组件条理显示。</li>
+<li><p>内联表单</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;form action=<span class="string">""</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-inline"</span>&gt;</div><div class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-group"</span>&gt;</div><div class="line">    &lt;input <span class="class"><span class="keyword">type</span></span>=<span class="string">"text"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> placeholder=<span class="string">"请输入你的用户名"</span>&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-group"</span>&gt;</div><div class="line">    &lt;input <span class="class"><span class="keyword">type</span></span>=<span class="string">"text"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> placeholder=<span class="string">"请输入你的密码"</span>&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"checkbox"</span>&gt;</div><div class="line">    &lt;label <span class="keyword">for</span>=<span class="string">""</span>&gt;&lt;input <span class="class"><span class="keyword">type</span></span>=<span class="string">"checkbox"</span>&gt;记住密码&lt;/label&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">  &lt;button <span class="class"><span class="keyword">type</span></span>=<span class="string">"button"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"btn btn-default"</span>&gt;登录&lt;/button&gt;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure>
+<p><img src="2.gif" alt="2.gif"><br>需要注意几点:</p>
+<ul>
+<li>设置内联表单后，默认各组件<code>width</code>为<code>auto</code>，所以我们可以手动设置宽度</li>
+<li>内联表单只有在屏幕宽度&gt;768px下才可用，否则将垂直排列</li>
+</ul>
+</li>
+<li>水平排列的表单<br>指的是label和控件组水平并排布局<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;form action=<span class="string">""</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-horizontal"</span> rol=<span class="string">"row"</span>&gt;</div><div class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-group"</span>&gt;</div><div class="line">    &lt;label <span class="class"><span class="keyword">class</span></span>=<span class="string">"col-sm-2 control-label"</span>&gt;<span class="type">ID</span>&lt;/label&gt;</div><div class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"col-sm-5"</span>&gt;</div><div class="line">    &lt;input <span class="class"><span class="keyword">type</span></span>=<span class="string">"text"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> placeholder=<span class="string">"请输入你的用户名"</span>&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>To be continued…</p>
+</blockquote>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/04/12/2016-04-12-しんのすけ/" data-toggle="tooltip" data-placement="top" title="蜡笔小新">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/04/10/2016-04-10-深入理解JavaScript系列读书笔记-一/" data-toggle="tooltip" data-placement="top" title="深入理解JavaScript系列读书笔记">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Bootstrap" title="Bootstrap">Bootstrap</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.kaijun.rocks" target="_blank">Kaijun&#39;s Blog</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">Foo</a></li>
+                    
+                        <li><a href="#" target="_blank">Bar</a></li>
+                    
+                        <li><a href="#" target="_blank">Example Friends</a></li>
+                    
+                        <li><a href="#" target="_blank">It helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hexo-theme-huxblog";
+    var disqus_identifier = "http://rubicker.github.io/2016/04/11/2016-04-11-《深入理解Bootstrap》笔记/";
+    var disqus_url = "http://rubicker.github.io/2016/04/11/2016-04-11-《深入理解Bootstrap》笔记/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/Demonbane_x">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/Demonbane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/Demonbane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/demonbane.cn">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Kaijun">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/kaijun-chen-42089354">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Kaijun&#39;s Blog 2016 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://rubicker.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'huangxuan.me';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

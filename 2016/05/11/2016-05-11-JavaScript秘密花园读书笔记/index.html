@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          JavaScript秘密花园读书笔记 - Kaijun的博客 | Kaijun&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://rubicker.github.io/2016/05/11/2016-05-11-JavaScript秘密花园读书笔记/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Kaijun&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#javascript" title="javascript">javascript</a>
+                        
+                    </div>
+                    <h1>JavaScript秘密花园读书笔记</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Kaijun Chen on
+                        2016-05-11
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <blockquote>
+<p>原文地址：<a href="http://bonsaiden.github.io/JavaScript-Garden/zh/#object.general" target="_blank" rel="external">JavaScript-Garden</a></p>
+</blockquote>
+<a id="more"></a>
+<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><hr>
+<h3 id="对象使用和属性"><a href="#对象使用和属性" class="headerlink" title="对象使用和属性"></a>对象使用和属性</h3><p>JS中除了null和undefined之外所有变量均可当作对象使用。  </p>
+<p>一个对于数字字面值常见的误解：<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">2</span><span class="selector-class">.toString</span>();<span class="comment">//出错：SyntaxError</span></div><div class="line"><span class="comment">//原因是JS解析器误以为小数点后面是浮点数字面值的一部分</span></div><div class="line"><span class="comment">//可以这样写：</span></div><div class="line"><span class="selector-tag">2</span>.<span class="selector-class">.toString</span>();</div><div class="line"><span class="selector-tag">2</span> <span class="selector-class">.toString</span>();<span class="comment">//点号前有空格</span></div><div class="line">(<span class="number">2</span>)<span class="selector-class">.toString</span>();</div></pre></td></tr></table></figure></p>
+<h4 id="对象作为数据类型"><a href="#对象作为数据类型" class="headerlink" title="对象作为数据类型"></a>对象作为数据类型</h4><p>使用对象的字面语法{}可以创建一个对象，这个新对象<strong>继承自Object.prototype</strong>，<strong>没有任何自定义属性</strong></p>
+<h4 id="访问属性"><a href="#访问属性" class="headerlink" title="访问属性"></a>访问属性</h4><p>两种方式来访问对象属性，点操作符和中括号操作符</p>
+<p>中括号操作符在下列两种情况下依然有效：</p>
+<ul>
+<li>动态设置属性</li>
+<li>属性名不是一个有效的变量名(如属性名中包含空格，或属性名是JS的关键词)<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> o = &#123;name:<span class="string">"Tom"</span>&#125;;</div><div class="line">o.name;<span class="comment">//Tom</span></div><div class="line">o[<span class="string">"name"</span>];<span class="comment">//Tom</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> <span class="keyword">get</span> = <span class="string">"name"</span>;</div><div class="line">o[<span class="keyword">get</span>]; <span class="comment">//Tom   动态设置属性</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="删除属性"><a href="#删除属性" class="headerlink" title="删除属性"></a>删除属性</h4><p>删除属性唯一方法是使用delete操作符；<br>设置属性为undefined或null<strong>仅仅移除了属性和值的关联</strong></p>
+<h4 id="属性名的语法"><a href="#属性名的语法" class="headerlink" title="属性名的语法"></a>属性名的语法</h4><p>对象的属性名可以使用字符串或者普通字符声明<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> test = &#123;</div><div class="line">    <span class="string">'case'</span>: <span class="string">'I am a keyword so I must be notated as a string'</span>,</div><div class="line">    <span class="keyword">delete</span>: <span class="string">'I am a keyword too so me'</span> <span class="comment">// 出错：SyntaxError</span></div><div class="line">&#125;;</div><div class="line"><span class="comment">//在ECMA5之前版本第二种方式会抛出错误</span></div><div class="line"><span class="comment">//因此为了兼容性，应当使用字符串字面值声明方式</span></div></pre></td></tr></table></figure></p>
+<h3 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h3><p>JS是唯一一个被广泛使用的基于原型继承的语言</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.value = <span class="number">42</span>;</div><div class="line">&#125;</div><div class="line">Foo.prototype = &#123;</div><div class="line">    <span class="attr">method</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bar</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line"></div><div class="line"><span class="comment">// 设置Bar的prototype属性为Foo的实例对象</span></div><div class="line">Bar.prototype = <span class="keyword">new</span> Foo();</div><div class="line">Bar.prototype.foo = <span class="string">'Hello World'</span>;</div><div class="line"></div><div class="line"><span class="comment">//注意: 不要使用 Bar.prototype = Foo，</span></div><div class="line"><span class="comment">//因为这不会执行 Foo 的原型，而是指向函数 Foo。 </span></div><div class="line"><span class="comment">//因此原型链将会回溯到 Function.prototype 而不是 Foo.prototype，</span></div><div class="line"><span class="comment">//因此 method 将不会在 Bar 的原型链上。</span></div><div class="line"></div><div class="line"><span class="comment">// 修正Bar.prototype.constructor为Bar本身</span></div><div class="line">Bar.prototype.constructor = Bar;</div><div class="line"></div><div class="line"><span class="keyword">var</span> test = <span class="keyword">new</span> Bar() <span class="comment">// 创建Bar的一个新实例</span></div><div class="line"></div><div class="line"><span class="comment">// 原型链</span></div><div class="line">test [Bar的实例]</div><div class="line">    Bar.prototype [Foo的实例] </div><div class="line">        &#123; <span class="attr">foo</span>: <span class="string">'Hello World'</span> &#125;</div><div class="line">        Foo.prototype</div><div class="line">            &#123;<span class="attr">method</span>: ...&#125;;</div><div class="line">            <span class="built_in">Object</span>.prototype</div><div class="line">                &#123;<span class="attr">toString</span>: ... <span class="comment">/* etc. */</span>&#125;;</div></pre></td></tr></table></figure>
+<h4 id="属性查找"><a href="#属性查找" class="headerlink" title="属性查找"></a>属性查找</h4><p>查找某个对象的属性时，JS会向上遍历原型链，直到原型链的顶部(Object.prototype)，若仍未找到返回undefined</p>
+<h4 id="原型属性"><a href="#原型属性" class="headerlink" title="原型属性"></a>原型属性</h4><p>可以将任何类型的值赋给原型属性(prototype),但是原子类型赋值操作无效。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;&#125;;</div><div class="line">Foo.prototype = <span class="number">1</span>; <span class="comment">//无效</span></div></pre></td></tr></table></figure></p>
+<h4 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h4><p>若一个属性存在于原型链上端，则将使查找时间大大延长；尤其是查找不存在的属性时会遍历整个原型链；</p>
+<p>当使用<code>for in</code>循环遍历对象的属性时，原型链上的所有属性都将被访问<br>注：可以使用Object.hasOwnProperty(propertyName)来过滤</p>
+<h4 id="扩展内置类型的原型"><a href="#扩展内置类型的原型" class="headerlink" title="扩展内置类型的原型"></a>扩展内置类型的原型</h4><p>绝对不要扩展内置类型的原型，除非是为了和新的JS引擎兼容</p>
+<h4 id="hasOwnProperty函数"><a href="#hasOwnProperty函数" class="headerlink" title="hasOwnProperty函数"></a>hasOwnProperty函数</h4><p>hasOwnProperty是JS中唯一一个处理属性但是不查找原型链的函数  </p>
+<p>但是，JS不保护hasOwnProperty被非法占用，那么当一个对象碰巧占用了这个属性，该如何调用呢?<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = &#123;</div><div class="line">    <span class="attr">hasOwnProperty</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">bar</span>: <span class="string">'Here be dragons'</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line">foo.hasOwnProperty(<span class="string">'bar'</span>); <span class="comment">// 总是返回 false</span></div><div class="line"></div><div class="line"><span class="comment">// 使用其它对象的 hasOwnProperty，并将其上下文设置为foo</span></div><div class="line">(&#123;&#125;).hasOwnProperty.call(foo, <span class="string">'bar'</span>); <span class="comment">// true</span></div></pre></td></tr></table></figure></p>
+<h4 id="for-in-循环"><a href="#for-in-循环" class="headerlink" title="for in 循环"></a>for in 循环</h4><p>和<code>in</code>操作符相同，<code>for in</code>循环同样在查找对象属性时遍历原型链上的所有属性。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> foo) &#123;</div><div class="line">    <span class="keyword">if</span> (foo.hasOwnProperty(i)) &#123;</div><div class="line">        <span class="built_in">console</span>.log(i);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><hr>
+<h3 id="函数声明与表达式"><a href="#函数声明与表达式" class="headerlink" title="函数声明与表达式"></a>函数声明与表达式</h3><h4 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h4><p>下面的方法会在执行前被 解析(hoisted)，因此它存在于当前上下文的任意一个地方， 即使在函数定义体的上面被调用也是对的<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">foo(); <span class="comment">// 正常运行，因为foo在代码运行前已经被创建</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="函数赋值表达式"><a href="#函数赋值表达式" class="headerlink" title="函数赋值表达式"></a>函数赋值表达式</h4><p>var定义了一个声明语句，变量声明提前，但是赋值语句只在运行时执行，因此在相应代码执行之前，foo的值缺省为undefined<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">foo; <span class="comment">// 'undefined'</span></div><div class="line">foo(); <span class="comment">// 出错：TypeError</span></div><div class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</div></pre></td></tr></table></figure></p>
+<h4 id="命名函数的赋值表达式"><a href="#命名函数的赋值表达式" class="headerlink" title="命名函数的赋值表达式"></a>命名函数的赋值表达式</h4><p>将命名函数赋值给一个变量<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    bar(); <span class="comment">// 正常运行</span></div><div class="line">&#125;</div><div class="line">bar(); <span class="comment">// 出错：ReferenceError</span></div></pre></td></tr></table></figure></p>
+<p>bar 函数声明外是不可见的，这是因为我们已经把函数赋值给了 foo； 然而在 bar 内部依然可见。这是由于 JavaScript 的 命名处理 所致， 函数名在函数内总是可见的。<br>注意:在IE8及IE8以下版本浏览器bar在外部也是可见的，是因为浏览器对命名函数赋值表达式进行了错误的解析， 解析成两个函数 foo 和 bar</p>
+<h3 id="this的工作原理"><a href="#this的工作原理" class="headerlink" title="this的工作原理"></a>this的工作原理</h3><p>直接调用函数时，this 指向全局对象<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Foo.method = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="comment">// this 将会被设置为全局对象（浏览器环境中也就是 window 对象)</span></div><div class="line">    &#125;</div><div class="line">    test();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>为了在test中取得对Foo对象的引用，可以将其缓存下来：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Foo.method = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> that = <span class="keyword">this</span>;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="comment">// 使用 that 来指向 Foo 对象</span></div><div class="line">    &#125;</div><div class="line">    test();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="方法的赋值表达式"><a href="#方法的赋值表达式" class="headerlink" title="方法的赋值表达式"></a>方法的赋值表达式</h4><p>将方法赋值给一个变量：<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> <span class="keyword">test</span> = someObject.methodTest;</div><div class="line"><span class="keyword">test</span>();</div></pre></td></tr></table></figure></p>
+<p>此时test()就像一个普通的函数被调用，故此时函数内的this不再指向someObject，而是Window对象  </p>
+<p>这个特性即为this的晚绑定特性：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">Foo.prototype.method = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bar</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">Bar.prototype = Foo.prototype;</div><div class="line"></div><div class="line"><span class="keyword">new</span> Bar().method();</div><div class="line"><span class="comment">//this 将指向Bar的实例对象</span></div></pre></td></tr></table></figure></p>
+<h3 id="闭包和引用"><a href="#闭包和引用" class="headerlink" title="闭包和引用"></a>闭包和引用</h3><p>函数是JS中唯一拥有自身作用域的结构，因此闭包的创建依赖于函数。</p>
+<h4 id="循环中的闭包"><a href="#循环中的闭包" class="headerlink" title="循环中的闭包"></a>循环中的闭包</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(i);  </div><div class="line">    &#125;, <span class="number">1000</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上述代码结果：输出数字10十次<br>当 console.log 被调用的时候，匿名函数保持对外部变量 i 的引用，此时 for循环已经结束， i 的值被修改成了 10.  </p>
+<p>解决方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</div><div class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">        setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(e);  </div><div class="line">        &#125;, <span class="number">1000</span>);</div><div class="line">    &#125;)(i);</div><div class="line">&#125;</div><div class="line"><span class="comment">//每次循环中创建变量i的拷贝</span></div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</div><div class="line">    setTimeout((<span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(e);</div><div class="line">        &#125;</div><div class="line">    &#125;)(i), <span class="number">1000</span>)</div><div class="line">&#125;</div><div class="line"><span class="comment">//效果相同</span></div></pre></td></tr></table></figure>
+<h3 id="arguements对象"><a href="#arguements对象" class="headerlink" title="arguements对象"></a>arguements对象</h3><p>JS中每个函数内都能访问一个特别变量arguements，该变量维护所有传递到这个函数中的参数列表<br>arguements对象不是数组，是一个对象。但是它有数组的length属性，也可以利用中括号访问其成员  </p>
+<h4 id="转化为数组"><a href="#转化为数组" class="headerlink" title="转化为数组"></a>转化为数组</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>.prototype.slice.call(arguements);</div><div class="line"><span class="comment">//转化比较慢，不推荐</span></div></pre></td></tr></table></figure>
+<h4 id="传递参数-？"><a href="#传递参数-？" class="headerlink" title="传递参数(？)"></a>传递参数(？)</h4><p>下面是将参数从一个函数传递到另一个函数的推荐做法。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    bar.apply(<span class="literal">null</span>, <span class="built_in">arguments</span>);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params">a, b, c</span>) </span>&#123;</div><div class="line">    <span class="comment">// 干活</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>另一个技巧是同时使用 call 和 apply，创建一个快速的解绑定包装器。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line"></div><div class="line">Foo.prototype.method = <span class="function"><span class="keyword">function</span>(<span class="params">a, b, c</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>, a, b, c);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 创建一个解绑定的 "method"</span></div><div class="line"><span class="comment">// 输入参数为: this, arg1, arg2...argN</span></div><div class="line">Foo.method = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 结果: Foo.prototype.method.call(this, arg1, arg2... argN)</span></div><div class="line">    <span class="built_in">Function</span>.call.apply(Foo.prototype.method, <span class="built_in">arguments</span>);</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>上面的 Foo.method 函数和下面代码的效果是一样的:<br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Foo.<span class="built_in">method</span> = function() &#123;</div><div class="line">    <span class="built_in">var</span> <span class="built_in">args</span> = Array.prototype.slice.call(arguments);</div><div class="line">    Foo.prototype.<span class="built_in">method</span>.<span class="built_in">apply</span>(<span class="built_in">args</span>[<span class="number">0</span>], <span class="built_in">args</span>.slice(<span class="number">1</span>));</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h4 id="自动更新"><a href="#自动更新" class="headerlink" title="自动更新"></a>自动更新</h4><p>arguments 对象为其内部属性以及函数形式参数创建 getter 和 setter 方法。</p>
+<p>因此，改变形参的值会影响到 arguments 对象的值，反之亦然。<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function foo(a, b, c) &#123;</div><div class="line">    arguments[<span class="number">0</span>] = <span class="number">2</span>;</div><div class="line">    a; <span class="comment">// 2                                                           </span></div><div class="line"></div><div class="line">    b = <span class="number">4</span>;</div><div class="line">    arguments[<span class="number">1</span>]; <span class="comment">// 4</span></div><div class="line"></div><div class="line">    var d = c;</div><div class="line">    d = <span class="number">9</span>;</div><div class="line">    c; <span class="comment">// 3</span></div><div class="line">&#125;</div><div class="line">foo(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</div></pre></td></tr></table></figure></p>
+<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><p>在构造函数内部 - 也就是被调用的函数内 - this 指向新创建的对象 Object。 这个新创建的对象的 prototype 被指向到构造函数的 prototype。</p>
+<p>如果被调用的函数没有显式的 return 表达式，则隐式的会返回 this 对象 - 也就是新创建的对象</p>
+<h4 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h4><p>为了不使用 new 关键字，构造函数必须显式的返回一个值。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> value = <span class="number">1</span>;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="attr">method</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> value;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">Bar.prototype = &#123;</div><div class="line">    <span class="attr">foo</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">new</span> Bar();</div><div class="line">Bar();</div></pre></td></tr></table></figure></p>
+<p>上面两种对 Bar 函数的调用返回的值完全相同，一个新创建的拥有 method 属性的对象被返回， 其实这里创建了一个闭包。</p>
+<p>还需要注意， new Bar() 并不会改变返回对象的原型（也就是返回对象的原型不会指向 Bar.prototype）。 因为构造函数的原型会被指向到刚刚创建的新对象，而这里的 Bar 没有把这个新对象返回（而是返回了一个包含 method 属性的自定义对象）。</p>
+<p>在上面的例子中，使用或者不使用 new 关键字没有功能性的区别。</p>
+<p>上面两种方式创建的对象不能访问 Bar 原型链上的属性，如下所示：<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">var</span> <span class="keyword">bar1 </span>= new <span class="keyword">Bar();</span></div><div class="line"><span class="symbol">typeof</span>(<span class="keyword">bar1.method); </span>// <span class="string">"function"</span></div><div class="line"><span class="symbol">typeof</span>(<span class="keyword">bar1.foo); </span>// <span class="string">"undefined"</span></div><div class="line"></div><div class="line"><span class="symbol">var</span> <span class="keyword">bar2 </span>= <span class="keyword">Bar();</span></div><div class="line"><span class="symbol">typeof</span>(<span class="keyword">bar2.method); </span>// <span class="string">"function"</span></div><div class="line"><span class="symbol">typeof</span>(<span class="keyword">bar2.foo); </span>// <span class="string">"undefined"</span></div></pre></td></tr></table></figure></p>
+<h3 id="作用域与命名空间"><a href="#作用域与命名空间" class="headerlink" title="作用域与命名空间"></a>作用域与命名空间</h3><h4 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h4><p>JavaScript 中局部变量只可能通过两种方式声明，一个是作为函数参数，另一个是通过 var 关键字声明<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 全局变量</span></div><div class="line"><span class="keyword">var</span> foo = <span class="number">1</span>;</div><div class="line"><span class="keyword">var</span> bar = <span class="number">2</span>;</div><div class="line"><span class="keyword">var</span> i = <span class="number">2</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">i</span>) </span>&#123;</div><div class="line">    <span class="comment">// 函数 test 内的局部作用域</span></div><div class="line">    i = <span class="number">5</span>;</div><div class="line">    <span class="keyword">var</span> foo = <span class="number">3</span>;</div><div class="line">    bar = <span class="number">4</span>;</div><div class="line">   <span class="comment">//i和foo均为test函数的局部变量</span></div><div class="line">&#125;</div><div class="line">test(<span class="number">10</span>);</div></pre></td></tr></table></figure></p>
+<h4 id="名称解析顺序"><a href="#名称解析顺序" class="headerlink" title="名称解析顺序"></a>名称解析顺序</h4><p>比如，当访问函数内的 foo 变量时，JavaScript 会按照下面顺序查找：</p>
+<p>1.当前作用域内是否有 var foo 的定义。<br>2.函数形式参数是否有使用 foo 名称的。<br>3.函数自身是否叫做 foo。<br>4.回溯到上一级作用域，然后从 #1 重新开始。</p>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="数组遍历和属性"><a href="#数组遍历和属性" class="headerlink" title="数组遍历和属性"></a>数组遍历和属性</h3><p>推荐使用<code>for</code>循环而不是<code>for in</code>循环</p>
+<h3 id="Array构造函数"><a href="#Array构造函数" class="headerlink" title="Array构造函数"></a>Array构造函数</h3><p>应该尽量避免使用数组构造函数创建新数组。推荐使用数组的字面语法（即[1,2,3]这种）。它们更加短小和简洁，因此增加了代码的可读性。</p>
+<h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><h3 id="typeof操作符"><a href="#typeof操作符" class="headerlink" title="typeof操作符"></a>typeof操作符</h3><p>为了检测一个对象的类型，强烈推荐使用 Object.prototype.toString 方法； 因为这是唯一一个可依赖的方式typeof 的一些返回值在标准文档中并未定义， 因此不同的引擎实现可能不同。</p>
+<p>除非为了检测一个变量是否已经定义，我们应尽量避免使用 typeof 操作符。<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">is</span>(<span class="params"><span class="keyword">type</span>, obj</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> clas = <span class="built_in">Object</span>.prototype.toString.call(obj).slice(<span class="number">8</span>, <span class="number">-1</span>);</div><div class="line">    <span class="keyword">return</span> obj !== <span class="literal">undefined</span> &amp;&amp; obj !== <span class="literal">null</span> &amp;&amp; clas === <span class="keyword">type</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">is(<span class="string">'String'</span>, <span class="string">'test'</span>); <span class="comment">// true</span></div><div class="line">is(<span class="string">'String'</span>, <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'test'</span>)); <span class="comment">// true</span></div></pre></td></tr></table></figure></p>
+<p>Object.prototype.toString 返回一种标准格式字符串，所以上例可以通过 slice 截取指定位置的字符串，如下所示：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Object</span>.prototype.toString.call([])    <span class="comment">// "[object Array]"</span></div><div class="line"><span class="built_in">Object</span>.prototype.toString.call(&#123;&#125;)    <span class="comment">// "[object Object]"</span></div><div class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="number">2</span>)    <span class="comment">// "[object Number]"</span></div></pre></td></tr></table></figure></p>
+<p>在 ECMAScript 5 中，为了方便，对 null 和 undefined 调用 Object.prototype.toString 方法， 其返回值由 Object 变成了 Null 和 Undefined。</p>
+<h4 id="测试为定义变量"><a href="#测试为定义变量" class="headerlink" title="测试为定义变量"></a>测试为定义变量</h4><p><code>typeof (foo) !== &#39;undefined&#39;</code><br>上面代码会检测 foo 是否已经定义；如果没有定义而直接使用会导致 ReferenceError 的异常。 这是 typeof 唯一有用的地方。</p>
+<h3 id="instanceof操作符"><a href="#instanceof操作符" class="headerlink" title="instanceof操作符"></a>instanceof操作符</h3><p>instanceof 操作符应该仅仅用来比较来自同一个 JavaScript 上下文的自定义对象。 正如 typeof 操作符一样，任何其它的用法都应该是避免的。</p>
+<h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><p>JavaScript 是弱类型语言，所以会在任何可能的情况下应用强制类型转换。<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">new Number(<span class="number">10</span>) === <span class="number">10</span>;     <span class="comment">// False, 对象与数字的比较</span></div><div class="line">Number(<span class="number">10</span>) === <span class="number">10</span>;         <span class="comment">// True, 数字与数字的比较</span></div><div class="line">new Number(<span class="number">10</span>) + <span class="number">0</span> === <span class="number">10</span>; <span class="comment">// True, 由于隐式的类型转换</span></div></pre></td></tr></table></figure></p>
+<ul>
+<li><p>转换为字符串</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">''</span> + <span class="number">10</span> === <span class="string">'10'</span>; <span class="regexp">//</span> <span class="keyword">true</span></div></pre></td></tr></table></figure>
+<p> 将一个值加上空字符串可以轻松转换为字符串类型。</p>
+</li>
+<li><p>转换为数字</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">+<span class="string">'10'</span> === <span class="number">10</span>; <span class="regexp">//</span> <span class="keyword">true</span></div></pre></td></tr></table></figure>
+<p> 使用一元的加号操作符，可以把字符串转换为数字。</p>
+<p> 字符串转换为数字的常用方法：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">+'<span class="number">010</span>' === <span class="number">10</span>;</div><div class="line">Number('<span class="number">010</span>') === <span class="number">10</span>;</div><div class="line">parseInt('<span class="number">010</span>', <span class="number">10</span>) === <span class="number">10</span> ; <span class="comment">// 用来转换为整数</span></div><div class="line"></div><div class="line">+'<span class="number">010.2</span>' === <span class="number">10.2</span>;</div><div class="line">Number('<span class="number">010.2</span>') === <span class="number">10.2</span>;</div><div class="line">parseInt('<span class="number">010.2</span>', <span class="number">10</span>) === <span class="number">10</span>;</div><div class="line"><span class="comment">//以上输出结果均为true</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>转换为布尔型</p>
+<p> 通过使用 否 操作符两次，可以把一个值转换为布尔型。</p>
+<figure class="highlight erlang-repl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">!!<span class="string">'foo'</span>;   // true</div><div class="line">!!<span class="string">''</span>;      // false</div><div class="line">!!<span class="string">'0'</span>;     // true</div><div class="line">!!<span class="string">'1'</span>;     // true</div><div class="line">!!<span class="string">'-1'</span>     // true</div><div class="line">!!&#123;&#125;;      // true</div><div class="line">!!true;    // true</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="核心"><a href="#核心" class="headerlink" title="核心"></a>核心</h2><hr>
+<h3 id="为什么不要使用eval"><a href="#为什么不要使用eval" class="headerlink" title="为什么不要使用eval"></a>为什么不要使用eval</h3><p>eval 函数会在<strong>当前作用域</strong>中执行一段 JavaScript 代码字符串。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> foo = <span class="number">2</span>;</div><div class="line">    <span class="built_in">eval</span>(<span class="string">'foo = 3'</span>);</div><div class="line">    <span class="keyword">return</span> foo;</div><div class="line">&#125;</div><div class="line">test(); <span class="comment">// 3</span></div><div class="line">foo; <span class="comment">// 1</span></div></pre></td></tr></table></figure></p>
+<p><strong>但是</strong> eval 只在被直接调用并且调用函数就是<strong> eval 本身</strong>时，才在当前作用域中执行。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> foo = <span class="number">2</span>;</div><div class="line">    <span class="keyword">var</span> bar = <span class="built_in">eval</span>;</div><div class="line">    bar(<span class="string">'foo = 3'</span>);</div><div class="line">    <span class="keyword">return</span> foo;</div><div class="line">&#125;</div><div class="line">test(); <span class="comment">// 2</span></div><div class="line">foo; <span class="comment">// 3</span></div></pre></td></tr></table></figure></p>
+<h3 id="undefined和null"><a href="#undefined和null" class="headerlink" title="undefined和null"></a>undefined和null</h3><p>下面的情况会返回 undefined 值：  </p>
+<ul>
+<li>访问未修改的全局变量 undefined。</li>
+<li>由于没有定义 return 表达式的函数隐式返回。</li>
+<li>return 表达式没有显式的返回任何内容。</li>
+<li>访问不存在的属性。</li>
+<li>函数参数没有被显式的传递值。</li>
+<li>任何被设置为 undefined 值的变量。</li>
+</ul>
+<p>为了避免可能对 undefined 值的改变，一个常用的技巧是使用一个传递到匿名包装器的额外参数。 在调用时，这个参数不会获取任何值。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> <span class="literal">undefined</span> = <span class="number">123</span>;</div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">something, foo, undefined</span>) </span>&#123;</div><div class="line">    <span class="comment">// 局部作用域里的 undefined 变量重新获得了 `undefined` 值</span></div><div class="line">&#125;)(<span class="string">'Hello World'</span>, <span class="number">42</span>);</div></pre></td></tr></table></figure></p>
+<p>另外一种达到相同目的方法是在函数内使用变量声明。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> <span class="literal">undefined</span> = <span class="number">123</span>;</div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">something, foo</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> <span class="literal">undefined</span>;</div><div class="line">    ...</div><div class="line">&#125;)(<span class="string">'Hello World'</span>, <span class="number">42</span>);</div></pre></td></tr></table></figure></p>
+<p>这里唯一的区别是，在压缩后并且函数内没有其它需要使用 var 声明变量的情况下，这个版本的代码会多出 4 个字节的代码。</p>
+<h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><hr>
+<h3 id="setTImeout和setInternal"><a href="#setTImeout和setInternal" class="headerlink" title="setTImeout和setInternal"></a>setTImeout和setInternal</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line"><span class="keyword">var</span> id = setTimeout(foo, <span class="number">1000</span>); <span class="comment">// 返回一个大于零的数字</span></div></pre></td></tr></table></figure>
+<p>基于 JavaScript 引擎的计时策略，以及本质上的单线程运行方式，所以其它代码的运行可能会阻塞此线程。 因此没法确保函数会在 setTimeout 指定的时刻被调用</p>
+<h4 id="setInterval的堆调用"><a href="#setInterval的堆调用" class="headerlink" title="setInterval的堆调用"></a>setInterval的堆调用</h4><p>setTimeout 只会执行回调函数一次，不过 setInterval - 正如名字建议的 - 会每隔 X 毫秒执行函数一次。 但是却不鼓励使用这个函数。</p>
+<p>当回调函数的执行被阻塞时，setInterval 仍然会发布更多的回调指令。在很小的定时间隔情况下，这会导致回调函数被堆积起来。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="comment">// 阻塞执行 1 秒</span></div><div class="line">&#125;</div><div class="line">setInterval(foo, <span class="number">100</span>);</div></pre></td></tr></table></figure></p>
+<p>上面代码中，foo 会执行一次随后被阻塞了一秒钟。</p>
+<p>在 foo 被阻塞的时候，setInterval 仍然在组织将来对回调函数的调用。 因此，当第一次 foo 函数调用结束时，已经有 10 次函数调用在等待执行。</p>
+<h4 id="处理可能的阻塞调用"><a href="#处理可能的阻塞调用" class="headerlink" title="处理可能的阻塞调用"></a>处理可能的阻塞调用</h4><p>最简单也是最容易控制的方案，是在回调函数内部使用 setTimeout 函数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="comment">// 阻塞执行 1 秒</span></div><div class="line">    setTimeout(foo, <span class="number">100</span>);</div><div class="line">&#125;</div><div class="line">foo();</div></pre></td></tr></table></figure></p>
+<p>这样不仅封装了 setTimeout 回调函数，而且阻止了调用指令的堆积，可以有更多的控制。 foo 函数现在可以控制是否继续执行还是终止执行。</p>
+<h4 id="手工清空定时器"><a href="#手工清空定时器" class="headerlink" title="手工清空定时器"></a>手工清空定时器</h4><p>可以通过将定时时产生的 ID 标识传递给 clearTimeout 或者 clearInterval 函数来清除定时<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var id = setTimeout(<span class="name">foo</span>, <span class="number">1000</span>)<span class="comment">;</span></div><div class="line">clearTimeout(<span class="name">id</span>)<span class="comment">;</span></div></pre></td></tr></table></figure></p>
+<h4 id="隐藏使用-eval"><a href="#隐藏使用-eval" class="headerlink" title="隐藏使用 eval"></a>隐藏使用 eval</h4><p>setTimeout 和 setInterval 也接受第一个参数为字符串的情况。 这个特性绝对不要使用，因为它在内部使用了 eval。</p>
+<p>注意: 由于定时器函数不是 ECMAScript 的标准，如何解析字符串参数在不同的 JavaScript 引擎实现中可能不同。 事实上，微软的 JScript 会使用 Function 构造函数来代替 eval 的使用。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// 将会被调用</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="comment">// 不会被调用</span></div><div class="line">    &#125;</div><div class="line">    setTimeout(<span class="string">'foo()'</span>, <span class="number">1000</span>);</div><div class="line">&#125;</div><div class="line">bar();</div></pre></td></tr></table></figure></p>
+<p>由于 eval 在这种情况下不是被直接调用，因此传递到 setTimeout 的字符串会自全局作用域中执行； 因此，上面的回调函数使用的不是定义在 bar 作用域中的局部变量 foo。</p>
+<p>建议不要在调用定时器函数时，为了向回调函数传递参数而使用字符串的形式。<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function foo(a, b, c) &#123;&#125;</div><div class="line"></div><div class="line"><span class="comment">// 不要这样做</span></div><div class="line">setTimeout('foo(<span class="number">1</span>,<span class="number">2</span>, <span class="number">3</span>)', <span class="number">1000</span>)</div><div class="line"></div><div class="line"><span class="comment">// 可以使用匿名函数完成相同功能</span></div><div class="line">setTimeout(function() &#123;</div><div class="line">    foo(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</div><div class="line">&#125;, <span class="number">1000</span>)</div></pre></td></tr></table></figure></p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/05/13/2016-05-13-jQuery技术内幕读书笔记/" data-toggle="tooltip" data-placement="top" title="jQuery技术内幕读书笔记">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/05/10/2016-05-10-jQuery中的-ready-的实现/" data-toggle="tooltip" data-placement="top" title="jQuery中的$(document).ready()的实现">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#javascript" title="javascript">javascript</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.kaijun.rocks" target="_blank">Kaijun&#39;s Blog</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">Foo</a></li>
+                    
+                        <li><a href="#" target="_blank">Bar</a></li>
+                    
+                        <li><a href="#" target="_blank">Example Friends</a></li>
+                    
+                        <li><a href="#" target="_blank">It helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hexo-theme-huxblog";
+    var disqus_identifier = "http://rubicker.github.io/2016/05/11/2016-05-11-JavaScript秘密花园读书笔记/";
+    var disqus_url = "http://rubicker.github.io/2016/05/11/2016-05-11-JavaScript秘密花园读书笔记/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/Demonbane_x">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/Demonbane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/Demonbane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/demonbane.cn">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Kaijun">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/kaijun-chen-42089354">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Kaijun&#39;s Blog 2016 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://rubicker.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'huangxuan.me';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
