@@ -155,7 +155,7 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('/img/home-bg.jpg')
+        background-image: url('header-bg.png')
     }
 </style>
 <header class="intro-header" >
@@ -246,22 +246,22 @@
 </ul>
 </li>
 <li><p><code>&lt;noscript&gt;</code>元素</p>
-  <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;noscript&gt;</div><div class="line">&lt;p&gt;本页面需要浏览器支持（启用）JavaScript&lt;/p&gt;</div><div class="line">&lt;/noscript&gt;</div><div class="line">//适用于浏览器不支持脚本 或 脚本被禁用 两种情况，正常情况不会显示内容</div></pre></td></tr></table></figure>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">noscript</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>本页面需要浏览器支持（启用）JavaScript<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">noscript</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 适用于浏览器不支持脚本 或 脚本被禁用 两种情况，正常情况不会显示内容 --&gt;</span></div></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="第三章-基本概念"><a href="#第三章-基本概念" class="headerlink" title="第三章 基本概念"></a>第三章 基本概念</h3><h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><hr>
 <ul>
 <li>区分大小写</li>
 <li>标识符<ul>
-<li>第一个字符： 字母或下划线或美元符号$</li>
+<li>第一个字符： 字母/下划线/美元符号$</li>
 <li>其他字符还可以是数字</li>
 <li>惯例：采用驼峰大小写格式</li>
 </ul>
 </li>
 <li><p>注释</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//单行注释</span></div><div class="line"><span class="comment">/*</span></div><div class="line"> * 多行注释</div><div class="line"> *</div><div class="line"> */</div></pre></td></tr></table></figure>
+  <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//单行注释</span></div><div class="line"><span class="comment">/*</span></div><div class="line"> * 多行注释</div><div class="line"> *</div><div class="line"> */</div></pre></td></tr></table></figure>
 </li>
-<li><p>严格模式（strict mode）   </p>
+<li><p>严格模式（<code>strict mode</code>）   </p>
   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">“use strict”; <span class="comment">//在顶部添加将JS引擎切换到严格模式       </span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params"></span>)</span>&#123;</div><div class="line"><span class="meta">"use strict"</span>;<span class="comment">//仅在此函数下使用严格模式</span></div><div class="line"><span class="comment">//函数体</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
@@ -274,22 +274,22 @@
 <ul>
 <li>松散类型（可以用来保存任何类型的数据）</li>
 <li><p>局部变量和全局变量</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</div><div class="line"><span class="keyword">var</span> message=<span class="string">"哈哈"</span>；<span class="comment">//定义局部变量</span></div><div class="line"> &#125;</div><div class="line">test(); <span class="comment">//执行一次函数</span></div><div class="line">alert(message);<span class="comment">//错误 ，若在函数中定义变量时省略var，则定义了全局变量，此处将不会报错</span></div></pre></td></tr></table></figure>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span></span>&#123;</div><div class="line">  <span class="keyword">var</span> message = <span class="string">"哈哈"</span>；<span class="comment">//定义局部变量</span></div><div class="line">&#125;</div><div class="line">test(); <span class="comment">//执行一次函数</span></div><div class="line">alert(message);  <span class="comment">//错误</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>同时定义多个变量，用逗号分隔</p>
- <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> me=<span class="string">"Chinese"</span> ，</div><div class="line">him=“Japanese”，</div><div class="line">you=<span class="string">"Korean"</span>；</div></pre></td></tr></table></figure>
+ <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">var me</span> = <span class="string">'Chinese'</span> ，</div><div class="line">    him = <span class="string">'Japanese'</span>，</div><div class="line">    you = <span class="string">'Korean'</span>;</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><hr>
 <ul>
 <li><p>Undefined</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> message;</div><div class="line">alert(message);<span class="comment">//"undefined"</span></div><div class="line">alert(name);<span class="comment">//抛出错误</span></div><div class="line">alert（<span class="keyword">typeof</span> message）；<span class="comment">//“undefined”</span></div><div class="line">alert（<span class="keyword">typeof</span> name）；<span class="comment">//“undefined”</span></div><div class="line"><span class="comment">//最好的做法是：每当定义一个变量的时候都应当赋予其初始值，这样当typeof操作符显示“undifined”时，我们就知道这个变量未声明</span></div></pre></td></tr></table></figure>
+  <figure class="highlight delphi"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> <span class="keyword">message</span>;</div><div class="line">alert(<span class="keyword">message</span>);<span class="comment">//"undefined"</span></div><div class="line">alert(<span class="keyword">name</span>);<span class="comment">//抛出错误</span></div><div class="line">alert（typeof <span class="keyword">message</span>）；<span class="comment">//“undefined”</span></div><div class="line">alert（typeof <span class="keyword">name</span>）；<span class="comment">//“undefined”</span></div><div class="line"><span class="comment">//最佳实践：每定义一个变量的时候都应当赋予其初始值</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>Null</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> message=<span class="literal">null</span>;</div><div class="line">alert(<span class="keyword">typeof</span> message);<span class="comment">//"object"  null值表示一个空对象指针</span></div><div class="line">alert（<span class="literal">null</span> == <span class="literal">undefined</span>;<span class="comment">//"true" undefined派生自null值</span></div><div class="line"><span class="comment">//另外只要意在保存对象的变量还未真正保存对象，则应赋予其null值：一可体现null作为空对象指针的惯例；二可区分null和undefined</span></div></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> message = <span class="literal">null</span>;</div><div class="line">alert(<span class="keyword">typeof</span> message);<span class="comment">//"object"  null值表示一个空对象指针</span></div><div class="line">alert(<span class="literal">null</span> == <span class="literal">undefined</span>);<span class="comment">//"true" undefined派生自null值</span></div><div class="line"><span class="comment">//最佳实践：初始化一个对象的时候赋予其值为null</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>Boolean</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//字面值有true和false两个（注意区分大小写）</span></div><div class="line"><span class="comment">//转型函数Boolean()可以将一个值转换为对应的布尔值</span></div><div class="line"><span class="comment">//转换成false的有：空字符串，0和NaN，null，undefined</span></div><div class="line"><span class="comment">//流控制语句会自动执行转换，如下：</span></div><div class="line"><span class="keyword">var</span> name=<span class="string">"zhang san"</span>;</div><div class="line"><span class="keyword">if</span>(name)&#123;</div><div class="line">alert(<span class="string">"yes"</span>);  <span class="comment">// "yes"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//字面值有true和false两个（注意区分大小写）</span></div><div class="line"><span class="comment">//转型函数Boolean()可以将一个值转换为对应的布尔值</span></div><div class="line"><span class="comment">//转换成false的有：空字符串，0和NaN，null，undefined</span></div><div class="line"><span class="comment">//流控制语句会自动执行转换，如下：</span></div><div class="line"><span class="keyword">var</span> name = <span class="string">"zhang san"</span>;</div><div class="line">  <span class="keyword">if</span>(name)&#123;</div><div class="line">    alert(<span class="string">"yes"</span>);  <span class="comment">// "yes"</span></div><div class="line">  &#125;</div></pre></td></tr></table></figure>
 </li>
 <li><p>Number</p>
 <ul>
@@ -325,11 +325,10 @@
 <ul>
 <li>双引号和单引号都ok</li>
 <li>ECMAScript中字符串一旦创建则值不能改变，故要赋予一个变量新的字符串值，则需要将原来的销毁，再用新的填充</li>
-<li><p><code>toString（）</code></p>
-<p>除了null和undefined值之外都有<code>toString（）</code>方法</p>
+<li><p><code>toString()</code><br>除了null和undefined值之外都有<code>toString()</code>方法</p>
 <p>调用数值的时候可以传入转换进制数的参数，如下：(不传参默认十进制)</p>
-<p>还有<code>String()</code>方法，相当于对<code>toString（）</code>方法的扩展，在null和undefined值时返回“null”和“undefined”</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> num=<span class="number">10</span>；</div><div class="line">alert（num.toString(<span class="number">8</span>)）;<span class="comment">//  "12"</span></div></pre></td></tr></table></figure>
+<p>还有<code>String()</code>方法，相当于对<code>toString()</code>方法的扩展，在对null和undefined使用时返回<code>null</code>和<code>undefined</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> num = <span class="number">10</span>；</div><div class="line">alert(num.toString(<span class="number">8</span>));<span class="comment">//  "12"</span></div></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -348,7 +347,7 @@
 <p>前置时先进行加减再求值，后置则是先求值再加减</p>
 </li>
 <li><p>一元加和减操作符（+ 和 -）</p>
-<p>对非数值操作时会先用Number（）进行转换</p>
+<p>对非数值操作时会先用<code>Number()</code>进行转换</p>
 </li>
 </ul>
 </li>
@@ -358,53 +357,53 @@
 <p> 有符号整数中，32位中的前31位用于表示整数的值，第32位表示数值符号（0 正 1 负）</p>
 <p> 正数以纯二进制存储；</p>
 <p> 负数使用二进制补码存储：1.求该数值绝对值的二进制码；2.反码并加1</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> num= - <span class="number">8</span>;</div><div class="line">alert(num.toString(<span class="number">2</span>));   <span class="comment">//  "-1000"     更合乎逻辑的形式</span></div></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> num = <span class="number">-8</span>;</div><div class="line">alert(num.toString(<span class="number">2</span>));   <span class="comment">//  "-1000"</span></div></pre></td></tr></table></figure>
 <p> 对NaN和Infinity值应用位操作符时，都会被当成0处理</p>
 <ul>
-<li><p>按位非  ～</p>
+<li><p>按位非<code>~</code></p>
 <p>结果就是返回数值的反码，实质是操作数负值再减一</p>
 </li>
-<li><p>按位与  &amp;</p>
+<li><p>按位与<code>&amp;</code></p>
 <p>将二进制码对齐，对应位均为1时返回1，其余均为0      </p>
 </li>
-<li><p>按位或  |</p>
+<li><p>按位或<code>|</code></p>
 <p>只要对齐位有1则返回1，只有均为0时才返回0  </p>
 </li>
-<li><p>按位异或  ^</p>
+<li><p>按位异或<code>^</code></p>
 <p>对齐位上只有一个1时返回1，其余情况均返回0       </p>
 </li>
-<li><p>左移 &lt;&lt;</p>
+<li><p>左移<code>&lt;&lt;</code></p>
 <p>会将数值的所有位向左移动（符号位不受影响），空出来的位用0补      </p>
 </li>
-<li><p>有符号右移 &gt;&gt;</p>
+<li><p>有符号右移<code>&gt;&gt;</code></p>
 <p>将数值向右移动（符号位不受影响），空出来的位用0补</p>
 </li>
-<li><p>无符号右移 &gt;&gt;&gt;</p>
+<li><p>无符号右移<code>&gt;&gt;&gt;</code></p>
 <p>符号位受影响        </p>
 </li>
 </ul>
 </li>
 <li><p>布尔操作符</p>
 <ul>
-<li><p>逻辑非  ！</p>
-<p>同时使用两个逻辑非，即！！，相当于模拟<code>Boolean()</code>的行为</p>
+<li><p>逻辑非<code>!</code></p>
+<p>同时使用两个逻辑非，即<code>!!</code>，相当于模拟<code>Boolean()</code>的行为</p>
 </li>
-<li><p>逻辑与 &amp;&amp;</p>
+<li><p>逻辑与<code>&amp;&amp;</code></p>
 <p>不一定返回布尔值（具体见规则）</p>
 <p>属于短路操作，即第一个操作数能决定结果则不会对第二个操作数求值</p>
 </li>
-<li><p>逻辑或 ||</p>
+<li><p>逻辑或<code>||</code></p>
 <p>不一定返回布尔值</p>
 <p>属于短路操作</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> myObject=preferredObject || backupObject ;   </div><div class="line"><span class="comment">//如果pO中值不是null,那么它将被赋给mO；反之则将bO赋给mO</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> myObject = preferredObject || backupObject ;   </div><div class="line"><span class="comment">//如果pO中值不是null,那么它将被赋给mO；反之则将bO赋给mO</span></div></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
 <li><p>乘性操作符</p>
 <ul>
-<li>乘法    *</li>
-<li>除法  /</li>
-<li>求模  %  </li>
+<li>乘法<code>*</code></li>
+<li>除法<code>/</code></li>
+<li>求模<code>%</code>  </li>
 </ul>
 </li>
 </ul>
@@ -416,18 +415,18 @@
 <p> 比较字符串时，会转化为字符编码进行比较</p>
 </li>
 <li><p>相等操作符</p>
-<p> ==  先转换再比较</p>
-<p> ===  只比较不转换</p>
+<p> <code>==</code>  先转换再比较</p>
+<p> <code>===</code>  只比较不转换</p>
 </li>
 <li><p>条件操作符</p>
 <p> 即三目运算符</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> max=(num1&gt;num2)？num1：num2 ；</div><div class="line"><span class="comment">//若num1大于num2，则将num1赋给num，反之将num2赋给num</span></div></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> max = (num1&gt;num2)?num1:num2;</div><div class="line"><span class="comment">//若num1大于num2，则将num1赋给num，反之将num2赋给num</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>赋值操作符</p>
   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">num+=<span class="number">1</span>；<span class="comment">//类似于num=num+1；</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>逗号操作符</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> num=（<span class="number">5</span>，<span class="number">4</span>，<span class="number">3</span>，<span class="number">2</span>，<span class="number">1</span>）；<span class="comment">//num的值为1</span></div></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> num = (<span class="number">5</span>，<span class="number">4</span>，<span class="number">3</span>，<span class="number">2</span>，<span class="number">1</span>)；<span class="comment">//num的值为1</span></div></pre></td></tr></table></figure>
 <p> 用于声明多个变量，以及赋值（如上）</p>
 </li>
 </ul>
@@ -450,20 +449,20 @@
   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>（<span class="keyword">var</span> propName <span class="keyword">in</span> <span class="built_in">window</span>）&#123;</div><div class="line"><span class="built_in">document</span>.write(propName);     </div><div class="line"> &#125;</div><div class="line"><span class="comment">//每个循环将window对象中的某个属性赋给propName，直到所有属性都枚举完毕。</span></div></pre></td></tr></table></figure>
 <p> 若要迭代的对象为null或undefined，for-in会抛出错误；</p>
 <p> ECMAScript5更正了该行为，不抛出错误，而是停止执行循环体。</p>
-<p> 故建议为保证兼容性，使用该循环前线检测对象是否是null或undefined</p>
+<p> 故建议为保证兼容性，使用该循环前首先检测对象是否是null或undefined</p>
 </li>
 <li><p>label语句</p>
-<p> lable：statement</p>
+<p> <code>lable：statement</code></p>
 <p> 在代码中添加标签以便将来使用，一般是和for语句等循环语句使用（break或者continue调用）</p>
 </li>
 <li><p>break和continue语句</p>
 <p> break会立即跳出循环，直接执行循环后面的语句；</p>
 <p> continue只是跳出本层循环，然后从循环顶部继续执行。</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//lable语句与break/continue语句的结合</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> num=<span class="number">0</span>;</div><div class="line">outermost:</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i =<span class="number">0</span> ; i&lt;<span class="number">10</span> ;i++)&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">var</span>  j=<span class="number">0</span>;j&lt;<span class="number">10</span>;j++)&#123;</div><div class="line">             <span class="keyword">if</span>(i==<span class="number">5</span> &amp;&amp; j==<span class="number">5</span>)&#123;</div><div class="line">              <span class="keyword">break</span> outermost;</div><div class="line">              &#125;</div><div class="line">              num++;</div><div class="line">          &#125;</div><div class="line"></div><div class="line"> &#125;</div><div class="line"> alert(num);  <span class="comment">//55,若为continue outermost 则为95</span></div></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//lable语句与break/continue语句的结合</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> num = <span class="number">0</span>;</div><div class="line">outermost:</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> j = <span class="number">0</span>;j &lt; <span class="number">10</span>;j++)&#123;</div><div class="line">    <span class="keyword">if</span>(i == <span class="number">5</span> &amp;&amp; j == <span class="number">5</span>)&#123;</div><div class="line">      <span class="keyword">break</span> outermost;</div><div class="line">    &#125;</div><div class="line">    num++;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">alert(num);  <span class="comment">//55,若为continue outermost 则为95</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>with语句</p>
 <p> with语句的作用是将代码的作用域设置到一个特定的对象中（简化多次编写同一个对象的工作）</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> qs = location.search.substring(<span class="number">1</span>);</div><div class="line"><span class="keyword">var</span> hostName = location.hostname;</div><div class="line"><span class="keyword">var</span> url = location.href;</div><div class="line"></div><div class="line"><span class="comment">//以上可以简化为：</span></div><div class="line"></div><div class="line"><span class="keyword">with</span>(location)&#123;</div><div class="line"><span class="keyword">var</span> qs = search.substring(<span class="number">1</span>);</div><div class="line"><span class="keyword">var</span> hostName = hostname;</div><div class="line"><span class="keyword">var</span> url = href;</div><div class="line"> &#125;</div><div class="line"><span class="comment">//在with语句内部，每个变量首先被认为是局部变量，</span></div><div class="line"><span class="comment">//而如果在局部环境中找不到该变量的定义，</span></div><div class="line"><span class="comment">//就会查询location对象中是否有同名属性，</span></div><div class="line"><span class="comment">//若发现了同名属性则将location对象属性的值作为变量的值</span></div></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> qs = location.search.substring(<span class="number">1</span>);</div><div class="line"><span class="keyword">var</span> hostName = location.hostname;</div><div class="line"><span class="keyword">var</span> url = location.href;</div><div class="line"></div><div class="line"><span class="comment">//以上可以简化为：</span></div><div class="line"></div><div class="line"><span class="keyword">with</span>(location)&#123;</div><div class="line">  <span class="keyword">var</span> qs = search.substring(<span class="number">1</span>);</div><div class="line">  <span class="keyword">var</span> hostName = hostname;</div><div class="line">  <span class="keyword">var</span> url = href;</div><div class="line">&#125;</div><div class="line"><span class="comment">//在with语句内部，每个变量首先被认为是局部变量，</span></div><div class="line"><span class="comment">//而如果在局部环境中找不到该变量的定义，</span></div><div class="line"><span class="comment">//就会查询location对象中是否有同名属性，</span></div><div class="line"><span class="comment">//若发现了同名属性则将location对象属性的值作为变量的值</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>switch 语句</p>
 <p> switch语句在比较值时使用全等操作符</p>
@@ -505,7 +504,7 @@
 </ul>
 <h3 id="第四章-变量，作用域和内存问题"><a href="#第四章-变量，作用域和内存问题" class="headerlink" title="第四章 变量，作用域和内存问题"></a>第四章 变量，作用域和内存问题</h3><h4 id="基本类型和引用类型的值"><a href="#基本类型和引用类型的值" class="headerlink" title="基本类型和引用类型的值"></a>基本类型和引用类型的值</h4><hr>
 <p>   基本类型值：Undefined，Null，Boolean，Number和String， 按值访问。</p>
-<p>   引用类型值：保存在内存中的对象（JS不允许直接访问内存中的位置），按引用访问。当复制保存着对象的某个变量时，操作的是对象的引用；但是在为对象添加属性时，操作的是实际对象。</p>
+<p>   引用类型值：保存在内存中的对象（JS不允许直接访问内存中的位置），按引用访问。当复制保存着对象的某个变量时，操作的是对象的引用；<u>但是在为对象添加属性时，操作的是实际对象。</u></p>
 <p>  当我们需要访问引用类型（如对象，数组，函数等）的值时，首先从栈中获得该对象的地址指针，然后再从堆内存中取得所需的数据。</p>
 <ul>
 <li><p>动态添加属性</p>
@@ -518,7 +517,7 @@
 </li>
 <li><p>引用类型值变量的复制</p>
 <p>虽然也是副本，但该副本是一个指针，这个指针指向存储在堆中的一个对象</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj1= <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line"><span class="keyword">var</span> obj2=obj1;</div><div class="line">obj1.name=<span class="string">"one time"</span>;</div><div class="line">alert(obj2.name);  <span class="comment">// "one time"</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj1 = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line"><span class="keyword">var</span> obj2 = obj1;</div><div class="line">obj1.name = <span class="string">"one time"</span>;</div><div class="line">alert(obj2.name);  <span class="comment">// "one time"</span></div></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -526,7 +525,7 @@
 <p> 向参数传递基本类型值时，被传递的值会被复制给一个局部变量-即命名参数（arguement中的一个元素）</p>
 <p> 向参数传递引用类型值时，会把这个值在内存中的地址（即指针）复制一份给一个局部变量</p>
 <p> 访问变量可以按值访问和按引用访问，而参数只能按值传递。</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomrthing</span>(<span class="params">obj</span>)</span>&#123;</div><div class="line">            obj.name=<span class="string">"王二"</span>；</div><div class="line">            obj=<span class="keyword">new</span> <span class="built_in">Object</span>;</div><div class="line">             obj.name=<span class="string">"张三"</span>；</div><div class="line"> &#125;</div><div class="line"> <span class="keyword">var</span> obj1=<span class="keyword">new</span> <span class="built_in">Object</span>（）；</div><div class="line"> doSomething（obj1）；</div><div class="line">  alert（obj1.name）；  <span class="comment">//  "王二"</span></div></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomrthing</span>(<span class="params">obj</span>)</span>&#123;</div><div class="line">  obj.name = <span class="string">"王二"</span>;</div><div class="line">  obj = <span class="keyword">new</span> <span class="built_in">Object</span>;</div><div class="line">  obj.name = <span class="string">"张三"</span>;</div><div class="line"> &#125;</div><div class="line"> <span class="keyword">var</span> obj1 = <span class="keyword">new</span> <span class="built_in">Object</span>()；</div><div class="line"> doSomething(obj1);</div><div class="line"> alert(obj1.name); <span class="comment">// "王二"</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>检测类型</p>
 <p> instanceof</p>
@@ -574,7 +573,7 @@
 <p> 跟踪记录每个值被引用的次数，当该值引用次数变为0时，则可以将其内存空间回收。</p>
 <ul>
 <li><p>循环引用</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">problem</span>(<span class="params"></span>)</span>&#123;</div><div class="line"><span class="keyword">var</span> objA=<span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line"><span class="keyword">var</span> objB=<span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">objA.someThing=objB;</div><div class="line">objB.otherThing=objA;</div><div class="line"> &#125;</div><div class="line"><span class="comment">//引用次数永远不能为0   ？？？</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">problem</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> objA = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">  <span class="keyword">var</span> objB = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">  objA.someThing = objB;</div><div class="line">  objB.otherThing = objA;</div><div class="line">&#125;</div><div class="line"><span class="comment">//引用次数永远不能为0   ？？？</span></div></pre></td></tr></table></figure>
 <p>IE中有一部分对象并不是原生js对象，比如其BOM和DOM中的对象就是使用C++以COM对象的形式实现的，而COM对象的垃圾收集机制采用的就是引用计数策略</p>
 <p>可以使用代码将其设置为null清除引用</p>
 </li>
@@ -586,10 +585,10 @@
 <li><p>如何创建Object实例</p>
 <ul>
 <li><p>使用new操作符</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>（）；</div><div class="line">person.name = <span class="string">"王二"</span>；</div><div class="line">person.sex = <span class="string">"男"</span>；</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>()；</div><div class="line">person.name = <span class="string">"王二"</span>；</div><div class="line">person.sex = <span class="string">"男"</span>；</div></pre></td></tr></table></figure>
 </li>
 <li><p>使用对象字面量</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person = &#123;</div><div class="line">name：<span class="string">"王二"</span>，</div><div class="line">sex：<span class="string">"男"</span>   <span class="comment">// 最后一个属性不能添加逗号  </span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person = &#123;</div><div class="line">  name：<span class="string">"王二"</span>，</div><div class="line">  sex：<span class="string">"男"</span>   <span class="comment">// 最后一个属性不能添加逗号  </span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -604,10 +603,10 @@
 <li><p>使用方括号表示法的好处：</p>
 <ul>
 <li><p>可以通过变量来访问属性</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> propertyName=<span class="string">"name"</span>;</div><div class="line">alert(person[peopertyName]);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> propertyName = <span class="string">"name"</span>;</div><div class="line">alert(person[peopertyName]);</div></pre></td></tr></table></figure>
 </li>
 <li><p>若属性名中包含会导致语法错误的字符或者属性名是关键字或者保留字，可以使用方括号表示法</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">person[<span class="string">"first name"</span>]=<span class="string">"二"</span>；</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">person[<span class="string">"first name"</span>] = <span class="string">"二"</span>；</div></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -624,72 +623,62 @@
 <li><p>如何创建数组？</p>
 <ul>
 <li><p>使用Array构造函数</p>
-<pre><code>var numbers = new Array();
-var colors = new Array(5);   //传入数量，指定数组的长度，即length的值
-var names = new Array（“Tom”，“Jack”）；//直接传入值
-var values = Array（）；//可以省略new操作符
-</code></pre></li>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> numbers = <span class="keyword">new</span> <span class="built_in">Array</span>();</div><div class="line"><span class="keyword">var</span> colors = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">5</span>);   <span class="comment">//传入数量，指定数组的长度，即length的值</span></div><div class="line"><span class="keyword">var</span> names = <span class="keyword">new</span> <span class="built_in">Array</span>（“Tom”，“Jack”）；<span class="comment">//直接传入值</span></div><div class="line"><span class="keyword">var</span> values = <span class="built_in">Array</span>（）；<span class="comment">//可以省略new操作符</span></div></pre></td></tr></table></figure>
+</li>
 <li><p>使用数组字面量表示法</p>
-<pre><code>var names = [&quot;Jack&quot;,&quot;Tom&quot;,&quot;Jerry&quot;];
-</code></pre></li>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">var names</span> = [<span class="string">"Jack"</span>,<span class="string">"Tom"</span>,<span class="string">"Jerry"</span>];</div></pre></td></tr></table></figure>
+</li>
 </ul>
 </li>
 <li><p>读取和设置数组</p>
 <ul>
 <li><p>使用方括号表示法</p>
-<pre><code>var colors = [&quot;red&quot;,&quot;green&quot;,&quot;blue&quot;];
-alert(colors[2]);  //  &quot;blue&quot;
-</code></pre></li>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var colors = [<span class="string">"red"</span>,<span class="string">"green"</span>,<span class="string">"blue"</span>];</div><div class="line">alert(colors[<span class="number">2</span>]);  //  <span class="string">"blue"</span></div></pre></td></tr></table></figure>
+</li>
 <li><p>神奇的length属性</p>
-<p>  不是只读的！！</p>
-<p>  通过设置它的值，可以从数组末尾移除或者添加项</p>
+<p>  不是只读的！！<br>  通过设置它的值，可以从数组末尾移除或者添加项</p>
+</li>
+</ul>
+</li>
+</ul>
 <ul>
 <li><p>检测数组</p>
-<p>if(value instanceof Array){</p>
-<pre><code>//do something
-</code></pre><p>}<br>// 假定只有一个全局执行环境</p>
-<p>if(Array.isArray(value)){</p>
-<pre><code>//do something
-</code></pre><p>}<br>//不论在哪一个全局执行环境中创建都可以判断是不是数组</p>
+ <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">if</span><span class="params">(value instanceof Array)</span></span>&#123;</div><div class="line">      <span class="comment">//do something</span></div><div class="line">&#125;</div><div class="line"><span class="comment">// 假定只有一个全局执行环境</span></div><div class="line"></div><div class="line"><span class="function"><span class="title">if</span><span class="params">(Array.isArray(value)</span></span>)&#123;</div><div class="line">     <span class="comment">//do something</span></div><div class="line">&#125;</div><div class="line"><span class="comment">//不论在哪一个全局执行环境中创建都可以判断是不是数组</span></div></pre></td></tr></table></figure>
+  <figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//终极判断<span class="keyword">Array</span>的方法</div><div class="line"><span class="keyword">function</span> <span class="title">isArray</span>(obj) &#123;  </div><div class="line">  <span class="keyword">return</span> <span class="type">Object.prototype.toString.call(obj)</span> === '[object <span class="keyword">Array</span>]';   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>ECMA-262中写道:<br>Object.prototype.toString( ) When the toString method is called, the following steps are taken:<br>1.Get the [[Class]] property of this object.<br>2.Compute a string value by concatenating the three strings “[object “, Result (1), and “]”.<br>3.Return Result (2)<br>new Array([ item0[, item1 [,…]]])<br>The [[Class]] property of the newly constructed object is set to “Array”.<br><a href="http://www.nowamagic.net/librarys/veda/detail/1250" target="_blank" rel="external">js如何判断一个对象是不是Array？</a></p>
+</blockquote>
 </li>
 <li><p>转换方法</p>
-</li>
-<li><p>toLocaleString（），toString（），valueOf()</p>
-<p>调用toString（）会返回由数组中的每个值的字符串形式拼接而成的一个以逗号分隔的字符串</p>
-<p>调用valueOf（）返回的还是数组</p>
-<p>alert（）要接收字符串参数，所以他会在后台调用toString（）方法</p>
-</li>
-<li><p>join()方法</p>
-<p>接收一个参数，用作分隔符的字符串</p>
-<p>   var colors=[“blue”,”green”,”red”];<br>   alert(colors.join(“|”));    //    blue | green | red</p>
-<p>不传值或者传undefined，则使用逗号分隔</p>
-</li>
-<li>栈方法</li>
-</ul>
-<p>LIFO（Last In First Out）后进后出</p>
 <ul>
-<li><p><code>push()</code></p>
-<p>接收任意数量的参数添加到数组末尾，并返回修改后数组的长度</p>
+<li><p><code>toLocaleString()</code>，<code>toString()</code>，<code>valueOf()</code></p>
+<p>  调用<code>toString()</code>会返回由数组中的每个值的字符串形式拼接而成的一个以逗号分隔的字符串</p>
+<p>  调用<code>valueOf()</code>返回的还是数组</p>
+<p>  <code>alert()</code>要接收字符串参数，所以他会在后台调用<code>toString()</code>方法</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/cct418/article/details/50889987" target="_blank" rel="external">JavaScript的toString()和valueOf()区别到底是什么</a><br>  <a href="http://www.jb51.net/article/34843.htm" target="_blank" rel="external">Javascript中valueOf与toString区别浅析</a></p>
+</blockquote>
 </li>
-<li><p><code>pop()</code></p>
-<p>从数组末尾移除最后一项，并返回移除的项</p>
+<li><p><code>join()</code>方法</p>
+<p>  接收一个用作分隔符的字符串参数，返回一个字符串</p>
+  <figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> colors=[<span class="string">"blue"</span>,<span class="string">"green"</span>,<span class="string">"red"</span>];</div><div class="line">alert(colors.<span class="keyword">join</span>(<span class="string">"|"</span>));    <span class="comment">//    blue | green | red</span></div></pre></td></tr></table></figure>
+<p>  不传值或者传undefined，则使用逗号分隔</p>
 </li>
 </ul>
 </li>
-</ul>
-</li>
-</ul>
+<li>栈方法<br>  LIFO（Last In First Out）后进后出</li>
+<li><p>队列方法<br>  FIFO（First In First Out）先进先出</p>
 <ul>
-<li><p>队列方法</p>
-<p>  FIFO（First In First Out）先进先出</p>
-<ul>
-<li><p><code>shift（）</code></p>
-<p>  移除数组中的一个项 ，并返回该项</p>
-<ul>
-<li><p><code>unshift（）</code></p>
-<p>能在数组前段添加任意多个参数并返回修改后的长度</p>
+<li><p><code>shift()</code><br>移除数组中的第一个项 ，并返回该项</p>
+</li>
+<li><p><code>push()</code><br> 接收任意数量的参数添加到数组末尾，并返回修改后数组的长度</p>
 </li>
 </ul>
+<p>反向模拟队列</p>
+<ul>
+<li><p><code>unshift()</code><br> 能在数组前段添加任意多个参数并返回修改后的长度</p>
+</li>
+<li><p><code>pop()</code><br> 从数组末尾移除最后一项，并返回移除的项</p>
 </li>
 </ul>
 </li>
@@ -698,27 +687,24 @@ alert(colors[2]);  //  &quot;blue&quot;
 <li><p><code>reverse()</code></p>
 <p>   反转数组项的顺序</p>
 </li>
-<li><p><code>sort（）</code></p>
-<p>   默认情况下，会调用每个数组项的toString（）方法，然后比较字符串结果按照升序排列数组</p>
+<li><p><code>sort()</code></p>
+<p>   默认情况下，会调用每个数组项的<code>toString()</code>方法，然后比较字符串结果按照升序排列数组</p>
 <p>   默认情况一般不符合预期，可以向数组中传入比较函数名，按照该函数的规则排序</p>
+   <figure class="highlight ceylon"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//按照从小到大排序</span></div><div class="line"><span class="keyword">function</span> compare(<span class="keyword">value</span><span class="number">1</span>,<span class="keyword">value</span><span class="number">2</span>)&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">value</span><span class="number">1</span>-<span class="keyword">value</span><span class="number">2</span>;</div><div class="line">&#125;</div><div class="line">var arr = [<span class="number">5</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>];</div><div class="line">console.log(arr.sort(compare));<span class="comment">//[]</span></div></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
 <li><p>操作方法</p>
 <ul>
-<li><p><code>concat（）</code></p>
-<p>   创建一个数组副本，并将接收到的参数添加到该副本的末尾</p>
+<li><p><code>concat()</code></p>
+<p>创建一个数组副本，并将接收到的参数添加到该副本的末尾</p>
 </li>
-</ul>
-<ul>
-<li><p><code>slice（）</code></p>
-<pre><code>接收两个参数，起始位置和结束位置（如果只有一个参数，则默认从开始位置一直到数组末尾）
-
-然后创建一份该范围内的数组副本
-
-如果参数中有负数，则用数组长度加上该数来确定位置；若结束位置小于起始位置或者仍然为负数，则返回空数组
-</code></pre><ul>
-<li><p><code>splice（）</code>     </p>
+<li><p><code>slice()</code></p>
+<p>接收两个参数，起始位置和结束位置（如果只有一个参数，则默认从开始位置一直到数组末尾）</p>
+<p>然后创建一份该范围内的数组副本</p>
+<p>如果参数中有负数，则用数组长度加上该数来确定位置；若结束位置小于起始位置或者仍然为负数，则返回空数组</p>
+</li>
+<li><p><code>splice()</code><br>返回副本</p>
 <ul>
 <li>删除  指定两个参数：要删除的第一项的位置和要删的项数</li>
 <li>替换（插入）   指定三个参数：起始位置，要删除的项数，要插入的项</li>
@@ -726,56 +712,45 @@ alert(colors[2]);  //  &quot;blue&quot;
 </li>
 </ul>
 </li>
-</ul>
-</li>
-<li><p>位置方法</p>
+<li><p>位置方法<br>这两种方法在查找比较的时候使用的是<u>全等操作符</u></p>
 <ul>
-<li><p><code>indexOf（）</code></p>
-<pre><code>接收两个参数，要查找的项和查找起点位置（可选），从头到尾顺序查找；
-
-返回查找的项在数组中的位置，没有的话返回-1；
-
-在比较的一个参数和数组中的每一个项的时候使用的是全等操作符
-</code></pre></li>
+<li><p><code>indexOf()</code></p>
+<p>接收两个参数，要查找的项和查找起点位置（可选），从头到尾顺序查找；</p>
+<p>返回查找的项在数组中的位置，没有的话返回-1；</p>
+</li>
 <li><p><code>lastIndexOf（）</code></p>
-<pre><code>与上面的方法相似，只是查找顺序是从尾到头
-</code></pre></li>
+<p>与上面的方法相似，只是查找顺序是从尾到头</p>
+</li>
 </ul>
 </li>
-<li><p>迭代方法</p>
+<li><p>迭代方法<br>函数参数有三个<code>item</code>,<code>index</code>,<code>array</code></p>
 <ul>
-<li><p><code>every（）</code></p>
-<pre><code>对数组中每一项都运行给定函数，若每一项都返回true，则返回true
-</code></pre></li>
-<li><p><code>some（）</code></p>
-<pre><code>对数组中每一项都运行给定函数，只要有一项返回true，则返回true
-</code></pre></li>
-<li><p><code>filter（）</code></p>
-<pre><code>对数组中每一项都运行给定函数，返回该函数会返回true的项组成的数组
-</code></pre></li>
-<li><p><code>forEach（）</code></p>
-<pre><code>对数组中每一项都运行给定函数，无返回值
-</code></pre></li>
-<li><p>`</p>
+<li><p><code>every()</code></p>
+<p>对数组中每一项都运行给定函数，若每一项都返回true，则返回true</p>
 </li>
-<li><p>（）`</p>
-<pre><code>对数组中每一项运行给定函数，返回每次函数调用结果组成的数组
-</code></pre></li>
+<li><p><code>some()</code></p>
+<p>对数组中每一项都运行给定函数，只要有一项返回true，则返回true</p>
+</li>
+<li><p><code>filter()</code></p>
+<p>对数组中每一项都运行给定函数，返回该函数会返回true的项组成的数组</p>
+</li>
+<li><p><code>forEach()</code></p>
+<p>对数组中每一项都运行给定函数，无返回值</p>
+</li>
+<li><p><code>map()</code></p>
+<p>对数组中每一项运行给定函数，返回每次函数调用结果组成的数组</p>
+</li>
 </ul>
 </li>
 <li><p>归并方法</p>
 <ul>
 <li><p><code>reduce()</code></p>
-<pre><code>从数组第一项开始，逐个遍历
-
-接收两个参数，在每一项调用的函数和作为归并基础的初始值；
-
-作为调用函数，接收四个参数，前一个值，当前值，项的索引和数组对象，这个函数返回的任何值都会作为的一个参数传给下一项
-</code></pre><ul>
-<li><p><code>reduceRight（）</code></p>
-<p>   与上类似，方向从末尾开始遍历</p>
+<p>从数组第一项开始，逐个遍历</p>
+<p>接收两个参数，在每一项调用的函数和作为归并基础的初始值；</p>
+<p>作为调用函数，接收四个参数，前一个值，当前值，项的索引和数组对象，这个函数返回的任何值都会作为的一个参数传给下一项</p>
 </li>
-</ul>
+<li><p><code>reduceRigh()</code></p>
+<p>与上类似，方向从末尾开始遍历</p>
 </li>
 </ul>
 </li>
@@ -784,132 +759,94 @@ alert(colors[2]);  //  &quot;blue&quot;
 <p>ECMAScript中的Date类型是在早期Java中的java.util.Date类基础上创建的，所以Date类型使用自UTC（国际协调时间）1970年1月1日午夜（零时）开始经过的毫秒数来保存日期，可精确到1970年1月1日之前或之后的一亿年。</p>
 <ul>
 <li><p>如何创建Date对象</p>
-<pre><code>var now = new Date();
-/*不传参则自动获得当前日期和时间
- *若想传入参数，必须是毫秒数（从UTC1970年1月1日至该日期止经过的毫秒数）
-</code></pre></li>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> now = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line"><span class="comment">/*</span></div><div class="line">不传参则自动获得当前日期和时间</div><div class="line">若想传入参数，必须是毫秒数（从UTC1970年1月1日至该日期止经过的毫秒数）</div><div class="line">*/</div></pre></td></tr></table></figure>
+</li>
 <li><p><code>Date.parse()</code></p>
-<p>  可以将日期转化为毫秒数</p>
-<p>  若传入的字符串不能表示日期会返回NaN</p>
-<pre><code>var someDate=new Date(&quot;May 25,2011&quot;);
-//直接将表示日期的字符串传给Date构造函数，会在后台调用Date.parse（）
-</code></pre></li>
+<p>可以将日期转化为毫秒数</p>
+<p>若传入的字符串不能表示日期会返回NaN</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> someDate = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">"May 25,2011"</span>);</div><div class="line"><span class="comment">//直接将表示日期的字符串传给Date构造函数，会在后台调用Date.parse()</span></div></pre></td></tr></table></figure>
+</li>
 <li><p><code>Date.UTC()</code></p>
 <p>  同样返回毫秒数</p>
 <p>  参数：年份，基于0的月份（一月份是0），月中的哪一天（1-31），小时数（0-23），分钟，秒和毫秒数</p>
-<pre><code>+ 只有年份和月份是必须的，若没有提供月中天数，则假设天数为1；若省略其他参数，则全部设为0
-</code></pre><p>  也可以按照这个格式传入构造函数中，在后台自动调用<code>Date.UTC()</code></p>
+<p>  只有年份和月份是必须的，若没有提供月中天数，则假设天数为1；若省略其他参数，则全部设为0</p>
+<p>  也可以按照这个格式传入构造函数中，在后台自动调用<code>Date.UTC()</code></p>
 </li>
 <li><p>方法</p>
 <ul>
 <li><p><code>toLocaleString（）</code></p>
-<p>   返回与设置的地区相适应格式的日期和时间，包含AM或PM，但不包含地区信息</p>
+<p>返回与设置的地区相适应格式的日期和时间，包含AM或PM，但不包含地区信息</p>
 </li>
-</ul>
-<ul>
 <li><p><code>toString（）</code></p>
-<pre><code>返回带有时区信息的日期和时间
-</code></pre></li>
+<p>返回带有时区信息的日期和时间</p>
+</li>
 <li><p><code>valueOf（）</code></p>
-<pre><code>返回日期的毫秒表示
-</code></pre></li>
+<p>返回日期的毫秒表示</p>
+</li>
+<li><p><code>getDay()</code><br>返回日期中的星期几(0-6,0代表星期日)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//输出当天星期几</span></div><div class="line"><span class="keyword">var</span> week = [<span class="string">'星期日'</span>,<span class="string">'星期一'</span>,<span class="string">'星期二'</span>,<span class="string">'星期三'</span>,<span class="string">'星期四'</span>,<span class="string">'星期五'</span>,<span class="string">'星期六'</span>];</div><div class="line"><span class="keyword">var</span> day = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'今天是：'</span> + week[day.getDay()]);</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>getDate()</code><br>返回日期月份中的天数(1-31)</p>
+</li>
+<li><code>getHours</code>/<code>getMinutes</code>/<code>getSeconds</code><br>返回时(0-23)分(0-59)秒(0-59)</li>
 </ul>
 </li>
 </ul>
 <h4 id="RegExp类型"><a href="#RegExp类型" class="headerlink" title="RegExp类型"></a>RegExp类型</h4><hr>
-<ul>
-<li><p>如何创建正则表达式</p>
-<pre><code>var expression = / pattern / flags;
- /* pattern 部分是正则表达式；
-  * flags为模式标志：g(global);i (不区分大小写) ；m（多行模式，到达一行文本末尾时继续查找下一行中是否存在）
-  * /    
-</code></pre></li>
-</ul>
-<p><strong>暂放，待补充正则表达式知识</strong></p>
+<p>此部分内容参见本博<a href="https://rubicker.github.io/2016/08/23/JS%E4%B8%AD%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式入门</a></p>
 <h4 id="Function类型"><a href="#Function类型" class="headerlink" title="Function类型"></a>Function类型</h4><hr>
 <p>每个函数都是Function类型的实例</p>
 <ul>
 <li><p>如何创建函数对象</p>
-<pre><code>var sum = function(num1,num2){
-   //do something
-};
-
-var sum = new Function(&quot;num1&quot;,&quot;num2&quot;,&quot;do something&quot;); // 不推荐
-</code></pre><p>  第二种方法会导致解析两次代码（第一次是解析常规ECMAScript代码，第二次是解析传入构造函数中的字符串）</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> sum = <span class="function"><span class="keyword">function</span><span class="params">(num1,num2)</span></span>&#123;</div><div class="line">   <span class="comment">//do something</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> sum = <span class="keyword">new</span> <span class="function"><span class="keyword">Function</span><span class="params">(<span class="string">"num1"</span>,<span class="string">"num2"</span>,<span class="string">"do something"</span>)</span></span>; <span class="comment">// 不推荐</span></div></pre></td></tr></table></figure>
+<p>第二种方法会导致解析两次代码（第一次是解析常规ECMAScript代码，第二次是解析传入构造函数中的字符串）</p>
 </li>
 <li><p>没有重载</p>
-<p>  函数名是指针，因此创建同名函数时，后面的会覆盖前面的</p>
+<p>函数名是指针，因此创建同名函数时，后面的会覆盖前面的</p>
 </li>
 <li><p>函数声明与函数表达式</p>
-<p>  解析器会首先读取函数声明，使其在执行代码前可用（可访问）；</p>
-<p>  至于函数表达式，则必须等到解析器执行到它所在的代码行，才会被解释执行。</p>
-<pre><code>alert(sum(10,10));   //&quot;20&quot;
-function sum(num1,num2){
-           return sum1 + sum2;
-}
-
-alert(sum(10,10));  //报错
-var sum=function(num1,num2){
-           return sum1 + sum2;
-};
-</code></pre></li>
+<p>解析器会首先读取函数声明，使其在执行代码前可用（可访问）；</p>
+<p>至于函数表达式，则必须等到解析器执行到它所在的代码行，才会被解释执行。</p>
+<figure class="highlight scilab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">alert(<span class="built_in">sum</span>(<span class="number">10</span>,<span class="number">10</span>));   <span class="comment">//"20"</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">(num1,num2)</span>&#123;</span></div><div class="line">  <span class="keyword">return</span> sum1 + sum2;</div><div class="line">&#125;</div><div class="line"></div><div class="line">alert(<span class="built_in">sum</span>(<span class="number">10</span>,<span class="number">10</span>));  <span class="comment">//报错</span></div><div class="line">var <span class="built_in">sum</span> = <span class="function"><span class="keyword">function</span><span class="params">(num1,num2)</span>&#123;</span></div><div class="line">  <span class="keyword">return</span> sum1 + sum2;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
 <li><p>函数内部属性</p>
 <ul>
 <li><p>arguments对象</p>
-<pre><code>保存函数参数
-
-arguments对象有一个callee属性，该属性是一个指针，指向拥有该arguments对象的函数，合理运用可以消除紧密耦合现象
-
-    function  factorial(num) {
-      if(num&lt;=1){
-         return 1;     
-        }else{
-         return num*arguements.callee(num-1)   // 这里用arguements.callee替代了factorial ，消除了紧密耦合
-         }
-       }
-</code></pre></li>
+<p>保存函数参数</p>
+<p><code>arguments</code>对象有一个<code>callee</code>属性，该属性是一个指针，指向拥有该<code>arguments</code>对象的函数，合理运用可以消除紧密耦合现象</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function  <span class="built_in">factorial</span>(<span class="built_in">num</span>) &#123;</div><div class="line">  <span class="keyword">if</span>(<span class="built_in">num</span>&lt;=<span class="number">1</span>)&#123;</div><div class="line">    <span class="built_in">return</span> <span class="number">1</span>;     </div><div class="line">  &#125;<span class="keyword">else</span>&#123;</div><div class="line">    <span class="built_in">return</span> <span class="built_in">num</span>*arguements.callee(<span class="built_in">num</span>-<span class="number">1</span>)   </div><div class="line">    // 这里用arguements.callee替代了<span class="built_in">factorial</span> ，消除了紧密耦合</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
 <li><p>this 对象</p>
-<pre><code>this对象引用的是函数执行的环境对象
-</code></pre></li>
+<p>this对象引用的是函数执行的环境对象</p>
+</li>
 <li><p>caller属性</p>
-<pre><code>该属性中保存着调用当前函数的函数的引用
-</code></pre></li>
+<p>该属性中保存着调用当前函数的函数的引用</p>
+</li>
 </ul>
 </li>
 <li><p>函数属性和方法</p>
 <ul>
 <li><p>length属性</p>
-<p>   表示希望接收的命名参数的个数</p>
-<p>   而arguements.length表示的是实际传入参数的个数</p>
+<p><u>表示希望接收的命名参数的个数</u></p>
+<p><u>而<code>arguements.length</code>表示的是实际传入参数的个数</u></p>
 </li>
 </ul>
 <ul>
 <li><p>prototype属性</p>
-<pre><code>保存所有实例方法的真正所在
-
-不可以枚举
-</code></pre></li>
+<p>保存所有实例方法的真正所在</p>
+<p>不可以枚举</p>
+</li>
 <li><p><code>apply()</code>方法</p>
-<pre><code>接收两个参数：作用域；参数数组（例：arguments或者[1,2,3]）
-</code></pre></li>
+<p>接收两个参数：作用域；参数数组（例：arguments或者[1,2,3]）</p>
+</li>
 <li><p><code>call()</code>方法</p>
-<pre><code>接收两个参数：作用域；参数（必须全部都列出来）
-</code></pre></li>
-<li><p><code>bind()</code>方法</p>
-<pre><code>接收一个参数，绑定作用域
-
-    window.color = &quot;red&quot;;
-    var o = { color : &quot;blue&quot;};
-    function sayColor(){
-              alert(this.color);
-    }
-    var objectSayColor = sayColor.bind(o);
-    objectSayColor();   // &quot;blue&quot;
-</code></pre><ul>
+<p>接收两个参数：作用域；参数（必须全部都列出来）</p>
+</li>
+<li><p><code>bind()</code>方法<br>接收一个参数，绑定作用域</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.color = <span class="string">"red"</span>;</div><div class="line"><span class="keyword">var</span> o = &#123; <span class="attr">color</span> : <span class="string">"blue"</span>&#125;;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayColor</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  alert(<span class="keyword">this</span>.color);</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> objectSayColor = sayColor.bind(o);</div><div class="line">objectSayColor();   <span class="comment">// "blue"</span></div></pre></td></tr></table></figure>
+</li>
 <li><p>继承的<code>toString()</code>   <code>toLocaleString()</code>   <code>valueOf()</code></p>
-<pre><code>返回函数代码
-</code></pre></li>
-</ul>
+<p>返回函数代码</p>
 </li>
 </ul>
 </li>
@@ -923,11 +860,8 @@ arguments对象有一个callee属性，该属性是一个指针，指向拥有�
 <li><p>Boolean类型</p>
 <ul>
 <li>重写了<code>valueOf（）</code>方法，返回基本类型值true或false；重写了<code>toString（）</code>方法，返回字符串“true”和“false”</li>
-<li><p>注意点：</p>
-<pre><code>var falseObject = new Boolean(false);
-var result = falseObject &amp;&amp; true;
-alert(result)； // true，因为非空对象布尔值永远是true
-</code></pre></li>
+<li>注意点：<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> falseObject = new <span class="type">Boolean</span>(<span class="literal">false</span>);</div><div class="line"><span class="keyword">var</span> <span class="literal">result</span> = falseObject &amp;&amp; <span class="literal">true</span>;</div><div class="line">alert(<span class="literal">result</span>)； // <span class="literal">true</span>，因为非空对象布尔值永远是<span class="literal">true</span></div></pre></td></tr></table></figure>
+</li>
 </ul>
 </li>
 <li><p>Number 类型</p>
@@ -948,8 +882,8 @@ alert(result)； // true，因为非空对象布尔值永远是true
 <li><p>String 类型</p>
 <ul>
 <li><p><code>charAt()</code>   <code>charCodeAt()</code></p>
-<p>  分别接受一个参数（基于0），其中<code>charAt()</code>以字符串方式返回指定位置的字符，而<code>charCodeAt()</code>返回字符编码</p>
-<p>  另外可以使用方括号表示法访问字符串中的特定字符</p>
+<p>分别接受一个参数（基于0），其中<code>charAt()</code>以字符串方式返回指定位置的字符，而<code>charCodeAt()</code>返回字符编码</p>
+<p>另外可以使用方括号表示法访问字符串中的特定字符</p>
 </li>
 </ul>
 <ul>
@@ -957,15 +891,14 @@ alert(result)； // true，因为非空对象布尔值永远是true
 <ul>
 <li><code>indexOf()</code></li>
 <li><p><code>lastIndexOf（）</code></p>
-<pre><code>搜索给定的子字符串，然后返回子字符串的位置（没有则返回-1）,只返回第一次出现的位置
-
-还有一个可选参数，指定从何处开始搜索
-</code></pre></li>
+<p>搜索给定的子字符串，然后返回子字符串的位置（没有则返回-1）,只返回第一次出现的位置</p>
+<p>还有一个可选参数，指定从何处开始搜索</p>
+</li>
 </ul>
 </li>
 <li><p><code>trim（）</code></p>
-<pre><code>创建一个字符串副本，删除前置和后缀的所有空格，然后返回结果
-</code></pre></li>
+<p>创建一个字符串副本，删除前置和后缀的所有空格，然后返回结果</p>
+</li>
 <li><p>大小写转换方法</p>
 <ul>
 <li><code>toLowerCase（）</code></li>
@@ -979,16 +912,15 @@ alert(result)； // true，因为非空对象布尔值永远是true
 <li><p>字符串的模式匹配方法</p>
 <ul>
 <li><p><code>replace()</code></p>
-<pre><code>接收两个参数：第一个参数可以是RegExp对象或者一个字符串，第二个参数是一个字符串或者一个函数
-
-如果第一个参数是字符串，则只会替换第一个子字符串；要想替换所有子字符串，提供一个正则表达式并指定g（全局）标志
-</code></pre></li>
+<p> 接收两个参数：第一个参数可以是RegExp对象或者一个字符串，第二个参数是一个字符串或者一个函数</p>
+<p> 如果第一个参数是字符串，则只会替换第一个子字符串；要想替换所有子字符串，提供一个正则表达式并指定g（全局）标志</p>
+</li>
 <li><p><code>split()</code></p>
-<pre><code>接收两个参数，分隔符和数组大小
-</code></pre></li>
+<p> 接收两个参数，分隔符和数组大小</p>
+</li>
 <li><p><code>fromCharCode()</code></p>
-<pre><code>接收多个字符编码转换为一个字符串  
-</code></pre></li>
+<p> 接收多个字符编码转换为一个字符串  </p>
+</li>
 </ul>
 </li>
 </ul>
@@ -1017,20 +949,17 @@ alert(result)； // true，因为非空对象布尔值永远是true
 <li><p>Math对象</p>
 <ul>
 <li><p><code>min()</code>  <code>max()</code></p>
-<p>  求数组中最小值和最大值</p>
-<ul>
-<li>舍入方法</li>
-</ul>
+<p>求数组中最小值和最大值</p>
+</li>
+<li><p>舍入方法</p>
 <ul>
 <li><code>Math.ceil()</code>  数值向上舍入为整数</li>
 <li><code>Math.floor()</code> 向下舍入为整数</li>
 <li><code>Math.round()</code> 四舍五入</li>
 </ul>
-<ul>
-<li><p><code>random()</code></p>
-<p>返回大于0而小于1的一个随机数</p>
 </li>
-</ul>
+<li><p><code>random()</code></p>
+<p>   返回大于0而小于1的一个随机数</p>
 </li>
 </ul>
 </li>
@@ -1044,26 +973,20 @@ alert(result)； // true，因为非空对象布尔值永远是true
 <li>[[Configurable]]:能否通过delete删除属性从而重新定义属性，能否修改属性特性，或者能否把属性修改为访问器属性。默认为true</li>
 <li>[[Enumerable]]: 能否通过for-in循环返回属性。默认为true</li>
 <li>[[Writable]]:能否修改属性的值。默认为true</li>
-<li>[[Value]]: 包含这个属性的数据值。读取和写入都是从这里开始。默认值为 undefined</li>
-<li><p>如何修改属性默认的特性？</p>
-<p> 使用Object.defineProperty()方法，三个参数：属性所在的对象，属性的名字和描述符对象（以上四个之一）</p>
-<pre><code>Object.defineProperty(person,&quot;name&quot;,{
-       writable:false,
-       value:&quot;Tom&quot;
-   });
-</code></pre></li>
+<li>[[Value]]: 包含这个属性的数据值。读取和写入都是从这里开始。默认值为undefined</li>
+<li><p>如何修改属性默认的特性？<br>使用Object.defineProperty()方法，三个参数：属性所在的对象，属性的名字和描述符对象（以上四个之一）</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">Object</span><span class="selector-class">.defineProperty</span>(<span class="selector-tag">person</span>,"<span class="selector-tag">name</span>",&#123;</div><div class="line">  <span class="attribute">writable</span>:false,</div><div class="line">  value:<span class="string">"Tom"</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
 <li><p>若把[[Configurable]]特性设置为false，则不能修改除writable之外的特性</p>
 </li>
 </ul>
 </li>
 <li><p>访问器属性</p>
 <ul>
-<li>[[Configurable]]<ul>
+<li>[[Configurable]]</li>
 <li>[[Enumerable]]</li>
 <li>[[Get]]:读取属性时调用的函数，默认为undefined</li>
 <li>[[Set]]:在写入属性时调用的函数，默认为undefined</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -1079,114 +1002,56 @@ alert(result)； // true，因为非空对象布尔值永远是true
 <h4 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h4><hr>
 <ul>
 <li><p>工厂模式</p>
-<pre><code>function createPerson(name,age,sex){
-      var o = new Object();
-      o.name = name;
-      o.age = age;
-      o.sex = sex;
-      o.sayName = function (){
-            alert (this.name);
-      };
-     return o;
-}
-// 没有解决对象识别的问题（即如何判断该对象的类型）   
-</code></pre></li>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">createPerson</span>(<span class="params">name,age,sex</span>)</span>&#123;</div><div class="line"> <span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line"> o.name = name;</div><div class="line"> o.age = age;</div><div class="line"> o.sex = sex;</div><div class="line"> o.sayName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</div><div class="line">   alert (<span class="keyword">this</span>.name);</div><div class="line"> &#125;;</div><div class="line"> <span class="keyword">return</span> o;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 没有解决对象识别的问题（即如何判断该对象的类型）</span></div></pre></td></tr></table></figure>
+</li>
 <li><p>构造函数模式</p>
-<pre><code>function Person(name,age,sex){
-     this.name = name;
-     this.age = age;
-     this.sex = sex;
-     this.sayName = function(){
-            alert(this.name);   
-      };   
-}
-//构造函数可以用来创建特定类型或者自定义的对象，从而定义自定义对象类型的属性和方法；
-//构造函数函数名使用大写字母开头；
-//创建实例必须使用new操作符
-//person1既是Person的实例，也是Object的实例
- var person1 = new Person(&quot;Jack&quot;,&quot;24&quot;,&quot;male&quot;);
-//问题在于，每个实例上每个方法都要重创建一遍 ，若把方法置于全局，则封装性差
-</code></pre></li>
+ <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">(name,age,sex)</span></span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">  <span class="keyword">this</span>.age = age;</div><div class="line">  <span class="keyword">this</span>.sex = sex;</div><div class="line">  <span class="keyword">this</span>.sayName = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</div><div class="line">    alert(<span class="keyword">this</span>.name);   </div><div class="line">  &#125;;   </div><div class="line">&#125;</div><div class="line"><span class="comment">//构造函数可以用来创建特定类型或者自定义的对象，从而定义自定义对象类型的属性和方法；</span></div><div class="line"><span class="comment">//构造函数函数名使用大写字母开头；</span></div><div class="line"><span class="comment">//创建实例必须使用new操作符</span></div><div class="line"><span class="comment">//person1既是Person的实例，也是Object的实例</span></div><div class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person(<span class="string">"Jack"</span>,<span class="string">"24"</span>,<span class="string">"male"</span>);</div><div class="line"><span class="comment">//问题在于，每个实例上每个方法都要重创建一遍 ，若把方法置于全局，则封装性差</span></div></pre></td></tr></table></figure>
+</li>
 <li><p>原型模式</p>
-<pre><code>每个函数都有一个prototype属性，这个属性是一个指针，指向一个包含可以由特定类型的所有实例共享的属性和方法的对象。
-
-即prototype是通过构造函数创建的那个对象实例的原型对象。
-
-  function Person(){
-            }
-  Person.prototype.name = name;
-  Person.prototype.age = age;
-  Person.prototype.sex = sex;
-  Person.prototype.sayName = function(){
-              alert(this.name);   
-   };   
-</code></pre></li>
-</ul>
+<p>每个函数都有一个<code>prototype</code>属性，这个属性是一个指针，指向一个包含可以由特定类型的所有实例共享的属性和方法的对象。</p>
+<p>即<code>prototype</code>是通过构造函数创建的那个对象实例的原型对象。</p>
+ <figure class="highlight elm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="title">function</span> <span class="type">Person</span>()&#123;&#125;</div><div class="line"><span class="type">Person</span>.proto<span class="keyword">type</span>.name = name;</div><div class="line"><span class="type">Person</span>.proto<span class="keyword">type</span>.age = age;</div><div class="line"><span class="type">Person</span>.proto<span class="keyword">type</span>.sex = sex;</div><div class="line"><span class="type">Person</span>.proto<span class="keyword">type</span>.sayName = function()&#123;</div><div class="line">  alert(this.name);   </div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <ul>
 <li><p>理解原型对象</p>
-<p>   创建新函数就会为该函数创建一个prototype属性，这个属性指向函数的原型对象，默认情况下，所有原型对象都会自动获得constructor属性，这个属性包含一个指向prototype属性所在函数的指针</p>
-<p>   创建自定义构造函数后，原型对象默认只会获得constructor属性，其他方法均从Object继承而来；</p>
-<p>   调用构造函数创建一个实例后，该实例内部包含一个指针（内部属性），指向构造函数的原型对象 ，ECMA5中叫做[[prototype]]</p>
-<p>   无法访问到[[prototype]],但是可以调用<code>isPrototypeOf()</code>方法：</p>
-<pre><code>   alert (Person.prorotype.isPrototypeOf(person1));  // true
-
-ECMAScript5中增加的新方法  `Object.getPrototypeOf()`:
-
-   alert(Object.getPrototypeOf(person1) == Person.prototype); // true
-
-每当代码读取某个对象的某个属性时，都会执行一次搜索，首先从对象实例本身开始，如果在实例属性中找到，则直接返回该属性的值；若没有找到，则继续搜索指针指向的原型对象
-
-当为对象实例添加一个属性时，这个属性会屏蔽掉原型对象中的同名属性，也就是说，不会修改原型对象中的同名属性值，只是阻止我们通过对象实例属性去访问它。
-</code></pre><p>   使用<code>hasOwnProperty()</code>检测一个属性是存在于实例中，还是存在于原型中（只有在给定属性存在于对象实例中时返回true,存在于原型中或者压根儿不存在都是false）：</p>
-<pre><code>alert(person1.hasOwnProperty(&quot;name&quot;));
-</code></pre><ul>
+<p>创建新函数就会为该函数创建一个<code>prototype</code>属性，这个属性指向函数的原型对象，默认情况下，所有原型对象都会自动获得<code>constructor</code>属性，这个属性包含一个指向<code>prototype</code>属性所在函数的指针</p>
+<p>创建自定义构造函数后，原型对象默认只会获得<code>constructor</code>属性，其他方法均从<code>Object</code>继承而来；</p>
+<p>调用构造函数创建一个实例后，该实例内部包含一个指针（内部属性），指向构造函数的原型对象 ，ECMA5中叫做<code>[[prototype]]</code></p>
+<p>无法访问到<code>[[prototype]]</code>,但是可以调用<code>isPrototypeOf()</code>方法：</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alert (<span class="name">Person</span>.prorotype.isPrototypeOf(<span class="name">person1</span>))<span class="comment">;  // true</span></div></pre></td></tr></table></figure>
+<p>ECMAScript5中增加的新方法  <code>Object.getPrototypeOf()</code>:</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alert(<span class="name">Object</span>.getPrototypeOf(<span class="name">person1</span>) == Person.prototype)<span class="comment">; // true</span></div></pre></td></tr></table></figure>
+<p>每当代码读取某个对象的某个属性时，都会执行一次搜索，首先从对象实例本身开始，如果在实例属性中找到，则直接返回该属性的值；若没有找到，则继续搜索指针指向的原型对象</p>
+<p>当为对象实例添加一个属性时，这个属性会屏蔽掉原型对象中的同名属性，也就是说，不会修改原型对象中的同名属性值，只是阻止我们通过对象实例属性去访问它。</p>
+<p>使用<code>hasOwnProperty()</code>检测一个属性是存在于实例中，还是存在于原型中（只有在给定属性存在于对象实例中时返回true,存在于原型中或者压根儿不存在都是false）：</p>
+<ul>
 <li><p>原型与in操作符</p>
 <ul>
 <li><p>单独使用in操作符</p>
-<pre><code>function hasPrototypeProperty（object，name）{
-          return  !object.hasOwnProperty(name) &amp;&amp; name in object
-}
-//主要是要区分属性到底是不存在还是存在于原型中
-</code></pre></li>
+<figure class="highlight ceylon"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> hasPrototypeProperty（<span class="keyword">object</span>，name）&#123;</div><div class="line">  <span class="keyword">return</span>  !<span class="keyword">object</span>.hasOwnProperty(name) &amp;&amp; name <span class="keyword">in</span> <span class="keyword">object</span></div><div class="line">&#125;</div><div class="line"><span class="comment">//主要是要区分属性到底是不存在还是存在于原型中</span></div></pre></td></tr></table></figure>
+</li>
 <li><p>for-in循环</p>
-<p>   返回的是所有能够通过对象访问的，可枚举的属性（不论其存在于实例中还是原型中）</p>
-<p>  屏蔽了原型中不可枚举属性的实例属性也会被枚举</p>
+<p>返回的是所有能够通过对象访问的，可枚举的属性（不论其存在于实例中还是原型中）</p>
+<p>屏蔽了原型中不可枚举属性的实例属性也会被枚举</p>
 </li>
 </ul>
 <ul>
 <li><p><code>Object.keys()</code></p>
-<p>   接收一个对象作为参数返回一个包含所有可枚举属性的字符串数组</p>
+<p> 接收一个对象作为参数返回一个包含所有可枚举属性的字符串数组</p>
 </li>
 <li><p><code>Object.getOwnPropertyNames()</code></p>
-<p>   得到所有实例属性，不论其是否可枚举</p>
+<p> 得到所有实例属性，不论其是否可枚举</p>
 </li>
 </ul>
 </li>
 <li><p>更简单的原型语法</p>
-<pre><code> function Person(){}
- Person.prototype = {
-       name:&quot;王二&quot;，
-       age：28，
-       sex：“male”，
-      sayName：function(){
-                alert(this.name);
-      }
-}
-
-var person1 = new Person();
-alert(person1 instanceof  Object);  // true
-alert(person1 instanceof Person);  // true
-alert(person1.constructor == Person); // false
-alert(person1.constructor == Object);  // true
-//这里的语法完全重写了默认的prototype对象
-//可以在属性中显式设置constructor属性值为Person，但是这样会导致它的[[Enumerable]]特性设置为true（即可以被枚举）。
-</code></pre></li>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line"> Person.prototype = &#123;</div><div class="line">   <span class="attr">name</span>:<span class="string">"王二"</span>，</div><div class="line">   age：<span class="number">28</span>，</div><div class="line">   sex：“male”，</div><div class="line">   sayName：<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">     alert(<span class="keyword">this</span>.name);</div><div class="line">   &#125;</div><div class="line"> &#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person();</div><div class="line">alert(person1 <span class="keyword">instanceof</span>  <span class="built_in">Object</span>);  <span class="comment">// true</span></div><div class="line">alert(person1 <span class="keyword">instanceof</span> Person);  <span class="comment">// true</span></div><div class="line">alert(person1.constructor == Person); <span class="comment">// false</span></div><div class="line">alert(person1.constructor == <span class="built_in">Object</span>);  <span class="comment">// true</span></div><div class="line"><span class="comment">//这里的语法完全重写了默认的prototype对象</span></div><div class="line"><span class="comment">//可以在属性中显式设置constructor属性值为Person，但是这样会导致它的[[Enumerable]]特性设置为true（即可以被枚举）。</span></div></pre></td></tr></table></figure>
+</li>
 <li><p>原型的动态性</p>
-<p>  原型中查找值是一次搜索，所以对原型对象做的任何修改都可以立即从实例中反映出来；</p>
-<p>  重写原型对象切断了现有原型和实例之间的联系。</p>
+<p>原型中查找值是一次搜索，所以对原型对象做的任何修改都可以立即从实例中反映出来；</p>
+<p>重写原型对象切断了现有原型和实例之间的联系。</p>
 </li>
 <li><p>原型对象的原型</p>
-<p>  通过原声对象的原型，不仅可以取得所有默认方法的引用，而且也可以定义新方法。</p>
+<p>通过原声对象的原型，不仅可以取得所有默认方法的引用，而且也可以定义新方法。</p>
 </li>
 <li><p>原型对象的问题</p>
 <ul>
@@ -1197,49 +1062,25 @@ alert(person1.constructor == Object);  // true
 </ul>
 </li>
 </ul>
-<ul>
+</li>
 <li><p>组合使用构造函数模式和原型模式    </p>
-<p>  构造函数模式用于定义实例属性，原型模式用于定义方法和共享的属性</p>
-<pre><code>function Person(name,age,sex){
-       this.name = name;
-       this.age = age;
-       this.sex = sex;
-}
-Person.prorotype = {
-      constructor :Person,
-      sayName: function(){
-         alert(this.name);
-      }
-}
-//此时若创建新实例，实例数组作修改不会影响另一个实例
-//此方法是目前使用最广泛，认同度最高的一种创建自定义类型的方法
-</code></pre></li>
+<p>构造函数模式用于定义实例属性，原型模式用于定义方法和共享的属性</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">(name,age,sex)</span></span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">  <span class="keyword">this</span>.age = age;</div><div class="line">  <span class="keyword">this</span>.sex = sex;</div><div class="line">&#125;</div><div class="line">Person.prorotype = &#123;</div><div class="line">  constructor :Person,</div><div class="line">  sayName: <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</div><div class="line">    alert(<span class="keyword">this</span>.name);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//此时若创建新实例，实例数组作修改不会影响另一个实例</span></div><div class="line"><span class="comment">//此方法是目前使用最广泛，认同度最高的一种创建自定义类型的方法</span></div></pre></td></tr></table></figure>
+</li>
 <li><p>动态原型模式</p>
-<pre><code>通过检查某个方法是否存在来初始化原型
-
-  function Person(name,age,sex){
-        this.name = name;
-        this.age = age;
-        this.sex = sex;
-        if(typeof this.sayName != &quot;function&quot;){
-             Person.prototype.sayName = function(){
-                alert(this.name);
-                 }
-             }
-   }
-  //如果有很多要进行初始化的属性和方法，只需要检查其中一个即可
-  //很完美
-</code></pre></li>
+<p>通过检查某个方法是否存在来初始化原型</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">(name,age,sex)</span></span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">  <span class="keyword">this</span>.age = age;</div><div class="line">  <span class="keyword">this</span>.sex = sex;</div><div class="line">  <span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="keyword">this</span>.sayName != <span class="string">"function"</span>)&#123;</div><div class="line">    Person.prototype.sayName = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</div><div class="line">      alert(<span class="keyword">this</span>.name);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"> &#125;</div><div class="line"><span class="comment">//如果有很多要进行初始化的属性和方法，只需要检查其中一个即可</span></div><div class="line"><span class="comment">//很完美</span></div></pre></td></tr></table></figure>
+</li>
 <li><p>寄生构造函数模式</p>
-<p>   与工厂模式差不多，只是使用了new操作符创建实例</p>
-<p>  构造函数在不返回值的情况下，默认会返回新对象实例；而通过在构造函数末尾添加return语句，可以重写调用构造函数时返回的值</p>
-<p>  这种模式下差ungjiande实例与构造函数以及构造函数的原型之间没有关系</p>
-<p>  不建议使用。</p>
+<p> 与工厂模式差不多，只是使用了new操作符创建实例</p>
+<p>构造函数在不返回值的情况下，默认会返回新对象实例；而通过在构造函数末尾添加return语句，可以重写调用构造函数时返回的值</p>
+<p>这种模式下创建的实例与构造函数以及构造函数的原型之间没有关系</p>
+<p>不建议使用。</p>
 </li>
 <li><p>稳妥构造函数模式</p>
-<p>   稳妥对象指的是没有公共属性，且其方法不引用this的对象。</p>
-<p>   大体与寄生构造函数模式一样，不同点为：一是实例方法不使用this；二是不使用new操作符调用构造函数</p>
-<p>  适合于某些安全执行环境</p>
+<p>稳妥对象指的是没有公共属性，且其方法不引用this的对象。</p>
+<p>大体与寄生构造函数模式一样，不同点为：一是实例方法不使用this；二是不使用new操作符调用构造函数</p>
+<p>适合于某些安全执行环境</p>
 </li>
 </ul>
 <h4 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h4><hr>
@@ -1888,7 +1729,7 @@ btn.onclick = function() {
                     data-thread-key="2016/04/06/《JavaScript高级程序设计(第三版)》笔记/"
                     data-title="JavaScript高级程序设计（第三版）"
                     data-url="http://rubicker.github.io/2016/04/06/《JavaScript高级程序设计(第三版)》笔记/"
-                    data-images=""
+                    data-images="http://rubicker.github.io/2016/04/06/《JavaScript高级程序设计(第三版)》笔记/header-bg.png"
                     data-content="
 前言：一个月大概读了个七七八八，对于本书知识点有了大体的印象，然而一些更深入的知识却没有完全... | Rubicker的博客 | Rubicker&#39;s Blog " >
                     <div class="ds-share-inline">
@@ -1912,10 +1753,6 @@ btn.onclick = function() {
                             <a href="/2016/04/08/2016-04-08-关于JavaScript中的this/" data-toggle="tooltip" data-placement="top" title="关于JavaScript中的this">&larr; Previous Post</a>
                         </li>
                     
-                    
-                        <li class="next">
-                            <a href="/2015/04/14/unix-linux-note/" data-toggle="tooltip" data-placement="top" title="Example Post With Default Header Image">Next Post &rarr;</a>
-                        </li>
                     
                 </ul>
 
