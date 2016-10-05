@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          JS深入学习之DOM，BOM及Event - Kaijun的博客 | Kaijun&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://rubicker.github.io/2016/09/03/JS深入学习之DOM，BOM及Event/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Kaijun&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('header-bg.png')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                        
+                          <a class="tag" href="/tags/#DOM" title="DOM">DOM</a>
+                        
+                          <a class="tag" href="/tags/#BOM" title="BOM">BOM</a>
+                        
+                    </div>
+                    <h1>JS深入学习之DOM，BOM及Event</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by “Rubicker” on
+                        2016-09-03
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <a id="more"></a>
+<h1 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h1><h2 id="DOM节点"><a href="#DOM节点" class="headerlink" title="DOM节点"></a>DOM节点</h2><ul>
+<li><code>childNodes</code>/<code>children</code><br><code>childNodes</code>:<br>标准模式下(IE9+)，获取直接子节点(包括文本节点，同时也会包含非法嵌套的子节点);<br>非标准模式下,获取直接子节点(只包括元素节点)。IE8包含非法嵌套的子节点；而IE7不包含<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"nav"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>1111<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>2222<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>3333<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>4444<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!--&lt;p&gt;为非法嵌套--&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>5555<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">  <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> oUl = <span class="built_in">document</span>.getElementById(<span class="string">"nav"</span>);</div><div class="line">    <span class="built_in">console</span>.log(oUl.childNodes.length);</div><div class="line">    <span class="comment">//IE7下输出4，IE8输出5，其他标准浏览器输出11</span></div><div class="line">  &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<!--more-->
+<p>  <code>children</code><br>  获取直接子节点(仅包含元素节点)，仅在IE7及以下不包含非法嵌套子节点<br>  <strong>相比之下，<code>children</code>兼容性较好，故较为常用</strong></p>
+<blockquote>
+<p><code>nodeType</code> 节点类型<br>    常见节点类型: 元素节点类型(nodeType=1),属性节点类型(nodeType=2),文本节点类型(nodeType=3)</p>
+</blockquote>
+<ul>
+<li><p><code>firstChild</code>/<code>lastChild</code> <code>nextSibling</code>/<code>previousSibling</code><br><code>firstChild</code>/<code>firstElementChild</code>:<br><code>firstChild</code><br>标准模式下(IE9+):获取第一个子节点(包括文本节点)<br>非标准模式下(IE8及以下):获取第一个子节点(不包括文本节点)<br><code>firstElementChild</code><br>获取第一个元素子节点，不支持IE8及以下<br>综上，若我们想获取oUl的第一个子节点,考虑到兼容性，如下:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> oFirst = oUl.firstElementChild || oUl.firstChild;</div></pre></td></tr></table></figure>
+<p>但是存在一个问题，若oUl是空的，那么标准浏览器的oFirst值将会是<code>oUl.firstChild</code>，即<strong>获取到了文本节点</strong>,这肯定不是我们想要的结果,所以还是用<code>children[0]</code>来获取吧。<br>其余用法及注意点同上。</p>
+</li>
+<li><p><code>parentNode</code>/<code>offsetParent</code><br><code>parentNode</code><br>获取当前元素的直接父节点;<br><code>offsetParent</code><br>获取离当前元素最近的已定位父节点/祖先节点。</p>
+<blockquote>
+<p>注意:<br>  标准浏览器中若没有定位父级，默认为<code>body</code>；<br>  在IE7中，<br>  若当前元素有定位，则<code>offsetParent</code>取到的元素将是<code>html</code>,否则仍是<code>body</code>;<br>  若当前元素的某个父级触发了layout，那么当前元素的<code>offsetParent</code>就会指向该父级。</p>
+<p> 参考文章:<br>  <a href="http://www.jsann.com/post/ie_layout_detailed.html" target="_blank" rel="external">IE layout详解</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="DOM元素位置尺寸"><a href="#DOM元素位置尺寸" class="headerlink" title="DOM元素位置尺寸"></a>DOM元素位置尺寸</h2><ul>
+<li><p><code>offsetLeft</code>/<code>offsetTop</code><br><u>若存在已定位父级</u>:<br>IE7：</p>
+<ul>
+<li>若当前元素有定位，则<code>offsetLeft[Top]</code>代表当前元素到已定位父级的距离</li>
+<li>若当前元素无定位，则代表当前元素到<code>body</code>的距离</li>
+</ul>
+<p>其他浏览器:<br>  <code>offsetLeft[Top]</code>代表当前元素到已定位父级的距离<br><u>若不存在已定位父级</u>:<br><code>offsetLeft[Top]</code>代表当前元素到<code>html</code>的距离</p>
+</li>
+<li><p>元素尺寸<br><code>style.width</code>样式宽，有单位<br><code>clientWidth</code>可视区宽(width+padding)，无单位<br><code>offsetWidth</code>占位宽(width+padding+border)，无单位</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span> <span class="built_in">id</span>=<span class="string">"test"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#test</span>&#123;</div><div class="line">   <span class="attribute">height</span>:<span class="number">100px</span>;</div><div class="line">   <span class="attribute">width</span>:<span class="number">100px</span>;</div><div class="line">   <span class="attribute">padding</span>:<span class="number">10px</span>;</div><div class="line">   <span class="attribute">margin</span>:<span class="number">10px</span>;</div><div class="line">   <span class="attribute">border</span>:<span class="number">1px</span> solid red;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> oDiv = <span class="built_in">document</span>.getElementById(<span class="string">"test"</span>);</div><div class="line"><span class="built_in">console</span>.log(oDiv.style.width);<span class="comment">//100px</span></div><div class="line"><span class="built_in">console</span>.log(oDiv.clientWidth);<span class="comment">//120</span></div><div class="line"><span class="built_in">console</span>.log(oDiv.offsetWidth);<span class="comment">//122</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><code>getPos()</code><br>获取当前元素距离浏览器视口边缘的定位</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getPos</span><span class="params">(obj)</span></span>&#123;</div><div class="line">  <span class="keyword">var</span> pos = &#123;left:<span class="number">0</span>,top:<span class="number">0</span>&#125;;</div><div class="line">  <span class="keyword">while</span>(obj)&#123;</div><div class="line">    pos.left += obj.offsetLeft;</div><div class="line">    pos.left += obj.offsetTop;</div><div class="line">    obj = obj.offsetParent;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> pos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="操作元素属性"><a href="#操作元素属性" class="headerlink" title="操作元素属性"></a>操作元素属性</h2><ul>
+<li><code>E.getAttribute(attr)</code>获取指定元素指定属性值<br><code>E.setAttribute(attr,val)</code>设置指定元素指定属性值<br><code>E.removeAttribute(attr)</code>移除属性</li>
+<li><p><code>E.attr</code> / <code>E[attr]</code> 操作属性<br>以上两种方法区别在于:<br>前者可以操作自定义属性值，后者不能(IE7,8可以获取);<br>前者可以获取类似<code>src</code>等属性的实际值(IE7下仍然是绝对路径)，而后者会获取它的绝对路径</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">img</span> src=<span class="string">"test.gif"</span> id=<span class="string">"test"</span>&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var oImg = <span class="built_in">document</span>.getElementById(<span class="string">"test"</span>)</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"oImg.src"</span>);<span class="regexp">//</span> <span class="string">"F://demo/test.gif"</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"oImg.src"</span>);<span class="regexp">//</span> <span class="string">"test.gif"</span>  IE7下仍为<span class="string">"F://demo/test.gif"</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="元素动态创建"><a href="#元素动态创建" class="headerlink" title="元素动态创建"></a>元素动态创建</h2><ul>
+<li><code>document.createElement()</code></li>
+<li><code>appendChild()</code>在父级的最后一个子节点之后追加子节点，参数为要添加的子节点</li>
+<li><p><code>insertBefore(新节点，已存在的被插入节点)</code>在父级中的某个节点前追加子节点<br>注意:在IE下若第二个参数不存在，则会报错；而在其他浏览器下若第二个参数不存在，则会调用<code>appendChild()</code>来插入<br>兼容方法:</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if(<span class="name">oUl</span>.children[<span class="number">0</span>]&#123;</div><div class="line">  oUl.insertBefore(<span class="name">oLi</span>,oUl.children[<span class="number">0</span>])<span class="comment">;</span></div><div class="line">&#125;else&#123;</div><div class="line">  oUl.appendChild(<span class="name">oLi</span>)<span class="comment">;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>removeChild()</code>删除子节点</p>
+</li>
+<li><code>replaceChild(新节点，被替换节点)</code> 替换子节点</li>
+</ul>
+<h2 id="关于操作class的函数"><a href="#关于操作class的函数" class="headerlink" title="关于操作class的函数"></a>关于操作class的函数</h2><p><code>getElementsByClassName()</code><br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 该方法作用在于:将parent内tagName元素中类名为className的元素提取出来</div><div class="line"> * <span class="doctag">@method</span> getElementsByClassName</div><div class="line"> * <span class="doctag">@param</span>:</div><div class="line"> *  parent &#123;数组&#125;父级元素  </div><div class="line"> *  tagName &#123;字符串&#125;所要选取的元素标签名</div><div class="line"> *  className &#123;字符串&#125;要选取的类名</div><div class="line"> * <span class="doctag">@return</span> &#123;数组&#125; 返回目标数组</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getElementsByClassName</span><span class="params">(parent,tagName,className)</span></span>&#123;</div><div class="line">  <span class="keyword">var</span> aEls = <span class="keyword">parent</span>.getElementsByTagName(tagName);</div><div class="line">  <span class="keyword">var</span> arr = [];</div><div class="line">  <span class="keyword">var</span> len1 = aEls.length;</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;len1;i++)&#123;</div><div class="line">    <span class="comment">//此处将类名按照空格分割为一个数组，主要是选取多类名元素</span></div><div class="line">    <span class="keyword">var</span> aClassName = aEls[i].className.split(<span class="string">" "</span>);</div><div class="line">    <span class="keyword">var</span> len2 = aClassName.length;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>;j&lt;len2;j++)&#123;</div><div class="line">      <span class="keyword">if</span>(aClassName[j] === className)&#123;</div><div class="line">        arr.push(aEls[i]);</div><div class="line">        <span class="comment">//选取到即跳出循环，防止某些包含多个相同类名的错误元素被选中多次</span></div><div class="line">        <span class="keyword">break</span>;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> arr;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><code>addClass()</code><br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 该方法作用在于:将指定类名添加到目标元素上</div><div class="line"> * <span class="doctag">@method</span> addClass</div><div class="line"> * <span class="doctag">@param</span>:</div><div class="line"> *  obj &#123;对象&#125;目标元素  </div><div class="line"> *  className &#123;字符串&#125;要添加的类名</div><div class="line"> * <span class="doctag">@return</span> &#123;undefined&#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">addClass</span><span class="params">(obj,className)</span></span>&#123;</div><div class="line">  <span class="comment">//判断obj没有类名</span></div><div class="line">  <span class="keyword">if</span>(!obj.className)&#123;</div><div class="line">    obj.className = className;</div><div class="line">  &#125;<span class="keyword">else</span>&#123;</div><div class="line">    <span class="keyword">var</span> aClassName = obj.className.split(<span class="string">" "</span>);</div><div class="line">    <span class="keyword">var</span> index = arrIndexOf(aClassName,className);</div><div class="line">    <span class="comment">//若不存在与className相同的类名</span></div><div class="line">    <span class="keyword">if</span>(index === <span class="number">-1</span>)&#123;</div><div class="line">      obj.className += <span class="string">" "</span> + className;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">arrIndexOf</span><span class="params">(arr,v)</span></span>&#123;</div><div class="line">  <span class="keyword">var</span> len = arr.length;</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</div><div class="line">    <span class="keyword">if</span>(arr[i] === v)&#123;</div><div class="line">      <span class="keyword">return</span> i;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><code>removeClass()</code><br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 该方法作用在于:将目标元素上指定类名删除</div><div class="line"> * <span class="doctag">@method</span> removeClass</div><div class="line"> * <span class="doctag">@param</span>:</div><div class="line"> *  obj &#123;对象&#125;目标元素  </div><div class="line"> *  className &#123;字符串&#125;要添加的类名</div><div class="line"> * <span class="doctag">@return</span> &#123;undefined&#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeClass</span><span class="params">(obj,className)</span></span>&#123;</div><div class="line">  <span class="comment">//判断obj有类名</span></div><div class="line">  <span class="keyword">if</span>(obj.className)&#123;</div><div class="line">    <span class="keyword">var</span> aClassName = obj.className.split(<span class="string">" "</span>);</div><div class="line">    <span class="keyword">var</span> index = arrIndexOf(aClassName,className);</div><div class="line">    <span class="comment">//若存在与className相同的类名</span></div><div class="line">    <span class="keyword">if</span>(index !== <span class="number">-1</span>)&#123;</div><div class="line">      <span class="comment">//splice会从index位置起删除一个元素，返回被删除元素，对原数组有影响</span></div><div class="line">      aClassName.splice(index,<span class="number">1</span>);</div><div class="line">      obj.className = aClassName.join(<span class="string">" "</span>);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">arrIndexOf</span><span class="params">(arr,v)</span></span>&#123;</div><div class="line">  <span class="keyword">var</span> len = arr.length;</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</div><div class="line">    <span class="keyword">if</span>(arr[i] === v)&#123;</div><div class="line">      <span class="keyword">return</span> i;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="操作表格"><a href="#操作表格" class="headerlink" title="操作表格"></a>操作表格</h2><p>JS提供了下列操作表格的几个属性:</p>
+<ul>
+<li><code>tHead</code> 表格头</li>
+<li><code>tBodies</code> 表格正文</li>
+<li><code>tFoot</code> 表格尾</li>
+<li><code>row</code> 行</li>
+<li><code>cells</code> 列<blockquote>
+<p>注意:<br>创建表格时，记得设置<code>&lt;tbody&gt;</code>，否则系统会自动添加，可能会造成不必要的麻烦</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="操作表单及表单事件"><a href="#操作表单及表单事件" class="headerlink" title="操作表单及表单事件"></a>操作表单及表单事件</h2><ul>
+<li><code>onchange</code>事件<br>当内容发生改变时触发:<br><code>&lt;input type=&quot;text&quot;&gt;</code>:光标离开的时候若内容有变化则触发；<br><code>&lt;input type=&quot;radio&quot;&gt;</code>及<code>&lt;input type=&quot;checkbox&quot;&gt;</code>:标准下，只要内容有变化就触发；IE7,8下，光标离开的时候才触发</li>
+</ul>
+<ul>
+<li><p><code>onsubmit</code>事件<br>提交表单的时候触发。<br>以下示例模拟<code>input</code>框为空时不提交:</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">form</span> id=<span class="string">"form1"</span> action=<span class="string">"www.google.com"</span>&gt;</div><div class="line">  &lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"text"</span> name=<span class="string">"text"</span>&gt;</div><div class="line">  &lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"submit"</span> value=<span class="string">"提交"</span> name=<span class="string">"dosubmit"</span>&gt;</div><div class="line">&lt;/<span class="keyword">form</span>&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> oForm = <span class="built_in">document</span>.getElementById(<span class="string">"form1"</span>);</div><div class="line">  oForm.onsubmit = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(<span class="keyword">this</span>.text.value=<span class="string">""</span>)&#123;</div><div class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>同时还有<code>submit()</code>方法可以让表单提交</p>
+</li>
+<li><p><code>onreset</code>事件<br>表单重置的时候触发(该事件是绑定在form标签上的)</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">form</span> id=<span class="string">"form1"</span> action=<span class="string">"www.google.com"</span>&gt;</div><div class="line">  &lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"text"</span> name=<span class="string">"text"</span>&gt;</div><div class="line">  &lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"reset"</span>&gt;</div><div class="line">&lt;/<span class="keyword">form</span>&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> oForm = <span class="built_in">document</span>.getElementById(<span class="string">"form1"</span>);</div><div class="line">  oForm.onreset = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> confirm(<span class="string">"你确定重置吗?"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>效果如下:<br><img src="reset.gif" alt=""></p>
+</li>
+<li><p>form表单下元素的选择<br>直接用点表示法获取对应name的元素</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">form</span> action=<span class="string">""</span> id=<span class="string">"form1"</span>&gt;</div><div class="line">  &lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"text"</span> name=<span class="string">"cont"</span>&gt;</div><div class="line">&lt;/<span class="keyword">form</span>&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> oForm = <span class="built_in">document</span>.getElementById(<span class="string">"form1"</span>);</div><div class="line">oForm.cont.onchange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.type);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="BOM"><a href="#BOM" class="headerlink" title="BOM"></a>BOM</h1><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><ul>
+<li><code>open(url，method)</code><br>在浏览器中打开一个页面<br>参数:url为空则打开空页面，打开方式为空则在新窗口打开(<code>_self</code>设置在本窗口打开)<br>返回值:返回新窗口的window对象</li>
+<li><code>close()</code><br>关闭本页面<br>兼容性问题:<br>在IE下会弹出对话框询问是否关闭；<br>而在Chrome和FF下无反应(只有通过 JavaScript 代码打开的窗口才能够由 JavaScript 代码关闭。这阻止了恶意的脚本终止用户的浏览器)</li>
+</ul>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><ul>
+<li><code>window.navigator.userAgent</code><br>用户浏览器信息</li>
+<li><code>window.location</code><br>浏览器地址信息，返回类型为对象<ul>
+<li><code>window.location.href</code></li>
+<li><code>window.location.search</code><br>url?后面的内容(包括?)</li>
+<li><code>window.location.hash</code><br>url#后面的内容(包括#)</li>
+</ul>
+</li>
+</ul>
+<h2 id="关于文档宽高及窗口操作"><a href="#关于文档宽高及窗口操作" class="headerlink" title="关于文档宽高及窗口操作"></a>关于文档宽高及窗口操作</h2><ul>
+<li><code>document.documentElement.clientWidth</code>/<code>document.documentElement.clientHeight</code><br>获取浏览器可视区域宽高</li>
+<li><p><code>document.documentElement.scrollTop</code>/<code>document.documentElement.scrollLeft</code><br>获取浏览器滚动距离<br>兼容性问题:<br>在Chrome下始终显示为0，这是因为Chrome默认<code>scrollTop</code>/<code>scrollLeft</code>是属于<code>body</code>的属性，因此在Chrome下调用时，应当使用<code>document.body.scrollTop</code>和<code>document.body.scrollLeft</code></p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> scrollTop = <span class="built_in">document</span>.documentElement.scrollTop||<span class="built_in">document</span>.body.scrollTop;</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>document.body.scrollHeight</code><br>内容高度，而非可视区高度</p>
+</li>
+<li><code>document.documentElement.offsetHeight</code>/<code>document.body.offsetHeight</code><br>获取文档高度<br>兼容性问题:<br>在IE11以下前者将获取可视区高度，而非文档实际高度.<br>采用<code>document.body.offsetHeight</code>兼容性比较好</li>
+<li><code>onscroll</code><br>滚动条滚动时触发事件(滚动条是按照一定时间间隔监听的)</li>
+<li><code>onresize</code><br>窗口大小发生变化时触发(同样是按照时间间隔监听的)</li>
+</ul>
+<h1 id="Event"><a href="#Event" class="headerlink" title="Event"></a>Event</h1><h2 id="焦点事件"><a href="#焦点事件" class="headerlink" title="焦点事件"></a>焦点事件</h2><p><code>onfocus</code>当元素获取到焦点时触发；<br><code>onblur</code>当元素失去焦点时触发。<br><code>obj.focus()</code>为obj设置焦点，<code>obj.blur()</code>取消obj焦点<br><code>obj.select()</code>选择指定对象中的文本内容</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/09/13/jQuery复习/" data-toggle="tooltip" data-placement="top" title="jQuery复习">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/08/27/前端知识点梳理/" data-toggle="tooltip" data-placement="top" title="前端知识点梳理">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                        
+                          <a class="tag" href="/tags/#DOM" title="DOM">DOM</a>
+                        
+                          <a class="tag" href="/tags/#BOM" title="BOM">BOM</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.kaijun.rocks" target="_blank">Kaijun&#39;s Blog</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">Foo</a></li>
+                    
+                        <li><a href="#" target="_blank">Bar</a></li>
+                    
+                        <li><a href="#" target="_blank">Example Friends</a></li>
+                    
+                        <li><a href="#" target="_blank">It helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hexo-theme-huxblog";
+    var disqus_identifier = "http://rubicker.github.io/2016/09/03/JS深入学习之DOM，BOM及Event/";
+    var disqus_url = "http://rubicker.github.io/2016/09/03/JS深入学习之DOM，BOM及Event/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/Demonbane_x">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/Demonbane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/Demonbane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/demonbane.cn">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Kaijun">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/kaijun-chen-42089354">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Kaijun&#39;s Blog 2016 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://rubicker.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'huangxuan.me';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

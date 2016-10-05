@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          正则表达式入门 - Kaijun的博客 | Kaijun&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://rubicker.github.io/2016/08/23/JS中的正则表达式/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Kaijun&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('header-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#RegExp" title="RegExp">RegExp</a>
+                        
+                    </div>
+                    <h1>正则表达式入门</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by “Rubicker” on
+                        2016-08-23
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <ul>
+<li>什么是正则表达式<br>Regular Expression 使用单个字符串来描述，匹配一系列符合某个句法规则的字符串</li>
+<li>在线图形工具<br><a href="https://regexper.com/" target="_blank" rel="external">Regexper</a></li>
+</ul>
+<a id="more"></a>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><h3 id="RegExp"><a href="#RegExp" class="headerlink" title="RegExp"></a>RegExp</h3><p>实例化RegExp</p>
+<ul>
+<li><code>var reg = /\bis\b/g</code></li>
+<li><code>var reg = new RegExp(&#39;\\bis\\b&#39;,&#39;g&#39;)</code><blockquote>
+<p>上述例子是用来查找单词is，<code>\b</code>代表单词边界<br>第二种表达方式中，<code>\</code>写了两次是因为在JS中<code>\</code>是特殊字符，需要转义</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h3><ul>
+<li><code>g</code><br>全文搜索，若无此标志将只会搜索到第一个匹配(global)</li>
+<li><code>i</code><br>忽略大小写，默认大小写敏感(ignore case)</li>
+<li><code>m</code><br>多行搜索(multiple lines)，即将换行当作新的一行</li>
+</ul>
+<h3 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h3><ul>
+<li>原意文本字符</li>
+<li>元字符<ul>
+<li><code>\t</code>水平制表符</li>
+<li><code>\v</code>垂直制表符</li>
+<li><code>\n</code>换行符</li>
+<li><code>\r</code>回车符</li>
+<li><code>\0</code>空字符</li>
+<li><code>\f</code>换页符</li>
+<li><code>\cX</code>Ctrl+X</li>
+</ul>
+</li>
+</ul>
+<h3 id="字符类"><a href="#字符类" class="headerlink" title="字符类"></a>字符类</h3><p>可以使用<code>[]</code>来构建一个简单的类，如<code>[abc]</code>代表只要有abc中任意一个即匹配<br>字符类取反,<code>[^abc]</code>顾名思义即不是字符a或b或c</p>
+<h3 id="范围类"><a href="#范围类" class="headerlink" title="范围类"></a>范围类</h3><p><code>[a-z]</code>  连写<code>[a-zA-Z]</code><br>若想匹配<code>-</code>，则写为<code>[a-z-]</code></p>
+<h3 id="预定义类"><a href="#预定义类" class="headerlink" title="预定义类"></a>预定义类</h3><ul>
+<li><code>.</code> 除回车符和换行符之外的所有字符</li>
+<li><code>\d</code> 数字字符</li>
+<li><code>\D</code> 非数字字符</li>
+<li><code>\s</code> 空白符</li>
+<li><code>\S</code> 非空白符</li>
+<li><code>\w</code> 单词字符(字母，数字下划线)</li>
+<li><code>\W</code> 非单词字符</li>
+</ul>
+<h3 id="边界"><a href="#边界" class="headerlink" title="边界"></a>边界</h3><ul>
+<li><code>^</code>以xxx开始,若<code>^</code>存在于<code>[]</code>中则代表非</li>
+<li><code>$</code>以xxx结尾</li>
+<li><code>\b</code> 单词边界</li>
+<li><code>\B</code> 非单词边界</li>
+</ul>
+<h3 id="量词"><a href="#量词" class="headerlink" title="量词"></a>量词</h3><ul>
+<li><code>?</code> 出现0次或1次(最多一次)</li>
+<li><code>+</code> 出现1次或多次(最少一次)</li>
+<li><code>*</code> 出现0次或多次(任意次)</li>
+<li><code>{n}</code> 出现n次</li>
+<li><code>{n,m}</code> 出现n到m次</li>
+<li><code>{n,}</code> 至少出现n次</li>
+</ul>
+<h3 id="贪婪模式-非贪婪模式"><a href="#贪婪模式-非贪婪模式" class="headerlink" title="贪婪模式/非贪婪模式"></a>贪婪模式/非贪婪模式</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="string">'12345678'</span>.replace(<span class="regexp">/\d&#123;3,6&#125;/g</span>,<span class="string">'X'</span>);</div><div class="line"><span class="regexp">//</span>X78  贪婪模式会尽可能多的去匹配</div></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="string">'12345678'</span>.replace(<span class="regexp">/\d&#123;3,6&#125;?/g</span>,<span class="string">'X'</span>);</div><div class="line"><span class="regexp">//</span>XX78 非贪婪模式会尽可能少的去匹配</div></pre></td></tr></table></figure>
+<h3 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h3><ul>
+<li><p>例如我们想将Byron匹配三次<br><code>Byron{3}</code>只能重复<code>n</code>3遍,而不是全单词<br><code>(Byron){3}</code>才能达到效果</p>
+</li>
+<li><p><code>Cat|Dog</code>可以分为两个分支</p>
+<div style="float:left"><img src="或.svg" alt="或.svg"></div><div style="clear:both"></div><br>而<code>Ca(t|D)og</code>可以只对t和D进行分支<br><div style="float:left"><img src="或1.svg" alt="或1.svg"></div><div style="clear:both"></div></li>
+<li><p>反向引用</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">'<span class="number">2016</span><span class="number">-8</span><span class="number">-23</span>'.replace(/(\d&#123;<span class="number">4</span>&#125;)-(\d&#123;<span class="number">1</span>&#125;)-(\d&#123;<span class="number">2</span>&#125;)/,'$<span class="number">2</span>-$<span class="number">3</span>-$<span class="number">1</span>');</div><div class="line"><span class="comment">// 8-23-2016</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>忽略分组<br><code>(?:Hello).(World)</code></p>
+<div style="float:left"><img src="ignore-group.svg" alt="ignore-group.svg"></div><div style="clear:both"></div>
+
+</li>
+</ul>
+<h3 id="前瞻"><a href="#前瞻" class="headerlink" title="前瞻"></a>前瞻</h3><ul>
+<li>正则表达式从文本头部向尾部解析，所以文本尾部方向称为”前”。</li>
+<li>前瞻就是在正则表达式匹配到规则的时候，向前检查是否符合断言，后顾与之相反。</li>
+<li>JS不支持后顾。</li>
+<li>符合和不符合特定断言成为肯定/正向匹配和否定/负向匹配。<br>正向前瞻<code>exp(?=assert)</code>负向前瞻 <code>exp(?!assert)</code><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="string">'a2*34vv'</span>.replace(<span class="regexp">/\w(?=\d)/g</span>,<span class="string">'X'</span>);</div><div class="line"><span class="regexp">//</span>X2*X4vv</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="对象属性"><a href="#对象属性" class="headerlink" title="对象属性"></a>对象属性</h3><ul>
+<li><code>global</code> 是否全文搜索 默认false</li>
+<li><code>ignoreCase</code> 是否大小写敏感 默认false</li>
+<li><code>multiline</code> 多行搜索 默认false</li>
+<li><code>lastIndex</code>  当前表达式匹配内容的最后一个字符的下一个位置</li>
+<li><code>source</code> 正则表达式的文本字符串</li>
+</ul>
+<h3 id="对象方法"><a href="#对象方法" class="headerlink" title="对象方法"></a>对象方法</h3><ul>
+<li><p><code>RegExp.prototype.test(str)</code><br>测试字符串参数中是否存在匹配正则表达式的字符串<br><strong>注意这里有个坑！</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg1 = <span class="regexp">/\w/</span>;</div><div class="line"><span class="keyword">var</span> reg2 = <span class="regexp">/\w/g</span>;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(reg1.test(<span class="string">'a'</span>)); <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(reg1.test(<span class="string">'a'</span>)); <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(reg1.test(<span class="string">'a'</span>)); <span class="comment">//true</span></div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(reg2.test(<span class="string">'a'</span>)); <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(reg2.test(<span class="string">'a'</span>)); <span class="comment">//false</span></div><div class="line"><span class="built_in">console</span>.log(reg2.test(<span class="string">'a'</span>)); <span class="comment">//true</span></div><div class="line"></div><div class="line"><span class="comment">//由于设置g之后，每次正则表达式都会定位到</span></div><div class="line"><span class="comment">//匹配内容最后一个字符的下一个位置，</span></div><div class="line"><span class="comment">//因此会出现这种情况(lastIndex相关)</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><code>RegExp.prototype.exec(str)</code></p>
+<ul>
+<li>使用正则表达式模式对字符串执行搜索，并将更新全局<code>RegExp</code>对象的属性以反映匹配结果：</li>
+<li>若没有匹配文本则返回<code>null</code>，否则返回一个数组 <code>index</code>(声明匹配文本的第一个字符位置) <code>input</code>(存放被检索的字符串string)</li>
+<li>非全局调用/全局调用<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg1 = <span class="regexp">/\d(\w)\d/</span>;</div><div class="line"><span class="keyword">var</span> reg2 = <span class="regexp">/\d(\w)\d/g</span>;</div><div class="line"><span class="keyword">var</span> ts = <span class="string">'1a23b45c6'</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> res = reg1.exec(ts);</div><div class="line"><span class="built_in">console</span>.log(reg1.lastIndex+<span class="string">' '</span>+res.index+<span class="string">' '</span>+res);</div><div class="line"><span class="comment">//0 0 1a2,a</span></div><div class="line"><span class="comment">//在非全局调用中lastIndex不起作用</span></div><div class="line"></div><div class="line"><span class="keyword">while</span>(res = reg2.exec(ts))&#123;</div><div class="line">  <span class="built_in">console</span>.log(reg2.lastIndex+<span class="string">' '</span>+ret.index+<span class="string">' '</span>+ret)</div><div class="line">&#125;;</div><div class="line"><span class="comment">//3 0 1a2,a</span></div><div class="line"><span class="comment">//6 3 3b4,b</span></div><div class="line"><span class="comment">//9 6 5c6,c</span></div><div class="line"><span class="comment">//数组中最后一个为分组搜索结果</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="字符串中可以使用正则的方法"><a href="#字符串中可以使用正则的方法" class="headerlink" title="字符串中可以使用正则的方法"></a>字符串中可以使用正则的方法</h2><h3 id="String-prototype-search-reg"><a href="#String-prototype-search-reg" class="headerlink" title="String.prototype.search(reg)"></a><code>String.prototype.search(reg)</code></h3><ul>
+<li>检索字符串中指定的子字符串/与正则表达式相匹配的子字符串</li>
+<li>方法返回第一个匹配结果index，找不到返回-1</li>
+<li>不执行全局匹配，忽略标志g，且总是从开头进行检索</li>
+</ul>
+<h3 id="String-prototype-match-reg"><a href="#String-prototype-match-reg" class="headerlink" title="String.prototype.match(reg)"></a><code>String.prototype.match(reg)</code></h3><ul>
+<li>检索字符串，以找到一个或多个匹配文本</li>
+<li>RegExp是否具有标志g对结果有影响</li>
+<li>未找到返回null，找到则返回一个数组</li>
+</ul>
+<h3 id="String-prototype-split-reg"><a href="#String-prototype-split-reg" class="headerlink" title="String.prototype.split(reg)"></a><code>String.prototype.split(reg)</code></h3><ul>
+<li><p>将字符串分割为字符数组</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">'a,b,c,d'</span>.split(<span class="string">','</span>);<span class="regexp">//</span>[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>]</div></pre></td></tr></table></figure>
+</li>
+<li><p>使用正则表达式</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">'a1b2c3d4'</span>.split(<span class="regexp">/\d/</span>);<span class="regexp">//</span>[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="String-prototype-replace-reg-string-function"><a href="#String-prototype-replace-reg-string-function" class="headerlink" title="String.prototype.replace(reg,string/function)"></a><code>String.prototype.replace(reg,string/function)</code></h3><p>函数参数</p>
+<ul>
+<li>匹配字符串</li>
+<li>分组内容，无分组则没有该参数</li>
+<li>匹配项index</li>
+<li>原字符串</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="string">'a1b2c3d4'</span>.replace(<span class="regexp">/(\d)(\w)(\d)/g</span>,<span class="function"><span class="keyword">function</span>(<span class="params">match,group1,group2,</span></span></div><div class="line">group3,index,origin)&#123;</div><div class="line">    <span class="keyword">return</span> group1 +group3;</div><div class="line">&#125;);</div><div class="line"><span class="comment">// 'a12c34'</span></div></pre></td></tr></table></figure>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/08/23/正则表达式进阶/" data-toggle="tooltip" data-placement="top" title="正则表达式进阶">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/08/21/Vue-js入门/" data-toggle="tooltip" data-placement="top" title="Vue.js入门">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#RegExp" title="RegExp">RegExp</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.kaijun.rocks" target="_blank">Kaijun&#39;s Blog</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">Foo</a></li>
+                    
+                        <li><a href="#" target="_blank">Bar</a></li>
+                    
+                        <li><a href="#" target="_blank">Example Friends</a></li>
+                    
+                        <li><a href="#" target="_blank">It helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hexo-theme-huxblog";
+    var disqus_identifier = "http://rubicker.github.io/2016/08/23/JS中的正则表达式/";
+    var disqus_url = "http://rubicker.github.io/2016/08/23/JS中的正则表达式/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/Demonbane_x">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/Demonbane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/Demonbane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/demonbane.cn">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Kaijun">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/kaijun-chen-42089354">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Kaijun&#39;s Blog 2016 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://rubicker.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'huangxuan.me';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
