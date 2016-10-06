@@ -90,14 +90,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -155,7 +155,7 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('header-bg.jpg')
+        background-image: url('header-bg.png')
     }
 </style>
 <header class="intro-header" >
@@ -191,7 +191,18 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <a id="more"></a>
+                <h2 id="工具函数"><a href="#工具函数" class="headerlink" title="工具函数"></a>工具函数</h2><h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><hr>
+<p><code>$.type()</code>检测对象类型<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$.<span class="keyword">type</span>([]); <span class="comment">//array</span></div><div class="line">$.<span class="keyword">type</span>(<span class="literal">null</span>);  <span class="comment">//null</span></div></pre></td></tr></table></figure></p>
+<p><code>$.isEmptyObject()</code>检测一个对象是否包含任何属性<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$.</span>isEmptyObject(<span class="string">""</span>);<span class="regexp">//</span> <span class="keyword">true</span></div><div class="line"><span class="variable">$.</span>isEmptyObject(&#123;&#125;);<span class="regexp">//</span> <span class="keyword">true</span></div></pre></td></tr></table></figure></p>
+<p><code>$.isPlainObject()</code>检测一个对象是否包含任何属性，所检查的必须是一个Object的实例<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$.</span>isPlainObject(<span class="string">""</span>);<span class="regexp">//</span> <span class="keyword">false</span></div><div class="line"><span class="variable">$.</span>isPlainObject(&#123;&#125;);<span class="regexp">//</span> <span class="keyword">true</span></div></pre></td></tr></table></figure></p>
+<p><code>$.extend()</code>合并对象/深复制<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//合并对象</span></div><div class="line"><span class="keyword">var</span> obj1 = &#123;<span class="attr">name</span> : <span class="string">"jack"</span>&#125;;</div><div class="line"><span class="keyword">var</span> obj2 = &#123;<span class="attr">age</span> : <span class="number">27</span>&#125;;</div><div class="line"><span class="keyword">var</span> obj3 = &#123;<span class="attr">weight</span> : <span class="string">"80Kg"</span>&#125;;</div><div class="line"><span class="keyword">var</span> obj4 = $.extend(obj1,obj2,obj3);</div><div class="line"><span class="built_in">console</span>.log(obj4);</div><div class="line"><span class="comment">//$.extend返回值其实就是obj1</span></div><div class="line"><span class="built_in">console</span>.log(obj1 === obj4); <span class="comment">//true</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//传入第一个参数为布尔值时，深复制</span></div><div class="line"><span class="keyword">var</span> cloneObject = $.extend(<span class="literal">true</span>,&#123;&#125;,mainObject);</div></pre></td></tr></table></figure>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p><code>$.isFunction()</code>检测一个对象是否为函数<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$.</span>isFunction(isFunction); <span class="regexp">//</span> <span class="keyword">true</span></div><div class="line"><span class="variable">$.</span>isFunction(isFunction());<span class="regexp">//</span> <span class="keyword">false</span></div><div class="line">/<span class="regexp">/传入参数一定要去掉函数后面的括号</span></div></pre></td></tr></table></figure></p>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p><code>$.isArray()</code>检测一个对象是否为数组<br><code>$.makeArray</code>将一个类似数组的对象转换为真正的数组<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> clonedJQ = $.extend(<span class="literal">true</span>,&#123;&#125;,$);</div><div class="line"><span class="built_in">console</span>.log($.<span class="keyword">type</span>(clonedJQ)); <span class="comment">// object</span></div><div class="line"><span class="keyword">var</span> arrayJQ = $.makeArray(clonedJQ);</div><div class="line"><span class="built_in">console</span>.log($.<span class="keyword">type</span>(arrayJQ)); <span class="comment">// array</span></div></pre></td></tr></table></figure></p>
+<p><code>$.merge()</code>用于合并数组<br><code>$.inArray()</code>检测数组中是否存在某个特定的值，存在则返回其index，不存在则返回-1<br><code>$.unique()</code>从DOM元素的数组中移除重复的元素</p>
+<h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><p><code>$.trim()</code>用来移除字符串首尾的空格字符</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p><code>$.contains()</code>检查一个DOM节点是否是另外一个节点的子节点<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log($.contains($(<span class="string">'head'</span>),$(<span class="string">'body'</span>)));<span class="comment">//true</span></div></pre></td></tr></table></figure></p>
+<p><code>$.isWindow()</code>区分iframe还是window，传入参数为某个对象<br><code>$.now</code>获取当前时间(毫秒数表示)，相当于<code>(new Date).getTime()</code><br><code>$.support()</code>检测浏览器所支持的特性<br><code>$.globalEval()</code>在全局上下文中执行JS代码</p>
 
 
                 <hr>
@@ -204,9 +215,9 @@
                     data-thread-key="2016/09/13/jQuery复习/"
                     data-title="jQuery复习"
                     data-url="http://rubicker.github.io/2016/09/13/jQuery复习/"
-                    data-images="http://rubicker.github.io/2016/09/13/jQuery复习/header-bg.jpg"
-                    data-content="
- | Rubicker的博客 | Rubicker&#39;s Blog " >
+                    data-images="http://rubicker.github.io/2016/09/13/jQuery复习/header-bg.png"
+                    data-content="工具函数对象
+$.type()检测对象类型12$.type([]); //array$.typ... | Rubicker的博客 | Rubicker&#39;s Blog " >
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
                         <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
