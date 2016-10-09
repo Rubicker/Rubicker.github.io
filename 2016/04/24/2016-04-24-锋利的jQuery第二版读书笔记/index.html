@@ -90,13 +90,6 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -105,6 +98,13 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -155,7 +155,7 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('/img/home-bg.jpg')
+        background-image: url('header-bg.png')
     }
 </style>
 <header class="intro-header" >
@@ -206,7 +206,7 @@
 <li>不污染顶级变量</li>
 <li>出色的浏览器兼容性</li>
 <li>链式操作（对发生在同一个jQuery对象上的一组动作，可以直接连写而无需重复获取对象）</li>
-<li>隐式迭代 </li>
+<li>隐式迭代</li>
 <li>行为层与结构层分离</li>
 <li>丰富的插件支持</li>
 <li>完善的文档</li>
@@ -218,7 +218,7 @@
 <ul>
 <li>前者在所有DOM结构绘制完毕后就执行（可能DOM元素关联的东西并没有加载完）；后者必须将网   页所有内容加载完毕后（包括图片）才执行。  </li>
 <li>前者可以同时编写多个；后者只能编写一个  </li>
-<li><p>前者可以简写为：</p>
+<li><p>前者可以简写：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="comment">//do something</span></div><div class="line">&#125;)</div><div class="line"><span class="comment">//可以简写为：</span></div><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="comment">//do something</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <p>后者不可以简写</p>
 </li>
@@ -235,7 +235,7 @@
 <h3 id="jQuery对象和DOM对象"><a href="#jQuery对象和DOM对象" class="headerlink" title="jQuery对象和DOM对象"></a>jQuery对象和DOM对象</h3><hr>
 <h4 id="DOM对象-Document-Object-Model-文档对象模型"><a href="#DOM对象-Document-Object-Model-文档对象模型" class="headerlink" title="DOM对象(Document Object Model,文档对象模型)"></a>DOM对象(Document Object Model,文档对象模型)</h4><p>  通过JS中的<code>getElementsByTagName</code>或者<code>getElementById</code>来获取元素节点，这样得到的DOM元素就是DOM对象</p>
 <h4 id="jQuery对象"><a href="#jQuery对象" class="headerlink" title="jQuery对象"></a>jQuery对象</h4><p>  通过jQuery包装DOM对象后产生的对象。<br>  在jQuery对象中无法使用DOM对象的任何方法，同理DOM对象也不能使用jQuery对象的方法</p>
-<h4 id="jQuery对象和DOM对象的相互转换"><a href="#jQuery对象和DOM对象的相互转换" class="headerlink" title="jQuery对象和DOM对象的相互转换"></a>jQuery对象和DOM对象的相互转换</h4><p>  约定：若获取的对象是jQuery对象，那么在变量前面加上$<br>    <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> $variable = jQuery对象；</div><div class="line"><span class="keyword">var</span> variable = DOM对象；</div></pre></td></tr></table></figure></p>
+<h4 id="jQuery对象和DOM对象的相互转换"><a href="#jQuery对象和DOM对象的相互转换" class="headerlink" title="jQuery对象和DOM对象的相互转换"></a>jQuery对象和DOM对象的相互转换</h4><p>  约定：若获取的对象是jQuery对象，那么在变量前面加上$<br>    <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这样方便日后的调试</span></div><div class="line"><span class="keyword">var</span> $variable = jQuery对象；</div><div class="line"><span class="keyword">var</span> variable = DOM对象；</div></pre></td></tr></table></figure></p>
 <ul>
 <li><p>jQuery对象转换为DOM对象  </p>
 <ul>
@@ -254,35 +254,34 @@
 <h3 id="解决jQuery和其他库的冲突"><a href="#解决jQuery和其他库的冲突" class="headerlink" title="解决jQuery和其他库的冲突"></a>解决jQuery和其他库的冲突</h3><hr>
 <h4 id="jQuery库在其他库之后导入"><a href="#jQuery库在其他库之后导入" class="headerlink" title="jQuery库在其他库之后导入"></a>jQuery库在其他库之后导入</h4><ul>
 <li><p>在其他库和jQuery库都被加载完毕后，可在任何时候调用<code>jQuery.noConflict()</code>函数来将变量$的控制权移交给其他库</p>
-  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"pp"</span>&gt;</span>Test-prototype(将被隐藏)<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Test-jQuery(将被绑定单击事件)<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">jQuery.noConflict();			<span class="comment">//将变量$的控制权让渡给prototype.js</span></div><div class="line">jQuery(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;			<span class="comment">//使用jQuery</span></div><div class="line">jQuery(<span class="string">"p"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  alert( jQuery(<span class="keyword">this</span>).text() );</div><div class="line">  &#125;);</div><div class="line">&#125;);</div><div class="line">$(<span class="string">"pp"</span>).style.display = <span class="string">'none'</span>;<span class="comment">//使用prototype.js隐藏元素</span></div><div class="line">...</div></pre></td></tr></table></figure>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"pp"</span>&gt;</span>Test-prototype(将被隐藏)<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Test-jQuery(将被绑定单击事件)<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">jQuery.noConflict();			<span class="comment">//将变量$的控制权让渡给prototype.js</span></div><div class="line">jQuery(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;			<span class="comment">//使用jQuery</span></div><div class="line">  jQuery(<span class="string">"p"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   alert( jQuery(<span class="keyword">this</span>).text() );</div><div class="line">  &#125;);</div><div class="line">&#125;);</div><div class="line">$(<span class="string">"pp"</span>).style.display = <span class="string">'none'</span>;<span class="comment">//使用prototype.js隐藏元素</span></div><div class="line">...</div></pre></td></tr></table></figure>
 </li>
 <li><p>自定义一个快捷方式</p>
-  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="keyword">var</span> $j = jQuery.noConflict();	 <span class="comment">//自定义一个比较短快捷方式</span></div><div class="line">$j(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;		<span class="comment">//使用jQuery</span></div><div class="line">$j(<span class="string">"p"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   alert( $j(<span class="keyword">this</span>).text() );</div><div class="line"> &#125;);</div><div class="line">&#125;);</div><div class="line">$(<span class="string">"pp"</span>).style.display = <span class="string">'none'</span>;<span class="comment">//使用prototype</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="keyword">var</span> $j = jQuery.noConflict();	 <span class="comment">//自定义一个比较短快捷方式</span></div><div class="line">$j(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;		<span class="comment">//使用jQuery</span></div><div class="line"> $j(<span class="string">"p"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  alert( $j(<span class="keyword">this</span>).text() );</div><div class="line"> &#125;);</div><div class="line">&#125;);</div><div class="line">$(<span class="string">"pp"</span>).style.display = <span class="string">'none'</span>;<span class="comment">//使用prototype</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>将$传入</p>
-  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">jQuery.noConflict();	<span class="comment">//将变量$的控制权让渡给prototype.js</span></div><div class="line"> jQuery(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;		<span class="comment">//使用jQuery</span></div><div class="line">   $(<span class="string">"p"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;	<span class="comment">//继续使用 $ 方法</span></div><div class="line">	alert( $(<span class="keyword">this</span>).text() );</div><div class="line">	   &#125;);</div><div class="line"> &#125;);</div><div class="line"> $(<span class="string">"pp"</span>).style.display = <span class="string">'none'</span>;<span class="comment">//使用prototype</span></div><div class="line"> <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">jQuery.noConflict();	<span class="comment">//将变量$的控制权让渡给prototype.js</span></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;		<span class="comment">//定义匿名函数并设置形参为$</span></div><div class="line">   $(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;	<span class="comment">//匿名函数内部的$均为jQuery</span></div><div class="line">     $(<span class="string">"p"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;	<span class="comment">//继续使用 $ 方法</span></div><div class="line">	alert($(<span class="keyword">this</span>).text());</div><div class="line">	 &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;)(jQuery);<span class="comment">//执行匿名函数且传递实参jQuery</span></div><div class="line">$(<span class="string">"pp"</span>).style.display = <span class="string">'none'</span>;<span class="comment">//使用prototype</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">jQuery.noConflict();	<span class="comment">//将变量$的控制权让渡给prototype.js</span></div><div class="line">jQuery(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;		<span class="comment">//使用jQuery</span></div><div class="line">  $(<span class="string">"p"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;	<span class="comment">//继续使用 $ 方法</span></div><div class="line">    alert( $(<span class="keyword">this</span>).text() );</div><div class="line">  &#125;);</div><div class="line">&#125;);</div><div class="line">$(<span class="string">"pp"</span>).style.display = <span class="string">'none'</span>;<span class="comment">//使用prototype</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">jQuery.noConflict();	<span class="comment">//将变量$的控制权让渡给prototype.js</span></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;		<span class="comment">//定义匿名函数并设置形参为$</span></div><div class="line">  $(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;	<span class="comment">//匿名函数内部的$均为jQuery</span></div><div class="line">    $(<span class="string">"p"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;	<span class="comment">//继续使用 $ 方法</span></div><div class="line">      alert($(<span class="keyword">this</span>).text());</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;)(jQuery);<span class="comment">//执行匿名函数且传递实参jQuery</span></div><div class="line">$(<span class="string">"pp"</span>).style.display = <span class="string">'none'</span>;<span class="comment">//使用prototype</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h4 id="jQuery在其他库之前导入"><a href="#jQuery在其他库之前导入" class="headerlink" title="jQuery在其他库之前导入"></a>jQuery在其他库之前导入</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">jQuery(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;   <span class="comment">//直接使用 jQuery ,没有必要调用"jQuery.noConflict()"函数。</span></div><div class="line">  jQuery(<span class="string">"p"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;      </div><div class="line">    alert( jQuery(<span class="keyword">this</span>).text() );</div><div class="line">    &#125;);</div><div class="line">&#125;);</div><div class="line">$(<span class="string">"pp"</span>).style.display = <span class="string">'none'</span>; <span class="comment">//使用prototype</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="jQuery在其他库之前导入"><a href="#jQuery在其他库之前导入" class="headerlink" title="jQuery在其他库之前导入"></a>jQuery在其他库之前导入</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">jQuery(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;   <span class="comment">//直接使用 jQuery ,没有必要调用"jQuery.noConflict()"函数。</span></div><div class="line">  jQuery(<span class="string">"p"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;      </div><div class="line">    alert( jQuery(<span class="keyword">this</span>).text() );</div><div class="line">  &#125;);</div><div class="line">&#125;);</div><div class="line">$(<span class="string">"pp"</span>).style.display = <span class="string">'none'</span>; <span class="comment">//使用prototype</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 <h2 id="jQuery选择器"><a href="#jQuery选择器" class="headerlink" title="jQuery选择器"></a>jQuery选择器</h2><h3 id="jQuery选择器是什么"><a href="#jQuery选择器是什么" class="headerlink" title="jQuery选择器是什么"></a>jQuery选择器是什么</h3><hr>
 <h4 id="CSS选择器"><a href="#CSS选择器" class="headerlink" title="CSS选择器"></a>CSS选择器</h4><p>E{},#ID{},E.className{},<br>E1,E2,E3{}, E F{},*{}  …</p>
 <h4 id="jQuery选择器-1"><a href="#jQuery选择器-1" class="headerlink" title="jQuery选择器"></a>jQuery选择器</h4><p>jQuery选择器完全继承了CSS风格，并且具有跨浏览器的兼容性</p>
 <h3 id="jQuery选择器的优势"><a href="#jQuery选择器的优势" class="headerlink" title="jQuery选择器的优势"></a>jQuery选择器的优势</h3><hr>
 <h4 id="简洁的写法"><a href="#简洁的写法" class="headerlink" title="简洁的写法"></a>简洁的写法</h4><p><code>$(&quot;#ID&quot;)</code> = <code>document.getElementById()</code><br><code>$(&quot;tagName&quot;)</code>= <code>document.getElementsByTagName()</code></p>
 <h4 id="支持CSS1到CSS3选择器"><a href="#支持CSS1到CSS3选择器" class="headerlink" title="支持CSS1到CSS3选择器"></a>支持CSS1到CSS3选择器</h4><p>支持CSS1，CSS2全部以及CSS3部分选择器</p>
-<h4 id="完善的处理机制"><a href="#完善的处理机制" class="headerlink" title="完善的处理机制"></a>完善的处理机制</h4><p>使用DOM操作document.getElementById()，若页面中没有相应元素，那么浏览器会报错；<br>但是使用jQuery获取网页中不存在的元素不会报错  </p>
-<p>当要用jQuery检查某个元素在网页上是否存在时：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>($(<span class="string">"top"</span>).length&gt;<span class="number">0</span>))&#123;</div><div class="line">   <span class="comment">//do something</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h4 id="完善的处理机制"><a href="#完善的处理机制" class="headerlink" title="完善的处理机制"></a>完善的处理机制</h4><p>使用DOM操作<code>document.getElementById()</code>，若页面中没有相应元素，那么浏览器会报错；<br>但是使用jQuery获取网页中不存在的元素不会报错  </p>
+<p>当要用jQuery检查某个元素在网页上是否存在时：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//正确做法1</span></div><div class="line"><span class="keyword">if</span>($(<span class="string">"#top"</span>).length&gt;<span class="number">0</span>))&#123;</div><div class="line">  <span class="comment">//do something</span></div><div class="line">&#125;;</div><div class="line"><span class="comment">// 正确做法2</span></div><div class="line"><span class="keyword">if</span>($(<span class="string">"#top"</span>)[<span class="number">0</span>])&#123;</div><div class="line">  <span class="comment">//do something</span></div><div class="line">&#125;</div><div class="line"><span class="comment">//由于不论是否存在选择器元素都会返回一个JQ对象，所以下面的判断方法是错误的</span></div><div class="line"><span class="keyword">if</span>($(<span class="string">"#top"</span>))&#123;</div><div class="line">  <span class="comment">//do something</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h3 id="jQuery选择器-2"><a href="#jQuery选择器-2" class="headerlink" title="jQuery选择器"></a>jQuery选择器</h3><hr>
 <h4 id="基本选择器"><a href="#基本选择器" class="headerlink" title="基本选择器"></a>基本选择器</h4><p>类似于CSS中的基本选择器</p>
 <h4 id="层次选择器"><a href="#层次选择器" class="headerlink" title="层次选择器"></a>层次选择器</h4><ul>
 <li><code>$(&quot;ancestor descendant&quot;)</code>  后代选择器</li>
 <li><code>$(&quot;parent&gt;child&quot;)</code> 子选择器</li>
-<li><code>$(&quot;prev+next&quot;)</code>选取进阶在prev元素后的next元素</li>
-<li><code>$(&quot;prev～siblings&quot;)</code>选取prev元素之后的所有siblings元素</li>
-<li>可以用<code>next()</code>方法来代替<code>$(&quot;prev+next&quot;)</code>  即<code>$(&quot;prev&quot;).next(&quot;next&quot;)</code>;<br> 用<code>nextAll()</code>方法来代替 <code>$(&quot;prev～siblings&quot;)</code>   即 <code>$(&quot;prev&quot;).nextAll(&quot;siblings&quot;)</code></li>
+<li><code>$(&quot;prev+next&quot;)</code>选取进阶在prev元素后的next元素,等价于<code>$(&quot;prev&quot;).next(&quot;next&quot;)</code></li>
+<li><code>$(&quot;prev～siblings&quot;)</code>选取prev元素之后的所有siblings元素，等价于<code>$(&quot;prev&quot;).nextAll(&quot;siblings&quot;)</code></li>
 </ul>
-<h4 id="过滤选择器"><a href="#过滤选择器" class="headerlink" title="过滤选择器"></a>过滤选择器</h4><p> 通过特定的过滤规则来筛选，过滤规则与CSS中的伪类选择器语法相同，即选择器以：开头</p>
+<h4 id="过滤选择器"><a href="#过滤选择器" class="headerlink" title="过滤选择器"></a>过滤选择器</h4><p> 通过特定的过滤规则来筛选，过滤规则与CSS中的伪类选择器语法相同，即选择器以<code>:</code>开头</p>
 <ul>
 <li>基本过滤器<ul>
 <li><code>:first</code> 选取第一个元素<br><code>$(&quot;div:first&quot;)</code>选取所有<code>&lt;div&gt;</code>中的第一个<code>&lt;div&gt;</code></li>
@@ -306,7 +305,7 @@
 </ul>
 </li>
 <li>可见性过滤选择器<ul>
-<li><code>:hidden</code> 选取所有不可见的元素 （不仅包括display为none的元素，也包括文本隐藏域(<code>&lt;input type=&quot;hidden&quot;/&gt;</code>))以及visibility:hidden之类的元素</li>
+<li><code>:hidden</code> 选取所有不可见的元素 （不仅包括<code>display:none</code>的元素，也包括文本隐藏域(<code>&lt;input type=&quot;hidden&quot;/&gt;</code>))以及<code>visibility:hidden</code>之类的元素</li>
 <li><code>:visible</code> 选取所有可见的元素</li>
 </ul>
 </li>
@@ -315,14 +314,14 @@
 <li><code>:nth-child(index/even/odd/equation)</code> 选取每个父元素下的第index个子元素或者奇偶元素(<strong>index从1算起</strong>)</li>
 <li><code>:first-child</code>  选取每个父元素的第一个子元素（区别于<code>:first</code>）</li>
 <li><code>:last-child</code> 选取每个父元素的最后一个子元素（区别于<code>:last</code>）</li>
-<li><code>:only-child</code> 若某个元素是它父元素中唯一的子元素那么就会匹配该元素</li>
+<li><code>:only-child</code> 若某个元素是它父元素中唯一的子元素那么就会匹配该子元素</li>
 </ul>
 </li>
 <li>表单对象属性过滤选择器<ul>
 <li><code>:enabled</code> 选取所有可用元素</li>
 <li><code>:disabled</code>选取所有不可用元素</li>
 <li><code>:checked</code> 选取所有被选中的元素（单选框，复选框）</li>
-<li><code>:selected</code> 选取所有被选中的选项元素(下拉列表) </li>
+<li><code>:selected</code> 选取所有被选中的选项元素(下拉列表)</li>
 </ul>
 </li>
 </ul>
@@ -340,7 +339,7 @@
 <li><code>:hidden</code> 选取所有不可见元素</li>
 </ul>
 <h2 id="jquery中的DOM操作"><a href="#jquery中的DOM操作" class="headerlink" title="jquery中的DOM操作"></a>jquery中的DOM操作</h2><h3 id="DOM操作的分类"><a href="#DOM操作的分类" class="headerlink" title="DOM操作的分类"></a>DOM操作的分类</h3><hr>
-<h4 id="DOM-Core"><a href="#DOM-Core" class="headerlink" title="DOM Core"></a>DOM Core</h4><p>并不专属于JS，getElementById(),getElementByTagName(),getAttribute()以及setAttribute()都是DOM Core的组成部分。</p>
+<h4 id="DOM-Core"><a href="#DOM-Core" class="headerlink" title="DOM Core"></a>DOM Core</h4><p>并不专属于JS，<code>getElementById()</code>,<code>getElementByTagName()</code>,<code>getAttribute()</code>以及<code>setAttribute()</code>都是DOM Core的组成部分。</p>
 <h4 id="HTML-DOM"><a href="#HTML-DOM" class="headerlink" title="HTML-DOM"></a>HTML-DOM</h4><h4 id="CSS-DOM"><a href="#CSS-DOM" class="headerlink" title="CSS-DOM"></a>CSS-DOM</h4><p>获取和设置style对象的各种属性</p>
 <h3 id="jQuery中的DOM操作"><a href="#jQuery中的DOM操作" class="headerlink" title="jQuery中的DOM操作"></a>jQuery中的DOM操作</h3><hr>
 <h4 id="查找节点"><a href="#查找节点" class="headerlink" title="查找节点"></a>查找节点</h4><p>通过jQuery选择器来完成DOM操作</p>
@@ -374,10 +373,10 @@
 <li><code>insertbefore()</code> 与上相反</li>
 </ul>
 <h4 id="删除节点"><a href="#删除节点" class="headerlink" title="删除节点"></a>删除节点</h4><ul>
-<li><p><code>remove()</code><br> 从DOM中删除所有匹配的元素，传入的参数用于根据jQuery表达式来筛选元素<br> 当某个节点用remove()方法删除后，该节点所包含的所有后代节点将同时被删除。这个方法的返回值是一个指向已被删除的节点的引用，因此之后还可以再使用这些元素</p>
+<li><p><code>remove()</code><br> 从DOM中删除所有匹配的元素，传入的参数用于根据jQuery表达式来筛选元素，<strong>会删除所有绑定的事件及数据</strong><br> 当某个节点用remove()方法删除后，该节点所包含的所有后代节点将同时被删除。这个方法的返回值是一个指向已被删除的节点的引用，因此之后还可以再使用这些元素</p>
   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"ul li"</span>).remove(<span class="string">"li[title!=菠萝]"</span>)；</div><div class="line"><span class="comment">//将&lt;li&gt;元素中属性title不等于菠萝的&lt;li&gt;元素删除</span></div></pre></td></tr></table></figure>
 </li>
-<li><p><code>detach()</code><br> 也是从DOM中去掉所有匹配的元素，不会删除，会返回被删除元素的引用；<br> <strong>与remove()不同的是，所有绑定的时间，附加的数据等都会保留下来</strong></p>
+<li><p><code>detach()</code><br> 也是从DOM中去掉所有匹配的元素，不会删除，会返回被删除元素的引用；<br> <strong>与remove()不同的是，所有绑定的事件，附加的数据等都会保留下来</strong></p>
 </li>
 <li><code>empty()</code><br>只是清空节点内部的内容，<strong>不是删除节点</strong></li>
 </ul>
@@ -403,7 +402,7 @@
 </ul>
 <h4 id="属性操作"><a href="#属性操作" class="headerlink" title="属性操作"></a>属性操作</h4><ul>
 <li><p>获取属性和设置属性</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> $para = $(<span class="string">"p"</span>);</div><div class="line"><span class="keyword">var</span> p_txt = $para.attr(<span class="string">"title"</span>); <span class="comment">//获取属性</span></div><div class="line">$para.attr(<span class="string">"title"</span>,<span class="string">"your title"</span>); <span class="comment">//设置单个属性</span></div><div class="line">$para.attr(<span class="string">"title"</span>:<span class="string">"your title"</span>,<span class="string">"name"</span>:<span class="string">"test"</span>); <span class="comment">//设置多个属性</span></div></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> $para = $(<span class="string">"p"</span>);</div><div class="line"><span class="keyword">var</span> p_txt = $para.attr(<span class="string">"title"</span>); <span class="comment">//获取属性</span></div><div class="line">$para.attr(<span class="string">"title"</span>,<span class="string">"your title"</span>); <span class="comment">//设置单个属性</span></div><div class="line">$para.attr(&#123;<span class="string">"title"</span>:<span class="string">"your title"</span>,<span class="string">"name"</span>:<span class="string">"test"</span>&#125;); <span class="comment">//设置多个属性</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>删除属性</p>
   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"p"</span>).removeAttr(<span class="string">"title"</span>);<span class="comment">//删除&lt;p&gt;元素的属性title</span></div></pre></td></tr></table></figure>
@@ -414,7 +413,7 @@
 <li>追加样式<br><code>addclass()</code> 追加类名</li>
 <li>移除样式<br> <code>removeClass()</code>删除类名</li>
 <li>切换样式<br> <code>toggleClass()</code>若类名存在则删除它，若不存在则添加它</li>
-<li>判断是否含有某个样式<br><code>hasClass()</code> </li>
+<li>判断是否含有某个样式<br><code>hasClass()</code></li>
 </ul>
 <h4 id="设置和获取HTML-文本和值"><a href="#设置和获取HTML-文本和值" class="headerlink" title="设置和获取HTML,文本和值"></a>设置和获取HTML,文本和值</h4><ul>
 <li><code>html()</code><br> 读取或者设置某个元素中的HTML内容</li>
@@ -427,20 +426,25 @@
 <li><code>prev()</code><br>取得匹配元素前面紧邻的同辈元素</li>
 <li><code>sibilings()</code><br>取得匹配元素前后所有的同辈元素</li>
 <li><code>closest()</code><br>取得最近的匹配元素。首先检查当前元素是否匹配，若匹配则直接返回元素本身，如果不匹配则向上查找父元素；没找到则返回一个空的jQuery对象</li>
-<li><code>parent()</code> 和<code>parents()</code><br>前者取得集合中每个匹配元素的父级元素；后者取得祖先元素</li>
+<li><code>parent()</code> 和<code>parents()</code><br>前者取得集合中每个匹配元素的直接父级元素；后者将返回多个符合匹配的父级元素(多级向上查找)</li>
 </ul>
 <p>以上方法均可传入jQuery表达式来筛选元素</p>
 <h4 id="CSS-DOM操作"><a href="#CSS-DOM操作" class="headerlink" title="CSS-DOM操作"></a>CSS-DOM操作</h4><p><code>css()</code> 获取或者设置元素的样式属性</p>
 <ul>
-<li>对于透明度设置，可以直接使用opacity，jQuery已经处理好了兼容性问题</li>
+<li>设置属性值时，可以不带单位，数字会自动转化为像素值</li>
+<li><p>若属性中有<code>-</code>符号，如<code>font-size</code>，可以采用驼峰写法，如<code>fontSize</code>，此时传入参数无需加引号(加不加都可以)；若不采用驼峰写法，则必须加引号</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//下面两种写法等价</span></div><div class="line"><span class="symbol">$</span>(<span class="string">'p'</span>).css(fontSize,<span class="number">16</span>);</div><div class="line"><span class="symbol">$</span>(<span class="string">'p'</span>).css(<span class="string">'font-size'</span>,<span class="number">16</span>);</div></pre></td></tr></table></figure>
+</li>
+<li><p>对于透明度设置，可以直接使用opacity，jQuery已经处理好了兼容性问题</p>
+</li>
 <li>对于高宽度设置获取，有两种方法：<ul>
-<li><code>$(element).css(&quot;height&quot;)</code>;获取的高度/宽度值与样式设置有关，即可能得到auto</li>
-<li><code>$(element).height()</code>;实际宽度</li>
+<li><code>$(element).css(&quot;height&quot;)</code>;获取的高度/宽度值与样式设置有关，即可能得到auto，也会带单位</li>
+<li><code>$(element).height()</code>;实际宽度，不带单位，纯数字</li>
 </ul>
 </li>
 <li>对于元素定位，有以下几种方法<ul>
-<li><code>offset()</code><br>获取元素在当前视窗的相对偏移，其中返回的对象包含top和left两个属性，只对可见元素有效</li>
-<li><code>position()</code><br>获取元素相对于最近的一个position样式属性设置为relative或absolute的祖父节点的相对偏移，同样有top和left两个属性</li>
+<li><code>offset()</code><br>获取元素在当前视窗的相对偏移，其中返回的对象包含<code>top</code>和<code>left</code>两个属性，只对可见元素有效</li>
+<li><code>position()</code><br>获取元素相对于最近的一个<code>position</code>样式属性设置为<code>relative</code>或<code>absolute</code>的祖父节点的相对偏移，同样有<code>top</code>和<code>left</code>两个属性</li>
 <li><code>scrollTop()</code> 和<code>scrollLeft()</code><br>获取滚动条距顶端和左侧的距离</li>
 </ul>
 </li>
@@ -456,17 +460,19 @@
 <li>简写方式  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   <span class="comment">// do something</span></div><div class="line">&#125;)</div><div class="line"><span class="comment">//可以简写为：</span></div><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="comment">//do something</span></div><div class="line">&#125;)</div><div class="line"><span class="comment">//或者：</span></div><div class="line">$().ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   <span class="comment">//do something</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h4 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a>事件绑定</h4><pre><code>bind(type[,data],fn)  
-</code></pre><p>第一个参数是事件类型(blur,click,mouseover等)；第二个参数可选，作为event.data属性值传递给事件对象的额外数据对象；第三个参数则是用来绑定的处理函数  </p>
+<h4 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a>事件绑定</h4><p><code>bind(type[,data],fn)</code><br>第一个参数是事件类型(blur,click,mouseover等)；第二个参数可选，作为event.data属性值传递给事件对象的额外数据对象；第三个参数则是用来绑定的处理函数  </p>
 <p>简写方式：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"p"</span>).bind(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="comment">//do something</span></div><div class="line">&#125;)</div><div class="line"><span class="comment">//简写为：</span></div><div class="line">$(<span class="string">"p"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   <span class="comment">//do something</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
 <h4 id="合成事件"><a href="#合成事件" class="headerlink" title="合成事件"></a>合成事件</h4><ul>
 <li><code>hover()</code><br><code>hover(enter,leave)</code><br>用于模拟光标悬停事件。当光标移动到元素上时，会触发指定的第一个函数enter；移出时，会触发指定的第二个函数leave。</li>
-<li><code>toggle()</code><br>  toggle(fn1,fn2,…fnN);<br>用于模拟鼠标连续单击事件。第一次单击触发fn1…第N次触发fnN。循环使用。</li>
+<li><code>toggle()</code><br><code>toggle(fn1,fn2,...fnN)</code>;<br>用于模拟鼠标连续单击事件。第一次单击触发fn1…第N次触发fnN。循环使用。</li>
 </ul>
 <h4 id="事件冒泡"><a href="#事件冒泡" class="headerlink" title="事件冒泡"></a>事件冒泡</h4><ul>
-<li>停止事件冒泡<br><code>stopPropagation()</code></li>
-<li>阻止默认行为<br><code>preventDefault()</code></li>
-<li>简写方式<br>同时阻止冒泡以及默认行为<br><code>event.preventDefault();</code>改为<code>return false;</code></li>
+<li><p>停止事件冒泡<br><code>stopPropagation()</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'p'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">  $(<span class="keyword">this</span>).css(<span class="string">"fontSize"</span>,<span class="number">16</span>);</div><div class="line">  e.stopPropagation();</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+<li><p>阻止默认行为<br><code>preventDefault()</code></p>
+</li>
+<li>简写方式<br>同时阻止冒泡以及默认行为<br><code>e.preventDefault();</code>和<code>e.stopPropagation();</code>改为<code>return false;</code></li>
 <li>事件捕获<br>jQuery不支持事件捕获</li>
 </ul>
 <h4 id="事件对象的属性"><a href="#事件对象的属性" class="headerlink" title="事件对象的属性"></a>事件对象的属性</h4><ul>
@@ -474,7 +480,7 @@
 <li><code>event.preventDefault()</code>和<code>event.stopPrepagation()</code><br>阻止默认行为以及阻止向上冒泡<br>由于JS自带的这两个方法在IE中无效，jQuery对其进行了封装，兼容性大大提高</li>
 <li><code>event.target</code><br>获取到触发事件的元素，同样为了兼容性jQuery进行了封装</li>
 <li><code>event.relatedTarget</code><br>某些事件可能涉及到多个元素。以”mouseout”为例，当我们将鼠标从某个元素上移出去的时候，鼠标实际上也进入了另外一个元素。relatedTarget属性就用于返回当事件触发时，该事件所涉及到的其他DOM元素。<br>同样，jQuery兼容性上进行了封装</li>
-<li><code>event.pageX</code>和<code>event.pageY</code><br>获取光标相对于页面的x坐标和y坐标。<br>不使用那个jQuery时，那么IE浏览器中是用<code>event.x</code>/<code>event.y</code>,而在Firefox中是用<code>event.pageX</code>/<code>event.pageY</code><br>如果页面上有滚动条，则还会加上滚动条的宽度和 高度</li>
+<li><code>event.pageX</code>和<code>event.pageY</code><br>获取光标相对于页面的x坐标和y坐标。<br>不使用jQuery时，那么IE浏览器中是用<code>event.x</code>/<code>event.y</code>,而在Firefox中是用<code>event.pageX</code>/<code>event.pageY</code><br>如果页面上有滚动条，则还会加上滚动条的宽度和 高度</li>
 <li><code>event.which</code><br>在鼠标单击事件中获取到鼠标的左中右键（123）；在键盘事件中获取键盘的案件</li>
 <li><code>event.metaKey</code><br>不同浏览器对键盘中的ctrl键解释不同，jQuery封装  这个方法就是在键盘事件中获取ctrl按键</li>
 </ul>
@@ -485,22 +491,26 @@
 <li>如果把绑定时传递的处理函数作为第二个参数，则只有这个特定的事件处理函数会被删除</li>
 </ul>
 </li>
-<li><code>one()</code><br> 只需要触发一次，随后立即解除绑定的情况</li>
+<li><code>one()</code><br> 只需要触发一次，随后立即解除绑定的情况 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'.btn'</span>).one(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   <span class="comment">// do something</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
 </ul>
 <h4 id="模拟操作"><a href="#模拟操作" class="headerlink" title="模拟操作"></a>模拟操作</h4><ul>
 <li><p>常用模拟<br>使用trigger()方法完成模拟操作</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#btn"</span>).trigger(<span class="string">"click"</span>); <span class="comment">//触发click操作</span></div><div class="line"><span class="comment">//简化</span></div><div class="line">$(<span class="string">"#btn"</span>).click();</div></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//触发click操作</span></div><div class="line">$(<span class="string">"#btn"</span>).trigger(<span class="string">"click"</span>);</div><div class="line"><span class="comment">//简化</span></div><div class="line">$(<span class="string">"#btn"</span>).click();</div></pre></td></tr></table></figure>
 </li>
 <li><p>触发自定义事件<br>用法同上，传入自定义事件名称即可</p>
 </li>
 <li>执行默认操作<br><code>trigger()</code>方法触发事件后，会执行浏览器默认操作<br>为避免此种情况，可使用<code>triggerHandler()</code>方法</li>
 </ul>
 <h4 id="bind-其他用法"><a href="#bind-其他用法" class="headerlink" title="bind()其他用法"></a>bind()其他用法</h4><ul>
-<li>绑定多个事件类型<br>可以在bind()第一个参数中传入多个事件名称，一次性绑定多个事件</li>
-<li>添加事件命名空间，便于管理<br>比如在想要统一删除的事件后面加.plugin，再使用unbind(“.plugin”)即可删除</li>
+<li><p>绑定多个事件类型<br>可以在bind()第一个参数中传入多个事件名称，一次性绑定多个事件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'div'</span>).bind(<span class="string">"mouseover mouseout"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  $(<span class="keyword">this</span>).toggleClass(<span class="string">"over"</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>添加事件命名空间，便于管理<br>比如在想要统一删除的事件后面加.plugin，再使用unbind(“.plugin”)即可删除</p>
+</li>
 <li><p>相同时间名称，不同命名空间执行方法</p>
   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	$(<span class="string">"div"</span>).bind(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	       $(<span class="string">"body"</span>).append(<span class="string">"&lt;p&gt;click事件&lt;/p&gt;"</span>);</div><div class="line">	&#125;);</div><div class="line">	$(<span class="string">"div"</span>).bind(<span class="string">"click.plugin"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	       $(<span class="string">"body"</span>).append(<span class="string">"&lt;p&gt;click.plugin事件&lt;/p&gt;"</span>);</div><div class="line">	&#125;);</div><div class="line">	$(<span class="string">"button"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		  $(<span class="string">"div"</span>).trigger(<span class="string">"click!"</span>);    <span class="comment">// 注意click后面的感叹号</span></div><div class="line">	&#125;);</div><div class="line"> &#125;)</div></pre></td></tr></table></figure>
-<p>单击<code>&lt;div&gt;</code>元素后，会同时触发click事件和click.plugin事件。如果只是单击<code>&lt;button&gt;</code>元素，则只会触发click事件，而不触发click.plugin事件。<br><code>trigger(&quot;click!&quot;)</code>后面的感叹号的作用是匹配所有不包含在命名空间中的click方法。</p>
+<p>单击<code>&lt;div&gt;</code>元素后，会同时触发click事件和click.plugin事件。如果只是单击<code>&lt;button&gt;</code>元素，则只会触发click事件，而<u>不触发click.plugin事件。</u><br><code>trigger(&quot;click!&quot;)</code>后面的感叹号的作用是匹配所有不包含在命名空间中的click方法。</p>
 </li>
 </ul>
 <h3 id="jQuery中的动画"><a href="#jQuery中的动画" class="headerlink" title="jQuery中的动画"></a>jQuery中的动画</h3><hr>
@@ -513,40 +523,42 @@
 <h4 id="自定义动画方法animate"><a href="#自定义动画方法animate" class="headerlink" title="自定义动画方法animate()"></a>自定义动画方法animate()</h4><p><code>animate(params,speed,callback)</code><br>params: 一个包含样式属性及值的映射，如{property1:”value1”,property2:”value2”,…}<br>speed:速度参数，可选<br>callback:在动画完成时执行的函数，可选</p>
 <ul>
 <li><p>自定义简单动画</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      $(<span class="string">"#panel"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">              $(<span class="keyword">this</span>).animate(&#123;<span class="attr">left</span>:<span class="string">"200px"</span>&#125;,<span class="number">3000</span>);</div><div class="line"> <span class="comment">//使得该元素在3秒内向右移动至left值为200px的位置    </span></div><div class="line">     &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  $(<span class="string">"#panel"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    (<span class="keyword">this</span>).animate(&#123;<span class="attr">left</span>:<span class="string">"200px"</span>&#125;,<span class="number">3000</span>);</div><div class="line">    <span class="comment">//使得该元素在3秒内向右移动至left值为200px的位置    </span></div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 </li>
 <li><p>累加，累减动画</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      $(<span class="string">"#panel"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">              $(<span class="keyword">this</span>).animate(&#123;<span class="attr">left</span>:<span class="string">"+=200px"</span>&#125;,<span class="number">3000</span>);</div><div class="line"> <span class="comment">//使得该元素在3秒内向右移动200px(以当前位置为基准)</span></div><div class="line">     &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  $(<span class="string">"#panel"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $(<span class="keyword">this</span>).animate(&#123;<span class="attr">left</span>:<span class="string">"+=200px"</span>&#125;,<span class="number">3000</span>);</div><div class="line">    <span class="comment">//使得该元素在3秒内向右移动200px(以当前位置为基准)</span></div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 </li>
 <li><p>多重动画</p>
-<pre><code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      $(<span class="string">"#panel"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">              $(<span class="keyword">this</span>).animate(&#123;<span class="attr">left</span>:<span class="string">"200px"</span>，height:<span class="string">"500px"</span>&#125;,<span class="number">3000</span>);</div><div class="line"> <span class="comment">//使得该元素在3秒内向右移动到200px,同时放大高度</span></div><div class="line">     &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-</code></pre></li>
-<li><p>按顺序执行多个动画<br>上例动画师同时执行的，要想按照顺序执行呢？</p>
-   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      $(<span class="string">"#panel"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">              $(<span class="keyword">this</span>).animate(&#123;<span class="attr">left</span>:<span class="string">"200px"</span>&#125;,<span class="number">3000</span>)</div><div class="line">                       .animate(&#123;<span class="attr">height</span>:<span class="string">"500px"</span>&#125;,<span class="number">3000</span>);</div><div class="line"> <span class="comment">//使得该元素在3秒内向右移动到200px,然后放大高度</span></div><div class="line">     &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  $(<span class="string">"#panel"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $(<span class="keyword">this</span>).animate(&#123;<span class="attr">left</span>:<span class="string">"200px"</span>，height:<span class="string">"500px"</span>&#125;,<span class="number">3000</span>)</div><div class="line">    <span class="comment">//使得该元素在3秒内向右移动到200px,同时放大高度</span></div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>按顺序执行多个动画<br>上例动画是同时执行的，要想按照顺序执行呢？</p>
+   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  $(<span class="string">"#panel"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $(<span class="keyword">this</span>).animate(&#123;<span class="attr">left</span>:<span class="string">"200px"</span>&#125;,<span class="number">3000</span>)</div><div class="line">           .animate(&#123;<span class="attr">height</span>:<span class="string">"500px"</span>&#125;,<span class="number">3000</span>);</div><div class="line">    <span class="comment">//使得该元素在3秒内向右移动到200px,然后放大高度</span></div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <h4 id="动画回调函数"><a href="#动画回调函数" class="headerlink" title="动画回调函数"></a>动画回调函数</h4><p>动画回调函数会在动画执行完成之后才执行</p>
 <h4 id="停止动画和判断是否处于动画状态"><a href="#停止动画和判断是否处于动画状态" class="headerlink" title="停止动画和判断是否处于动画状态"></a>停止动画和判断是否处于动画状态</h4><ul>
 <li><p>停止动画<br><code>stop([clearQueue],[gotoEnd])</code><br>两个参数均为可选参数，且为布尔值；clearQueue指是否清除未执行完的动画队列，gotoEnd指是否直接将正在执行的动画跳转到末状态。<br>经常会遇到这种情况，在为一个元素 hover事件之后，用户把光标移入元素时会触发动画效果，而当这个动画还没结束时，用户就将光标移出这个元素了，那么光标移出的动画效果将会被放进队列之中，等待光标移入的动画结束之后再执行。  就会造成<strong>动画效果与动作不一致</strong><br>此时只需要在光标移入和移出动画之前加入stop()方法即可。stop()会结束当前正在进行的动画，并立即执行队列中的下一个动画。</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#panel"</span>).hover(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      $(<span class="keyword">this</span>).stop()</div><div class="line">                .animate(&#123;<span class="attr">height</span>:<span class="string">"150"</span>,<span class="attr">width</span>:<span class="string">"300"</span>&#125;,<span class="number">200</span>);</div><div class="line"><span class="comment">//若在此时触发光标移出事件，</span></div><div class="line"><span class="comment">//将执行下述光标移出的动画</span></div><div class="line">&#125;,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">     $(<span class="keyword">this</span>).stop()</div><div class="line">               .animate(&#123;<span class="attr">height</span>:<span class="string">"22"</span>,<span class="attr">width</span>:<span class="string">"60"</span>&#125;,<span class="number">200</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#panel"</span>).hover(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  $(<span class="keyword">this</span>).stop()</div><div class="line">         .animate(&#123;<span class="attr">height</span>:<span class="string">"150"</span>,<span class="attr">width</span>:<span class="string">"300"</span>&#125;,<span class="number">200</span>);</div><div class="line"><span class="comment">//若在此时触发光标移出事件，</span></div><div class="line"><span class="comment">//将执行下述光标移出的动画</span></div><div class="line">&#125;,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  $(<span class="keyword">this</span>).stop()</div><div class="line">         .animate(&#123;<span class="attr">height</span>:<span class="string">"22"</span>,<span class="attr">width</span>:<span class="string">"60"</span>&#125;,<span class="number">200</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>若遇到组合动画</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#panel"</span>).hover(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      $(<span class="keyword">this</span>).stop()</div><div class="line">                .animate(&#123;<span class="attr">height</span>:<span class="string">"150"</span>,<span class="attr">width</span>:<span class="string">"300"</span>&#125;,<span class="number">200</span>)</div><div class="line"><span class="comment">//若在此时触发光标移出事件，</span></div><div class="line"><span class="comment">//将执行下述动画,而非光标移出事件动画，该怎么办？</span></div><div class="line">                .animate(&#123;<span class="attr">width</span>:<span class="string">"100"</span>&#125;,<span class="number">200</span>);</div><div class="line">&#125;,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">     $(<span class="keyword">this</span>).stop()</div><div class="line">               .animate(&#123;<span class="attr">height</span>:<span class="string">"22"</span>,<span class="attr">width</span>:<span class="string">"60"</span>&#125;,<span class="number">200</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#panel"</span>).hover(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  $(<span class="keyword">this</span>).stop()</div><div class="line">         .animate(&#123;<span class="attr">height</span>:<span class="string">"150"</span>,<span class="attr">width</span>:<span class="string">"300"</span>&#125;,<span class="number">200</span>)</div><div class="line"><span class="comment">//若在此时触发光标移出事件，</span></div><div class="line"><span class="comment">//将执行下述动画,而非光标移出事件动画，该怎么办？</span></div><div class="line">         .animate(&#123;<span class="attr">width</span>:<span class="string">"100"</span>&#125;,<span class="number">200</span>);</div><div class="line">&#125;,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  $(<span class="keyword">this</span>).stop()</div><div class="line">         .animate(&#123;<span class="attr">height</span>:<span class="string">"22"</span>,<span class="attr">width</span>:<span class="string">"60"</span>&#125;,<span class="number">200</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>此时要传入一个参数，指定clearQueue为true，即清除未执行完的动画队列</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#panel"</span>).hover(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      $(<span class="keyword">this</span>).stop(<span class="literal">true</span>)</div><div class="line">                .animate(&#123;<span class="attr">height</span>:<span class="string">"150"</span>,<span class="attr">width</span>:<span class="string">"300"</span>&#125;,<span class="number">200</span>)</div><div class="line"> <span class="comment">//若在此时触发光标移出事件，</span></div><div class="line"> <span class="comment">//将执行光标移出事件动画</span></div><div class="line">                .animate(&#123;<span class="attr">width</span>:<span class="string">"100"</span>&#125;,<span class="number">200</span>);</div><div class="line">&#125;,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">     $(<span class="keyword">this</span>).stop()</div><div class="line">               .animate(&#123;<span class="attr">height</span>:<span class="string">"22"</span>,<span class="attr">width</span>:<span class="string">"60"</span>&#125;,<span class="number">200</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p> 要注意：jQuery只能设置正在执行动画的最终状态，但没有提供到达未执行动画队列最终状态的方法。<br> （jQuery无法通过stop设置使得元素到达最终状态的同时仿佛动画全部执行过一次)</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#panel"</span>).hover(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  $(<span class="keyword">this</span>).stop(<span class="literal">true</span>)</div><div class="line">         .animate(&#123;<span class="attr">height</span>:<span class="string">"150"</span>,<span class="attr">width</span>:<span class="string">"300"</span>&#125;,<span class="number">200</span>)</div><div class="line"> <span class="comment">//若在此时触发光标移出事件，</span></div><div class="line"> <span class="comment">//将执行光标移出事件动画</span></div><div class="line">         .animate(&#123;<span class="attr">width</span>:<span class="string">"100"</span>&#125;,<span class="number">200</span>);</div><div class="line">&#125;,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  $(<span class="keyword">this</span>).stop(<span class="literal">true</span>)</div><div class="line">         .animate(&#123;<span class="attr">height</span>:<span class="string">"22"</span>,<span class="attr">width</span>:<span class="string">"60"</span>&#125;,<span class="number">200</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><code>stop([clearQueue],[gotoEnd])</code>设置第二个参数为true，动画将自动执行到当前动画的最末状态(注意不是动画序列的最后状态)</p>
 </li>
+</ul>
+<ul>
 <li><p>判断元素是否处于动画状态<br>避免动画积累而导致的动画与用户行为不一致。解决方法是判断元素是否正处于动画状态，若元素不处于动画状态才为元素添加新的动画，否则不添加：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(!$(element).is(<span class="string">":animated"</span>))&#123;   <span class="comment">//判断元素是否处于动画状态</span></div><div class="line">      <span class="comment">//如果当前没有进行动画，则添加新动画</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(!$(element).is(<span class="string">":animated"</span>))&#123;   </div><div class="line">  <span class="comment">//判断元素是否处于动画状态</span></div><div class="line">  <span class="comment">//如果当前没有进行动画，则添加新动画</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 <li><p>延迟动画<br><code>delay()</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="keyword">this</span>).animate(&#123;<span class="attr">left</span>:<span class="string">"400"</span>,<span class="attr">height</span>:<span class="string">"200"</span>&#125;,<span class="number">3000</span>)</div><div class="line">          .delay(<span class="number">1000</span>)</div><div class="line">          .fadeOut(slow);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="keyword">this</span>).animate(&#123;<span class="attr">left</span>:<span class="string">"400"</span>,<span class="attr">height</span>:<span class="string">"200"</span>&#125;,<span class="number">3000</span>)</div><div class="line">       .delay(<span class="number">1000</span>)</div><div class="line">       .fadeOut(slow);</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <h4 id="其他动画方法"><a href="#其他动画方法" class="headerlink" title="其他动画方法"></a>其他动画方法</h4><ul>
-<li>toggle()<br>切换元素的可见状态(变化同<code>hide()</code>和<code>show()</code>)</li>
-<li>slideToggle()<br>通过高度变化切换可见状态</li>
-<li>fadeTo()<br>调整元素的不透明度</li>
-<li>fadeToggle()<br>通过不透明度变化切换匹配元素的可见性</li>
+<li><code>toggle()</code><br>切换元素的可见状态(变化同<code>hide()</code>和<code>show()</code>)</li>
+<li><code>slideToggle()</code><br>通过高度变化切换可见状态</li>
+<li><code>fadeTo()</code><br>调整元素的不透明度</li>
+<li><code>fadeToggle()</code><br>通过不透明度变化切换匹配元素的可见性</li>
 </ul>
 <h2 id="jQuery对表单，表格的操作及更多应用"><a href="#jQuery对表单，表格的操作及更多应用" class="headerlink" title="jQuery对表单，表格的操作及更多应用"></a>jQuery对表单，表格的操作及更多应用</h2><h2 id="Jquery与Ajax的应用"><a href="#Jquery与Ajax的应用" class="headerlink" title="Jquery与Ajax的应用"></a>Jquery与Ajax的应用</h2><h3 id="Ajax的优势和不足"><a href="#Ajax的优势和不足" class="headerlink" title="Ajax的优势和不足"></a>Ajax的优势和不足</h3><hr>
 <h4 id="Ajax的优势"><a href="#Ajax的优势" class="headerlink" title="Ajax的优势"></a>Ajax的优势</h4><ul>
@@ -565,47 +577,47 @@
 <h3 id="jQuery中的Ajax"><a href="#jQuery中的Ajax" class="headerlink" title="jQuery中的Ajax"></a>jQuery中的Ajax</h3><hr>
 <h4 id="load-方法"><a href="#load-方法" class="headerlink" title="load()方法"></a>load()方法</h4><ul>
 <li><p>载入HTML文档<br><code>load(url[,data][,callback])</code><br>url ——请求HTML页面的URL地址<br>data(可选)——发送至服务器的key/value数据<br>callback(可选)——请求完成时的回调函数，<strong>无论请求成功或失败</strong></p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">     $(<span class="string">"send"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">           $(<span class="string">"#resText"</span>).load(<span class="string">"test.html"</span>); </div><div class="line">     &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  $(<span class="string">"send"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $(<span class="string">"#resText"</span>).load(<span class="string">"test.html"</span>);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 </li>
-<li><p>筛选载入的HTML文档<br>load()方法的URL参数的语法结构为“url selector”；<br><code>$(&quot;#resText&quot;).load(&quot;test.html .para&quot;);</code><br>以上代码只加载test.html页面中class为“para”的内容</p>
+<li><p>筛选载入的HTML文档<br><code>load()</code>方法的URL参数的语法结构为“url selector”；<br><code>$(&quot;#resText&quot;).load(&quot;test.html .para&quot;);</code><br>以上代码只加载test.html页面中class为“para”的内容</p>
 </li>
-<li>传递方式<br>load()方法传递方式由参数data来自动指定。若没有参数传递，则采用GET方式传递；反之，则会自动转换为POST方式。</li>
-<li>回调函数<br>该函数有三个参数  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#resText"</span>).load(<span class="string">"test.html"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">responseText,textStatus,XMLHttpRequest</span>)</span>&#123;</div><div class="line">   <span class="comment">// responseText:        请求返回的内容</span></div><div class="line">   <span class="comment">// textStatus：           请求状态：success，error，notmodified，timeout4种</span></div><div class="line">   <span class="comment">// XMLHttpRequest:   XMLHttpRequest对象</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<li>传递方式<br><code>load()</code>方法传递方式由参数data来自动指定。若没有参数传递，则采用GET方式传递；反之，则会自动转换为POST方式。</li>
+<li>回调函数<br>该函数有三个参数  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#resText"</span>).load(<span class="string">"test.html"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">responseText,textStatus,XMLHttpRequest</span>)</span>&#123;</div><div class="line">   <span class="comment">// responseText:请求返回的内容</span></div><div class="line">   <span class="comment">// textStatus:请求状态：success，error，notmodified，timeout4种</span></div><div class="line">   <span class="comment">// XMLHttpRequest:XMLHttpRequest对象</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <h4 id="get-方法和-post-方法"><a href="#get-方法和-post-方法" class="headerlink" title="$.get()方法和$.post()方法"></a>$.get()方法和$.post()方法</h4><ul>
-<li><p>$.get()方法<br><code>$.get(url[,data][,callback][,type])</code><br> url—— 请求的HTML页的URL地址<br> data(可选)—— 发送至服务器的key/value数据会作为QueryString附加到请求URL中<br> callback(可选)—— 载入成功时回调函数（只有当Response的返回状态是success才调用该方法）自动将请求结果和状态传递给该方法</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params">data,textStatus</span>)</span>&#123;</div><div class="line">      <span class="comment">//data:返回的内容，可以是XML文档，JSON文件，HTML片段等等     </span></div><div class="line">      <span class="comment">//textStatus:请求状态：success，error，notmodified，timeout4种  </span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<li><p><code>$.get()</code>方法<br><code>$.get(url[,data][,callback][,type])</code><br> url—— 请求的HTML页的URL地址<br> data(可选)—— 发送至服务器的key/value数据会作为QueryString附加到请求URL中<br> callback(可选)—— 载入成功时回调函数（只有当Response的返回状态是success才调用该方法）自动将请求结果和状态传递给该方法</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params">data,textStatus</span>)</span>&#123;</div><div class="line">  <span class="comment">//data:返回的内容，可以是XML文档，JSON文件，HTML片段等等     </span></div><div class="line">  <span class="comment">//textStatus:请求状态：success，error，notmodified，timeout4种  </span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p> type(可选)——服务器端返回内容的格式，包括xml，html，script，json，text和_default</p>
 </li>
-<li>$.post()方法<br>与$,get()方法结构和使用方法相同，区别是：<ul>
+<li><code>$.post()</code>方法<br>与<code>$.get()</code>方法结构和使用方法相同，区别是：<ul>
 <li>Get请求会将参数跟在URL后进行传递，而Post请求则是作为HTTP消息的实体内容发送给Web服务器</li>
 <li>Get方式对传输的数据有大小限制（通常不大于2kb），而Post方式传递的数据量比Get大（理论上不受限制）</li>
 <li>Get方式请求的数据会被浏览器缓存，可能造成安全问题，而Post相对来说可以避免？</li>
-<li>两种方式传递的数据在服务器端的获取也不相同。在PHP中，Get方式的数据可通过$_GET[]获取，而Post方式可以用$_POST[]获取。两者均可用$_REQUEST[]获取。</li>
+<li>两种方式传递的数据在服务器端的获取也不相同。在PHP中，Get方式的数据可通过<br><code>$_GET[]</code>获取，而Post方式可以用<code>$_POST[]</code>获取。两者均可用<code>$_REQUEST[]</code>获取。</li>
 </ul>
 </li>
 </ul>
 <h4 id="getScript-方法和-getJson-方法"><a href="#getScript-方法和-getJson-方法" class="headerlink" title="$.getScript()方法和$.getJson()方法"></a>$.getScript()方法和$.getJson()方法</h4><ul>
-<li>$.getScript()<br> 直接加载.js文件，且不需要对该文件进行处理，会自动执行。<br> 同样也有回调函数</li>
-<li>$,getJson()<br> 用于加载JSON文件</li>
+<li><code>$.getScript()</code><br> 直接加载.js文件，且不需要对该文件进行处理，会自动执行。<br> 同样也有回调函数</li>
+<li><code>$,getJson()</code><br> 用于加载JSON文件</li>
 </ul>
-<h4 id="ajax-方法"><a href="#ajax-方法" class="headerlink" title="$.ajax()方法"></a>$.ajax()方法</h4><p>$.ajax()方法是jQuery最底层的Ajax实现。是全局函数</p>
+<h4 id="ajax-方法"><a href="#ajax-方法" class="headerlink" title="$.ajax()方法"></a>$.ajax()方法</h4><p><code>$.ajax()</code>方法是jQuery最底层的Ajax实现。是全局函数</p>
 <h3 id="序列化元素"><a href="#序列化元素" class="headerlink" title="序列化元素"></a>序列化元素</h3><hr>
 <ul>
-<li>serialize()方法<br> 能够将DOM元素内容序列化为字符串</li>
-<li>serializeArray()方法<br> 能够将DOM元素序列化为JSON格式数据</li>
-<li>$.param()方法<br> 是serialize()方法的核心，用来对一个数组或对象按照名值对进行序列化</li>
+<li><code>serialize()</code>方法<br> 能够将DOM元素内容序列化为字符串</li>
+<li><code>serializeArray()</code>方法<br> 能够将DOM元素序列化为JSON格式数据</li>
+<li><code>$.param()</code>方法<br> 是<code>serialize()</code>方法的核心，用来对一个数组或对象按照名值对进行序列化</li>
 </ul>
 <h3 id="jQuery中的Ajax全局事件"><a href="#jQuery中的Ajax全局事件" class="headerlink" title="jQuery中的Ajax全局事件"></a>jQuery中的Ajax全局事件</h3><hr>
  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"loading"</span>&gt;</span>加载中<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
- <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#loading"</span>).ajaxStart(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">       $(<span class="keyword">this</span>).show();  <span class="comment">//提升用户体验</span></div><div class="line">  &#125;).ajaxStop(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      $(<span class="keyword">this</span>).hide();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#loading"</span>).ajaxStart(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  $(<span class="keyword">this</span>).show();  <span class="comment">//提升用户体验</span></div><div class="line">&#125;).ajaxStop(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  $(<span class="keyword">this</span>).hide();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <ul>
-<li>ajaxComplete(callback)<br>Ajax请求完成时执行的函数</li>
-<li>ajaxError(callback)<br>Ajax请求发生错误时执行的函数，捕捉到的错误可以作为最后一个参数传递</li>
-<li>ajaxSend(callback)Ajax<br>请求发送前执行的函数</li>
-<li>ajaxSuccess(callback)<br>Ajax请求成功时执行的函数</li>
-<li>若想使某个Ajax请求不受全局方法的影响，那么可以在使用$.ajax(options)方法时，将参数中global设置为false：  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$.ajax(&#123;</div><div class="line">      <span class="attr">url</span>:<span class="string">"test.html"</span>,</div><div class="line">      <span class="attr">global</span>:<span class="literal">false</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<li><code>ajaxComplete(callback)</code><br>Ajax请求完成时执行的函数</li>
+<li><code>ajaxError(callback)</code><br>Ajax请求发生错误时执行的函数，捕捉到的错误可以作为最后一个参数传递</li>
+<li><code>ajaxSend(callback)</code><br>Ajax请求发送前执行的函数</li>
+<li><code>ajaxSuccess(callback)</code><br>Ajax请求成功时执行的函数</li>
+<li>若想使某个Ajax请求不受全局方法的影响，那么可以在使用$.ajax(options)方法时，将参数中global设置为false：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$.ajax(&#123;</div><div class="line">  <span class="attr">url</span>:<span class="string">"test.html"</span>,</div><div class="line">  <span class="attr">global</span>:<span class="literal">false</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <h2 id="Jquery插件的使用和写法"><a href="#Jquery插件的使用和写法" class="headerlink" title="Jquery插件的使用和写法"></a>Jquery插件的使用和写法</h2><h3 id="jQuery表单验证插件-Validation"><a href="#jQuery表单验证插件-Validation" class="headerlink" title="jQuery表单验证插件-Validation"></a>jQuery表单验证插件-Validation</h3><hr>
@@ -634,20 +646,19 @@
 <li>可以通过this.each来遍历所有元素</li>
 <li>所有的方法或函数插件，都应当以分号结尾，否则压缩的时候可能出现问题。可以在插件头部先加上个分号，提高兼容性</li>
 <li>插件应该返回一个jQuery对象，以保证插件的可链式操作</li>
-<li>避免在插件内部使用$z作为jQuery对象的别名，而应该使用完整的jQuery来表示，这样可以避免冲突<br> 当然可以利用闭包来回避这个问题</li>
+<li>避免在插件内部使用$作为jQuery对象的别名，而应该使用完整的jQuery来表示，这样可以避免冲突<br> 当然可以利用闭包来回避这个问题</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">;(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">     <span class="comment">//这里编写插件代码，可以继续使用$作为jQuery的别名</span></div><div class="line">     <span class="comment">//定义一个局部变量foo，仅函数内部可以访问，外部无法访问</span></div><div class="line">    <span class="keyword">var</span> foo;</div><div class="line">    <span class="keyword">var</span> bar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">         <span class="comment">//在匿名函数内部的函数都可以访问foo，即使在匿名函数</span></div><div class="line">         <span class="comment">//的外部调用bar()的时候，也可以在bar()的内部访问到foo，</span></div><div class="line">         <span class="comment">//但在匿名函数的外部直接访问foo是做不到的      </span></div><div class="line">   &#125;</div><div class="line">   $.BAR = bar;</div><div class="line">   <span class="comment">//这个语句使得匿名函数内部的函数bar()逃逸到全局可访问的范围内</span></div><div class="line">   <span class="comment">//这样就可以在匿名函数的外部通过调用jQuery.BAR()来访问内部定义的</span></div><div class="line">   <span class="comment">//函数bar() </span></div><div class="line">&#125;)(jQuery); <span class="comment">//将jQuery作为实参传入，这样函数内部就可以用$来操作了</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">;(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</div><div class="line">   <span class="comment">//这里编写插件代码，可以继续使用$作为jQuery的别名</span></div><div class="line">   <span class="comment">//定义一个局部变量foo，仅函数内部可以访问，外部无法访问</span></div><div class="line">   <span class="keyword">var</span> foo;</div><div class="line">   <span class="keyword">var</span> bar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   <span class="comment">//在匿名函数内部的函数都可以访问foo，即使在匿名函数</span></div><div class="line">   <span class="comment">//的外部调用bar()的时候，也可以在bar()的内部访问到foo，</span></div><div class="line">   <span class="comment">//但在匿名函数的外部直接访问foo是做不到的      </span></div><div class="line">   &#125;</div><div class="line">   $.BAR = bar;</div><div class="line">   <span class="comment">//这个语句使得匿名函数内部的函数bar()逃逸到全局可访问的范围内</span></div><div class="line">   <span class="comment">//这样就可以在匿名函数的外部通过调用jQuery.BAR()来访问内部定义的</span></div><div class="line">   <span class="comment">//函数bar()</span></div><div class="line">&#125;)(jQuery); <span class="comment">//将jQuery作为实参传入，这样函数内部就可以用$来操作了</span></div></pre></td></tr></table></figure>
 <h4 id="jQuery插件的机制"><a href="#jQuery插件的机制" class="headerlink" title="jQuery插件的机制"></a>jQuery插件的机制</h4><ul>
-<li>jQuery.fn.extend()<br>扩展对象方法的插件</li>
-<li>jQuery.extend()<br>扩展全局函数插件和选择器插件<br>这两个方法都接受一个类型为object的参数<pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">options</span>)</span>{
+<li><code>jQuery.fn.extend()</code><br>扩展对象方法的插件</li>
+<li><code>jQuery.extend()</code><br>扩展全局函数插件和选择器插件<br>这两个方法都接受一个类型为object的参数<pre><code>function foo(options){
   options = jQuery.extend({
-          <span class="attr">name</span>:<span class="string">"bar"</span>,
-          <span class="attr">length</span>:<span class="number">5</span>,
-          <span class="attr">dataType</span>:<span class="string">"xml"</span>  <span class="comment">//默认参数</span>
-  },options);           <span class="comment">//options为传进来的参数</span>
+    name:&quot;bar&quot;,
+    length:5,
+    dataType:&quot;xml&quot;  //默认参数
+  },options);//options为传进来的参数
 };
-</code></pre>
-若用户调用foo()的时候，在传递的参数options对象中设置了相应的值，那么就使用设置的值，否则使用默认值</li>
+</code></pre>若用户调用<code>foo()</code>的时候，在传递的参数options对象中设置了相应的值，那么就使用设置的值，否则使用默认值</li>
 </ul>
 
 
@@ -661,7 +672,7 @@
                     data-thread-key="2016/04/24/2016-04-24-锋利的jQuery第二版读书笔记/"
                     data-title="锋利的jQuery第二版读书笔记"
                     data-url="http://rubicker.github.io/2016/04/24/2016-04-24-锋利的jQuery第二版读书笔记/"
-                    data-images=""
+                    data-images="http://rubicker.github.io/2016/04/24/2016-04-24-锋利的jQuery第二版读书笔记/header-bg.png"
                     data-content="
 write less，do more
 

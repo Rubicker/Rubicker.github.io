@@ -13,11 +13,11 @@
 
     <title>
         
-          Vue.js入门 - Rubicker的博客 | Rubicker&#39;s Blog
+          JavaScript兼容性与封装函数整理 - Rubicker的博客 | Rubicker&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://rubicker.github.io/2016/08/21/Vue-js入门/">
+    <link rel="canonical" href="http://rubicker.github.io/2016/10/08/JavaScript兼容性与封装函数整理/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -155,7 +155,7 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('header-bg.jpg')
+        background-image: url('header-bg.png')
     }
 </style>
 <header class="intro-header" >
@@ -165,16 +165,16 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#MVVM" title="MVVM">MVVM</a>
+                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
                         
-                          <a class="tag" href="/tags/#Vue.js" title="Vue.js">Vue.js</a>
+                          <a class="tag" href="/tags/#兼容性" title="兼容性">兼容性</a>
                         
                     </div>
-                    <h1>Vue.js入门</h1>
+                    <h1>JavaScript兼容性与封装函数整理</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by “Rubicker” on
-                        2016-08-21
+                        2016-10-08
                     </span>
                 </div>
             </div>
@@ -193,30 +193,20 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <a id="more"></a>
-<h1 id="简单入门"><a href="#简单入门" class="headerlink" title="简单入门"></a>简单入门</h1><h2 id="开发环境搭建及热更新"><a href="#开发环境搭建及热更新" class="headerlink" title="开发环境搭建及热更新"></a>开发环境搭建及热更新</h2><ul>
-<li>首先安装Vue命令行<br><code>npm install -g vue-cli</code></li>
-<li>创建基于”webpack”模版的新项目”my-project”<br><code>vue init webpack my-project</code></li>
-<li>安装依赖<br><code>cd my-project</code><br><code>npm install</code></li>
-<li>运行本地服务器<br><code>npm run dev</code><br>由于Vue支持热更新，因此我们对文件所做的更改会即时反映到页面当中</li>
-</ul>
-<h2 id="Vue-js组件的重要选项"><a href="#Vue-js组件的重要选项" class="headerlink" title="Vue.js组件的重要选项"></a>Vue.js组件的重要选项</h2><h3 id="data字段"><a href="#data字段" class="headerlink" title="data字段"></a>data字段</h3><h3 id="methods"><a href="#methods" class="headerlink" title="methods"></a>methods</h3><h3 id="watch"><a href="#watch" class="headerlink" title="watch"></a>watch</h3><h3 id="模版指令"><a href="#模版指令" class="headerlink" title="模版指令"></a>模版指令</h3><ul>
-<li><p><code>v-text</code> <code>v-html</code> 以及双花括号</p>
-<figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></div><div class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="template-variable">&#123;&#123;a&#125;</span><span class="xml">&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div><div class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-text</span>=<span class="string">"a"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-html</span>=<span class="string">"a"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="actionscript"></span></div><div class="line">  <span class="keyword">new</span> Vue(<span class="template-variable">&#123;</span></div><div class="line">    data:&#123;</div><div class="line">        a:1</div><div class="line">    &#125;<span class="xml"><span class="undefined"></span></span></div><div class="line">  &#125;)</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-<li><p><code>v-show</code> <code>v-if</code><br>元素不显示的时候，<br><code>v-if</code>通过不渲染使其不显示，而<code>v-show</code>通过修改CSS中的<code>display：none</code>来隐藏</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">"isShow"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-show</span>=<span class="string">"isShow"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="actionscript"></span></div><div class="line">  <span class="keyword">new</span> Vue(&#123;</div><div class="line">    data:&#123;</div><div class="line">        isShow:<span class="literal">false</span></div><div class="line">    &#125;</div><div class="line">  &#125;)</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-<li><p><code>v-for</code><br>渲染循环列表</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"item in fruits"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-text</span>=<span class="string">"item.lable"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="actionscript"></span></div><div class="line">  <span class="keyword">new</span> Vue(&#123;</div><div class="line">    data:&#123;</div><div class="line">        fruits:[</div><div class="line">          &#123;</div><div class="line">            label:<span class="string">"apple"</span></div><div class="line">          &#125;,</div><div class="line">          &#123;</div><div class="line">            label:<span class="string">"banana"</span></div><div class="line">          &#125;        </div><div class="line">        ]</div><div class="line">    &#125;</div><div class="line">  &#125;)</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-<li><p><code>v-on</code></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"doThis"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!--上面可以简写为:--&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"doThis"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="actionscript"></span></div><div class="line">  <span class="keyword">new</span> Vue(&#123;</div><div class="line">    method:&#123;</div><div class="line">      doThis:<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="comment">//dosomething</span></div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;)</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-<li><p><code>v-bind</code>数据绑定</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 完整语法 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-bind:href</span>=<span class="string">"url"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 缩写 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">:href</span>=<span class="string">"url"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-</ul>
+                <h2 id="获取样式函数getStyle-封装"><a href="#获取样式函数getStyle-封装" class="headerlink" title="获取样式函数getStyle()封装"></a>获取样式函数<code>getStyle()</code>封装</h2><p>想获取某个元素的样式，常用的就是<code>ele.style.attr</code>方法，然而此方法只能获取到行内样式(<code>inline Style</code>)，对于内部样式(<code>internal style sheet</code>)或外部样式表(<code>external style sheet</code>)就无能无力了。<br>好在标准浏览器下为我们提供了一个方法<code>window.getComputedStyle(ele,null)[attr]</code>:</p>
+<blockquote>
+<p><code>getComputedStyle()</code> gives the final used values of all the CSS properties of an element.<br>   另外有两点需要注意:<br>   1.During a CSS transition, getComputedStyle returns the original property value in Firefox, but the final property value in WebKit.<br>   2.In Firefox, properties with the value auto return the used value, not the value auto. So if you apply top:auto; and bottom:0; on an element with height:30px and its containing block is height:100px;, upon requesting the computed style for top, Firefox will return top:70px, as 100px-30px=70px.</p>
+</blockquote>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> eleStyle = <span class="built_in">window</span>.getComputedStyle(元素[,伪元素]);</div><div class="line"><span class="comment">//返回一个CSS样式声明对象([object CSSStyleDeclaration])，该对象为只读</span></div></pre></td></tr></table></figure>
+<p>然而“万恶之首”IE低版本偏偏没有这个方法，还好它提供了另外一个接口<code>ele.currentStyle[attr]</code>，也能达到类似的效果(<u>注意这个方法是不能获取伪元素样式的</u>)</p>
+<blockquote>
+<p>在jQUery中的<code>css()</code>方法其底层就是利用了<code>getComputedStyle()</code>和<code>ele.currentStyle[attr]</code>由于第二个方法不支持伪类，因此在jQ中的<code>css()</code>也就无法获取伪元素样式了</p>
+</blockquote>
+<p>综上，兼容IE和标准浏览器，同时可以设置可以获取属性值的封装函数如下:<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**参数说明：</span></div><div class="line"> * 获取或者设置属性值</div><div class="line"> * obj: 目标元素</div><div class="line"> * attr: 属性值，可为字符串或对象</div><div class="line"> * 返回值: 属性值</div><div class="line"> */</div><div class="line"><span class="function">function <span class="title">css</span>(<span class="params">obj,attr,<span class="keyword">value</span></span>)</span>&#123;</div><div class="line">  <span class="keyword">switch</span>(arguements.length)&#123;</div><div class="line">    <span class="comment">//case 2 有两种情况:1.获取属性值 2.设置属性值，此时attr为一个对象</span></div><div class="line">    <span class="keyword">case</span> <span class="number">2</span>:</div><div class="line">      <span class="keyword">if</span>(<span class="keyword">typeof</span> arguements[<span class="number">1</span>] === <span class="string">'object'</span>)&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> attr)&#123;</div><div class="line">          <span class="comment">// 区分opacity属性在IE和标准下的不同设置</span></div><div class="line">          <span class="keyword">if</span>(i === <span class="string">"opacity"</span>)&#123;</div><div class="line">            obj.style[<span class="string">'filter'</span>] = <span class="string">'alpha(opacity'</span> + attr[i] + <span class="string">')'</span>;</div><div class="line">            obj.style[i] = attr[i] / <span class="number">100</span>;</div><div class="line">          &#125;<span class="keyword">else</span>&#123;</div><div class="line">            obj.style[i] = attr[i];</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">return</span> obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj,<span class="literal">null</span>)[attr]</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">break</span>;</div><div class="line">    <span class="comment">// 此时为设置属性值</span></div><div class="line">    <span class="keyword">case</span> <span class="number">3</span>:</div><div class="line">      <span class="keyword">if</span>(attr === <span class="string">'opacity'</span>)&#123;</div><div class="line">        obj.style[<span class="string">'filter'</span>] = <span class="string">'alpha(opacity'</span> + <span class="keyword">value</span> + <span class="string">')'</span>;</div><div class="line">        obj.style[attr] = <span class="keyword">value</span> / <span class="number">100</span>;</div><div class="line">      &#125;<span class="keyword">else</span>&#123;</div><div class="line">        obj.style[attr] = <span class="keyword">value</span>;</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">break</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>参考文章:<br>  <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle" target="_blank" rel="external">MDN Window.getComputedStyle()</a><br>  <a href="http://www.cnblogs.com/leejersey/archive/2012/08/16/2642604.html" target="_blank" rel="external">封装getStyle</a><br>  <a href="http://www.zhangxinxu.com/wordpress/2012/05/getcomputedstyle-js-getpropertyvalue-currentstyle/" target="_blank" rel="external">获取元素CSS值之getComputedStyle方法熟悉</a></p>
+</blockquote>
+<h1 id="实现字符串长度截取"><a href="#实现字符串长度截取" class="headerlink" title="实现字符串长度截取"></a>实现字符串长度截取</h1><p>按照某个长度对字符串进行截取，多余部分用“…”代替，支持中文(一个汉字按照两个字节)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**参数说明：</span></div><div class="line"> * 截取字符串，超出部分用省略号代替</div><div class="line"> * str: 目标字符串</div><div class="line"> * len: 需要截取的长度</div><div class="line"> * 返回值: 截取后的字符串</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">stringCut</span>(<span class="params">str,len</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> temp = <span class="string">""</span>;</div><div class="line">  <span class="keyword">var</span> icount = <span class="number">0</span>;</div><div class="line">  <span class="comment">//正则匹配ASCI编码0-256之外的字符，即双字节字符</span></div><div class="line">  <span class="keyword">var</span> patern = <span class="regexp">/[^\x00-\xff]/</span>;</div><div class="line">  <span class="keyword">var</span> s = <span class="string">""</span>;</div><div class="line">  <span class="keyword">var</span> strLen = str.length;</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span> ; i &lt; strLen ; i++)&#123;</div><div class="line">    <span class="keyword">if</span>(icount &lt; len)&#123;</div><div class="line">      temp = str.charAt(i);</div><div class="line">      <span class="keyword">if</span>(patern.exec(temp) === <span class="literal">null</span>)&#123;</div><div class="line">        icount += <span class="number">1</span>;</div><div class="line">      &#125;<span class="keyword">else</span>&#123;</div><div class="line">        icount += <span class="number">2</span>;</div><div class="line">      &#125;</div><div class="line">      s += temp;</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">      <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> s + <span class="string">"..."</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
 
                 <hr>
@@ -226,13 +216,11 @@
                 </style>
                 <div class="ds-share"
                     style="text-align: right"
-                    data-thread-key="2016/08/21/Vue-js入门/"
-                    data-title="Vue.js入门"
-                    data-url="http://rubicker.github.io/2016/08/21/Vue-js入门/"
-                    data-images="http://rubicker.github.io/2016/08/21/Vue-js入门/header-bg.jpg"
-                    data-content="
-简单入门开发环境搭建及热更新
-首先安装Vue命令行npm install -g vue-cl... | Rubicker的博客 | Rubicker&#39;s Blog " >
+                    data-thread-key="2016/10/08/JavaScript兼容性与封装函数整理/"
+                    data-title="JavaScript兼容性与封装函数整理"
+                    data-url="http://rubicker.github.io/2016/10/08/JavaScript兼容性与封装函数整理/"
+                    data-images="http://rubicker.github.io/2016/10/08/JavaScript兼容性与封装函数整理/header-bg.png"
+                    data-content="获取样式函数getStyle()封装想获取某个元素的样式，常用的就是ele.style.att... | Rubicker的博客 | Rubicker&#39;s Blog " >
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
                         <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
@@ -250,13 +238,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2016/08/23/JS中的正则表达式/" data-toggle="tooltip" data-placement="top" title="正则表达式入门">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2016/08/19/PHP和MySQLWeb开发读书笔记/" data-toggle="tooltip" data-placement="top" title="PHP简单入门">Next Post &rarr;</a>
+                            <a href="/2016/10/04/Gulp——完美工作流搭建工具/" data-toggle="tooltip" data-placement="top" title="Gulp——完美工作流搭建工具">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -265,9 +249,9 @@
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="2016/08/21/Vue-js入门/"
-                        data-title="Vue.js入门"
-                        data-url="http://rubicker.github.io/2016/08/21/Vue-js入门/" >
+                        data-thread-key="2016/10/08/JavaScript兼容性与封装函数整理/"
+                        data-title="JavaScript兼容性与封装函数整理"
+                        data-url="http://rubicker.github.io/2016/10/08/JavaScript兼容性与封装函数整理/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->
@@ -277,20 +261,6 @@
 
             </div>
     <!-- Side Catalog Container -->
-        
-            <div class="
-                col-lg-2 col-lg-offset-0
-                visible-lg-block
-                sidebar-container
-                catalog-container">
-                <div class="side-catalog">
-                    <hr class="hidden-sm hidden-xs">
-                    <h5>
-                        <a class="catalog-toggle" href="#">CATALOG</a>
-                    </h5>
-                    <ul class="catalog-body"></ul>
-                </div>
-            </div>
         
 
     <!-- Sidebar Container -->
@@ -307,9 +277,9 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#MVVM" title="MVVM">MVVM</a>
+                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
                         
-                          <a class="tag" href="/tags/#Vue.js" title="Vue.js">Vue.js</a>
+                          <a class="tag" href="/tags/#兼容性" title="兼容性">兼容性</a>
                         
                     </div>
                 </section>
@@ -504,50 +474,6 @@
 
 
 <!-- Side Catalog -->
-
-<script type="text/javascript">
-    function generateCatalog (selector) {
-        var P = $('div.post-container'),a,n,t,l,i,c;
-        a = P.find('h1,h2,h3,h4,h5,h6');
-        a.each(function () {
-            n = $(this).prop('tagName').toLowerCase();
-            i = "#"+$(this).prop('id');
-            t = $(this).text();
-            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
-            l = $('<li class="'+n+'_nav"></li>').append(c);
-            $(selector).append(l);
-        });
-        return true;    
-    }
-
-    generateCatalog(".catalog-body");
-
-    // toggle side catalog
-    $(".catalog-toggle").click((function(e){
-        e.preventDefault();
-        $('.side-catalog').toggleClass("fold")
-    }))
-
-    /*
-     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
-     * Fork by Hux to support padding
-     */
-    async("/js/jquery.nav.js", function () {
-        $('.catalog-body').onePageNav({
-            currentClass: "active",
-            changeHash: !1,
-            easing: "swing",
-            filter: "",
-            scrollSpeed: 700,
-            scrollOffset: 0,
-            scrollThreshold: .2,
-            begin: null,
-            end: null,
-            scrollChange: null,
-            padding: 80
-        });
-    });
-</script>
 
 
 

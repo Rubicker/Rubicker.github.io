@@ -90,13 +90,6 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -105,6 +98,13 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -437,7 +437,7 @@ localStorage.remove(&quot;userData&quot;);
 <h3 id="第八章-轻量级框架jQuery-Mobile初探"><a href="#第八章-轻量级框架jQuery-Mobile初探" class="headerlink" title="第八章 轻量级框架jQuery Mobile初探"></a>第八章 轻量级框架jQuery Mobile初探</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><hr>
 <p>jQuery Mobile是基于jQuery，HTML5，CSS3构建的，目的是提供一个丰富的，交互性强的接口来兼容不同的移动平台</p>
 <h4 id="基于HTML5的自定义属性驱动组件"><a href="#基于HTML5的自定义属性驱动组件" class="headerlink" title="基于HTML5的自定义属性驱动组件"></a>基于HTML5的自定义属性驱动组件</h4><hr>
-<h5 id="dataset自定义属性"><a href="#dataset自定义属性" class="headerlink" title="dataset自定义属性"></a>dataset自定义属性</h5><p>在JS中使用dataset自定义属性时需进行能力检测：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> title = <span class="built_in">document</span>.getElementByID(<span class="string">"title"</span>);</div><div class="line"><span class="keyword">if</span>(title.dataset)&#123;</div><div class="line">    <span class="comment">//浏览器支持dataset属性</span></div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">   <span class="comment">//浏览器不支持dataset属性</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h5 id="dataset自定义属性"><a href="#dataset自定义属性" class="headerlink" title="dataset自定义属性"></a>dataset自定义属性</h5><p>在JS中使用dataset自定义属性时需进行能力检测：<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> title = <span class="built_in">document</span>.getElementByID(<span class="string">"title"</span>);</div><div class="line"><span class="keyword">if</span>(title.dataset)&#123;</div><div class="line">    <span class="comment">//浏览器支持dataset属性</span></div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">   <span class="comment">//浏览器不支持dataset属性</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>通过能力检测后可通过dataset来读取自定义属性值<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">&lt;<span class="selector-tag">div</span> id=<span class="string">"title"</span> data-category=<span class="string">"前端技术"</span>&gt;</div><div class="line">...</div><div class="line"><span class="function"><span class="title">alert</span><span class="params">(title.dataset.category)</span></span>  <span class="comment">//"前端技术"</span></div><div class="line">...</div></pre></td></tr></table></figure></p>
 <h5 id="使用dataset属性驱动jQuery-Mobile组件"><a href="#使用dataset属性驱动jQuery-Mobile组件" class="headerlink" title="使用dataset属性驱动jQuery Mobile组件"></a>使用dataset属性驱动jQuery Mobile组件</h5><p>jQuery Mobile提供丰富的UI界面库，使用dataset自定义属性赋予HTML元素不同功能，例如定义视图，UI组件等</p>
 <h4 id="页面与视图"><a href="#页面与视图" class="headerlink" title="页面与视图"></a>页面与视图</h4><hr>
