@@ -90,6 +90,13 @@
 
                         
                         <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -98,13 +105,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -223,6 +223,100 @@
 <li><p><code>delete</code>运算符<br>删除对象属性或者<u>数组元素</u></p>
 </li>
 </ul>
+<h1 id="HTML篇"><a href="#HTML篇" class="headerlink" title="HTML篇"></a>HTML篇</h1><h3 id="doctype是什么？"><a href="#doctype是什么？" class="headerlink" title="doctype是什么？"></a><code>doctype</code>是什么？</h3><p>首先,<code>&lt;!doctype&gt;</code>不属于HTML标签，它只是用来声明HTML版本，以便浏览器渲染。<br>其次,<code>&lt;!doctype&gt;</code>必须出现在HTML文档头部，即<code>&lt;html&gt;</code>前面<br>最后，为何在HTML5之前需要写DTD，而在HTML5里面只需写<code>&lt;!DOCTYPE html&gt;</code>就行？<br>因为HTML5是不基于SGML(Standard Generallized Markup Language)创建的：</p>
+<blockquote>
+<p>为了描述文档的结构，SGML定义了一个称为“文档类型定义(Document Type Definition，DTD)”的文件，它为组织文档的文档元素(例如章和章标题，节和主题等)提供了一个框架。此外，DTD还为文档元素之间的相互关系制定了规则。例如，“章的标题必须是在章开始之后的第一个文档元素”，“每个列表至少要有两个项目”等。DTD定义的这些规则可以确保文档的一致性。 ————<a href="http://lirujia00.iteye.com/blog/1671560" target="_blank" rel="external">浏览器内核引擎——SGML族语言</a></p>
+</blockquote>
+<h3 id="HTML全局属性有哪些？"><a href="#HTML全局属性有哪些？" class="headerlink" title="HTML全局属性有哪些？"></a>HTML全局属性有哪些？</h3><p><code>accesskey</code>规定使元素获得焦点的快捷键(<code>Alt</code>+快捷键)<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"password"</span> <span class="attr">accesskey</span>=<span class="string">"x"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">id</span>=<span class="string">"password"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 此时我们就可以通过 Alt+x 来定位这个控件 --&gt;</span></div></pre></td></tr></table></figure></p>
+<p>  <code>class</code>类名<br>  <code>id</code> 元素id<br>  <code>style</code> 行内样式<br>  <code>data-*</code>自定义属性<br>  <code>draggable</code>设置元素是否可拖拽<br>  <code>dropzone</code> 设置元素拖放类型:copy,move,link<br>  <code>hidden</code> 设置元素不显示<br>  <code>lang</code> 元素内容的语言<br>  <code>spellcheck</code>是否启动拼写和语法检查<br>  <code>tabindex</code> 设置元素通过tab可以导航(即按下<code>Tab</code>时的顺序)<br>  <code>title</code> 设置元素相关信息<br>  <code>translate</code> 元素和子孙节点内容是否需要本地化<br>  <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">element</span> <span class="attr">translate</span>=<span class="string">"yes|no"</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>  <code>contenteditable</code>指定元素内容是否可编辑<br>  <code>contextmenu</code>自定义鼠标右键弹出菜单内容，目前只有火狐支持<br>  <code>dir</code> 设置文本方向</p>
+<h3 id="何谓“Web语义化”，有什么好处"><a href="#何谓“Web语义化”，有什么好处" class="headerlink" title="何谓“Web语义化”，有什么好处?"></a>何谓“Web语义化”，有什么好处?</h3><p>分为HTML标签语义化和CSS命名语义化:<br>HTML语义化:通过使用包含语义的标签(如<code>&lt;header&gt;</code>,<code>&lt;footer&gt;</code>)恰当地表示文档结构<br>CSS命名语义化:为HTML标签添加有意义的class，id补充未表达的语义<br>好处:<br>1.不需要样式页面也可以呈现清晰的结构<br>2.无障碍阅读<br>3.便于搜索引擎理解整个页面，利于收录<br>4.团队协作更为便利</p>
+<h3 id="从浏览器地址栏输入URL到显示页面的步骤-HTTP为例"><a href="#从浏览器地址栏输入URL到显示页面的步骤-HTTP为例" class="headerlink" title="从浏览器地址栏输入URL到显示页面的步骤(HTTP为例)"></a>从浏览器地址栏输入URL到显示页面的步骤(HTTP为例)</h3><ol>
+<li>输入URL</li>
+<li>浏览器查看缓存:<ul>
+<li>若资源未缓存，发起新请求</li>
+<li>若资源已缓存，查看是否过期，未过期则直接提供给客户端，否则与服务器验证<ul>
+<li>查看是否过期由两个文件头控制<code>Expires</code>和<code>Cache-Control</code><ul>
+<li>HTTP1.0提供<code>Expires</code>,值为一个绝对时间表示缓存过期时间</li>
+<li>HTTP1.1增加<code>Cache-Control:max-age</code>，值为基于请求时间的以秒为单位的相对时间间隔</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>浏览器解析URL获取协议，主机，端口，path</li>
+<li>浏览器组装HTTP(GET)请求报文</li>
+<li><p>浏览器获取主机ip地址,过程如下：</p>
+<ul>
+<li>浏览器缓存</li>
+<li>本机缓存</li>
+<li>hosts文件</li>
+<li>路由器缓存</li>
+<li>ISP DNS缓存</li>
+<li>DNS递归查询<br><img src="dns.jpg" alt="dns.jpg"><blockquote>
+<p><a href="http://www.360doc.com/content/12/1111/20/552405_247263543.shtml" target="_blank" rel="external">DNS迭代查询与递归查询</a></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>打开一个socket与目标IP地址，端口并建立TCP链接，三次握手:</p>
+<ul>
+<li>客户端发送一个TCP的SYN=1，Seq=X的包到服务器端口</li>
+<li>服务器发回SYN=1，ACK=X+1，Seq=Y的响应包</li>
+<li>客户端发送ACK=Y+1，Seq=Z</li>
+</ul>
+</li>
+<li>TCP链接建立后发送HTTP请求</li>
+<li>服务器接受请求并解析，将请求转发到服务程序</li>
+<li>服务器检查HTTP请求头是否包含缓存验证信息，若验证缓存未过期，返回304状态码</li>
+<li>处理程序读取完整请求并准备HTTP响应，可能需要查询数据库等操作</li>
+<li>服务器将响应报文通过TCP链接发送回浏览器</li>
+<li>浏览器接受HTTP响应，然后根据情况选择关闭TCP链接或保留重用，关闭TCP链接的四次握手如下:<ul>
+<li>主动方发送Fin=1，ACK=Z，Seq=X报文</li>
+<li>被动方发送ACK=X+1，Seq=Z报文</li>
+<li>被动方发送Fin=1，ACK=X，Seq=Y报文</li>
+<li>主动方发送ACK=Y，Seq=X报文</li>
+</ul>
+</li>
+<li>浏览器检查响应状态码:根据状态码进行处理</li>
+<li>若资源可缓存，进行缓存</li>
+<li>对响应进行解码(如gzip压缩)</li>
+<li>根据资源类型决定如何处理(以下以HTML为例)</li>
+<li>解析HTML文档，构建DOM树，下载资源，构建CSSOM树，执行JS脚本(不一定是这个顺序)<ul>
+<li>构建DOM树<ul>
+<li>Tokenizing:根据HTML规范将字符流解析为标记</li>
+<li>Lexing:词法分析将标记转换为对象并定义属性和规则</li>
+<li>DOM construction:根据HTML标记关系将对象组成DOM树</li>
+</ul>
+</li>
+<li>构建CSSOM树<ul>
+<li>Tokenizing:字符流转换为标记流</li>
+<li>Lexing:根据标记创建节点</li>
+<li>CSSOM:节点创建CSSOM树</li>
+</ul>
+</li>
+<li>解析过程中遇到图片，样式表，js文件，启动下载</li>
+<li>根据DOM树和CSSOM树构建渲染树<ul>
+<li>从DOM树的根节点遍历所有可见节点(不可见节点包括<code>&lt;script&gt;</code>,<code>&lt;meta&gt;</code>等以及被css隐藏的节点，如<code>display:none</code>)</li>
+<li>对每一个可见节点找到恰当的CSSOM规则并应用</li>
+<li>发布可视节点的内容和计算样式</li>
+</ul>
+</li>
+<li>js解析如下:<ul>
+<li>浏览器创建Document对象并解析HTML，将解析到的元素和文本节点添加到文档中，此时<code>document.readyState</code>为<code>loading</code></li>
+<li>HTML解析器遇到没有<code>async</code>和<code>defer</code>属性的<code>&lt;script&gt;</code>时，将它们添加到文档中，然后执行脚本。这些脚本会同步执行，且在脚本下载和执行时解析器会暂停，这样就可以用<code>document.write()</code>把文本插入到输入流中。<u>同步脚本经常简单定义函数和注册事件处理程序，它们可以遍历和操作<code>&lt;SCRIPT&gt;</code>和其之前的文档内容</u></li>
+<li>HTML解析器遇到设置了<code>async</code>属性的<code>&lt;script&gt;</code>时，开始下载脚本并继续解析文档。脚本会在它下载完成后执行，但是解析器不会停下来等它下载。<u>异步脚本禁止使用<code>document.write()</code>，它们可以访问自己和之前的文档元素</u></li>
+<li>HTML解析器遇到设置了<code>async</code>属性的<code>&lt;script&gt;</code>时，会立即下载脚本但延迟执行。<u>延迟脚本禁止使用<code>document.write()</code>,可以访问完整文档树</u></li>
+<li>当文档解析完毕，<code>document.readyState</code>为<code>interactive</code></li>
+<li>浏览器在Document对象上触发DOMContentLoaded事件</li>
+<li>此时文档全部解析完成，待诸如图片等内容完全载入且所有异步脚本完成执行,<code>document.readyState</code>会变成<code>complete</code>,window触发load事件</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>显示页面(在解析过程中会逐步显示)</li>
+</ol>
 
 
                 <hr>

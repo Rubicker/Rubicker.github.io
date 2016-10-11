@@ -90,6 +90,13 @@
 
                         
                         <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -98,13 +105,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -222,10 +222,10 @@
 </ul>
 </li>
 <li><p>如何使用seajs解决问题<br> 1.引入sea.js库<br> 2.如何变成模块？使用define()方法  </p>
-  <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">define(<span class="function"><span class="keyword">function</span><span class="params">(require,exports,module)</span></span>&#123;</div><div class="line"><span class="comment">// exports:对外提供接口</span></div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">show</span><span class="params">()</span></span>&#123;</div><div class="line">             alert(<span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require,exports,module</span>)</span>&#123;</div><div class="line"><span class="comment">// exports:对外提供接口</span></div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params"></span>)</span>&#123;</div><div class="line">             alert(<span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p> 3.如何调用模块？<br> a.exports  接口<br> b.seajs.use  接收两个参数，模块的地址(以sea.js为根目录)和回调函数  </p>
 <p>4.如何依赖模块？<br> require  模块之间依赖的接口</p>
- <figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">require</span>(<span class="string">""</span>); <span class="regexp">//</span>输入依赖模块的位置</div></pre></td></tr></table></figure>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>(<span class="string">""</span>); <span class="comment">//输入依赖模块的位置</span></div></pre></td></tr></table></figure>
 <p> 当引入的是seajs下面的依赖的接口的时候，那么require执行完的结果就是exports</p>
 </li>
 </ul>

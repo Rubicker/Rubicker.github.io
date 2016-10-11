@@ -90,6 +90,13 @@
 
                         
                         <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -98,13 +105,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -289,10 +289,10 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> old = $.fn.alert;</div><div class="line"><span class="comment">//保留其他插件的$.fn.alert代码(如果有定义),以便在noConflict之后可以继续使用</span></div><div class="line">$.fn.alert = <span class="function"><span class="keyword">function</span>(<span class="params">option</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      <span class="comment">//根据选择器遍历所有符合的元素并绑定事件</span></div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line">$.fn.alert.Constructor = Alert;</div><div class="line"><span class="comment">//重设插件的构造函数指向</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>防冲突处理(noConflict)</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$.</span><span class="keyword">fn</span>.alert.noConflict = function()&#123;</div><div class="line">  <span class="variable">$.</span><span class="keyword">fn</span>.alert = old; <span class="regexp">//</span>恢复以前的代码</div><div class="line">  <span class="keyword">return</span> this;<span class="regexp">//</span>将<span class="variable">$.</span><span class="keyword">fn</span>.alert.noConflict()设置为Bootstrap的alert插件</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$.fn.alert.noConflict = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  $.fn.alert = old; <span class="comment">//恢复以前的代码</span></div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>;<span class="comment">//将$.fn.alert.noConflict()设置为Bootstrap的alert插件</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 <li><p>绑定各种触发事件(data-api)</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">document</span>).<span class="literal">on</span>(<span class="string">'click.bs.alert.data-api'</span>,dismiss,Alert.prototype.close);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">document</span>).on(<span class="string">'click.bs.alert.data-api'</span>,dismiss,Alert.prototype.close);</div></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -329,7 +329,7 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">address</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">strong</span>&gt;</span> Tom <span class="tag">&lt;/<span class="name">strong</span>&gt;</span><span class="tag">&lt;/<span class="name">br</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"mailto:#"</span>&gt;</span>xxx@gmail.com<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">address</span>&gt;</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>引用<br><code>&lt;blockquote&gt;</code></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">blockquote</span> <span class="attr">class</span>=<span class="string">"pull-right"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>有一种不遵守多数原则的东西，那就是人的良心<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">span</span>&gt;</span>——<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">cite</span>&gt;</span>蒂姆·库克<span class="tag">&lt;/<span class="name">cite</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">block</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;blockquote <span class="class"><span class="keyword">class</span></span>=<span class="string">"pull-right"</span>&gt;</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>有一种不遵守多数原则的东西，那就是人的良心<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div><div class="line">  &lt;span&gt;——&lt;<span class="regexp">/span&gt;&lt;cite&gt;蒂姆·库克&lt;/</span>cite&gt;</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">block</span>&gt;</span></span></div></pre></td></tr></table></figure>
 </li>
 <li><p>列表<br>去除普通列表项前的圆点，只需在ul中添加类.list-unstyled</p>
 </li>
