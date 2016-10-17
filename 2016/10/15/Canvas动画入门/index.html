@@ -90,13 +90,6 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -105,6 +98,13 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -214,7 +214,22 @@
 </li>
 </ul>
 <h3 id="Canvas状态的保存与恢复"><a href="#Canvas状态的保存与恢复" class="headerlink" title="Canvas状态的保存与恢复"></a>Canvas状态的保存与恢复</h3><p>Canvas绘图环境中有两个方法<code>save()</code>和<code>restore()</code>，用来保存恢复绘图环境的所有属性。<br>绘图环境的<code>save()</code>会将当前绘图环境压入堆栈顶部，对应的<code>restore()</code>则会从堆栈顶部弹出一组状态信息，并据此恢复当前绘图环境的状态。<br>所以，<u>可以嵌套使用<code>save()</code>和<code>restore()</code></u></p>
-<h3 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h3><p>理论上Canvas是不支持IE8及以下浏览器的,若是必须要支持IE6,7,8的话，可以使用<code>ExploreCanvas</code>和<del><code>Google Chrome Frame</code></del>，前者可以在老版本的IE中增加对于Canvas的支持，<del>后者可以将IE引擎替换为Chrome引擎</del>后者项目已经废弃<br><a href="https://github.com/arv/explorercanvas" target="_blank" rel="external">ExploreCanvas Github地址</a></p>
+<h3 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h3><p>理论上Canvas是不支持IE8及以下浏览器的,若是必须要支持IE6,7,8的话，可以使用<code>ExploreCanvas</code>和<del><code>Google Chrome Frame</code></del>，前者可以在老版本的IE中增加对于Canvas的支持，<del>后者可以将IE引擎替换为Chrome引擎</del>后者项目已经废弃</p>
+<blockquote>
+<p><a href="https://github.com/arv/explorercanvas" target="_blank" rel="external">ExploreCanvas Github地址</a></p>
+</blockquote>
+<h3 id="基本事件"><a href="#基本事件" class="headerlink" title="基本事件"></a>基本事件</h3><p><code>mousedown</code>/<code>mousemup</code>,<code>mousemove</code>/<code>mouseout</code>监测鼠标事件</p>
+<blockquote>
+<p>DOM3级事件中定义了9个鼠标事件。<br><code>mousedown</code>:鼠标按钮被按下（左键或者右键）时触发。不能通过键盘触发。<br><code>mouseup:</code>鼠标按钮被释放弹起时触发。不能通过键盘触发。<br><code>click</code>:单击鼠标左键或者按下回车键时触发。这点对确保易访问性很重要，意味着<code>onclick</code>事件处理程序既可以通过键盘也可以通过鼠标执行。<br><code>dblclick</code>:双击鼠标左键时触发。<br><code>mouseover</code>:鼠标移入目标元素上方。鼠标移到其后代元素上时会触发。<br><code>mouseout</code>:鼠标移出目标元素上方。<br><code>mouseenter</code>:鼠标移入元素范围内触发，该事件不冒泡，即鼠标移到其后代元素上时不会触发。<br><code>mouseleave</code>:鼠标移出元素范围时触发，该事件不冒泡，即鼠标移到其后代元素时不会触发。<br><code>mousemove</code>:鼠标在元素内部移动时不断触发。不能通过键盘触发。<br>在JQ中，<code>hover</code>API是将<code>mouseenter</code>和<code>mouseleave</code>结合在一起使用的</p>
+</blockquote>
+<p><strong>如何将鼠标坐标转换为Canvas内部坐标？</strong><br><figure class="highlight qml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">windowToCanvas</span>(<span class="params">canvas,x,y</span>)</span>&#123;</div><div class="line">  <span class="built_in">var</span> <span class="built_in">rect</span> = canvas.getBoundingClientRect();</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    <span class="attribute">x</span>: x-<span class="built_in">rect</span>.left*(canvas.width/<span class="built_in">rect</span>.width),</div><div class="line">    <span class="attribute">y</span>: y-<span class="built_in">rect</span>.top*(canvas.height/<span class="built_in">rect</span>.height)</div><div class="line">    <span class="comment">/*  </span></div><div class="line">     * 此处不用下面两行是为了防止使用CSS和JS改变了canvas的高宽之后是绘图表面积拉大而实际  </div><div class="line">     * 显示像素不变而造成的坐标获取不准的情况  </div><div class="line">     x: (x - bbox.left),  </div><div class="line">     y: (y - bbox.top)  </div><div class="line">    */  </div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'mousemove'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">  <span class="built_in">var</span> loc = windowToCanvas(canvas,e.clientX,e.clientY);</div><div class="line">  <span class="comment">//do otherthing</span></div><div class="line">&#125;,<span class="literal">false</span>)</div></pre></td></tr></table></figure></p>
+<p><code>keydown</code>/<code>keyup</code>,<code>keypress</code>键盘事件<br>当在浏览器窗口中按下某个键时，浏览器将会生成键盘事件。这些事件发生在当前拥有焦点的HTML元素身上；若元素没有焦点，那么事件的发生地会上移至<code>window</code>与<code>document</code>对象<br><code>canvas</code>是一个不可获取焦点的对象，所以<u>要监听键盘事件，应该在<code>document</code>或<code>window</code>对象上绑定</u><br>触摸事件</p>
+<blockquote>
+<p>待补充</p>
+</blockquote>
+<h3 id="关于底层实现"><a href="#关于底层实现" class="headerlink" title="关于底层实现"></a>关于底层实现</h3><blockquote>
+<p>Canvas 是一种立即模式的绘图 API,这意味着绘制时不保留所绘制对象的信息。与其相反的是保留模式(如SVG),这是一种声明性的 API,维护所绘制对象的层次结构。<br>保留模式 API 的优点是，对于你的应用程序，他们通常更容易构建复杂的场景，例如 DOM。通常这都会带来性能成本,需要额外的内存来保存场景和更新场景，这可能会很慢。<br>Canvas 受益于立即模式,允许直接发送绘图命令到 GPU。但若用它来构建用户界面，需要进行一个更高层次的抽象。例如一些简单的处理,比如当绘制一个异步加载的资源到一个元素上时会出现问题,如在图片上绘制文本。在HTML中，由于元素存在顺序，以及 CSS 中存在 z-index，因此是很容易实现的。</p>
+</blockquote>
 
 
                 <hr>
@@ -245,6 +260,10 @@
                 
 
                 <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/10/16/PHP开发微信公众号-基础篇/" data-toggle="tooltip" data-placement="top" title="PHP开发微信公众号·基础篇">&larr; Previous Post</a>
+                        </li>
                     
                     
                         <li class="next">
