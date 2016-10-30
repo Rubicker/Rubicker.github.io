@@ -193,18 +193,21 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><h3 id="Canvas元素基本创建"><a href="#Canvas元素基本创建" class="headerlink" title="Canvas元素基本创建"></a>Canvas元素基本创建</h3><p>Canvas元素可谓是HTML5中最为强大的元素，而它真正的能力是由Canvas的context对象表现出来的，该环境变量可从canvas元素身上获取<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">canvas</span> id=<span class="string">"canvas"</span> <span class="attribute">width</span>=<span class="string">'600'</span> height=<span class="string">'300'</span>&gt;</div><div class="line">  您的浏览器不支持Canvas，请升级浏览器。</div><div class="line">&lt;/canvas&gt;</div></pre></td></tr></table></figure></p>
+                <h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><h3 id="Canvas元素基本创建"><a href="#Canvas元素基本创建" class="headerlink" title="Canvas元素基本创建"></a>Canvas元素基本创建</h3><hr>
+<p>Canvas元素可谓是HTML5中最为强大的元素，而它真正的能力是由Canvas的context对象表现出来的，该环境变量可从canvas元素身上获取<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">canvas</span> id=<span class="string">"canvas"</span> <span class="attribute">width</span>=<span class="string">'600'</span> height=<span class="string">'300'</span>&gt;</div><div class="line">  您的浏览器不支持Canvas，请升级浏览器。</div><div class="line">&lt;/canvas&gt;</div></pre></td></tr></table></figure></p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span>&#123;</div><div class="line">  <span class="attribute">margin</span>:<span class="number">0</span>;</div><div class="line">  <span class="attribute">padding</span>:<span class="number">0</span>;</div><div class="line">  <span class="attribute">background</span>: <span class="number">#BEE7E9</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-id">#canvas</span>&#123;</div><div class="line">  <span class="attribute">background</span>: <span class="number">#F4606C</span>;</div><div class="line">  <span class="attribute">margin</span>:<span class="number">200px</span> auto;</div><div class="line">  <span class="comment">/*canvas元素是行级元素，需转换才能居中*/</span></div><div class="line">  <span class="attribute">display</span>:block;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <figure class="highlight mel"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">window</span>.onload = function()&#123;</div><div class="line">  var <span class="keyword">canvas</span> = document.getElementById(<span class="string">'canvas'</span>),</div><div class="line">      context = <span class="keyword">canvas</span>.getContext(<span class="string">'2d'</span>);</div><div class="line">  context.font = <span class="string">'30px Arial'</span>;</div><div class="line">  context.fillStyle = <span class="string">'cornflowerblue'</span>;</div><div class="line">  context.strokeStyle = <span class="string">'blue'</span>;</div><div class="line">  context.fillText(<span class="string">'Hello Canvas'</span>,<span class="keyword">canvas</span>.width/<span class="number">2</span><span class="number">-150</span>,<span class="keyword">canvas</span>.height/<span class="number">2</span>+<span class="number">15</span>);</div><div class="line">  context.strokeText(<span class="string">'Hello Canvas'</span>,<span class="keyword">canvas</span>.width/<span class="number">2</span><span class="number">-150</span>,<span class="keyword">canvas</span>.height/<span class="number">2</span>+<span class="number">15</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>效果如下:<br><img src="1.png" alt=""><br>注意:<br>1.上述的html代码中<code>&lt;canvas&gt;&lt;/canvas&gt;</code>内部有一段文本，称为“后备内容(fallback content)”，只有在浏览器不支持canvas的时候才会显示<br>2.根据规范，在canvas元素添加行内样式<code>width</code>和<code>height</code>时，<u>不要加单位</u><br>3.默认情况下canvas元素大小为300 X 150 个屏幕像素<br>4.为何要在行内样式中指定宽高，在CSS中指定可以吗？<br>这两种方式是有差别的。canvas元素实际上有两套尺寸：一是元素本身大小，二是元素绘图表面(drawing surface)大小。在设置行内样式的时候同时改变了这两套尺寸；而若通过CSS修改样式，则只会改变元素本身的大小，而不会影响到绘图表面，在这种情况下，即canvas元素大小不符合其绘图表面大小时，浏览器会对绘图表面进行缩放，使其符合元素大小</p>
-<h3 id="Canvas-API"><a href="#Canvas-API" class="headerlink" title="Canvas API"></a>Canvas API</h3><ul>
+<h3 id="Canvas-API"><a href="#Canvas-API" class="headerlink" title="Canvas API"></a>Canvas API</h3><hr>
+<ul>
 <li><code>width</code><br>绘图表面宽度，行间样式设置时，浏览器会将canvas元素大小设定成与绘图表面大小一致；但若在CSS中覆写了元素大小，那么浏览器会将绘图表面进行缩放，使之符合元素尺寸<br>默认值:300</li>
 <li><code>height</code><br>绘图表面高度，其余参上</li>
 <li><code>getContext()</code><br>返回与该canvas元素相关的绘图环境对象，每个canvas元素都和这样的环境对象一一对应。</li>
 <li><code>toDataURL(type,quality)</code><br>返回一个数据地址(data URL)，可以将它设定为<code>img</code>元素的<code>src</code>值。第一个参数指定了图像的类型,如<code>image/jpeg</code>，不指定则默认为<code>image/png</code>。第二个参数必须是0-1.0之间的double值，表示图像的显示质量。</li>
 <li><code>toBlob(callback,type,args..)</code><br>创建一个用于表现此canvas元素图像文件的<a href="http://baike.baidu.com/link?url=tTjgP2Qj8_ImLskdGMcEAyioi3A0TPauJ0QOImorsBU3MPmA0TRm8h1cFVnNl_KfxAtIeUm-j9NncL461JX4j_" target="_blank" rel="external">Blob</a>。第一个参数是一个回调函数，浏览器会以一个指向Blob的引用作为参数，去调用该回调函数，第二个参数，第三个参数同上。将来还有可能加入更多参数</li>
 </ul>
-<h3 id="Canvas绘图环境"><a href="#Canvas绘图环境" class="headerlink" title="Canvas绘图环境"></a>Canvas绘图环境</h3><ul>
+<h3 id="Canvas绘图环境"><a href="#Canvas绘图环境" class="headerlink" title="Canvas绘图环境"></a>Canvas绘图环境</h3><hr>
+<ul>
 <li><p>2d<br><img src="2.png" alt=""><br><img src="3.png" alt=""></p>
 <blockquote>
 <p>可以通过JS加入新的方法或者在已有方法上进行扩展</p>
@@ -213,12 +216,15 @@
 <li><p>3d<br>与2d对应的3d绘图环境，叫做WebGL,它完全符合OpenGL ES2.0的API</p>
 </li>
 </ul>
-<h3 id="Canvas状态的保存与恢复"><a href="#Canvas状态的保存与恢复" class="headerlink" title="Canvas状态的保存与恢复"></a>Canvas状态的保存与恢复</h3><p>Canvas绘图环境中有两个方法<code>save()</code>和<code>restore()</code>，用来保存恢复绘图环境的所有属性。<br>绘图环境的<code>save()</code>会将当前绘图环境压入堆栈顶部，对应的<code>restore()</code>则会从堆栈顶部弹出一组状态信息，并据此恢复当前绘图环境的状态。<br>所以，<u>可以嵌套使用<code>save()</code>和<code>restore()</code></u></p>
-<h3 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h3><p>理论上Canvas是不支持IE8及以下浏览器的,若是必须要支持IE6,7,8的话，可以使用<code>ExploreCanvas</code>和<del><code>Google Chrome Frame</code></del>，前者可以在老版本的IE中增加对于Canvas的支持，<del>后者可以将IE引擎替换为Chrome引擎</del>后者项目已经废弃</p>
+<h3 id="Canvas状态的保存与恢复"><a href="#Canvas状态的保存与恢复" class="headerlink" title="Canvas状态的保存与恢复"></a>Canvas状态的保存与恢复</h3><hr>
+<p>Canvas绘图环境中有两个方法<code>save()</code>和<code>restore()</code>，用来保存恢复绘图环境的所有属性。<br>绘图环境的<code>save()</code>会将当前绘图环境压入堆栈顶部，对应的<code>restore()</code>则会从堆栈顶部弹出一组状态信息，并据此恢复当前绘图环境的状态。<br>所以，<u>可以嵌套使用<code>save()</code>和<code>restore()</code></u></p>
+<h3 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h3><hr>
+<p>理论上Canvas是不支持IE8及以下浏览器的,若是必须要支持IE6,7,8的话，可以使用<code>ExploreCanvas</code>和<del><code>Google Chrome Frame</code></del>，前者可以在老版本的IE中增加对于Canvas的支持，<del>后者可以将IE引擎替换为Chrome引擎</del>后者项目已经废弃</p>
 <blockquote>
 <p><a href="https://github.com/arv/explorercanvas" target="_blank" rel="external">ExploreCanvas Github地址</a></p>
 </blockquote>
-<h3 id="基本事件"><a href="#基本事件" class="headerlink" title="基本事件"></a>基本事件</h3><p><code>mousedown</code>/<code>mousemup</code>,<code>mousemove</code>/<code>mouseout</code>监测鼠标事件</p>
+<h3 id="基本事件"><a href="#基本事件" class="headerlink" title="基本事件"></a>基本事件</h3><hr>
+<p><code>mousedown</code>/<code>mousemup</code>,<code>mousemove</code>/<code>mouseout</code>监测鼠标事件</p>
 <blockquote>
 <p>DOM3级事件中定义了9个鼠标事件。<br><code>mousedown</code>:鼠标按钮被按下（左键或者右键）时触发。不能通过键盘触发。<br><code>mouseup:</code>鼠标按钮被释放弹起时触发。不能通过键盘触发。<br><code>click</code>:单击鼠标左键或者按下回车键时触发。这点对确保易访问性很重要，意味着<code>onclick</code>事件处理程序既可以通过键盘也可以通过鼠标执行。<br><code>dblclick</code>:双击鼠标左键时触发。<br><code>mouseover</code>:鼠标移入目标元素上方。鼠标移到其后代元素上时会触发。<br><code>mouseout</code>:鼠标移出目标元素上方。<br><code>mouseenter</code>:鼠标移入元素范围内触发，该事件不冒泡，即鼠标移到其后代元素上时不会触发。<br><code>mouseleave</code>:鼠标移出元素范围时触发，该事件不冒泡，即鼠标移到其后代元素时不会触发。<br><code>mousemove</code>:鼠标在元素内部移动时不断触发。不能通过键盘触发。<br>在JQ中，<code>hover</code>API是将<code>mouseenter</code>和<code>mouseleave</code>结合在一起使用的</p>
 </blockquote>
@@ -227,9 +233,12 @@
 <blockquote>
 <p>待补充</p>
 </blockquote>
-<h3 id="关于底层实现"><a href="#关于底层实现" class="headerlink" title="关于底层实现"></a>关于底层实现</h3><blockquote>
+<h3 id="关于底层实现"><a href="#关于底层实现" class="headerlink" title="关于底层实现"></a>关于底层实现</h3><hr>
+<blockquote>
 <p>Canvas 是一种立即模式的绘图 API,这意味着绘制时不保留所绘制对象的信息。与其相反的是保留模式(如SVG),这是一种声明性的 API,维护所绘制对象的层次结构。<br>保留模式 API 的优点是，对于你的应用程序，他们通常更容易构建复杂的场景，例如 DOM。通常这都会带来性能成本,需要额外的内存来保存场景和更新场景，这可能会很慢。<br>Canvas 受益于立即模式,允许直接发送绘图命令到 GPU。但若用它来构建用户界面，需要进行一个更高层次的抽象。例如一些简单的处理,比如当绘制一个异步加载的资源到一个元素上时会出现问题,如在图片上绘制文本。在HTML中，由于元素存在顺序，以及 CSS 中存在 z-index，因此是很容易实现的。</p>
 </blockquote>
+<h2 id="绘制"><a href="#绘制" class="headerlink" title="绘制"></a>绘制</h2><h3 id="坐标系统"><a href="#坐标系统" class="headerlink" title="坐标系统"></a>坐标系统</h3><hr>
+<p>默认情况下，Canvas坐标系统</p>
 
 
                 <hr>
@@ -243,7 +252,8 @@
                     data-title="Canvas动画入门"
                     data-url="http://rubicker.github.io/2016/10/15/Canvas动画入门/"
                     data-images="http://rubicker.github.io/2016/10/15/Canvas动画入门/header-bg.png"
-                    data-content="基础知识Canvas元素基本创建Canvas元素可谓是HTML5中最为强大的元素，而它真正的能... | Rubicker的博客 | Rubicker&#39;s Blog " >
+                    data-content="基础知识Canvas元素基本创建
+Canvas元素可谓是HTML5中最为强大的元素，而它真正的... | Rubicker的博客 | Rubicker&#39;s Blog " >
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
                         <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
