@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Node与Express开发读书笔记 - Rubicker的博客 | Rubicker&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://rubicker.github.io/2016/11/02/Node与Express开发读书笔记/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Rubicker&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('header-bg.png')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                        
+                          <a class="tag" href="/tags/#Node.js" title="Node.js">Node.js</a>
+                        
+                          <a class="tag" href="/tags/#Express" title="Express">Express</a>
+                        
+                    </div>
+                    <h1>Node与Express开发读书笔记</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by “Rubicker” on
+                        2016-11-02
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="初识Express"><a href="#初识Express" class="headerlink" title="初识Express"></a>初识Express</h2><blockquote>
+<p>Fast, unopinionated, minimalist web framework for Node.js</p>
+</blockquote>
+<h4 id="Express特性"><a href="#Express特性" class="headerlink" title="Express特性"></a>Express特性</h4><hr>
+<ul>
+<li>精简<br>Express的哲学在于充当你的想法和服务器之间薄薄的一层，同时拥有足够的健壮性</li>
+<li>灵活<br>可扩展，需要的时候再添加</li>
+<li>Web程序框架</li>
+<li>单页Web程序<br>SPA将整个网站或其中很大一部分都下载到客户端浏览器上，经过初始下载后，用户访问不同页面的速度会加快，因为减少了大部分HTTP请求</li>
+<li>多页和混合Web程序</li>
+</ul>
+<h4 id="Node-一种新型Web服务器"><a href="#Node-一种新型Web服务器" class="headerlink" title="Node:一种新型Web服务器"></a>Node:一种新型Web服务器</h4><hr>
+<p>Node与传统Web服务器之间的主要区别是:Node是单线程的以及多平台易用性</p>
+<h2 id="从Node开始"><a href="#从Node开始" class="headerlink" title="从Node开始"></a>从Node开始</h2><p>创建一个简单的服务器<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</div><div class="line"></div><div class="line">http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</div><div class="line">    res.writeHead(<span class="number">200</span>,&#123;Content-Type:<span class="string">'text-plain'</span>&#125;);</div><div class="line">    res.end(<span class="string">'hello world'</span>)</div><div class="line">&#125;).listen(<span class="number">3200</span>);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(listen <span class="number">3200</span>)</div></pre></td></tr></table></figure></p>
+<h4 id="事件驱动编程"><a href="#事件驱动编程" class="headerlink" title="事件驱动编程"></a>事件驱动编程</h4><hr>
+<p>Node的核心理念:事件驱动编程。</p>
+<h4 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h4><hr>
+<p>路由是指向客户端提供它所发出的请求内容的机制。对于Web客户端/服务器端程序来说，客户端在URL或请求头中指明它想要的内容.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</div><div class="line"></div><div class="line">http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</div><div class="line">    <span class="comment">// 这一步是规范URL，去掉查询字符串，可选的反斜杠，并将其变成小写</span></div><div class="line">    <span class="comment">// RegExp图解见下</span></div><div class="line">    <span class="keyword">var</span> path = req.url.replace(<span class="regexp">/\/?(?:\?.*)?$/</span>,<span class="string">''</span>).toLowerCase();</div><div class="line">    <span class="built_in">console</span>.log(path)</div><div class="line">    <span class="keyword">switch</span>(path)&#123;</div><div class="line">        <span class="keyword">case</span> <span class="string">''</span>:</div><div class="line">            res.writeHead(<span class="number">200</span>,&#123;<span class="string">'Content-Type'</span>:<span class="string">'text-plain'</span>&#125;);</div><div class="line">            res.end(<span class="string">'Homepage'</span>);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> <span class="string">'/about'</span>:</div><div class="line">            res.writeHead(<span class="number">200</span>,&#123;<span class="string">'Content-Type'</span>:<span class="string">'text-plain'</span>&#125;);</div><div class="line">            res.end(<span class="string">'About'</span>);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            res.writeHead(<span class="number">404</span>,&#123;<span class="string">'Content-Type'</span>:<span class="string">'text-plain'</span>&#125;);</div><div class="line">            res.end(<span class="string">'404 Not Found'</span>);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line">&#125;).listen(<span class="number">3200</span>)</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'listen 3200'</span>)</div></pre></td></tr></table></figure></p>
+<p><img src="reg1.svg" alt=""></p>
+<blockquote>
+<p><a href="http://nodejs.cn/doc/node/http.html#http_message_url" target="_blank" rel="external">关于req.url</a> message.url<br>Only valid for request obtained from http.Server.<br>Request URL string. This contains only the URL that is present in the actual HTTP request. If the request is:<br><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">GET /status?name=ryan HTTP/1.1<span class="symbol">\r</span><span class="symbol">\n</span></div><div class="line">Accept: text/plain<span class="symbol">\r</span><span class="symbol">\n</span></div><div class="line"><span class="symbol">\r</span><span class="symbol">\n</span></div></pre></td></tr></table></figure></p>
+<p>Then request.url will be:<br><figure class="highlight scheme"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">'/status?name=ryan</span>'</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="静态资源服务"><a href="#静态资源服务" class="headerlink" title="静态资源服务"></a>静态资源服务</h4><hr>
+<p>用Node提供静态资源只适用于初期的小型项目，对于较大的项目，应该使用<code>Nginx</code>或<code>CDN</code>之类的代理服务器来提供静态资源<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>),</div><div class="line">    fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">serveStaticFile</span>(<span class="params">res,path,contentType,responseCode</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(!responseCode) responseCode = <span class="number">200</span>;</div><div class="line">    fs.readFile(__dirname + path,<span class="function"><span class="keyword">function</span>(<span class="params">err,data</span>)</span>&#123;</div><div class="line">        <span class="keyword">if</span>(err)&#123;</div><div class="line">            res.writeHead(<span class="number">500</span>,&#123;<span class="string">'Content-Type'</span>:<span class="string">'text/plain'</span>&#125;);</div><div class="line">            res.end(<span class="string">'500 - Internal Error'</span>)</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            res.writeHead(responseCode,&#123;<span class="string">'Content-Type'</span>:contentType&#125;);</div><div class="line">            res.end(data)</div><div class="line">        &#125;</div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> path = req.url.replace(<span class="regexp">/\/?(?:\?.*)?$/</span>,<span class="string">''</span>).toLowerCase();</div><div class="line"></div><div class="line">    <span class="keyword">switch</span>(path)&#123;</div><div class="line">        <span class="keyword">case</span> <span class="string">''</span>:</div><div class="line">            serveStaticFile(res,<span class="string">'/public/home.html'</span>,<span class="string">'text/html'</span>);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> <span class="string">'/about'</span>:</div><div class="line">            serveStaticFile(res,<span class="string">'/public/about.html'</span>,<span class="string">'text/html'</span>);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> <span class="string">'/img/logo.jpg'</span>:</div><div class="line">            serveStaticFile(res,<span class="string">'/public/img/logo.jpg'</span>,<span class="string">'img/jpeg'</span>);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            serveStaticFile(res,<span class="string">'/public/404.html'</span>,<span class="string">'text/html'</span>,<span class="number">404</span>);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line">&#125;).listen(<span class="number">3200</span>)</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'listen 3200'</span>)</div></pre></td></tr></table></figure></p>
+<h2 id="省时省力的Express"><a href="#省时省力的Express" class="headerlink" title="省时省力的Express"></a>省时省力的Express</h2><figure class="highlight scilab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">var express = require(<span class="string">'express'</span>);</div><div class="line"></div><div class="line">var app = express();</div><div class="line"></div><div class="line"><span class="comment">//这样我们在启动服务器前可以设置环境变量覆盖端口</span></div><div class="line">app.set(<span class="string">'port'</span>,process.env.port || <span class="number">3200</span>);</div><div class="line"></div><div class="line">app.get(<span class="string">'/'</span>,<span class="function"><span class="keyword">function</span><span class="params">(req,res)</span>&#123;</span></div><div class="line">    res.<span class="built_in">type</span>(<span class="string">'text/plain'</span>);</div><div class="line">    res.send(<span class="string">'Meadowlark Travel'</span>);</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.get(<span class="string">'/about'</span>,<span class="function"><span class="keyword">function</span><span class="params">(req,res)</span>&#123;</span></div><div class="line">    res.<span class="built_in">type</span>(<span class="string">'text/plain'</span>);</div><div class="line">    res.send(<span class="string">'About Meadowlark Travel'</span>);</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.use(<span class="function"><span class="keyword">function</span><span class="params">(req,res)</span>&#123;</span></div><div class="line">    res.<span class="built_in">type</span>(<span class="string">'text/plain'</span>);</div><div class="line">    res.status(<span class="number">404</span>);</div><div class="line">    res.send(<span class="string">'404 - Not Found'</span>);</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.use(<span class="function"><span class="keyword">function</span><span class="params">(err,req,res,next)</span>&#123;</span></div><div class="line">    console.<span class="built_in">error</span>(err.stack);</div><div class="line">    res.<span class="built_in">type</span>(<span class="string">'text/plain'</span>);</div><div class="line">    res.status(<span class="number">500</span>);</div><div class="line">    res.send(<span class="string">'500 - Server Error'</span>)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.listen(app.get(<span class="string">'port'</span>),<span class="function"><span class="keyword">function</span><span class="params">()</span>&#123;</span></div><div class="line">    console.<span class="built_in">log</span>(<span class="string">'Express started on http://localhost:'</span>+app.get(<span class="string">'port'</span>))</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p><code>app.METHOD(path,callback)``app</code> 是 <code>express</code> 对象的一个实例， <code>METHOD</code> 是一个 HTTP 请求方法， <code>path</code> 是服务器上的路径， <code>callback</code> 是当路由匹配时要执行的函数。<br><code>app.use([path,]function)</code> 是Express添加中间件的一种方法</p>
+<blockquote>
+<p>在定义路由中的路径时，app.METHOD为我们做了很多中间工作:默认忽略大小写及反斜杠，同时在进行匹配时不考虑查询字符串<br>另外,路由和中间件的添加顺序非常重要</p>
+</blockquote>
+<h4 id="视图引擎"><a href="#视图引擎" class="headerlink" title="视图引擎"></a>视图引擎</h4><hr>
+<p>为何要用视图引擎呢？<br>首先说到底，视图引擎其实就是设置默认模版，然后根据不同页面传入变量改变布局；所以为了解决多个页面结构类似重复书写较为麻烦的问题<br>在这里我们选择<code>handlebars</code>作为我们的视图渲染引擎，该引擎主要采用<code>Mustache</code>语法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 安装handlebars引擎</span></div><div class="line">$ npm install --save express3-handlebars</div></pre></td></tr></table></figure></p>
+<p>添加引擎，加入模版，添加如下文件:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- public/views/layouts/main.handlebars --&gt;</span></div><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Meadowlark Travel<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    &#123;&#123; body &#125;&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- public/views/home.handlebars--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Welcome to Meadowlark Travel<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- public/views/about.handlebars--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>About Meadowlark Travel<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- public/views/404.handlebars--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>404 - Not Found<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- public/views/500.handlebars--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>500 - Server Error<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>然后定义入口文件为:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="keyword">var</span> app = express();</div><div class="line"></div><div class="line"><span class="comment">// 设置handlebars视图引擎</span></div><div class="line"><span class="keyword">var</span> handlebars = <span class="built_in">require</span>(<span class="string">'express3-handlebars'</span>).create(&#123;<span class="attr">defaultlayout</span>:<span class="string">'main'</span>&#125;);</div><div class="line">app.engine(<span class="string">'handlebars'</span>,handlebars.engine);</div><div class="line">app.set(<span class="string">'view engine'</span>,<span class="string">'handlebars'</span>);</div><div class="line"></div><div class="line"><span class="comment">//这样我们在启动服务器前可以设置环境变量覆盖端口</span></div><div class="line">app.set(<span class="string">'port'</span>,process.env.port || <span class="number">3200</span>);</div><div class="line"></div><div class="line"><span class="comment">// 可以看到我们在前两个路由中不再指定内容类型和状态码</span></div><div class="line"><span class="comment">// 模版引擎默认会返回text/html的内容类型和200状态码</span></div><div class="line">app.get(<span class="string">'/'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</div><div class="line">    res.render(<span class="string">'home'</span>);</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.get(<span class="string">'/about'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</div><div class="line">    res.render(<span class="string">'about'</span>);</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</div><div class="line">    res.status(<span class="number">404</span>);</div><div class="line">    res.render(<span class="string">'404'</span>);</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">err,req,res,next</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.error(err.stack);</div><div class="line">    res.status(<span class="number">500</span>);</div><div class="line">    res.render(<span class="string">'500'</span>)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.listen(app.get(<span class="string">'port'</span>),<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Express started on http://localhost:'</span>+app.get(<span class="string">'port'</span>))</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p><a href="http://www.expressjs.com.cn/guide/using-template-engines.html" target="_blank" rel="external">在Express中使用模版引擎</a></p>
+</blockquote>
+<h4 id="视图和静态文件"><a href="#视图和静态文件" class="headerlink" title="视图和静态文件"></a>视图和静态文件</h4><hr>
+<p>静态文件该如何管理呢?<br><code>static</code>中间件可以将一个或多个目录指派为包含静态资源的目录，这些资源将不经过任何特殊处理就会直接发送到客户端，可以放图片，css文件，客户端js文件之类的东西<br>首先，创建<code>public</code>目录；<br>其次，在入口文件中指定静态文件目录:<br><figure class="highlight fsharp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app.<span class="keyword">use</span>(express.<span class="keyword">static</span>(__dirname + '<span class="keyword">public</span>'))</div></pre></td></tr></table></figure></p>
+<p>接下来在<code>public</code>下创建子目录<code>img</code>,并把<code>logo.png</code>放在其中，此时我们在html或其他文件中就可以通过<code>/img/logo.png</code>直接访问</p>
+
+
+                <hr>
+
+                
+                <!-- 多说 Share start -->
+                </style>
+                <div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="2016/11/02/Node与Express开发读书笔记/"
+                    data-title="Node与Express开发读书笔记"
+                    data-url="http://rubicker.github.io/2016/11/02/Node与Express开发读书笔记/"
+                    data-images="http://rubicker.github.io/2016/11/02/Node与Express开发读书笔记/header-bg.png"
+                    data-content="初识Express
+Fast, unopinionated, minimalist web f... | Rubicker的博客 | Rubicker&#39;s Blog " >
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/11/01/Visual-Studio-Code初体验/" data-toggle="tooltip" data-placement="top" title="Visual-Studio-Code初体验">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2016/11/02/Node与Express开发读书笔记/"
+                        data-title="Node与Express开发读书笔记"
+                        data-url="http://rubicker.github.io/2016/11/02/Node与Express开发读书笔记/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                        
+                          <a class="tag" href="/tags/#Node.js" title="Node.js">Node.js</a>
+                        
+                          <a class="tag" href="/tags/#Express" title="Express">Express</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'rubicker';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Rubicker">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Rubicker&#39;s Blog 2016 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://rubicker.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

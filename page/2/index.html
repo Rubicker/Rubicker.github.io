@@ -97,14 +97,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -181,6 +181,78 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/2016/10/15/Vue-js2-0你好/">
+        <h2 class="post-title">
+            Hello,Vue.js2.0
+        </h2>
+        <h3 class="post-subtitle">
+            轻质高效而又不失优雅的JS框架
+        </h3>
+        <div class="post-content-preview">
+            之前学习了一段时间Vue.js，对其有一定的了解，最近发布了Vue.js2.0，当然想继续深入学习下，于是就有了这篇文章.
+
+以下将简称Vue.js为Vue
+
+介绍Vue的目标是通过尽可能少的API实现响应的数据绑定和组合的视图组件，与其他单层框架(monolithic frameworks)不同，Vue采用自底向上增量开发设计
+
+何谓单层框架？  A framework is monoli......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by “Rubicker” on
+        2016-10-15
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2016/10/11/Fiddler软件使用/">
+        <h2 class="post-title">
+            Fiddler软件使用
+        </h2>
+        <h3 class="post-subtitle">
+            前端调试利器
+        </h3>
+        <div class="post-content-preview">
+            
+Fiddler是位于客户端和服务器端的HTTP代理，也是目前最常用的http抓包工具之一 。它能够记录客户端和服务器之间的所有 HTTP请求，可以针对特定的HTTP请求，分析请求数据、设置断点、调试web应用、修改请求的数据，甚至可以修改服务器返回的数据，功能非常强大，是web调试的利器。
+
+工作原理客户端的所有请求都要先经过Fiddler，然后转发到相应的服务器，反之，服务器端的所有响应......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by “Rubicker” on
+        2016-10-11
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2016/10/08/JavaScript兼容性与封装函数整理/">
+        <h2 class="post-title">
+            JavaScript兼容性与封装函数整理
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            获取样式函数getStyle()封装想获取某个元素的样式，常用的就是ele.style.attr方法，然而此方法只能获取到行内样式(inline Style)，对于内部样式(internal style sheet)或外部样式表(external style sheet)就无能无力了。好在标准浏览器下为我们提供了一个方法window.getComputedStyle(ele,null)[at......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by “Rubicker” on
+        2016-10-08
+    </p>
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -353,84 +425,6 @@ $.isPlainObject()检测一个对象是否包含任何属性，所检查......
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2016/09/03/JS深入学习之DOM，BOM及Event/">
-        <h2 class="post-title">
-            JS深入学习之DOM，BOM及Event
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-DOMDOM节点
-childNodes/childrenchildNodes:标准模式下(IE9+)，获取直接子节点(包括文本节点，同时也会包含非法嵌套的子节点);非标准模式下,获取直接子节点(只包括元素节点)。IE8包含非法嵌套的子节点；而IE7不包含123456789101112131415&lt;ul id="nav"&gt;  &lt;li&gt;1111&lt;/li&gt;  ......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by “Rubicker” on
-        2016-09-03
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/08/31/CSS中的padding/">
-        <h2 class="post-title">
-            CSS中的padding
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-padding与容器的尺寸block水平元素:
-
-padding值足够大时，一定会影响尺寸
-width非auto，padding影响尺寸
-width为auto或boxsizing:border-box，同时padding值相对于盒子宽高较小时不影响尺寸
-
-inline水平元素:
-
-水平padding影响尺寸。垂直padding不影响尺寸，但是会影响背景色(背景色不影响元素尺寸，但是占据空间......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by “Rubicker” on
-        2016-08-31
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/08/30/CSS中的margin/">
-        <h2 class="post-title">
-            CSS中的margin
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            本文总结自张鑫旭老师的课程CSS深入理解之margin
-margin与容器的尺寸CSS margin可以改变容器的尺寸。可视尺寸:clientWidth，即不包括margin在内的盒模型大小占据尺寸:包括margin在内的盒模型大小
-margin与可视尺寸
-未设定width/height的普通block水平元素。float元素 absolute/fixed元素 inline元素
-水平方向尺寸......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by “Rubicker” on
-        2016-08-30
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -472,7 +466,7 @@ margin与可视尺寸
                             
                         
                             
-                            <a href="/tags/#JavaScript" title="JavaScript" rel="10">JavaScript</a>
+                            <a href="/tags/#JavaScript" title="JavaScript" rel="11">JavaScript</a>
                             
                         
                             
@@ -486,20 +480,6 @@ margin与可视尺寸
                             
                         
                             
-                            <a href="/tags/#javascript" title="javascript" rel="13">javascript</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#jQuery" title="jQuery" rel="6">jQuery</a>
-                            
                         
                             
                             <a href="/tags/#HTML5" title="HTML5" rel="2">HTML5</a>
@@ -510,21 +490,35 @@ margin与可视尺寸
                             
                         
                             
+                            <a href="/tags/#javascript" title="javascript" rel="13">javascript</a>
+                            
+                        
+                            
+                            <a href="/tags/#jQuery" title="jQuery" rel="6">jQuery</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
                             <a href="/tags/#ES6" title="ES6" rel="2">ES6</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#Node.js" title="Node.js" rel="2">Node.js</a>
                             
                         
                             
                             <a href="/tags/#html" title="html" rel="3">html</a>
                             
                         
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#Node.js" title="Node.js" rel="3">Node.js</a>
                             
                         
                             
@@ -566,6 +560,18 @@ margin与可视尺寸
                             
                         
                             
+                            <a href="/tags/#兼容性" title="兼容性" rel="2">兼容性</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
                         
                             
                         
@@ -576,25 +582,19 @@ margin与可视尺寸
                             
                         
                             
-                        
-                            
-                        
-                            
-                            <a href="/tags/#兼容性" title="兼容性" rel="2">兼容性</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
                             <a href="/tags/#WeChat" title="WeChat" rel="2">WeChat</a>
                             
                         
                             
                         
                             
+                        
+                            
+                        
+                            
                             <a href="/tags/#Vue.js" title="Vue.js" rel="2">Vue.js</a>
+                            
+                        
                             
                         
                             
