@@ -97,14 +97,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -231,14 +231,14 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> oDiv = <span class="built_in">document</span>.getElementById(<span class="string">"test"</span>);</div><div class="line"><span class="built_in">console</span>.log(oDiv.style.width);<span class="comment">//100px</span></div><div class="line"><span class="built_in">console</span>.log(oDiv.clientWidth);<span class="comment">//120</span></div><div class="line"><span class="built_in">console</span>.log(oDiv.offsetWidth);<span class="comment">//122</span></div></pre></td></tr></table></figure>
 </li>
 <li><p><code>getPos()</code><br>获取当前元素距离浏览器视口边缘的定位</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getPos</span>(<span class="params">obj</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> pos = &#123;<span class="attr">left</span>:<span class="number">0</span>,<span class="attr">top</span>:<span class="number">0</span>&#125;;</div><div class="line">  <span class="keyword">while</span>(obj)&#123;</div><div class="line">    pos.left += obj.offsetLeft;</div><div class="line">    pos.left += obj.offsetTop;</div><div class="line">    obj = obj.offsetParent;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> pos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getPos</span><span class="params">(obj)</span></span>&#123;</div><div class="line">  <span class="keyword">var</span> pos = &#123;left:<span class="number">0</span>,top:<span class="number">0</span>&#125;;</div><div class="line">  <span class="keyword">while</span>(obj)&#123;</div><div class="line">    pos.left += obj.offsetLeft;</div><div class="line">    pos.left += obj.offsetTop;</div><div class="line">    obj = obj.offsetParent;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> pos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <h2 id="操作元素属性"><a href="#操作元素属性" class="headerlink" title="操作元素属性"></a>操作元素属性</h2><ul>
 <li><code>E.getAttribute(attr)</code>获取指定元素指定属性值<br><code>E.setAttribute(attr,val)</code>设置指定元素指定属性值<br><code>E.removeAttribute(attr)</code>移除属性</li>
 <li><p><code>E.attr</code> / <code>E[attr]</code> 操作属性<br>以上两种方法区别在于:<br>前者可以操作自定义属性值，后者不能(IE7,8可以获取);<br>前者可以获取类似<code>src</code>等属性的实际值(IE7下仍然是绝对路径)，而后者会获取它的绝对路径</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">img</span> src=<span class="string">"test.gif"</span> id=<span class="string">"test"</span>&gt;</div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> oImg = <span class="built_in">document</span>.getElementById(<span class="string">"test"</span>)</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"oImg.src"</span>);<span class="comment">// "F://demo/test.gif"</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"oImg.src"</span>);<span class="comment">// "test.gif"  IE7下仍为"F://demo/test.gif"</span></div></pre></td></tr></table></figure>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var oImg = <span class="built_in">document</span>.getElementById(<span class="string">"test"</span>)</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"oImg.src"</span>);<span class="regexp">//</span> <span class="string">"F://demo/test.gif"</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"oImg.src"</span>);<span class="regexp">//</span> <span class="string">"test.gif"</span>  IE7下仍为<span class="string">"F://demo/test.gif"</span></div></pre></td></tr></table></figure>
 </li>
 </ul>
 <h2 id="元素动态创建"><a href="#元素动态创建" class="headerlink" title="元素动态创建"></a>元素动态创建</h2><ul>
@@ -300,7 +300,7 @@
 <h2 id="关于文档宽高及窗口操作"><a href="#关于文档宽高及窗口操作" class="headerlink" title="关于文档宽高及窗口操作"></a>关于文档宽高及窗口操作</h2><ul>
 <li><code>document.documentElement.clientWidth</code>/<code>document.documentElement.clientHeight</code><br>获取浏览器可视区域宽高</li>
 <li><p><code>document.documentElement.scrollTop</code>/<code>document.documentElement.scrollLeft</code><br>获取浏览器滚动距离<br>兼容性问题:<br>在Chrome下始终显示为0，这是因为Chrome默认<code>scrollTop</code>/<code>scrollLeft</code>是属于<code>body</code>的属性，因此在Chrome下调用时，应当使用<code>document.body.scrollTop</code>和<code>document.body.scrollLeft</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> scrollTop = <span class="built_in">document</span>.documentElement.scrollTop||<span class="built_in">document</span>.body.scrollTop;</div></pre></td></tr></table></figure>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> scrollTop = <span class="built_in">document</span>.documentElement.scrollTop||<span class="built_in">document</span>.body.scrollTop;</div></pre></td></tr></table></figure>
 </li>
 <li><p><code>document.body.scrollHeight</code><br>内容高度，而非可视区高度</p>
 </li>

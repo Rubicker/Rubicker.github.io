@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          测试框架Mocha入门 - Rubicker的博客 | Rubicker&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://rubicker.github.io/2016/11/03/测试框架Mocha入门/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Rubicker&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('header-bg.png')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Mocha" title="Mocha">Mocha</a>
+                        
+                          <a class="tag" href="/tags/#Unit Testing" title="Unit Testing">Unit Testing</a>
+                        
+                    </div>
+                    <h1>测试框架Mocha入门</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by “Rubicker” on
+                        2016-11-03
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <blockquote>
+<p>Mocha is a feature-rich JavaScript test framework running on Node.js and in the browser, making asynchronous testing simple and fun. Mocha tests run serially, allowing for flexible and accurate reporting, while mapping uncaught exceptions to the correct test cases. </p>
+</blockquote>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>全局安装:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g mocha</div></pre></td></tr></table></figure></p>
+<p>项目目录下安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install --save-dev mocha</div></pre></td></tr></table></figure></p>
+<h2 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h2><p>Mocha允许使用任何断言库，而在<code>Node</code>中有<a href="https://nodejs.org/api/assert.html" target="_blank" rel="external"><code>Assertion Testing</code></a>这样一个模块，可以直接用来使用，同时以下库也可:</p>
+<blockquote>
+<p><a href="https://github.com/chaijs/chai" target="_blank" rel="external">chai.js</a> —— expert(),assert()和should风格的断言<br>  <a href="https://github.com/shouldjs/should.js" target="_blank" rel="external">should.js</a>——BDD<br>  <a href="https://github.com/tj/better-assert" target="_blank" rel="external">better-assert.js</a> ——C风格的assert()<br>  <a href="https://github.com/Automattic/expect.js" target="_blank" rel="external">expect.js</a> ——expect()<br>  <a href="http://unexpected.js.org/" target="_blank" rel="external">unexpected.js</a> ——BDD</p>
+</blockquote>
+<p>以<code>chai</code>的<code>expect</code>风格断言为例:<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//布尔值</span></div><div class="line"><span class="selector-tag">expect</span>(<span class="string">'true'</span>)<span class="selector-class">.to</span><span class="selector-class">.be</span><span class="selector-class">.ok</span>;</div><div class="line"></div><div class="line"><span class="comment">//相等判断</span></div><div class="line"><span class="selector-tag">expect</span>(<span class="number">1</span>+<span class="number">1</span>)<span class="selector-class">.to</span><span class="selector-class">.be</span><span class="selector-class">.equal</span>(<span class="number">2</span>);</div><div class="line"></div><div class="line"><span class="comment">//typeof</span></div><div class="line"><span class="selector-tag">expect</span>(<span class="string">'test'</span>)<span class="selector-class">.to</span><span class="selector-class">.be</span><span class="selector-class">.a</span>(<span class="string">'string'</span>);</div><div class="line"></div><div class="line"><span class="comment">//include</span></div><div class="line"><span class="selector-tag">expect</span>(&#123;<span class="attribute">foo</span>:<span class="string">'bar'</span>&#125;)<span class="selector-class">.to</span><span class="selector-class">.include</span><span class="selector-class">.keys</span>(<span class="string">'foo'</span>);</div><div class="line"></div><div class="line"><span class="comment">//empty</span></div><div class="line"><span class="selector-tag">expect</span>([])<span class="selector-class">.to</span><span class="selector-class">.be</span><span class="selector-class">.empty</span>;</div><div class="line"></div><div class="line"><span class="comment">//match</span></div><div class="line"><span class="selector-tag">expect</span>(<span class="string">'foobar'</span>)<span class="selector-class">.to</span><span class="selector-class">.match</span>(/^foo/);</div></pre></td></tr></table></figure></p>
+<h2 id="异步代码测试"><a href="#异步代码测试" class="headerlink" title="异步代码测试"></a>异步代码测试</h2><p>如何让Mocha知道异步代码已经结束呢?毕竟我们无法判断何时会调用回调函数<br>只需传递<code>it()</code>一个参数<code>done</code>即可，这样Mocha就知道他会等待这个函数被调用然后结束测试<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">describe(<span class="string">'User'</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</div><div class="line">    describe(<span class="string">'#save()'</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</div><div class="line">        it(<span class="string">'should save without error'</span>,<span class="function"><span class="keyword">function</span><span class="params">(done)</span></span>&#123;</div><div class="line">            <span class="keyword">var</span> user = <span class="keyword">new</span> User(<span class="string">'luna'</span>);</div><div class="line">            user.saved(done)</div><div class="line">        &#125;)</div><div class="line">    &#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h2 id="关于箭头函数"><a href="#关于箭头函数" class="headerlink" title="关于箭头函数"></a>关于箭头函数</h2><p>由于箭头函数内部this指向的改变，所以会导致Mocha代码无法指向Mocha上下文，故不建议在箭头函数中使用Mocha</p>
+<h2 id="测试脚本书写"><a href="#测试脚本书写" class="headerlink" title="测试脚本书写"></a>测试脚本书写</h2><p>通常，脚本与所要测试的源码脚本同名，但是后缀名为.test.js(测试)或.spec.js(规格)<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//<span class="keyword">add</span>.<span class="bash">js</span></div><div class="line">function <span class="keyword">add</span><span class="bash">(x,y)&#123;</span></div><div class="line">    return x+y</div><div class="line">&#125;</div><div class="line"></div><div class="line">module.exports = <span class="keyword">add</span><span class="bash"></span></div></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//add.test.js</span></div><div class="line"><span class="keyword">var</span> add = <span class="built_in">require</span>(<span class="string">'./add.js'</span>);</div><div class="line"><span class="keyword">var</span> expect = <span class="built_in">require</span>(<span class="string">'chai'</span>).expect;</div><div class="line"></div><div class="line">describe(<span class="string">'add()测试'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    it(<span class="string">'1+1 = 2'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        expect(add(<span class="number">1</span>+<span class="number">1</span>)).to.be.equal(<span class="number">2</span>);</div><div class="line">    &#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>测试脚本中应该包含一个或多个<code>describe</code>块(test suite测试套件)，而每一个<code>describe</code>块应包含一个或多个<code>it</code>块(test case，测试用例)</p>
+<h2 id="指令及基本用法"><a href="#指令及基本用法" class="headerlink" title="指令及基本用法"></a>指令及基本用法</h2><p><strong><code>--recursive</code></strong><br>Mocha默认运行test目录下的测试脚本，但是若文件放在<code>test</code>目录的下一级目录下，则执行<code>$ mocha</code>则无法检测，需要加参数 <code>--recursive</code><br><strong><code>--reporter</code> <code>-R</code></strong><br>Mocha默认报告格式为<code>spec</code>格式<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ mocha</div><div class="line"><span class="comment">#等价于</span></div><div class="line">$ mocha --reporter spec</div></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 可以列出所有内置报告格式</span></div><div class="line">$ mocha --reporters</div></pre></td></tr></table></figure>
+<p>另外，使用<code>mochawesome</code>模块可以生成HTML格式报告<br><img src="mochawesome.png" alt="mochawesome.png"><br><u>如何安装使用<code>mochawesome</code>?</u><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install --save-dev mochawesome</div></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 在测试目录下</span></div><div class="line">$ mocha --reporter mochawesome</div></pre></td></tr></table></figure>
+<p><strong><code>--watch</code> <code>-W</code></strong><br>实时监视测试脚本，只要发生变化就会自动运行Mocha<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mocha --watch</div></pre></td></tr></table></figure></p>
+<p><strong><code>--bail</code> <code>-b</code></strong><br>指定只要有一个测试用例未通过就停止执行后面的测试用例，方便进行持续集成<br><img src="CI.png" alt=""><br><small class="img-hint">持续集成图示(图源自网络)</small><br><strong><code>--grep</code> <code>-g</code></strong><br>用于搜索测试用例的名称(即it块的第一个参数)，然后只执行该测试用例<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mocha --grep <span class="string">'1+1'</span></div></pre></td></tr></table></figure></p>
+<p><strong><code>--invert</code> <code>-i</code></strong><br>只运行不符合条件的测试用例，必须配合<code>--grep</code>使用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mocha --grep <span class="string">'1+1'</span> --invert</div></pre></td></tr></table></figure></p>
+<h2 id="配置文件mocha-opts"><a href="#配置文件mocha-opts" class="headerlink" title="配置文件mocha.opts"></a>配置文件mocha.opts</h2><p>可以将参数及测试目录写在该配置文件中:<br><figure class="highlight haml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//mocha.opts</span></div><div class="line">tests</div><div class="line">-<span class="ruby">-reporter tap</span></div><div class="line">-<span class="ruby">-recursive</span></div></pre></td></tr></table></figure></p>
+<p>之后执行<code>$ mocha</code>就相当于执行:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mocha --reporter tap --recursive</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>参考文章:<br>  <a href="http://www.ruanyifeng.com/blog/2015/12/a-mocha-tutorial-of-examples.html" target="_blank" rel="external">测试框架 Mocha 实例教程</a><br>  <a href="http://mochajs.org/" target="_blank" rel="external">Mocha官网</a><br>  <a href="https://www.npmjs.com/package/mochawesome" target="_blank" rel="external">mochawesome</a></p>
+</blockquote>
+
+
+                <hr>
+
+                
+                <!-- 多说 Share start -->
+                </style>
+                <div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="2016/11/03/测试框架Mocha入门/"
+                    data-title="测试框架Mocha入门"
+                    data-url="http://rubicker.github.io/2016/11/03/测试框架Mocha入门/"
+                    data-images="http://rubicker.github.io/2016/11/03/测试框架Mocha入门/header-bg.png"
+                    data-content="
+Mocha is a feature-rich JavaScript test framew... | Rubicker的博客 | Rubicker&#39;s Blog " >
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/11/02/Node与Express开发读书笔记/" data-toggle="tooltip" data-placement="top" title="Node与Express开发读书笔记">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2016/11/03/测试框架Mocha入门/"
+                        data-title="测试框架Mocha入门"
+                        data-url="http://rubicker.github.io/2016/11/03/测试框架Mocha入门/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Mocha" title="Mocha">Mocha</a>
+                        
+                          <a class="tag" href="/tags/#Unit Testing" title="Unit Testing">Unit Testing</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'rubicker';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Rubicker">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Rubicker&#39;s Blog 2016 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://rubicker.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
