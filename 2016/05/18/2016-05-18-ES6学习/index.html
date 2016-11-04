@@ -90,14 +90,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -155,7 +155,7 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('/img/home-bg.jpg')
+        background-image: url('header-bg.png')
     }
 </style>
 <header class="intro-header" >
@@ -236,9 +236,9 @@
 <h3 id="const命令"><a href="#const命令" class="headerlink" title="const命令"></a>const命令</h3><hr>
 <p>const声明一个<strong>只读的常量</strong>，一旦声明就不能改变<br>在严格模式下重复赋值会报错，常规模式时重复赋值无效但是不报错<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">'use strict'</span>;</div><div class="line"><span class="keyword">const</span> PI = <span class="number">3.1415</span>;</div><div class="line">PI <span class="comment">// 3.1415</span></div><div class="line"></div><div class="line">PI = <span class="number">3</span>;</div><div class="line"><span class="comment">// TypeError: "PI" is read-only</span></div></pre></td></tr></table></figure></p>
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">const <span class="literal">PI</span> = <span class="number">3.1415</span>;</div><div class="line"><span class="literal">PI</span> = <span class="number">3</span>; <span class="comment">// 常规模式时，重新赋值无效，但不报错</span></div><div class="line"><span class="literal">PI</span> <span class="comment">// 3.1415</span></div></pre></td></tr></table></figure>
-<p>同时在严格模式下const一旦声明必须初始化，否则会报错；在常规模式下不初始化不会报错，但不可以重新赋值：<br><figure class="highlight abnf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">const foo<span class="comment">;</span></div><div class="line"><span class="attribute">foo</span> = <span class="number">1</span><span class="comment">; // 常规模式，重新赋值无效</span></div><div class="line">foo // undefined</div></pre></td></tr></table></figure></p>
+<p>同时在严格模式下const一旦声明必须初始化，否则会报错；在常规模式下不初始化不会报错，但不可以重新赋值：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> foo;</div><div class="line">foo = <span class="number">1</span>; <span class="comment">// 常规模式，重新赋值无效</span></div><div class="line">foo <span class="comment">// undefined</span></div></pre></td></tr></table></figure></p>
 <p>const与let有很多相似的特性，如const变量只在声明所在的块级作用域内有效，变量不提升，存在暂时性死区，不可重读声明<br>对于对象类型的变量，const命令只是保证变量名指向的地址不变，但不保证该地址的数据不变  </p>
-<p>若真想把对象冻结，应使用<code>Object.freeze</code>方法<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> foo = <span class="built_in">Object</span>.freeze(&#123;&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 常规模式时，下面一行不起作用；</span></div><div class="line"><span class="comment">// 严格模式时，该行会报错</span></div><div class="line">foo.prop = <span class="number">123</span>;</div></pre></td></tr></table></figure></p>
+<p>若真想把对象冻结，应使用<code>Object.freeze</code>方法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> foo = <span class="built_in">Object</span>.freeze(&#123;&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 常规模式时，下面一行不起作用；</span></div><div class="line"><span class="comment">// 严格模式时，该行会报错</span></div><div class="line">foo.prop = <span class="number">123</span>;</div></pre></td></tr></table></figure></p>
 <p>ES5中只有两种声明变量的方法：var命令和function命令<br>ES6中有六种声明变量的方法：var命令，function命令，let命令，const命令，import命令和class命令</p>
 <hr>
 <h3 id="全局对象的属性"><a href="#全局对象的属性" class="headerlink" title="全局对象的属性"></a>全局对象的属性</h3><hr>
@@ -275,7 +275,7 @@
                     data-thread-key="2016/05/18/2016-05-18-ES6学习/"
                     data-title="ES6学习"
                     data-url="http://rubicker.github.io/2016/05/18/2016-05-18-ES6学习/"
-                    data-images=""
+                    data-images="http://rubicker.github.io/2016/05/18/2016-05-18-ES6学习/header-bg.png"
                     data-content="
 学习了大量的ES5，来感受下ES6的独特魅力吧
 

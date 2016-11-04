@@ -90,14 +90,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -199,10 +199,12 @@
 <p>原文链接:<a href="https://davidwalsh.name/es6-generators" target="_blank" rel="external">https://davidwalsh.name/es6-generators</a></p>
 </blockquote>
 <p>在诸多ES6最激动人心的新特性之中，有一个叫做生成器(以下均称为generator)的新类型函数。听起来名字有点怪，但是它所表现出来的行为乍看之下更为”诡异”。本文旨在解释它们是如何运作的以及帮助你理解为何它们在未来JS中如此地重要。</p>
-<h1 id="Run-To-Completion"><a href="#Run-To-Completion" class="headerlink" title="Run-To-Completion"></a>Run-To-Completion</h1><p>当我们讨论generator时，第一件要注意的就是它们与普通函数表现出的按照预期“运行直到结束”这种行为的不同之处。<br>无论你有没有意识到，你总能预测你的函数的某些极其简单的行为:一旦它开始运行，那么它将在其他JS代码能够运行之前一直运行到结束。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//例子:</span></div><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Hello World'</span>);</div><div class="line">&#125;)</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="comment">//注意:永远别写类似下面这么冗长的循环代码</span></div><div class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;=<span class="number">1E10</span>; i++)&#123;</div><div class="line">    <span class="built_in">console</span>.log(i);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">foo();</div><div class="line"><span class="comment">//0..1E10</span></div><div class="line"><span class="comment">//"Hello World"</span></div></pre></td></tr></table></figure></p>
+<h2 id="Run-To-Completion"><a href="#Run-To-Completion" class="headerlink" title="Run-To-Completion"></a>Run-To-Completion</h2><p>当我们讨论generator时，第一件要注意的就是它们与普通函数表现出的按照预期“运行直到结束”这种行为的不同之处。<br>无论你有没有意识到，你总能预测你的函数的某些极其简单的行为:一旦它开始运行，那么它将在其他JS代码能够运行之前一直运行到结束。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//例子:</span></div><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Hello World'</span>);</div><div class="line">&#125;)</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="comment">//注意:永远别写类似下面这么冗长的循环代码</span></div><div class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;=<span class="number">1E10</span>; i++)&#123;</div><div class="line">    <span class="built_in">console</span>.log(i);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">foo();</div><div class="line"><span class="comment">//0..1E10</span></div><div class="line"><span class="comment">//"Hello World"</span></div></pre></td></tr></table></figure></p>
 <p>在这个代码中，for循环会花费相当长的时间来完成，可能不止1毫秒，然而我们的带有<code>console.log()</code>表达式的计时器回调却不能在中途”插队”，所以计时器阻塞在了队伍的后面耐心等待它的”出场”。</p>
 <p>这在多线程编程中简直就是 <del>噩梦</del> 挑战，但得益于JS这片土壤我们幸免于此，因为JS本身就是单线程的(在任何时间只执行一个命令/函数)。</p>
-<p><strong>注意：</strong> Web Workers可以将JS程序的一部分挂载在一个单独线程上运行，同时完全与主程序并行。没有在程序中产生多线程混乱的原因是两个线程只能通过普通异步事件通信，而这些事件经常遵循<code>event-loop</code>一次只能执行一个的”运行到底”行为</p>
+<p><strong>注意：</strong> Web Workers可以将JS程序的一部分挂载在一个单独线程上运行，同时完全与主程序并行。没有在程序中产生多线程混乱的原因是两个线程只能通过普通异步事件通信，而这些事件经常遵循<code>event-loop</code>一次只能执行一个的”运行到底”行为。</p>
+<h2 id="Run-Stop-Run"><a href="#Run-Stop-Run" class="headerlink" title="Run..Stop..Run"></a>Run..Stop..Run</h2><p>有了ES6中的<code>generator</code>特性，我们就可以创造一种不同的函数，它可以在运行中停止一次或多次，之后恢复，同时允许其他代码在它暂停期间运行。</p>
+<p>如果你曾经阅读过任何关于Concurrency(并发)或者threaded programming(多线程编程)，你可能见过<strong>cooperative</strong>术语，它主要意思是一个进程(在我们的例子中为函数)能够自主选择是否打断，从而它能与其他代码”合作”。这个观念与<strong>preemptive</strong>(抢占式)是相矛盾的，后者会违背意愿而去打断进程/函数。</p>
 
 
                 <hr>

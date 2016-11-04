@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          【CSS-Tricks】spooky selectors, spooky UX and style maintenance - Rubicker的博客 | Rubicker&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://rubicker.github.io/2016/11/04/CSS-Tricks-1/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Rubicker&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('header-bg.png')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#CSS" title="CSS">CSS</a>
+                        
+                    </div>
+                    <h1>【CSS-Tricks】spooky selectors, spooky UX and style maintenance</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by “Rubicker” on
+                        2016-11-04
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="On-Style-Maintenance"><a href="#On-Style-Maintenance" class="headerlink" title="On Style Maintenance"></a><a href="https://css-tricks.com/on-style-maintenance/" target="_blank" rel="external">On Style Maintenance</a></h3><p>在写代码时应当更多的想到之后的变更是否方便，而不仅仅是将代码写好；同时谈到了函数式编程和面向对象编程这两个不同的发展方向：函数式编程的优点在于我们可以预知输出为何物，而面向对象编程有利于之后的维护。<br>维护一份糟糕的代码就相当于Whac-A-Mole(类似与打地鼠的一个游戏)一样，永远无法预知下一步</p>
+<blockquote>
+<p>The worst code is code that behaves a way that you can’t predict, quietly, all over the place.<br>We don’t need rockstars or JavaScript ninjas to help us keep large applications consistent and beautiful, instead we need janitors, diligent folks that will clean up a codebase as time passes without any hubris or chutzpah.</p>
+</blockquote>
+<p><img src="oop.gif" alt=""><br><small class="img-hint">OOP编程的尴尬之处(来源自本文)</small></p>
+<p>延伸阅读:</p>
+<blockquote>
+<p><a href="https://maryrosecook.com/blog/post/a-practical-introduction-to-functional-programming" target="_blank" rel="external">A practical introduction to functional programming</a><br><a href="https://github.com/getify/Functional-Light-JS" target="_blank" rel="external">Functional-Light-JS</a></p>
+</blockquote>
+<h3 id="Carousels-Don’t-Have-to-be-Complicated"><a href="#Carousels-Don’t-Have-to-be-Complicated" class="headerlink" title="Carousels Don’t Have to be Complicated"></a><a href="http://mediatemple.net/blog/tips/carousels-dont-have-to-be-complicated/" target="_blank" rel="external">Carousels Don’t Have to be Complicated</a></h3><p>主要讲了制作轮播图的几个简单方法:<br>比较感兴趣的是其中的<strong>Parallax effects on scroll event</strong><br><strong>待补充</strong></p>
+<h3 id="Responsive-Images-in-CSS"><a href="#Responsive-Images-in-CSS" class="headerlink" title="Responsive Images in CSS"></a><a href="https://css-tricks.com/responsive-images-css/" target="_blank" rel="external">Responsive Images in CSS</a></h3><p>关于响应式图片CSS3的<code>srset</code>,<code>sizes</code>两个属性和HTML5的<code>&lt;picture&gt;</code>标签<br><strong>待补充</strong></p>
+<h3 id="The-Challenge-of-Constructive-Criticism-and-How-to-Get-it"><a href="#The-Challenge-of-Constructive-Criticism-and-How-to-Get-it" class="headerlink" title="The Challenge of Constructive Criticism and How to Get it"></a><a href="https://css-tricks.com/challenge-constructive-criticism-get/" target="_blank" rel="external">The Challenge of Constructive Criticism and How to Get it</a></h3><p>如何获得建设性的批评意见?文章从应该去询问谁,应当如何询问以及如何设置恰当的期望值(为自己或别人)三个方面谈起,可以说我们前端工程师同样需要掌握谈话的艺术</p>
+<h3 id="What-is-the-difference-between-CSS-variables-and-preprocessor-variables"><a href="#What-is-the-difference-between-CSS-variables-and-preprocessor-variables" class="headerlink" title="What is the difference between CSS variables and preprocessor variables?"></a><a href="https://css-tricks.com/difference-between-types-of-css-variables/" target="_blank" rel="external">What is the difference between CSS variables and preprocessor variables?</a></h3><p>讲解CSS原生变量和如Scss，Less之类CSS预处理器变量之间的区别。<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*SCSS variables*/</span></div><div class="line"><span class="variable">$brandColor</span>:<span class="number">#F06D06</span>;</div><div class="line"></div><div class="line"><span class="selector-class">.main-header</span> &#123;</div><div class="line">    <span class="attribute">color</span>:<span class="variable">$brandColor</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*native CSS variables*/</span></div><div class="line"><span class="selector-pseudo">:root</span>&#123;</div><div class="line">    <span class="attribute">--main-color</span>:<span class="number">#F06D06</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.main-header</span>&#123;</div><div class="line">    <span class="attribute">color</span>:<span class="built_in">var</span>(--main-color);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><u>使用<code>native CSS variables</code>有什么好处?</u><br>1.无需预处理器;<br>2.它们遵循层叠原则，即可以通过嵌套来覆盖当前值;<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*h2会显示为橘黄色，因为body更具有优先级，覆盖了:root中定义的变量*/</span></div><div class="line"><span class="selector-pseudo">:root</span>&#123;</div><div class="line">    <span class="attribute">--color</span>:red;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">body</span>&#123;</div><div class="line">    <span class="attribute">--color</span>:orange;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">h2</span>&#123;</div><div class="line">    <span class="attribute">color</span>:<span class="built_in">var</span>(--color);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>3.当变量值发生改变时(媒体查询或其他情况)，浏览器会根据情况重新渲染;<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*同样利用了层叠，通过媒询实现响应式布局*/</span></div><div class="line"><span class="selector-pseudo">:root</span> &#123;</div><div class="line">  <span class="attribute">--width</span>: <span class="number">25%</span>;</div><div class="line">  <span class="attribute">--margin</span>: <span class="number">20px</span>;</div><div class="line">&#125;</div><div class="line">@<span class="keyword">media</span> (max-width: <span class="number">400px</span>) &#123;</div><div class="line">  <span class="selector-pseudo">:root</span> &#123;</div><div class="line">    <span class="attribute">--width</span>: <span class="number">50%</span>;</div><div class="line">    <span class="attribute">--margin</span>: <span class="number">10px</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">body</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">flex-wrap</span>: wrap;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">div</span> &#123;</div><div class="line">  <span class="attribute">flex</span>: <span class="number">1</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">220px</span>;</div><div class="line">  <span class="attribute">flex-basis</span>: <span class="built_in">calc</span>(var(--width) - (<span class="built_in">var</span>(--margin) * <span class="number">3</span>));</div><div class="line">  <span class="attribute">background</span>: <span class="number">#ccc</span>;</div><div class="line">  <span class="attribute">margin</span>: <span class="built_in">var</span>(--margin);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>4.可以在JavaScript中访问并操作其值<br><a href="https://developers.google.com/web/updates/2016/02/css-variables-why-should-you-care" target="_blank" rel="external">CSS Variables: Why Should You Care?</a></p>
+<blockquote>
+<p>The variables that [preprocessors] use suffer from a major drawback, which is that they’re static and can’t be changed at runtime. Adding the ability to change variables at runtime not only opens the door to things like dynamic application theming, but also has major ramifications for responsive design and the potential to polyfill future CSS features.</p>
+</blockquote>
+<p><a href="https://googlechrome.github.io/samples/css-custom-properties/index.html" target="_blank" rel="external">CSS Custom Properties (CSS Variables) Sample</a></p>
+<p><img src="css-variable-demo.gif" alt=""><br><small class="img-hint">并没有直接改变元素的属性值，而是改变变量值</small></p>
+<p><u>使用<code>preprocessor variables</code>有什么好处?</u><br>1.最重要的一点就是无需考虑浏览器支持情况，因为它们会被编译为普通CSS<br>2.无足轻重的一点：变量可以不带单位</p>
+<p><strong>居然可以两者结合使用?</strong><br>看这个<a href="http://codepen.io/vank0/pen/kkGvAb/" target="_blank" rel="external">Demo</a></p>
+<p>延伸阅读:<br>Lea Verou’s CSS Variables: var(–subtitle):</p>
+<p><iframe width="759" height="427" src="https://www.youtube.com/embed/2an6-WVPuJU" frameborder="0" allowfullscreen></iframe><br>David Khourshid’s Reactive Animations with CSS:</p>
+<p><iframe width="759" height="427" src="https://www.youtube.com/embed/lTCukb6Zn3g" frameborder="0" allowfullscreen></iframe><br>Harry Roberts <a href="http://csswizardry.com/2016/10/pragmatic-practical-progressive-theming-with-custom-properties/" target="_blank" rel="external">Pragmatic, Practical, and Progressive Theming with Custom Properties</a><br>Roman Komarov’s <a href="http://kizu.ru/en/fun/conditions-for-css-variables/" target="_blank" rel="external">Conditions for CSS Variables</a></p>
+<h3 id="Spoooooky-CSS-Selectors"><a href="#Spoooooky-CSS-Selectors" class="headerlink" title="Spoooooky CSS Selectors"></a><a href="https://css-tricks.com/spoooooky-css-selectors/" target="_blank" rel="external">Spoooooky CSS Selectors</a></h3><p>很多奇奇怪怪的选择符，提到了CSS4中选择符可以开启大小写敏感<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*i代表匹配.zip中的字母不分大小写*/</span></div><div class="line"><span class="selector-tag">a</span>[href$=<span class="string">".zip"</span> i]&#123;</div><div class="line">    <span class="comment">/*some thing*/</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="Spooky-Dark-UX-Patterns"><a href="#Spooky-Dark-UX-Patterns" class="headerlink" title="Spooky Dark UX Patterns"></a><a href="https://css-tricks.com/spooky-dark-ux-patterns/" target="_blank" rel="external">Spooky Dark UX Patterns</a></h3><p>较为糟糕的用户体验:<br>1.弹出层。非常不利于屏幕阅读器的读取。<br>  <a href="https://webaccessibility.withgoogle.com/unit?unit=6&amp;lesson=12" target="_blank" rel="external">Adding Interaction on the Web</a><br>2.取消订阅按钮。很难找到，应当明确其位置</p>
+<blockquote>
+<p>有人甚至在搜集一些取消订阅按钮的糟糕设计<a href="http://spottheunsubscribe.tumblr.com/" target="_blank" rel="external">戳这里</a></p>
+</blockquote>
+<p>3.复制粘贴陷阱<br>  某些网站设计令人发指，当你想复制一段话时，鼠标刚点上去，就带你去了另外一个网页;或者复制好之后粘贴时会带有某些你并不想要的信息</p>
+<h3 id="Decoupling-Your-HTML-CSS-and-JavaScript"><a href="#Decoupling-Your-HTML-CSS-and-JavaScript" class="headerlink" title="Decoupling Your HTML,CSS and JavaScript"></a><a href="https://philipwalton.com/articles/decoupling-html-css-and-javascript/" target="_blank" rel="external">Decoupling Your HTML,CSS and JavaScript</a></h3><p>解耦HTML，CSS及JS代码，听上去不可思议，三者难道不应该紧密合作，缺一不可吗?且看作者Phlip Walton为我们答疑解惑:</p>
+<blockquote>
+<p>Since some coupling in your front-end code is inevitable. Your goal shouldn’t be to simply eliminate coupling altogether. It should be to minimize the coupling that makes certain code parts unnecessarily dependent on others.</p>
+</blockquote>
+<p><u>紧密耦合的几个常见场景:</u><br><strong>1.过于复杂的选择器</strong><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#sidebar</span> <span class="selector-tag">section</span>:first-child <span class="selector-tag">h3</span> + <span class="selector-tag">p</span> &#123; &#125;</div></pre></td></tr></table></figure></p>
+<p>在CSS禅意花园中有很多这样的代码，本意是为了将样式和标签分离，然而这样做仅仅是将HTML从CSS解耦，CSS却完全耦合于HTML(HTML结构)。<br>为什么不建议这么做?<br>因为在多人协作项目中，很容易出现他人在某个标签前或后添加新标签的行为，此时依据HTML结构生效的CSS就不起作用了。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* Bad */</span></div><div class="line"><span class="selector-id">#sidebar</span> <span class="selector-tag">ul</span> &gt; <span class="selector-tag">li</span> &gt; <span class="selector-tag">ul</span> &#123; &#125;</div><div class="line"></div><div class="line"><span class="comment">/* Good */</span></div><div class="line"><span class="selector-class">.submenu</span> &#123; &#125;</div></pre></td></tr></table></figure></p>
+<p>最佳实践:尽量为每个标签添加有意义的class<br><strong>2.类名承担了过多的功能</strong><br>什么意思呢?就是说有时候我们为了省事，会将某个标签的类名既运用于CSS，又运用于JS，如下:<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;button <span class="built_in">class</span>='add-<span class="built_in">item</span>'&gt;Add <span class="keyword">to</span> Cart&lt;/button&gt;</div></pre></td></tr></table></figure></p>
+<p>既要根据<code>add-item</code>设置相应的样式，还要利用它作为hook来写JS函数，你可能觉得这没有什么大不了的，那么让我们来设想一个场景:<br>页面中有很多类似的按钮，所以大量的按钮将会应用<code>.add-item</code>样式以及某个JS事件，然而项目变更，需要其中一个按钮突出显示，此时该如何是好?<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;button <span class="built_in">class</span>=<span class="string">"js-add-to-cart add-item"</span>&gt;Add <span class="keyword">to</span> Cart&lt;/button&gt;</div></pre></td></tr></table></figure></p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;button <span class="built_in">class</span>=<span class="string">"js-add-to-cart add-item-special"</span>&gt;Add <span class="keyword">to</span> Cart&lt;/button&gt;</div></pre></td></tr></table></figure>
+<p>以上类名将CSS和JS代码完全解耦</p>
+<blockquote>
+<p>或许加一个class也可以?</p>
+</blockquote>
+<p><strong>3.JS代码依赖CSS太多了</strong><br>我们常常用JS来切换元素的类名以改变元素的状态，这样会使得JS代码不够严谨。<br>最佳实践:比方说某个元素切换其可见性,我们可以为其添加<code>is-visible</code>类名,这样的话将元素和状态名一起绑定，可以区分默认样式<code>.pop-up</code>和状态样式<code>.pop-up.is-visible</code><br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.pop-up</span><span class="selector-class">.is-visible</span> &#123; &#125;</div></pre></td></tr></table></figure></p>
+<p>延伸阅读:</p>
+<blockquote>
+<p><a href="https://smacss.com/book/categorizing" target="_blank" rel="external">SMACSS</a></p>
+</blockquote>
+<p><strong>3.JS选择器</strong><br>过重依赖JS中的选择器<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> saveBtn = <span class="built_in">document</span>.<span class="built_in">querySelector</span>(<span class="string">"#modal div:last-child &gt; button:last-child"</span>);</div></pre></td></tr></table></figure></p>
+<p>改为:<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> saveBtn = <span class="built_in">document</span>.<span class="built_in">querySelector</span>(<span class="string">'.js-save-btn'</span>);</div></pre></td></tr></table></figure></p>
+<p><u>综上，关键还是类名的取法要讲究</u></p>
+<h3 id="Fukol-a-grid-framework"><a href="#Fukol-a-grid-framework" class="headerlink" title="Fukol,a grid framework"></a><a href="https://github.com/Heydon/fukol-grids" target="_blank" rel="external">Fukol,a grid framework</a></h3><blockquote>
+<p>Fukol™ is a lightweight, breakpoint free, completely responsive, element query driven*, progressive enhancement based CSS grid framework. It exists in this README.md file, in the section titled The CSS (below). It is 93 bytes minified, fitting comfortably inside a tweet:</p>
+</blockquote>
+<p><a href="http://codepen.io/heydon/pen/dpzwVd" target="_blank" rel="external">Demo</a></p>
+<h3 id="Enhancing-Our-Components-with-CSS-empty"><a href="#Enhancing-Our-Components-with-CSS-empty" class="headerlink" title="Enhancing Our Components with CSS :empty"></a><a href="https://www.ishadeed.com/article/css-empty/" target="_blank" rel="external">Enhancing Our Components with CSS :empty</a></h3><p>利用<code>:empty</code>这个CSS选择器我们可以做很多事情，使我们的页面更加灵活<br>比方说:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">figure</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"hello.jpg"</span> <span class="attr">alt</span>=<span class="string">""</span> /&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">figcaption</span>&gt;</span><span class="tag">&lt;/<span class="name">figcaption</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">figure</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">figcaption</span> &#123;</div><div class="line">  <span class="attribute">padding</span>: <span class="number">1em</span>;</div><div class="line">  <span class="attribute">background</span>: lightgrey;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//没有描述的时候将其隐藏，就不会出现很丑的灰边了</span></div><div class="line"><span class="selector-tag">figcaption</span>:empty &#123;</div><div class="line">  <span class="attribute">display</span>: none;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="8-simple-rules-for-a-robust-scalable-CSS-architecture"><a href="#8-simple-rules-for-a-robust-scalable-CSS-architecture" class="headerlink" title="8 simple rules for a robust, scalable CSS architecture"></a><a href="https://github.com/jareware/css-architecture" target="_blank" rel="external">8 simple rules for a robust, scalable CSS architecture</a></h3><p>作者根据其多年积累的经验为我们讲述该如何在大型项目中组织你的CSS代码，值得一读！</p>
+<h3 id="The-Website-Obesity-Crisis"><a href="#The-Website-Obesity-Crisis" class="headerlink" title="The Website Obesity Crisis"></a><a href="http://www.webdirections.org/blog/the-website-obesity-crisis/" target="_blank" rel="external">The Website Obesity Crisis</a></h3><p>待看</p>
+
+
+                <hr>
+
+                
+                <!-- 多说 Share start -->
+                </style>
+                <div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="2016/11/04/CSS-Tricks-1/"
+                    data-title="【CSS-Tricks】spooky selectors, spooky UX and style maintenance"
+                    data-url="http://rubicker.github.io/2016/11/04/CSS-Tricks-1/"
+                    data-images="http://rubicker.github.io/2016/11/04/CSS-Tricks-1/header-bg.png"
+                    data-content="On Style Maintenance在写代码时应当更多的想到之后的变更是否方便，而不仅仅是... | Rubicker的博客 | Rubicker&#39;s Blog " >
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/11/03/测试框架Mocha入门/" data-toggle="tooltip" data-placement="top" title="测试框架Mocha入门">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2016/11/04/CSS-Tricks-1/"
+                        data-title="【CSS-Tricks】spooky selectors, spooky UX and style maintenance"
+                        data-url="http://rubicker.github.io/2016/11/04/CSS-Tricks-1/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#CSS" title="CSS">CSS</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'rubicker';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Rubicker">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Rubicker&#39;s Blog 2016 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://rubicker.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
