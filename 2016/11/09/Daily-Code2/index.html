@@ -13,11 +13,11 @@
 
     <title>
         
-          JS模块化开发 - Rubicker的博客 | Rubicker&#39;s Blog
+          【CodeWar】Count the number of Duplicates - Rubicker的博客 | Rubicker&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://rubicker.github.io/2016/06/07/2016-06-07-JS模块化开发/">
+    <link rel="canonical" href="http://rubicker.github.io/2016/11/09/Daily-Code2/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -155,7 +155,7 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('/img/home-bg.jpg')
+        background-image: url('header-bg.png')
     }
 </style>
 <header class="intro-header" >
@@ -165,18 +165,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#javascript" title="javascript">javascript</a>
-                        
-                          <a class="tag" href="/tags/#seajs" title="seajs">seajs</a>
-                        
-                          <a class="tag" href="/tags/#gruntjs" title="gruntjs">gruntjs</a>
+                          <a class="tag" href="/tags/#codewar" title="codewar">codewar</a>
                         
                     </div>
-                    <h1>JS模块化开发</h1>
+                    <h1>【CodeWar】Count the number of Duplicates</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
-                        Posted by Rubicker on
-                        2016-06-07
+                        Posted by “Rubicker” on
+                        2016-11-09
                     </span>
                 </div>
             </div>
@@ -195,46 +191,19 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <blockquote>
-<p>随着网站开发的深入，前端开发会不可避免的遇到一个问题:该如何解决开发过程中遇到的冲突，依赖？</p>
-</blockquote>
-<a id="more"></a>
-<h2 id="模块化工具"><a href="#模块化工具" class="headerlink" title="模块化工具"></a>模块化工具</h2><ul>
-<li>模块化历史<ul>
-<li>Node.js的出现<ul>
-<li>commonJS规范</li>
-</ul>
-</li>
-<li>浏览器JS的模块化<ul>
-<li>AMD规范  requirejs库</li>
-<li>CMD规范  seajs库</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>命名空间，只能降低冲突，不能完全避免，同时比较冗长，不方便使用。</p>
-<ul>
-<li>Seajs库<ul>
-<li>解决冲突和依赖</li>
-<li>模块的概念</li>
-<li>Seajs与jQuery的区别</li>
-</ul>
-</li>
-<li><p>如何使用seajs解决问题<br> 1.引入sea.js库<br> 2.如何变成模块？使用define()方法  </p>
-  <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">define(<span class="function"><span class="keyword">function</span><span class="params">(require,exports,module)</span></span>&#123;</div><div class="line"><span class="comment">// exports:对外提供接口</span></div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">show</span><span class="params">()</span></span>&#123;</div><div class="line">             alert(<span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p> 3.如何调用模块？<br> a.exports  接口<br> b.seajs.use  接收两个参数，模块的地址(以sea.js为根目录)和回调函数  </p>
-<p>4.如何依赖模块？<br> require  模块之间依赖的接口</p>
- <figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">require</span>(<span class="string">""</span>); <span class="regexp">//</span>输入依赖模块的位置</div></pre></td></tr></table></figure>
-<p> 当引入的是seajs下面的依赖的接口的时候，那么require执行完的结果就是exports</p>
-</li>
-</ul>
-<h2 id="构建工具"><a href="#构建工具" class="headerlink" title="构建工具"></a>构建工具</h2><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ul>
-<li>安装插件</li>
-<li>package.json</li>
-<li>Gruntfile.js</li>
-<li>seajs和gruntjs结合开发</li>
-</ul>
+                <h1 id="Count-the-number-of-Duplicates"><a href="#Count-the-number-of-Duplicates" class="headerlink" title="Count the number of Duplicates"></a>Count the number of Duplicates</h1><p>Write a function that will return the count of distinct case-insensitive alphabetic characters and numeric digits that occur more than once in the input string. The input string can be assumed to contain only alphanumeric characters, including digits, uppercase and lowercase alphabets.</p>
+<p>Example<br><figure class="highlight rust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="string">"abcde"</span> -&gt; <span class="number">0</span> # no characters repeats more than <span class="keyword">once</span></div><div class="line"><span class="string">"aabbcde"</span> -&gt; <span class="number">2</span> # <span class="string">'a'</span> and <span class="string">'b'</span></div><div class="line"><span class="string">"aabbcdeB"</span> -&gt; <span class="number">2</span> # <span class="string">'a'</span> and <span class="string">'b'</span></div><div class="line"><span class="string">"indivisibility"</span> -&gt; <span class="number">1</span> # <span class="string">'i'</span></div><div class="line"><span class="string">"Indivisibilities"</span> -&gt; <span class="number">2</span> # <span class="string">'i'</span> and <span class="string">'s'</span></div><div class="line"><span class="string">"aa11"</span> -&gt; <span class="number">2</span> # <span class="string">'a'</span> and <span class="string">'1'</span></div></pre></td></tr></table></figure></p>
+<p>思路:空间换时间<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">duplicateCount</span><span class="params">(text)</span></span>&#123;</div><div class="line">    <span class="keyword">var</span> lowerCaseText =  text.toLowerCase();</div><div class="line">    <span class="keyword">var</span> obj = [];</div><div class="line">    <span class="keyword">var</span> count = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>,len = lowerCaseText.length;i&lt;len;i++)&#123;</div><div class="line">        <span class="keyword">if</span>(!obj[lowerCaseText[i]])&#123;</div><div class="line">            obj[lowerCaseText[i]] = <span class="number">1</span>;</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            obj[lowerCaseText[i]] += <span class="number">1</span>;</div><div class="line">            <span class="keyword">if</span>(obj[lowerCaseText[i]] === <span class="number">2</span>) &#123;</div><div class="line">                count++;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> count;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>最佳答案利用了<code>sort()</code>和正则，值得学习:<br><figure class="highlight processing"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function duplicateCount(<span class="built_in">text</span>)&#123;</div><div class="line">  <span class="keyword">return</span> (<span class="built_in">text</span>.toLowerCase().<span class="built_in">split</span>(<span class="string">''</span>).<span class="built_in">sort</span>().<span class="built_in">join</span>(<span class="string">''</span>).<span class="built_in">match</span>(/([^])\<span class="number">1</span>+/g) || []).length;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="Bit-Counting"><a href="#Bit-Counting" class="headerlink" title="Bit Counting"></a>Bit Counting</h1><p>Write a function that takes an (unsigned) integer as input, and returns the number of bits that are equal to one in the binary representation of that number.</p>
+<p>Example: The binary representation of 1234 is 10011010010, so the function should return 5 in this case</p>
+<p>思路：利用<code>toString(2)</code>转换为二进制然后用正则匹配<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> countBits = <span class="function"><span class="keyword">function</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> (n.toString(<span class="number">2</span>).match(<span class="regexp">/1/g</span>)||[]).length;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h1 id="WeIrD-StRiNg-CaSe"><a href="#WeIrD-StRiNg-CaSe" class="headerlink" title="WeIrD StRiNg CaSe"></a>WeIrD StRiNg CaSe</h1><p>Write a function toWeirdCase (weirdcase in Ruby) that accepts a string, and returns the same string with all even indexed characters in each word upper cased, and all odd indexed characters in each word lower cased. The indexing just explained is zero based, so the zero-ith index is even, therefore that character should be upper cased.</p>
+<p>The passed in string will only consist of alphabetical characters and spaces(‘ ‘). Spaces will only be present if there are multiple words. Words will be separated by a single space(‘ ‘).</p>
+<p>Examples:<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">toWeirdCase( <span class="string">"String"</span> );<span class="regexp">//</span>=&gt; returns <span class="string">"StRiNg"</span></div><div class="line">toWeirdCase( <span class="string">"Weird string case"</span> );<span class="regexp">//</span>=&gt; returns <span class="string">"WeIrD StRiNg CaSe"</span></div></pre></td></tr></table></figure></p>
+<p>思路：利用<code>split(&#39; &#39;)</code>将字符串分割<br><figure class="highlight qml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">toWeirdCase</span>(<span class="params">string</span>)</span>&#123;</div><div class="line">    <span class="built_in">var</span> arr = <span class="built_in">string</span>.split(<span class="string">' '</span>);</div><div class="line">    <span class="keyword">return</span> arr.map(<span class="function"><span class="keyword">function</span>(<span class="params">item,index</span>)</span>&#123;</div><div class="line">        <span class="built_in">var</span> lowItem = item.toLowerCase();</div><div class="line">        <span class="built_in">var</span> str = <span class="string">''</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="built_in">var</span> i = <span class="number">0</span>,len = item.length;i&lt;len;i++)&#123;</div><div class="line">            i%<span class="number">2</span>?str+=lowItem[i]:str += lowItem[i].toUpperCase();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> str;</div><div class="line">    &#125;).join(<span class="string">' '</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>最佳答案比较精炼:<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">toWeirdCase</span><span class="params">(string)</span></span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="built_in">string</span>.split(<span class="string">' '</span>).map(<span class="function"><span class="keyword">function</span><span class="params">(word)</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> word.split(<span class="string">''</span>).map(<span class="function"><span class="keyword">function</span><span class="params">(letter, index)</span></span>&#123;</div><div class="line">      <span class="keyword">return</span> index % <span class="number">2</span> == <span class="number">0</span> ? letter.toUpperCase() : letter.toLowerCase()</div><div class="line">    &#125;).join(<span class="string">''</span>);</div><div class="line">  &#125;).join(<span class="string">' '</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>不过我还是觉得先把整个字符串都小写了比较好，省去了多次调用</p>
 
 
                 <hr>
@@ -244,12 +213,11 @@
                 </style>
                 <div class="ds-share"
                     style="text-align: right"
-                    data-thread-key="2016/06/07/2016-06-07-JS模块化开发/"
-                    data-title="JS模块化开发"
-                    data-url="http://rubicker.github.io/2016/06/07/2016-06-07-JS模块化开发/"
-                    data-images=""
-                    data-content="
-随着网站开发的深入，前端开发会不可避免的遇到一个问题:该如何解决开发过程中遇到的冲突，依赖？... | Rubicker的博客 | Rubicker&#39;s Blog " >
+                    data-thread-key="2016/11/09/Daily-Code2/"
+                    data-title="【CodeWar】Count the number of Duplicates"
+                    data-url="http://rubicker.github.io/2016/11/09/Daily-Code2/"
+                    data-images="http://rubicker.github.io/2016/11/09/Daily-Code2/header-bg.png"
+                    data-content="Count the number of DuplicatesWrite a function ... | Rubicker的博客 | Rubicker&#39;s Blog " >
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
                         <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
@@ -267,13 +235,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2016/06/08/2016-06-08-JS面向对象开发/" data-toggle="tooltip" data-placement="top" title="JS面向对象开发">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2016/06/06/2016-06-06-Bootstrap3学习笔记/" data-toggle="tooltip" data-placement="top" title="Boorstrap3学习笔记">Next Post &rarr;</a>
+                            <a href="/2016/11/08/Webpack2起步/" data-toggle="tooltip" data-placement="top" title="Webpack2起步">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -282,9 +246,9 @@
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="2016/06/07/2016-06-07-JS模块化开发/"
-                        data-title="JS模块化开发"
-                        data-url="http://rubicker.github.io/2016/06/07/2016-06-07-JS模块化开发/" >
+                        data-thread-key="2016/11/09/Daily-Code2/"
+                        data-title="【CodeWar】Count the number of Duplicates"
+                        data-url="http://rubicker.github.io/2016/11/09/Daily-Code2/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->
@@ -310,11 +274,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#javascript" title="javascript">javascript</a>
-                        
-                          <a class="tag" href="/tags/#seajs" title="seajs">seajs</a>
-                        
-                          <a class="tag" href="/tags/#gruntjs" title="gruntjs">gruntjs</a>
+                          <a class="tag" href="/tags/#codewar" title="codewar">codewar</a>
                         
                     </div>
                 </section>
