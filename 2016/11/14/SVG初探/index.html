@@ -13,11 +13,11 @@
 
     <title>
         
-          WeeklyReading1 - Rubicker的博客 | Rubicker&#39;s Blog
+          SVG初探 - Rubicker的博客 | Rubicker&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://rubicker.github.io/2016/11/11/WeeklyReading1/">
+    <link rel="canonical" href="http://rubicker.github.io/2016/11/14/SVG初探/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -165,14 +165,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#weekly" title="weekly">weekly</a>
+                          <a class="tag" href="/tags/#SVG" title="SVG">SVG</a>
                         
                     </div>
-                    <h1>WeeklyReading1</h1>
+                    <h1>SVG初探</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by “Rubicker” on
-                        2016-11-11
+                        2016-11-14
                     </span>
                 </div>
             </div>
@@ -191,35 +191,20 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="JavaScript-Weekly-Issue-309"><a href="#JavaScript-Weekly-Issue-309" class="headerlink" title="JavaScript Weekly Issue 309"></a>JavaScript Weekly Issue 309</h1><h4 id="Angular3-is-hot-on-the-heels-of-Angular2"><a href="#Angular3-is-hot-on-the-heels-of-Angular2" class="headerlink" title="Angular3 is hot on the heels of Angular2"></a>Angular3 is hot on the heels of Angular2</h4><p>早先Angular2刚发布几个月就听尤大说Angular3明年初发布，感觉Angular更新迭代速度很惊人。不过官方说Angular3不会重写，会专注于improved tooling(即增加模版错误反馈)和精简框架大小，Angular2重写是为了将框架与DOM解耦以便应用多种渲染器。<br><img src="angular.jpg" alt=""></p>
-<p>Angular相比于Vue和React来说确实显得过于笨重，频繁的更新(官方承诺一年两大更)或许可以缓解这个尴尬之处?拭目以待</p>
-<h4 id="Logging-Errors"><a href="#Logging-Errors" class="headerlink" title="Logging Errors"></a><a href="https://www.sitepoint.com/logging-errors-client-side-apps/?utm_source=javascriptweekly&amp;utm_medium=email" target="_blank" rel="external">Logging Errors</a></h4><p><img src="log.png" alt=""><br>关于客户端日志</p>
-<p><strong>最原始的莫过于<a href="https://developer.mozilla.org/en-US/docs/Web/API/Console" target="_blank" rel="external"><code>console.log</code></a></strong><br>简单好用，然而某些浏览器的实现不同。<br>想要在各浏览器中表现一致，可以采取外包一层wrapper来处理兼容性问题，比如说这个<a href="https://www.paulirish.com/2009/log-a-lightweight-wrapper-for-consolelog/" target="_blank" rel="external">Log() - a Lightweight Wrapper for console.log</a>，而WHATWG也在着手标准化<code>console</code>API，目前为止<a href="https://console.spec.whatwg.org/" target="_blank" rel="external">草案</a>还处于早期阶段</p>
+                <p><img src="Bitmap_VS_SVG.svg.png" alt="Bitmap_VS_SVG.svg.png"><br><small class="img-hint">SVGvs位图</small></p>
+<p><strong>SVG是什么?</strong></p>
 <blockquote>
-<p>小tip: 可以使用Grunt中的<a href="https://github.com/ehynds/grunt-remove-logging" target="_blank" rel="external"><code>grunt-remove-logging</code></a>或<a href="https://github.com/jsoverson/grunt-strip" target="_blank" rel="external"><code>grunt-strip</code></a>以及Gulp中的<a href="https://www.npmjs.com/package/gulp-strip-debug" target="_blank" rel="external"><code>gulp-strip-debug</code></a>来清除代码中的<code>console.log()</code></p>
+<p>Scalable Vector Graphics (SVG) is an XML-based vector image format for two-dimensional graphics with support for interactivity and animation. The SVG specification is an open standard developed by the World Wide Web Consortium (W3C) since 1999.<br> ——<a href="https://en.wikipedia.org/wiki/Scalable_Vector_Graphics" target="_blank" rel="external">wikipedia Scalable Vector Graphics</a></p>
 </blockquote>
-<p>一些JS库也可以用来优化<code>console</code>，如<a href="https://github.com/caiogondim/logdown.js" target="_blank" rel="external">Logdown</a>(支持markdown输入,好评!),<a href="https://github.com/astoilkov/console.message" target="_blank" rel="external">console.message</a>。</p>
-<p>然而<code>console</code>的缺点还是很明显的，你无法远程接收来自客户端的日志信息</p>
-<p><strong>其他可以代替<code>console</code>的工具</strong><br>1.捕捉全局错误<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">message,file,line</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'An error occured at line'</span> + line <span class="keyword">of</span> <span class="string">'file'</span> + <span class="string">':'</span> + message)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>2.堆栈追踪<br>如<a href="https://github.com/csnover/TraceKit" target="_blank" rel="external">TraceKit</a>这个框架，用法如下:<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 注册一个错误报告订阅器</span></div><div class="line">TraceKit.report.subscribe(<span class="function"><span class="keyword">function</span> <span class="title">yourLogger</span><span class="params">(errorReport)</span> </span>&#123;</div><div class="line">  <span class="comment">//send via ajax to server, or use console.error in development</span></div><div class="line">  <span class="comment">//to get you started see: https://gist.github.com/4491219</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">  <span class="comment">/*</span></div><div class="line">   * your application code here</div><div class="line">   *</div><div class="line">   */</div><div class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'oops'</span>);</div><div class="line">&#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">  TraceKit.report(e); <span class="comment">//error with stack trace gets normalized and sent to subscriber</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>类似的还有<a href="https://www.stacktracejs.com/" target="_blank" rel="external">stacktrace.js</a><br>【待续】</p>
-<h4 id="whitestorm-js"><a href="#whitestorm-js" class="headerlink" title="whitestorm.js"></a><a href="https://github.com/WhitestormJS/whitestorm.js?utm_source=javascriptweekly&amp;utm_medium=email" target="_blank" rel="external">whitestorm.js</a></h4><blockquote>
-<p>Framework for developing 3D web apps</p>
-</blockquote>
-<p>看演示很有趣，用法也比较简单，有时间搞一搞</p>
-<h4 id="Building-Shaders-With-Babylon-js"><a href="#Building-Shaders-With-Babylon-js" class="headerlink" title="Building Shaders With Babylon.js"></a><a href="https://www.smashingmagazine.com/2016/11/building-shaders-with-babylon-js/?utm_source=javascriptweekly&amp;utm_medium=email" target="_blank" rel="external">Building Shaders With Babylon.js</a></h4><p>讲解关于CPU和GPU原理，利用Babylon.js建立着色器</p>
-<h1 id="CSS-Tricks"><a href="#CSS-Tricks" class="headerlink" title="CSS Tricks"></a>CSS Tricks</h1><h4 id="Things-I’ve-Learned-About-CSS-Grid-Layout"><a href="#Things-I’ve-Learned-About-CSS-Grid-Layout" class="headerlink" title="Things I’ve Learned About CSS Grid Layout"></a><a href="https://css-tricks.com/things-ive-learned-css-grid-layout/" target="_blank" rel="external">Things I’ve Learned About CSS Grid Layout</a></h4><p><img src="no-tetris.png" alt=""><br><small class="img-hint">不能用网格生成多边形，只能生成矩形<small></small></small></p>
-<p>文中提到:</p>
-<blockquote>
-<p>Grid is designed to be used with flexbox, not instead of it<br> Flexbox is for one dimensional layout (row or column).<br> CSS grid is for two dimensional layout.<br> Flexbox is essentially for laying out items in a single dimension – in a row OR a column. Grid is for layout of items in two dimensions – rows AND columns.</p>
-</blockquote>
-<p>学习下grid和flex布局再来看</p>
-<h4 id="A-Quantum-Leap-for-the-Web"><a href="#A-Quantum-Leap-for-the-Web" class="headerlink" title="A Quantum Leap for the Web"></a><a href="https://medium.com/mozilla-tech/a-quantum-leap-for-the-web-a3b7174b3c12#.g0ujansxc" target="_blank" rel="external">A Quantum Leap for the Web</a></h4><p><img src="Quantum.jpg" alt=""><br>Mozilla正式推出Quantum引擎项目，多线程，使得网络体验更佳(得益于如今先进电脑设备以及更多Web app涌现)<br>之前使用的为Gecko引擎</p>
-<h4 id="A-Handmade-SVG-Bar-Chart-featuring-some-SVG-positioning-gotchas"><a href="#A-Handmade-SVG-Bar-Chart-featuring-some-SVG-positioning-gotchas" class="headerlink" title="A Handmade SVG Bar Chart (featuring some SVG positioning gotchas)"></a><a href="https://css-tricks.com/handmade-svg-bar-chart-featuring-svg-positioning-gotchas/" target="_blank" rel="external">A Handmade SVG Bar Chart (featuring some SVG positioning gotchas)</a></h4><p>元素溢出情况的解决</p>
-<p>学习SVG后来看</p>
-<h4 id="Improving-Perceived-Performance-with-Multiple-Background-Images"><a href="#Improving-Perceived-Performance-with-Multiple-Background-Images" class="headerlink" title="Improving Perceived Performance with Multiple Background Images"></a><a href="http://csswizardry.com/2016/10/improving-perceived-performance-with-multiple-background-images/" target="_blank" rel="external">Improving Perceived Performance with Multiple Background Images</a></h4><p>某些图片的载入很耗时间，若我们不加处理，用户将会看到很大的空白，用户体验很差。<br>如何解决?<br>本文作者提出为元素设置<a href="http://csswizardry.com/2016/10/improving-perceived-performance-with-multiple-background-images/" target="_blank" rel="external">多重背景</a>的方法，我感觉虽然解决了，但是每个图片都这么处理有点麻烦。</p>
-<h4 id="The-State-of-Responsive-3D-Shapes"><a href="#The-State-of-Responsive-3D-Shapes" class="headerlink" title="The State of Responsive 3D Shapes"></a><a href="https://css-tricks.com/state-responsive-3d-shapes/" target="_blank" rel="external">The State of Responsive 3D Shapes</a></h4><p>文章很长，关于响应式3D</p>
+<p><strong>SVG与Canvas的区别</strong><br>Canvas是按照像素绘制的(位图)<br>SVG是按照数学向量绘制的(矢量图)</p>
+<p><strong>如何创建SVG文件</strong><br>HTML文件之外:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 该文件命名必须以.svg结尾! --&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- XML声明 standalone属性规定此文件是独立的，还是含有对外部文件引用 --&gt;</span></div><div class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> standalone=<span class="string">"no"</span><span class="meta">?&gt;</span></span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- DTD --&gt;</span></div><div class="line"><span class="meta">&lt;!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" </span></div><div class="line">"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"&gt;</div><div class="line"></div><div class="line"><span class="comment">&lt;!-- svg根元素 xmlns属性定义了SVG命名空间 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">width</span>=<span class="string">"100%"</span> <span class="attr">height</span>=<span class="string">"100%"</span> <span class="attr">version</span>=<span class="string">"1.1"</span></span></div><div class="line"><span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/2000/svg"</span>&gt;</div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 画圆 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">"100"</span> <span class="attr">cy</span>=<span class="string">"50"</span> <span class="attr">r</span>=<span class="string">"40"</span> <span class="attr">stroke</span>=<span class="string">"black"</span></span></div><div class="line"><span class="attr">stroke-width</span>=<span class="string">"2"</span> <span class="attr">fill</span>=<span class="string">"red"</span>/&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>HTML文件内部:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">svg</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/2000/svg"</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!-- 省略内容 --&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">svg</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><strong>基本图形绘制</strong><br>1.<code>&lt;circle&gt;</code><br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="built_in">circle</span> cx=<span class="string">"100"</span> cy=<span class="string">"100"</span> r=<span class="string">"100"</span> <span class="built_in">fill</span>=<span class="string">"transparent"</span> <span class="built_in">stroke</span>=<span class="string">"black"</span> <span class="built_in">stroke</span>-<span class="built_in">width</span>=<span class="string">"5"</span> <span class="built_in">stroke</span>-opacity=<span class="string">"0.5"</span>&gt;&lt;<span class="built_in">circle</span>&gt;</div></pre></td></tr></table></figure></p>
+<p>2.<code>&lt;rect&gt;</code><br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--rx,ry分别角为水平方向和竖直方向上的平滑半径--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">rect</span> <span class="attr">width</span>=<span class="string">"100"</span> <span class="attr">height</span>=<span class="string">"100"</span> <span class="attr">x</span>=<span class="string">"100"</span> <span class="attr">y</span>=<span class="string">"100"</span> <span class="attr">rx</span>=<span class="string">"10"</span> <span class="attr">ry</span>=<span class="string">"10"</span>&gt;</span><span class="tag">&lt;/<span class="name">rect</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>3.<code>&lt;line&gt;</code><br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="built_in">line</span> x1=<span class="string">"50"</span> y1=<span class="string">"50"</span> x2=<span class="string">"100"</span> y2=<span class="string">"100"</span>&gt;&lt;/<span class="built_in">line</span>&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>常用标签</strong><br>1.<code>&lt;g&gt;</code>容器标签，用来组合元素<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;g transform=<span class="string">"translate(200,200)"</span> <span class="built_in">stroke</span>=<span class="string">"red"</span> <span class="built_in">stroke</span>-<span class="built_in">width</span>=<span class="string">"5"</span>&gt;</div><div class="line">    &lt;<span class="built_in">circle</span> r=<span class="string">"40"</span> <span class="built_in">fill</span>=<span class="string">"transparent"</span>&gt;&lt;/<span class="built_in">circle</span>&gt;</div><div class="line">    &lt;<span class="built_in">circle</span> r=<span class="string">"30"</span> <span class="built_in">fill</span>=<span class="string">"transparent"</span>&gt;&lt;/<span class="built_in">circle</span>&gt;</div><div class="line">    &lt;<span class="built_in">circle</span> r=<span class="string">"20"</span> <span class="built_in">fill</span>=<span class="string">"transparent"</span>&gt;&lt;/<span class="built_in">circle</span>&gt;</div><div class="line">    &lt;<span class="built_in">circle</span> r=<span class="string">"10"</span> <span class="built_in">fill</span>=<span class="string">"transparent"</span>&gt;&lt;/<span class="built_in">circle</span>&gt;</div><div class="line">&lt;/g&gt;</div></pre></td></tr></table></figure></p>
+<p>2.<code>&lt;text&gt;</code>文字标签<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- text-anchor有三个值，middle(根据文字底部居中于坐标)，start，end --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">"200"</span> <span class="attr">y</span>=<span class="string">"200"</span> <span class="attr">font-size</span>=<span class="string">"20"</span> <span class="attr">text-anchor</span>=<span class="string">"middle"</span>&gt;</span><span class="tag">&lt;<span class="name">text</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>3.<code>&lt;image&gt;</code>图片标签<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="built_in">image</span> x=<span class="string">"200"</span> y=<span class="string">"200"</span> <span class="built_in">width</span>=<span class="string">"100"</span> <span class="built_in">height</span>=<span class="string">"100"</span> xlink:href=<span class="string">"imgs/i.png"</span>&gt;&lt;/<span class="built_in">image</span>&gt;</div></pre></td></tr></table></figure></p>
 
 
                 <hr>
@@ -229,11 +214,14 @@
                 </style>
                 <div class="ds-share"
                     style="text-align: right"
-                    data-thread-key="2016/11/11/WeeklyReading1/"
-                    data-title="WeeklyReading1"
-                    data-url="http://rubicker.github.io/2016/11/11/WeeklyReading1/"
-                    data-images="http://rubicker.github.io/2016/11/11/WeeklyReading1/header-bg.png"
-                    data-content="JavaScript Weekly Issue 309Angular3 is hot on t... | Rubicker的博客 | Rubicker&#39;s Blog " >
+                    data-thread-key="2016/11/14/SVG初探/"
+                    data-title="SVG初探"
+                    data-url="http://rubicker.github.io/2016/11/14/SVG初探/"
+                    data-images="http://rubicker.github.io/2016/11/14/SVG初探/header-bg.png"
+                    data-content="SVGvs位图
+SVG是什么?
+
+Scalable Vector Graphics (SVG)... | Rubicker的博客 | Rubicker&#39;s Blog " >
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
                         <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
@@ -251,13 +239,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2016/11/13/关于Grid-System二三事/" data-toggle="tooltip" data-placement="top" title="【译】关于Grid-System二三事">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2016/11/09/Daily-Code2/" data-toggle="tooltip" data-placement="top" title="【CodeWar】Count the number of Duplicates">Next Post &rarr;</a>
+                            <a href="/2016/11/13/关于Grid-System二三事/" data-toggle="tooltip" data-placement="top" title="【译】关于Grid-System二三事">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -266,9 +250,9 @@
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="2016/11/11/WeeklyReading1/"
-                        data-title="WeeklyReading1"
-                        data-url="http://rubicker.github.io/2016/11/11/WeeklyReading1/" >
+                        data-thread-key="2016/11/14/SVG初探/"
+                        data-title="SVG初探"
+                        data-url="http://rubicker.github.io/2016/11/14/SVG初探/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->
@@ -294,7 +278,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#weekly" title="weekly">weekly</a>
+                          <a class="tag" href="/tags/#SVG" title="SVG">SVG</a>
                         
                     </div>
                 </section>

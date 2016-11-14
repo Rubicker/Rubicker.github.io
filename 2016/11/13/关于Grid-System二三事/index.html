@@ -13,11 +13,11 @@
 
     <title>
         
-          WeeklyReading1 - Rubicker的博客 | Rubicker&#39;s Blog
+          【译】关于Grid-System二三事 - Rubicker的博客 | Rubicker&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://rubicker.github.io/2016/11/11/WeeklyReading1/">
+    <link rel="canonical" href="http://rubicker.github.io/2016/11/13/关于Grid-System二三事/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -165,14 +165,16 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#weekly" title="weekly">weekly</a>
+                          <a class="tag" href="/tags/#CSS" title="CSS">CSS</a>
+                        
+                          <a class="tag" href="/tags/#Grid-System" title="Grid-System">Grid-System</a>
                         
                     </div>
-                    <h1>WeeklyReading1</h1>
+                    <h1>【译】关于Grid-System二三事</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by “Rubicker” on
-                        2016-11-11
+                        2016-11-13
                     </span>
                 </div>
             </div>
@@ -191,35 +193,60 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="JavaScript-Weekly-Issue-309"><a href="#JavaScript-Weekly-Issue-309" class="headerlink" title="JavaScript Weekly Issue 309"></a>JavaScript Weekly Issue 309</h1><h4 id="Angular3-is-hot-on-the-heels-of-Angular2"><a href="#Angular3-is-hot-on-the-heels-of-Angular2" class="headerlink" title="Angular3 is hot on the heels of Angular2"></a>Angular3 is hot on the heels of Angular2</h4><p>早先Angular2刚发布几个月就听尤大说Angular3明年初发布，感觉Angular更新迭代速度很惊人。不过官方说Angular3不会重写，会专注于improved tooling(即增加模版错误反馈)和精简框架大小，Angular2重写是为了将框架与DOM解耦以便应用多种渲染器。<br><img src="angular.jpg" alt=""></p>
-<p>Angular相比于Vue和React来说确实显得过于笨重，频繁的更新(官方承诺一年两大更)或许可以缓解这个尴尬之处?拭目以待</p>
-<h4 id="Logging-Errors"><a href="#Logging-Errors" class="headerlink" title="Logging Errors"></a><a href="https://www.sitepoint.com/logging-errors-client-side-apps/?utm_source=javascriptweekly&amp;utm_medium=email" target="_blank" rel="external">Logging Errors</a></h4><p><img src="log.png" alt=""><br>关于客户端日志</p>
-<p><strong>最原始的莫过于<a href="https://developer.mozilla.org/en-US/docs/Web/API/Console" target="_blank" rel="external"><code>console.log</code></a></strong><br>简单好用，然而某些浏览器的实现不同。<br>想要在各浏览器中表现一致，可以采取外包一层wrapper来处理兼容性问题，比如说这个<a href="https://www.paulirish.com/2009/log-a-lightweight-wrapper-for-consolelog/" target="_blank" rel="external">Log() - a Lightweight Wrapper for console.log</a>，而WHATWG也在着手标准化<code>console</code>API，目前为止<a href="https://console.spec.whatwg.org/" target="_blank" rel="external">草案</a>还处于早期阶段</p>
+                <blockquote>
+<p>看到几篇讲栅格系统的好文章，自己在这方面也比较感兴趣，拿来翻译下</p>
+</blockquote>
+<h1 id="设计栅格系统"><a href="#设计栅格系统" class="headerlink" title="设计栅格系统"></a>设计栅格系统</h1><p>我敢打赌如果我说栅格在网页设计中很重要，你肯定已经知道这一点。你可能还通过Foundation或Bootstrap码过一些栅格系统。甚至可能自己动手创建了定制栅格系统，或者使用过栅格布局工具如Susy。</p>
+<p>但是你有没有停下来为你所创建的栅格想过下列问题:</p>
+<ul>
+<li>你需要多少列?</li>
+<li>这些列应当等宽吗?</li>
+<li>列和gutter(列和列之间的间隔)尺寸应该定为多少?</li>
+<li>不同视口下栅格应当如何表现?</li>
+</ul>
+<p>你的答案是什么?</p>
+<p>过去几个月我曾到处寻找这些问题的答案。这篇文章包括了所有目前我知道的关于栅格的知识。希望它也能帮助你回答上述问题。</p>
+<h3 id="列应当等宽吗"><a href="#列应当等宽吗" class="headerlink" title="列应当等宽吗?"></a>列应当等宽吗?</h3><p>这是你创建栅格之前第一个思考的问题。不幸的是，很多人跳过这个步骤然后不假思索地选择等宽，可能是受某些框架如Bootstrap，Foundation的某些实践所影响。</p>
+<p>一个拥有等宽列的栅格系统是健壮且灵活的。它创建了一个安全且多功能的，允许你依靠寻常的经验来布局的结构。使用等宽列栅格是不会出错的。</p>
+<p>不利之处在于，一个由等宽列栅格系统布局的网站总让人感觉机械化和冰冷。它也可能会让人觉得僵硬和无聊。<br><img src="columns-equal.png" alt="columns-equal.png"><br><small class="img-hint">等宽列</small></p>
 <blockquote>
-<p>小tip: 可以使用Grunt中的<a href="https://github.com/ehynds/grunt-remove-logging" target="_blank" rel="external"><code>grunt-remove-logging</code></a>或<a href="https://github.com/jsoverson/grunt-strip" target="_blank" rel="external"><code>grunt-strip</code></a>以及Gulp中的<a href="https://www.npmjs.com/package/gulp-strip-debug" target="_blank" rel="external"><code>gulp-strip-debug</code></a>来清除代码中的<code>console.log()</code></p>
+<p>所有栅格生成器及框架中最严重的问题就是它们假设你想要等宽的列<br>-Mark Boulton   </p>
 </blockquote>
-<p>一些JS库也可以用来优化<code>console</code>，如<a href="https://github.com/caiogondim/logdown.js" target="_blank" rel="external">Logdown</a>(支持markdown输入,好评!),<a href="https://github.com/astoilkov/console.message" target="_blank" rel="external">console.message</a>。</p>
-<p>然而<code>console</code>的缺点还是很明显的，你无法远程接收来自客户端的日志信息</p>
-<p><strong>其他可以代替<code>console</code>的工具</strong><br>1.捕捉全局错误<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">message,file,line</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'An error occured at line'</span> + line <span class="keyword">of</span> <span class="string">'file'</span> + <span class="string">':'</span> + message)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>2.堆栈追踪<br>如<a href="https://github.com/csnover/TraceKit" target="_blank" rel="external">TraceKit</a>这个框架，用法如下:<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 注册一个错误报告订阅器</span></div><div class="line">TraceKit.report.subscribe(<span class="function"><span class="keyword">function</span> <span class="title">yourLogger</span><span class="params">(errorReport)</span> </span>&#123;</div><div class="line">  <span class="comment">//send via ajax to server, or use console.error in development</span></div><div class="line">  <span class="comment">//to get you started see: https://gist.github.com/4491219</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">  <span class="comment">/*</span></div><div class="line">   * your application code here</div><div class="line">   *</div><div class="line">   */</div><div class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'oops'</span>);</div><div class="line">&#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">  TraceKit.report(e); <span class="comment">//error with stack trace gets normalized and sent to subscriber</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>类似的还有<a href="https://www.stacktracejs.com/" target="_blank" rel="external">stacktrace.js</a><br>【待续】</p>
-<h4 id="whitestorm-js"><a href="#whitestorm-js" class="headerlink" title="whitestorm.js"></a><a href="https://github.com/WhitestormJS/whitestorm.js?utm_source=javascriptweekly&amp;utm_medium=email" target="_blank" rel="external">whitestorm.js</a></h4><blockquote>
-<p>Framework for developing 3D web apps</p>
-</blockquote>
-<p>看演示很有趣，用法也比较简单，有时间搞一搞</p>
-<h4 id="Building-Shaders-With-Babylon-js"><a href="#Building-Shaders-With-Babylon-js" class="headerlink" title="Building Shaders With Babylon.js"></a><a href="https://www.smashingmagazine.com/2016/11/building-shaders-with-babylon-js/?utm_source=javascriptweekly&amp;utm_medium=email" target="_blank" rel="external">Building Shaders With Babylon.js</a></h4><p>讲解关于CPU和GPU原理，利用Babylon.js建立着色器</p>
-<h1 id="CSS-Tricks"><a href="#CSS-Tricks" class="headerlink" title="CSS Tricks"></a>CSS Tricks</h1><h4 id="Things-I’ve-Learned-About-CSS-Grid-Layout"><a href="#Things-I’ve-Learned-About-CSS-Grid-Layout" class="headerlink" title="Things I’ve Learned About CSS Grid Layout"></a><a href="https://css-tricks.com/things-ive-learned-css-grid-layout/" target="_blank" rel="external">Things I’ve Learned About CSS Grid Layout</a></h4><p><img src="no-tetris.png" alt=""><br><small class="img-hint">不能用网格生成多边形，只能生成矩形<small></small></small></p>
-<p>文中提到:</p>
+<p>一个拥有不等宽列的栅格系统则与之相反。它飘逸且动感，也使得设计看起来更加有创造力， 活力以及柔和。</p>
+<p>然而，它们创造和使用起来也更加的困难。它们对于缺乏经验的人来说也显得不够灵活.<br><img src="columns-unequal.png" alt="columns-unequal.png"><br><small class="img-hint">非等宽列</small></p>
+<p>那么，等宽还是非等宽?</p>
+<p>下面是一些你可能会考虑的因素:</p>
+<p><strong>第一，你在使用一些框架吗?</strong><br>如果你的团队热衷于使用类似Bootstrap或Foundation的框架，那么你已经选好了栅格系统。他将会是标准的12格等宽栅格(除非你决定不使用其内置栅格系统)</p>
+<p><strong>第二，你希望你的设计给人的感觉是什么?</strong><br>你所选择的栅格类型或多或少地决定了你的网站给人的感觉，所以你应该尽量保持一致。<br>如果你打算让网站看起来中规中矩，可以考虑使用等宽栅格。另一方面，如果你追求的是前卫，动感，或许非等宽栅格系统比较适合你。</p>
+<p><strong>第三，你的网站复杂性多大?</strong><br>会有多少不同的布局？会有多少页内容?会有多少未知性?</p>
+<p>如果你的网站比较复杂，或者有很多不确定因素，你应该考虑等宽栅格，因为它的灵活可以为你收拾这些烂摊子。</p>
+<p>另一方面，如果你的设计比较简单或者你无须考虑之后的设计是否会和你最初的搅和在一起，那么你应当选择非等宽栅格</p>
+<p><strong>第四，你的团队是否可以应对复杂代码？</strong><br>许多年轻的开发者刚接触栅格时，计算栅格可能是一个巨大的挑战。对于这些开发者，你可以使用等宽栅格以减少复杂度，这样他们就不必花费大量精力在这上面。</p>
+<p>如果没有投入大量精力，栅格计算对于有经验的开发者来说仍然是个挑战。然而，一旦你有了合适的工具那都不叫事。Susy就是这样的工具，它帮助你轻松创建自定义栅格而无需你去计算，如果想学习Susy，去看Learn Susy的免费章节吧，它是我写的一本用来帮你学习Susy的书。</p>
+<p>那么，如果你的团队能搞定栅格计算就设计那些前卫的栅格把。不过在其之前，先和前端工程师商量好。</p>
+<p><strong>那么我到底该选哪一个?</strong></p>
+<p>这是一个好问题。</p>
+<p>如果我和设计师一起工作，我会和他们商量哪种栅格更加合理，以及他们更倾向与哪种栅格。通常结果会是等宽栅格系统。</p>
+<p>假如是我的个人项目，我通常会选择非等宽列，因为它在我看来比较叛逆 ^^</p>
+<p>不幸的是，我在探索非等宽列的程度还没有达到我可以解释其潜在机理的底部。所以，本文剩余部分，我会讲到所有我所发现的关于等宽栅格系统的东西。</p>
+<p>如果你是为寻找如何创建好的非等宽栅格系统的点子而来，请不要失望。我相信相同的机理也适用于另外一个，当我发现更多时我会再写一篇文章。</p>
+<p>现在让我们进入下一个话题。</p>
+<h3 id="你应该使用多少列"><a href="#你应该使用多少列" class="headerlink" title="你应该使用多少列?"></a>你应该使用多少列?</h3><p>在决定列的树木之前，你应该在你的设计中先草拟出可能的布局和内容类型。你的设计只包含一列布局吗?它包含一个内容侧边栏布局吗？三栏布局怎么样？</p>
+<p>一旦你有了这些草图，你会更清楚你需要多少列。比方说，你的布局如下:<br><img src="layout.png" alt="layout.png"><br>这些布局可以由八列构成，如下图:<br><img src="layout-8.png" alt="layout-8.png"><br>也可以由十列构成，如下图，这些都取决于内容和你的比例:<br><img src="layout-10.png" alt="layout-10.png"><br>当然，也可以由十二列构成，如下图:<br><img src="layout-12.png" alt="layout-12.png"></p>
+<p>你应当使用多少列是没有唯一正确答案的。只要你的组件和栅格系统契合的好，就说明你的栅格系统设计合理。</p>
+<p>如果你对于内容类型或布局毫无头绪，最好的方法就是用极其灵活的12列栅格系统</p>
+<p>这是因为12列栅格系统可以被分割为六种对称的布局:<br><img src="columns-12-symmetrical.png" alt="columns-12-symmetrical.png"><br>同时，它也允许你自由组合:<br><img src="columns-12-everything.png" alt="columns-12-everything.png"></p>
+<p>12列栅格系统所提供的便利就是为什么流行框架如Bootstrap,Foundation选择它的原因</p>
+<p>再次强调，对于使用列数没有最好的答案。只要你的组件和栅格系统契合的好，就说明你的栅格系统设计合理。</p>
+<p>另外，你最终决定的列的数目也取决于你的列的尺寸和间隔，以及响应式设计。那么我们接着来看下一个要讨论的话题吧。</p>
+<h3 id="列的尺寸和间隔大小应当如何设计"><a href="#列的尺寸和间隔大小应当如何设计" class="headerlink" title="列的尺寸和间隔大小应当如何设计?"></a>列的尺寸和间隔大小应当如何设计?</h3><p>有两种方法可用来选择列的尺寸和间隔大小。</p>
+<p>第一种方法是 <strong>自顶向下分析法</strong>。假设你已经决定了栅格系统的尺寸(1140px)，12列，间隔为20px，那么列尺寸将为75px(1140/12 - 20)，outide gutter为20px<br>使用sketch帮助你建立栅格系统很方便(勾选<code>Gutter on outside</code>会方便很多)<br><img src="sketch.png" alt=""><br>    这种分析方法非常简单，总尺寸可以选择960,1080,1440,1560。<br>    缺点很明显,从总体到局部，会牺牲很多细节</p>
+<p>第二种方法是 <strong>自下而上分析法</strong>。即首先确定间隔大小以及列尺寸，进而推断你的栅格系统总尺寸</p>
+<p>第三种方法是 <strong>韵律法</strong>。即遵从一种韵律，哪种韵律呢?就是行高，既然有垂直韵律(vertical rhythm)，同样我们也可以拥有水平韵律(horizontal rhythm)。<br>什么意思呢?比如行高是24px，那么我们就把它当作gutter，然后将其乘以2或3或4…来得到列宽<br><img src="baseline.png" alt="baseline.png"></p>
 <blockquote>
-<p>Grid is designed to be used with flexbox, not instead of it<br> Flexbox is for one dimensional layout (row or column).<br> CSS grid is for two dimensional layout.<br> Flexbox is essentially for laying out items in a single dimension – in a row OR a column. Grid is for layout of items in two dimensions – rows AND columns.</p>
+<p><a href="https://zellwk.com/blog/why-vertical-rhythms/" target="_blank" rel="external">Why is Vertical Rhythm an Important Typography Practice?</a></p>
 </blockquote>
-<p>学习下grid和flex布局再来看</p>
-<h4 id="A-Quantum-Leap-for-the-Web"><a href="#A-Quantum-Leap-for-the-Web" class="headerlink" title="A Quantum Leap for the Web"></a><a href="https://medium.com/mozilla-tech/a-quantum-leap-for-the-web-a3b7174b3c12#.g0ujansxc" target="_blank" rel="external">A Quantum Leap for the Web</a></h4><p><img src="Quantum.jpg" alt=""><br>Mozilla正式推出Quantum引擎项目，多线程，使得网络体验更佳(得益于如今先进电脑设备以及更多Web app涌现)<br>之前使用的为Gecko引擎</p>
-<h4 id="A-Handmade-SVG-Bar-Chart-featuring-some-SVG-positioning-gotchas"><a href="#A-Handmade-SVG-Bar-Chart-featuring-some-SVG-positioning-gotchas" class="headerlink" title="A Handmade SVG Bar Chart (featuring some SVG positioning gotchas)"></a><a href="https://css-tricks.com/handmade-svg-bar-chart-featuring-svg-positioning-gotchas/" target="_blank" rel="external">A Handmade SVG Bar Chart (featuring some SVG positioning gotchas)</a></h4><p>元素溢出情况的解决</p>
-<p>学习SVG后来看</p>
-<h4 id="Improving-Perceived-Performance-with-Multiple-Background-Images"><a href="#Improving-Perceived-Performance-with-Multiple-Background-Images" class="headerlink" title="Improving Perceived Performance with Multiple Background Images"></a><a href="http://csswizardry.com/2016/10/improving-perceived-performance-with-multiple-background-images/" target="_blank" rel="external">Improving Perceived Performance with Multiple Background Images</a></h4><p>某些图片的载入很耗时间，若我们不加处理，用户将会看到很大的空白，用户体验很差。<br>如何解决?<br>本文作者提出为元素设置<a href="http://csswizardry.com/2016/10/improving-perceived-performance-with-multiple-background-images/" target="_blank" rel="external">多重背景</a>的方法，我感觉虽然解决了，但是每个图片都这么处理有点麻烦。</p>
-<h4 id="The-State-of-Responsive-3D-Shapes"><a href="#The-State-of-Responsive-3D-Shapes" class="headerlink" title="The State of Responsive 3D Shapes"></a><a href="https://css-tricks.com/state-responsive-3d-shapes/" target="_blank" rel="external">The State of Responsive 3D Shapes</a></h4><p>文章很长，关于响应式3D</p>
+<h3 id="如何设计栅格应变不同视口"><a href="#如何设计栅格应变不同视口" class="headerlink" title="如何设计栅格应变不同视口"></a>如何设计栅格应变不同视口</h3><p><img src="grid-adaptive.gif" alt=""><br><small class="img-hint">响应式布局</small><br><img src="grid-fluid.gif" alt=""><br><small class="img-hint">流动式布局</small><br><img src="grid-hybrid.gif" alt=""><br><small class="img-hint">混合式布局</small><br><img src="grid-fixed-gutter.gif" alt=""><br><small class="img-hint">固定间隔布局</small><br>Bootstrap和Foundation都采用了固定间隔布局:<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* Bootstrap */</span></div><div class="line"><span class="selector-class">.col-md-4</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">33.33333%</span>;</div><div class="line">  <span class="attribute">padding-left</span>: <span class="number">15px</span>;</div><div class="line">  <span class="attribute">padding-right</span>: <span class="number">15px</span>;</div><div class="line">  <span class="attribute">float</span>: left;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* Foundation */</span></div><div class="line"><span class="selector-class">.large-4</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">33.33333%</span>;</div><div class="line">  <span class="attribute">padding-left</span>: <span class="number">0.9375rem</span>;  <span class="comment">// This means 15px</span></div><div class="line">  <span class="attribute">padding-right</span>: <span class="number">0.9375rem</span>; <span class="comment">// in Foundation</span></div><div class="line">  <span class="attribute">float</span>: left;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
 
                 <hr>
@@ -229,11 +256,14 @@
                 </style>
                 <div class="ds-share"
                     style="text-align: right"
-                    data-thread-key="2016/11/11/WeeklyReading1/"
-                    data-title="WeeklyReading1"
-                    data-url="http://rubicker.github.io/2016/11/11/WeeklyReading1/"
-                    data-images="http://rubicker.github.io/2016/11/11/WeeklyReading1/header-bg.png"
-                    data-content="JavaScript Weekly Issue 309Angular3 is hot on t... | Rubicker的博客 | Rubicker&#39;s Blog " >
+                    data-thread-key="2016/11/13/关于Grid-System二三事/"
+                    data-title="【译】关于Grid-System二三事"
+                    data-url="http://rubicker.github.io/2016/11/13/关于Grid-System二三事/"
+                    data-images="http://rubicker.github.io/2016/11/13/关于Grid-System二三事/header-bg.png"
+                    data-content="
+看到几篇讲栅格系统的好文章，自己在这方面也比较感兴趣，拿来翻译下
+
+设计栅格系统我敢打赌如果... | Rubicker的博客 | Rubicker&#39;s Blog " >
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
                         <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
@@ -252,12 +282,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2016/11/13/关于Grid-System二三事/" data-toggle="tooltip" data-placement="top" title="【译】关于Grid-System二三事">&larr; Previous Post</a>
+                            <a href="/2016/11/14/SVG初探/" data-toggle="tooltip" data-placement="top" title="SVG初探">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2016/11/09/Daily-Code2/" data-toggle="tooltip" data-placement="top" title="【CodeWar】Count the number of Duplicates">Next Post &rarr;</a>
+                            <a href="/2016/11/11/WeeklyReading1/" data-toggle="tooltip" data-placement="top" title="WeeklyReading1">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -266,9 +296,9 @@
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="2016/11/11/WeeklyReading1/"
-                        data-title="WeeklyReading1"
-                        data-url="http://rubicker.github.io/2016/11/11/WeeklyReading1/" >
+                        data-thread-key="2016/11/13/关于Grid-System二三事/"
+                        data-title="【译】关于Grid-System二三事"
+                        data-url="http://rubicker.github.io/2016/11/13/关于Grid-System二三事/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->
@@ -294,7 +324,9 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#weekly" title="weekly">weekly</a>
+                          <a class="tag" href="/tags/#CSS" title="CSS">CSS</a>
+                        
+                          <a class="tag" href="/tags/#Grid-System" title="Grid-System">Grid-System</a>
                         
                     </div>
                 </section>
