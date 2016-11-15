@@ -13,11 +13,11 @@
 
     <title>
         
-          SVG初探 - Rubicker的博客 | Rubicker&#39;s Blog
+          Vue-Router学习 - Rubicker的博客 | Rubicker&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://rubicker.github.io/2016/11/14/SVG初探/">
+    <link rel="canonical" href="http://rubicker.github.io/2016/11/15/Vue-Router学习/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -165,14 +165,16 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#SVG" title="SVG">SVG</a>
+                          <a class="tag" href="/tags/#Vue.js" title="Vue.js">Vue.js</a>
+                        
+                          <a class="tag" href="/tags/#Vue-Router" title="Vue-Router">Vue-Router</a>
                         
                     </div>
-                    <h1>SVG初探</h1>
+                    <h1>Vue-Router学习</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by “Rubicker” on
-                        2016-11-14
+                        2016-11-15
                     </span>
                 </div>
             </div>
@@ -191,20 +193,7 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p><img src="Bitmap_VS_SVG.svg.png" alt="Bitmap_VS_SVG.svg.png"><br><small class="img-hint">SVGvs位图</small></p>
-<p><strong>SVG是什么?</strong></p>
-<blockquote>
-<p>Scalable Vector Graphics (SVG) is an XML-based vector image format for two-dimensional graphics with support for interactivity and animation. The SVG specification is an open standard developed by the World Wide Web Consortium (W3C) since 1999.<br> ——<a href="https://en.wikipedia.org/wiki/Scalable_Vector_Graphics" target="_blank" rel="external">wikipedia Scalable Vector Graphics</a></p>
-</blockquote>
-<p><strong>SVG与Canvas的区别</strong><br>Canvas是按照像素绘制的(位图)<br>SVG是按照数学向量绘制的(矢量图)</p>
-<p><strong>如何创建SVG文件</strong><br>HTML文件之外:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 该文件命名必须以.svg结尾! --&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- XML声明 standalone属性规定此文件是独立的，还是含有对外部文件引用 --&gt;</span></div><div class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> standalone=<span class="string">"no"</span><span class="meta">?&gt;</span></span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- DTD --&gt;</span></div><div class="line"><span class="meta">&lt;!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" </span></div><div class="line">"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"&gt;</div><div class="line"></div><div class="line"><span class="comment">&lt;!-- svg根元素 xmlns属性定义了SVG命名空间 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">width</span>=<span class="string">"100%"</span> <span class="attr">height</span>=<span class="string">"100%"</span> <span class="attr">version</span>=<span class="string">"1.1"</span></span></div><div class="line"><span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/2000/svg"</span>&gt;</div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 画圆 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">"100"</span> <span class="attr">cy</span>=<span class="string">"50"</span> <span class="attr">r</span>=<span class="string">"40"</span> <span class="attr">stroke</span>=<span class="string">"black"</span></span></div><div class="line"><span class="attr">stroke-width</span>=<span class="string">"2"</span> <span class="attr">fill</span>=<span class="string">"red"</span>/&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>HTML文件内部:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">svg</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/2000/svg"</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!-- 省略内容 --&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">svg</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p><strong>基本图形绘制</strong><br>1.<code>&lt;circle&gt;</code><br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="built_in">circle</span> cx=<span class="string">"100"</span> cy=<span class="string">"100"</span> r=<span class="string">"100"</span> <span class="built_in">fill</span>=<span class="string">"transparent"</span> <span class="built_in">stroke</span>=<span class="string">"black"</span> <span class="built_in">stroke</span>-<span class="built_in">width</span>=<span class="string">"5"</span> <span class="built_in">stroke</span>-opacity=<span class="string">"0.5"</span>&gt;&lt;<span class="built_in">circle</span>&gt;</div></pre></td></tr></table></figure></p>
-<p>2.<code>&lt;rect&gt;</code><br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--rx,ry分别角为水平方向和竖直方向上的平滑半径--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">rect</span> <span class="attr">width</span>=<span class="string">"100"</span> <span class="attr">height</span>=<span class="string">"100"</span> <span class="attr">x</span>=<span class="string">"100"</span> <span class="attr">y</span>=<span class="string">"100"</span> <span class="attr">rx</span>=<span class="string">"10"</span> <span class="attr">ry</span>=<span class="string">"10"</span>&gt;</span><span class="tag">&lt;/<span class="name">rect</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>3.<code>&lt;line&gt;</code><br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">"50"</span> <span class="attr">y1</span>=<span class="string">"50"</span> <span class="attr">x2</span>=<span class="string">"100"</span> <span class="attr">y2</span>=<span class="string">"100"</span>&gt;</span><span class="tag">&lt;/<span class="name">line</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p><strong>常用标签</strong><br>1.<code>&lt;g&gt;</code>容器标签，用来组合元素<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;g transform=<span class="string">"translate(200,200)"</span> <span class="built_in">stroke</span>=<span class="string">"red"</span> <span class="built_in">stroke</span>-<span class="built_in">width</span>=<span class="string">"5"</span>&gt;</div><div class="line">    &lt;<span class="built_in">circle</span> r=<span class="string">"40"</span> <span class="built_in">fill</span>=<span class="string">"transparent"</span>&gt;&lt;/<span class="built_in">circle</span>&gt;</div><div class="line">    &lt;<span class="built_in">circle</span> r=<span class="string">"30"</span> <span class="built_in">fill</span>=<span class="string">"transparent"</span>&gt;&lt;/<span class="built_in">circle</span>&gt;</div><div class="line">    &lt;<span class="built_in">circle</span> r=<span class="string">"20"</span> <span class="built_in">fill</span>=<span class="string">"transparent"</span>&gt;&lt;/<span class="built_in">circle</span>&gt;</div><div class="line">    &lt;<span class="built_in">circle</span> r=<span class="string">"10"</span> <span class="built_in">fill</span>=<span class="string">"transparent"</span>&gt;&lt;/<span class="built_in">circle</span>&gt;</div><div class="line">&lt;/g&gt;</div></pre></td></tr></table></figure></p>
-<p>2.<code>&lt;text&gt;</code>文字标签<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- text-anchor有三个值，middle(根据文字底部居中于坐标)，start，end --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">"200"</span> <span class="attr">y</span>=<span class="string">"200"</span> <span class="attr">font-size</span>=<span class="string">"20"</span> <span class="attr">text-anchor</span>=<span class="string">"middle"</span>&gt;</span><span class="tag">&lt;<span class="name">text</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>3.<code>&lt;image&gt;</code>图片标签<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="built_in">image</span> x=<span class="string">"200"</span> y=<span class="string">"200"</span> <span class="built_in">width</span>=<span class="string">"100"</span> <span class="built_in">height</span>=<span class="string">"100"</span> xlink:href=<span class="string">"imgs/i.png"</span>&gt;&lt;/<span class="built_in">image</span>&gt;</div></pre></td></tr></table></figure></p>
+                <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>这里我们直接引用js文件即可:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"//cdn.bootcss.com/vue/2.0.5/vue.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"//cdn.bootcss.com/vue-router/2.0.1/vue-router.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
 
 
                 <hr>
@@ -214,14 +203,11 @@
                 </style>
                 <div class="ds-share"
                     style="text-align: right"
-                    data-thread-key="2016/11/14/SVG初探/"
-                    data-title="SVG初探"
-                    data-url="http://rubicker.github.io/2016/11/14/SVG初探/"
-                    data-images="http://rubicker.github.io/2016/11/14/SVG初探/header-bg.png"
-                    data-content="SVGvs位图
-SVG是什么?
-
-Scalable Vector Graphics (SVG)... | Rubicker的博客 | Rubicker&#39;s Blog " >
+                    data-thread-key="2016/11/15/Vue-Router学习/"
+                    data-title="Vue-Router学习"
+                    data-url="http://rubicker.github.io/2016/11/15/Vue-Router学习/"
+                    data-images="http://rubicker.github.io/2016/11/15/Vue-Router学习/header-bg.png"
+                    data-content="安装这里我们直接引用js文件即可:12&lt;script src="//cdn.bootcs... | Rubicker的博客 | Rubicker&#39;s Blog " >
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
                         <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
@@ -239,13 +225,9 @@ Scalable Vector Graphics (SVG)... | Rubicker的博客 | Rubicker&#39;s Blog " >
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2016/11/15/Vue-Router学习/" data-toggle="tooltip" data-placement="top" title="Vue-Router学习">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2016/11/13/关于Grid-System二三事/" data-toggle="tooltip" data-placement="top" title="【译】关于Grid-System二三事">Next Post &rarr;</a>
+                            <a href="/2016/11/14/SVG初探/" data-toggle="tooltip" data-placement="top" title="SVG初探">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -254,9 +236,9 @@ Scalable Vector Graphics (SVG)... | Rubicker的博客 | Rubicker&#39;s Blog " >
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="2016/11/14/SVG初探/"
-                        data-title="SVG初探"
-                        data-url="http://rubicker.github.io/2016/11/14/SVG初探/" >
+                        data-thread-key="2016/11/15/Vue-Router学习/"
+                        data-title="Vue-Router学习"
+                        data-url="http://rubicker.github.io/2016/11/15/Vue-Router学习/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->
@@ -282,7 +264,9 @@ Scalable Vector Graphics (SVG)... | Rubicker的博客 | Rubicker&#39;s Blog " >
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#SVG" title="SVG">SVG</a>
+                          <a class="tag" href="/tags/#Vue.js" title="Vue.js">Vue.js</a>
+                        
+                          <a class="tag" href="/tags/#Vue-Router" title="Vue-Router">Vue-Router</a>
                         
                     </div>
                 </section>
