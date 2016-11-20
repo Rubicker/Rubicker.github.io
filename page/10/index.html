@@ -17,7 +17,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://rubicker.github.io/page/8/">
+    <link rel="canonical" href="http://rubicker.github.io/page/10/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -184,320 +184,34 @@
 
 <div class="post-preview">
 
-    <a href="/2016/05/18/2016-05-18-ES6学习/">
+    <a href="/2016/04/06/《JavaScript高级程序设计(第三版)》笔记/">
         <h2 class="post-title">
-            ES6学习
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            let 和 const
-不存在变量提升
-暂时性死区(temporal dead zone,简称TDZ)
-不允许重复声明
-存在块级作用域
-const变量一旦声明，就必须初始化，同时不允许改变
-关于const定义对象:不可变的将是对象的地址，仍然可以为其添加属性
-
-
-两者定义的全局变量将不属于顶层对象的属性，即:123// 在全局环境下:let a = 1;window.a // undefin......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Rubicker on
-        2016-05-18
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/05/13/2016-05-13-如何通过CSS美化加载失败的图片/">
-        <h2 class="post-title">
-            如何通过CSS美化加载失败的图片
+            JavaScript高级程序设计（第三版）
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-如上加载失败的图片不止见过一次，那么有没有办法进行优化，从而提升用户体验呢？
+前言：一个月大概读了个七七八八，对于本书知识点有了大体的印象，然而一些更深入的知识却没有完全掌握，故重读此书并加以记录，希望能在重读总结过程中能对知识巩固并加以提升。
 
 
-本文总结自Styling Broken Images
-先来了解关于&lt;img&gt;的两个特性：
+第一章 JavaScript简介
+诞生于1995年，当时主要功能：客户端验证
 
-我们可以将常规的文字相关的样式应用在&lt;img&gt;中，这些样式将会在alt文字显示的时候应用且不会影响图片本身的加载
-&lt;img&gt;本身是一种替换元素(外观及尺寸都由外部资源决定的元素)。基......
+
+实现需要三部分
+
+ECMAScript
+  宿主环境有：web浏览器 ,Node和Adobe Flash
+
+DOM
+  将整个页面映射为一......
         </div>
     </a>
     <p class="post-meta">
         Posted by Rubicker on
-        2016-05-13
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/05/13/2016-05-13-jQuery技术内幕读书笔记/">
-        <h2 class="post-title">
-            jQuery技术内幕读书笔记
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            对于jQuery，不仅仅是要熟练掌握它的API，更重要的是了解它的架构思想。这样才能真正地“write less，do more”。
-
-总体架构设计理念
-核心特性：(以1.7.x为准)
-
-兼容主流浏览器
-具有独特链式语法和短小清晰的多功能接口
-具有高效灵活的CSS选择器，并且可对CSS选择器进行扩展
-拥有便捷的插件扩展机制和丰富的插件
-
-总体架构
-
-入口模块
-底层支持模块
-功能模块图片来源于......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Rubicker on
-        2016-05-13
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/05/11/2016-05-11-JavaScript秘密花园读书笔记/">
-        <h2 class="post-title">
-            JavaScript秘密花园读书笔记
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-原文地址：JavaScript-Garden
-
-
-对象
-对象使用和属性JS中除了null和undefined之外所有变量均可当作对象使用。  
-一个对于数字字面值常见的误解：1234562.toString();//出错：SyntaxError//原因是JS解析器误以为小数点后面是浮点数字面值的一部分//可以这样写：2..toString();2 .toString();//点号前有空格(......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Rubicker on
-        2016-05-11
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/05/10/2016-05-10-jQuery中的-ready-的实现/">
-        <h2 class="post-title">
-            jQuery中的$(document).ready()的实现
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-初步模拟jQuery中ready事件的实现
-
-
-1234567891011121314151617181920212223242526272829303132333435363738var myReady = function(fn)&#123;   if(document.addEventListener)&#123;//通过能力检测区分现代浏览器和IE       document.a......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Rubicker on
-        2016-05-10
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/05/04/2016-05-04-焦点轮播特效/">
-        <h2 class="post-title">
-            焦点轮播特效
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-
-原理介绍利用overflow:hidden来隐藏多余的图片，按箭头使得left值发生变化；无限循环播放的实现：将图片集前后放上要循环到的第一张图片，然后再拖拽回原来的循环图片集
-
-...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Rubicker on
-        2016-05-04
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/05/02/2016-05-02-关于Chrome-DevTools/">
-        <h2 class="post-title">
-            关于Chrome DevTools
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-相当强大的开发者工具，好好利用必然会给前端开发带来极大便利。此文是结合官方文档写下来的。
-
-
-Iterate审查编辑页面及样式实时编辑DOM节点
-审查元素
-直接在面板点击
-快捷键Ctrl + Shift +C开启审查模式
-直接在网页中右键某元素，点击inspect或者检查选项
-
-浏览DOM节点
-鼠标1.点击你想要折叠或者展开的某一行，此时该行高亮（蓝色背景）2.若要展开，则双击该行任意位置......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Rubicker on
-        2016-05-02
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/04/24/2016-04-24-锋利的jQuery第二版读书笔记/">
-        <h2 class="post-title">
-            锋利的jQuery第二版读书笔记
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-write less，do more
-
-
-认识jQuery加入jQuery
-jQuery的优势：
-
-轻量级，体积小
-选择器强大
-出色的DOM操作封装
-可靠的事件处理机制
-完善的Ajax
-不污染顶级变量
-出色的浏览器兼容性
-链式操作（对发生在同一个jQuery对象上的一组动作，可以直接连写而无需重复获取对象）
-隐式迭代
-行为层与结构层分离
-丰富的插件支持
-完善的文档
-开源
-
-jQuery代码......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Rubicker on
-        2016-04-24
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/04/22/2016-04-22-Daily-Code-3-全屏滑动效果/">
-        <h2 class="post-title">
-            Daily Code(3).全屏滑动效果
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-通过css，jQuery等实现全屏滑动效果，瞬间高大上
-
-
-前期准备
-全屏要素
-
-全屏的元素及其父元素都要设置height:100%
-将html，body标签设置height:100%  设置overflow：hidden来去除滚动条
-
-
-全屏滑动jQuery插件开发
-  1234567(function($)&#123;   //do something &#125;)(jQuery);......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Rubicker on
-        2016-04-22
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/04/21/2016-04-21-HTML5移动web开发指南/">
-        <h2 class="post-title">
-            HTML5移动web开发指南
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-了解HTML5，了解移动Web应用开发
-
-
-第一章 移动互联网时代的Web技术
-智能手机的移动Web浏览器特点
-
-有限的屏幕尺寸
-触屏，缩放
-硬件设备的提升
-基于Webkit内核
-
-
-
-第二章 移动设备HTML5页面布局页面语义化简介
-
-HTML5新语义元素概述
-
-&lt;header&gt;
-   定义文档的页面组合，通常是一些引导和导航信息
-
-&lt;footer&gt;
-   定义文......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Rubicker on
-        2016-04-21
+        2016-04-06
     </p>
 
 </div>
@@ -510,13 +224,9 @@ HTML5新语义元素概述
 <ul class="pager">
     
         <li class="previous">
-            <a href="/page/7/">&larr; Newer Posts</a>
+            <a href="/page/9/">&larr; Newer Posts</a>
         </li>
     
-    
-        <li class="next">
-            <a href="/page/9/">Older Posts &rarr;</a>
-        </li>
     
 </ul>
 

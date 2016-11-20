@@ -13,11 +13,11 @@
 
     <title>
         
-          高性能JavaScript编程读书笔记 - Rubicker的博客 | Rubicker&#39;s Blog
+          weeklyreading2 - Rubicker的博客 | Rubicker&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://rubicker.github.io/2016/05/22/2016-05-22-高性能JavaScript编程读书笔记/">
+    <link rel="canonical" href="http://rubicker.github.io/2016/11/19/weeklyreading2/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -155,7 +155,7 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('/img/home-bg.jpg')
+        background-image: url('header-bg.png')
     }
 </style>
 <header class="intro-header" >
@@ -165,14 +165,12 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#javascript" title="javascript">javascript</a>
-                        
                     </div>
-                    <h1>高性能JavaScript编程读书笔记</h1>
+                    <h1>weeklyreading2</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
-                        Posted by Rubicker on
-                        2016-05-22
+                        Posted by “Rubicker” on
+                        2016-11-19
                     </span>
                 </div>
             </div>
@@ -191,37 +189,16 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <blockquote>
-<p>JavaScript代码性能一直是前端攻城狮比较关注的一个问题，如何操作才能逐步改善其性能？</p>
+                <h3 id="An-Intro-to-Monkey-Testing-with-Gremlins-js"><a href="#An-Intro-to-Monkey-Testing-with-Gremlins-js" class="headerlink" title="An Intro to Monkey Testing with Gremlins.js"></a><a href="https://css-tricks.com/intro-monkey-testing-gremlins-js/?utm_source=frontendfocus&amp;utm_medium=email" target="_blank" rel="external">An Intro to Monkey Testing with Gremlins.js</a></h3><p>之前我一直不知道为啥有很多测试脚本里面都有monkey字样,本文为我解了惑:</p>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Infinite_monkey_theorem" target="_blank" rel="external">Infinite monkey theorem</a></p>
 </blockquote>
-<a id="more"></a>
-<h2 id="Loading-and-Execution"><a href="#Loading-and-Execution" class="headerlink" title="Loading and Execution"></a>Loading and Execution</h2><p>JS有一个显著的特征，即阻塞特征(blocking),也就是说当JS运行时其他的事情不能被浏览器处理，JavaScript运行了多久，浏览器空闲下来响应用户输入之前的等待时间就有多长  </p>
-<p>当浏览器遇到一个<code>&lt;script&gt;</code>标签时，无法预知JS是否会在某个标签中添加内容，因此浏览器会停下来运行JS代码，然后再继续解析翻译页面。此过程中，页面解析和用户交互时<strong>完全被阻塞</strong>的。  </p>
-<h3 id="Script-Positioning-脚本位置"><a href="#Script-Positioning-脚本位置" class="headerlink" title="Script Positioning 脚本位置"></a>Script Positioning 脚本位置</h3><hr>
-<p>多个JS文件逐个下载，运行阻塞了其他文件的下载过程。现在很多浏览器支持并行下载JS文件，但仍然会阻塞其他文件的下载<br>推荐将脚本置于<code>&lt;body&gt;&lt;/body&gt;</code>底部</p>
-<h3 id="Grouping-Scripts-成组脚本"><a href="#Grouping-Scripts-成组脚本" class="headerlink" title="Grouping Scripts 成组脚本"></a>Grouping Scripts 成组脚本</h3><hr>
-<p>脚本过多不仅仅会使页面解析缓慢，额外的HTTP请求也会降低用户体验。<br>所以应当尽量合并脚本，减少HTTP请求数</p>
-<h3 id="Nonblocking-Scripts-非阻塞脚本"><a href="#Nonblocking-Scripts-非阻塞脚本" class="headerlink" title="Nonblocking Scripts 非阻塞脚本"></a>Nonblocking Scripts 非阻塞脚本</h3><hr>
-<p>页面加载完毕之后再加载JS代码</p>
-<h3 id="Deferred-Scripts-延迟脚本"><a href="#Deferred-Scripts-延迟脚本" class="headerlink" title="Deferred Scripts 延迟脚本"></a>Deferred Scripts 延迟脚本</h3><hr>
-<p><code>&lt;script&gt;</code>标签带有defer属性，这个属性指明元素中包含的脚本不打算修改DOM，也就是说会下载脚本但不会立即执行，直到DOM加载完成(onload事件句柄处理之前调用)，也就是说不会阻塞浏览器的其他处理过程<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">sscript</span> <span class="attr">type</span> = <span class="string">"text/javascript"</span> <span class="attr">src</span> = <span class="string">“test.js”</span>  <span class="attr">defer</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<h3 id="Dynamic-Script-Elements-动态脚本元素"><a href="#Dynamic-Script-Elements-动态脚本元素" class="headerlink" title="Dynamic Script Elements 动态脚本元素"></a>Dynamic Script Elements 动态脚本元素</h3><hr>
-<p>文档对象模型允许使用JS动态创建HTML的几乎全部文档内容，包括<code>&lt;script&gt;</code><br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var <span class="keyword">script </span>= document.createElement(<span class="string">"script"</span>)<span class="comment">;</span></div><div class="line"><span class="keyword">script.type </span>= <span class="string">"text/javascript"</span><span class="comment">;</span></div><div class="line"><span class="keyword">script.src </span>= <span class="string">"file.js"</span><span class="comment">;</span></div><div class="line">document.getElementsByTagName(<span class="string">"head"</span>)[<span class="number">0</span>].appendChild(<span class="keyword">script);</span></div></pre></td></tr></table></figure></p>
-<p>此文件在元素添加到页面之后立刻开始下载，但是文件的下载和运行都不会阻塞其他页面处理过程，即为<strong>异步下载运行脚本</strong></p>
-<p>那么如何判断某个动态脚本是否加载完毕了呢？<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadScript</span>(<span class="params">url,callback</span>)</span>&#123;   </div><div class="line">     <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">"script"</span>);</div><div class="line">     script.type = <span class="string">"text/javascript"</span>;</div><div class="line">     <span class="keyword">if</span>(script.readyState)&#123;     <span class="comment">// IE</span></div><div class="line">           script.onreadyStatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                 <span class="keyword">if</span>(script.readyState === <span class="string">"loaded"</span> || script.readyState ===<span class="string">"complete"</span>)&#123;</div><div class="line">                       script.onreadystatechange = <span class="literal">null</span>; <span class="comment">//防止执行第二次</span></div><div class="line">                       callback();</div><div class="line">                 &#125;   </div><div class="line">          &#125;;</div><div class="line">     &#125;<span class="keyword">else</span>&#123;   <span class="comment">//其他浏览器</span></div><div class="line">           script.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                 callback();</div><div class="line">           &#125;;</div><div class="line">    &#125;;</div><div class="line">    script.src = url;</div><div class="line">    <span class="built_in">document</span>.getElementsByTagName(<span class="string">"head"</span>)[<span class="number">0</span>].appendChild(script);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>如何保证多个动态脚本加载顺序？<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">loadScript(<span class="string">"file1.js"</span>,fuinction()&#123;</div><div class="line">      loadScript(<span class="string">"file2.js"</span>,function()&#123;</div><div class="line">            loadScript(<span class="string">"file3.js"</span>,fucntion()&#123;</div><div class="line">               alert(<span class="string">"Done!!!"</span>)<span class="comment">;</span></div><div class="line">            &#125;)<span class="comment">;</span></div><div class="line">      &#125;)<span class="comment">;</span></div><div class="line">&#125;)<span class="comment">;</span></div></pre></td></tr></table></figure></p>
-<h3 id="XMLHttpRequest-Script-Injection-XHR脚本注入"><a href="#XMLHttpRequest-Script-Injection-XHR脚本注入" class="headerlink" title="XMLHttpRequest Script Injection XHR脚本注入"></a>XMLHttpRequest Script Injection XHR脚本注入</h3><hr>
-<p>使用XHR对象将脚本注入到页面中<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">xhr.open(<span class="string">"get"</span>,<span class="string">"file1.js"</span>,<span class="literal">true</span>);</div><div class="line">xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      <span class="keyword">if</span>(xhr.readyState ===<span class="number">4</span>)&#123;</div><div class="line">          <span class="keyword">if</span>(xhr.status&gt;=<span class="number">200</span>&amp;&amp;xhr.status&lt;<span class="number">300</span> ||xhr.status ===<span class="number">304</span>)&#123;</div><div class="line">              <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">"script"</span>);</div><div class="line">              script.type = <span class="string">"text/javascript"</span>;</div><div class="line">              script.text = xhr.responseText;</div><div class="line">              <span class="built_in">document</span>.body.appendChild(script)；</div><div class="line">          &#125;</div><div class="line">      &#125;</div><div class="line">&#125;；</div><div class="line">xhr.send(<span class="literal">null</span>);</div></pre></td></tr></table></figure></p>
-<p>优点：</p>
-<ul>
-<li>可推迟执行；</li>
-<li>兼容性好</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>JS文件必须与页面放置在同一个域中</li>
-</ul>
-<p>参考文章:<br><a href="http://aijuans.iteye.com/blog/1880779" target="_blank" rel="external">js动态加载脚本</a><br><a href="http://www.cnblogs.com/w-y-f/p/3469211.html" target="_blank" rel="external">JS 动态加载脚本 执行回调</a></p>
+<p>文章主要介绍了混乱测试在Web领域的发展，举例<a href="https://github.com/marmelab/gremlins.js" target="_blank" rel="external">gremlins.js</a><br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 使用方法</span></div><div class="line"><span class="comment">// 将gremlins.js引入</span></div><div class="line"><span class="selector-tag">gremlins</span></div><div class="line">    <span class="selector-class">.createHorde</span>()  <span class="comment">//模拟一堆gremlins</span></div><div class="line">    <span class="selector-class">.unleash</span>()      <span class="comment">//释放他们</span></div></pre></td></tr></table></figure></p>
+<p>如下,<code>gremlins.js</code>会默认测试五个行为:<br>1.<code>formFillerGremlin</code><br>2.<code>clickerGremlin</code><br>3.<code>toucherGremlin</code><br>4.<code>scrollerGremlin</code><br>5.<code>typerGremlin</code><br>同时还会在控制台生成测试记录<br><img src="test.gif" alt="test.gif"><br>我们还可以自定义Gremlins的行为，编号测试以确定bug修复</p>
+<h3 id="The-Power-of-the-rgba-Color-Function-in-CSS"><a href="#The-Power-of-the-rgba-Color-Function-in-CSS" class="headerlink" title="The Power of the rgba() Color Function in CSS"></a><a href="https://css-tricks.com/the-power-of-rgba/?utm_source=frontendfocus&amp;utm_medium=email" target="_blank" rel="external">The Power of the rgba() Color Function in CSS</a></h3><p>关于<code>rgba()</code>的一些应用</p>
+<h3 id="You-Me-And-The-Emoji-Character-Sets-Encoding-And-Emoji"><a href="#You-Me-And-The-Emoji-Character-Sets-Encoding-And-Emoji" class="headerlink" title="You, Me And The Emoji: Character Sets, Encoding And Emoji"></a><a href="https://www.smashingmagazine.com/2016/11/character-sets-encoding-emoji/?utm_source=frontendfocus&amp;utm_medium=email" target="_blank" rel="external">You, Me And The Emoji: Character Sets, Encoding And Emoji</a></h3><p>关于emoji在web中的应用与发展</p>
+<h3 id="Lazy-Loading-Responsive-Adsense-Ads"><a href="#Lazy-Loading-Responsive-Adsense-Ads" class="headerlink" title="Lazy Loading Responsive Adsense Ads"></a><a href="https://css-tricks.com/lazy-loading-responsive-adsense-ads/?utm_source=frontendfocus&amp;utm_medium=email" target="_blank" rel="external">Lazy Loading Responsive Adsense Ads</a></h3><p>google广告存在的两种问题:1.没有懒加载;2.没有自适应<br><img src="google-adsense-no-lazy-load.gif" alt=""><br><img src="google-adsense-not-responsive.gif" alt=""><br>作者希望广告可以达到的效果:<br><img src="google-adsense-with-lazy-load.gif" alt=""><br><img src="google-adsense-responsive.gif" alt=""></p>
+<h3 id="The-Best-Way-to-Create-Fantastic-‘Invisible-Pen’-Effects-in-SVG"><a href="#The-Best-Way-to-Create-Fantastic-‘Invisible-Pen’-Effects-in-SVG" class="headerlink" title="The Best Way to Create Fantastic ‘Invisible Pen’ Effects in SVG"></a><a href="https://www.sitepoint.com/how-to-create-the-invisible-pen-effect-in-svg-using-vivus-js/?utm_source=frontendfocus&amp;utm_medium=email" target="_blank" rel="external">The Best Way to Create Fantastic ‘Invisible Pen’ Effects in SVG</a></h3><p>用SVG实现隐形笔刷特效，很有意思，待看</p>
 
 
                 <hr>
@@ -231,12 +208,11 @@
                 </style>
                 <div class="ds-share"
                     style="text-align: right"
-                    data-thread-key="2016/05/22/2016-05-22-高性能JavaScript编程读书笔记/"
-                    data-title="高性能JavaScript编程读书笔记"
-                    data-url="http://rubicker.github.io/2016/05/22/2016-05-22-高性能JavaScript编程读书笔记/"
-                    data-images=""
-                    data-content="
-JavaScript代码性能一直是前端攻城狮比较关注的一个问题，如何操作才能逐步改善其性能？... | Rubicker的博客 | Rubicker&#39;s Blog " >
+                    data-thread-key="2016/11/19/weeklyreading2/"
+                    data-title="weeklyreading2"
+                    data-url="http://rubicker.github.io/2016/11/19/weeklyreading2/"
+                    data-images="http://rubicker.github.io/2016/11/19/weeklyreading2/header-bg.png"
+                    data-content="An Intro to Monkey Testing with Gremlins.js之前我一... | Rubicker的博客 | Rubicker&#39;s Blog " >
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
                         <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
@@ -255,12 +231,12 @@ JavaScript代码性能一直是前端攻城狮比较关注的一个问题，如�
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2016/05/23/2016-05-23-jQuery-Mobile框架学习/" data-toggle="tooltip" data-placement="top" title="jQuery Mobile框架学习">&larr; Previous Post</a>
+                            <a href="/2016/11/20/学习制作cnodejs社区webapp/" data-toggle="tooltip" data-placement="top" title="学习制作cnodejs社区webapp">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2016/05/21/2016-05-21-Sass和Compass设计师指南/" data-toggle="tooltip" data-placement="top" title="Sass和Compass设计师指南读书笔记">Next Post &rarr;</a>
+                            <a href="/2016/11/15/Vue-Router学习/" data-toggle="tooltip" data-placement="top" title="Vue-Router学习">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -269,9 +245,9 @@ JavaScript代码性能一直是前端攻城狮比较关注的一个问题，如�
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="2016/05/22/2016-05-22-高性能JavaScript编程读书笔记/"
-                        data-title="高性能JavaScript编程读书笔记"
-                        data-url="http://rubicker.github.io/2016/05/22/2016-05-22-高性能JavaScript编程读书笔记/" >
+                        data-thread-key="2016/11/19/weeklyreading2/"
+                        data-title="weeklyreading2"
+                        data-url="http://rubicker.github.io/2016/11/19/weeklyreading2/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->
@@ -297,8 +273,6 @@ JavaScript代码性能一直是前端攻城狮比较关注的一个问题，如�
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#javascript" title="javascript">javascript</a>
-                        
                     </div>
                 </section>
                 

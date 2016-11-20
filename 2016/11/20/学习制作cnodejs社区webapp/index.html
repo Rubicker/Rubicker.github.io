@@ -13,11 +13,11 @@
 
     <title>
         
-          高性能JavaScript编程读书笔记 - Rubicker的博客 | Rubicker&#39;s Blog
+          学习制作cnodejs社区webapp - Rubicker的博客 | Rubicker&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://rubicker.github.io/2016/05/22/2016-05-22-高性能JavaScript编程读书笔记/">
+    <link rel="canonical" href="http://rubicker.github.io/2016/11/20/学习制作cnodejs社区webapp/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -155,7 +155,7 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('/img/home-bg.jpg')
+        background-image: url('header-bg.png')
     }
 </style>
 <header class="intro-header" >
@@ -165,14 +165,18 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#javascript" title="javascript">javascript</a>
+                          <a class="tag" href="/tags/#Vue.js" title="Vue.js">Vue.js</a>
+                        
+                          <a class="tag" href="/tags/#Vue-Router" title="Vue-Router">Vue-Router</a>
+                        
+                          <a class="tag" href="/tags/#Vuex" title="Vuex">Vuex</a>
                         
                     </div>
-                    <h1>高性能JavaScript编程读书笔记</h1>
+                    <h1>学习制作cnodejs社区webapp</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
-                        Posted by Rubicker on
-                        2016-05-22
+                        Posted by “Rubicker” on
+                        2016-11-20
                     </span>
                 </div>
             </div>
@@ -191,37 +195,38 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <blockquote>
-<p>JavaScript代码性能一直是前端攻城狮比较关注的一个问题，如何操作才能逐步改善其性能？</p>
+                <h3 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a><code>index.html</code></h3><p><strong><code>&lt;meta&gt;</code>标签</strong></p>
+<hr>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--Safari中,网页在加载时可以隐藏顶部的地址栏和底部的导航栏,适配iOS7.1，iOS8属性废弃--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"minimal-ui"</span>&gt;</span> </div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 设置为yes网站就会在满屏模式(full-screen mode)删除默认的苹果工具栏和菜单栏 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"yes"</span> <span class="attr">name</span>=<span class="string">"apple-mobile-web-app-capable"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 设置状态栏颜色 black black-translucent default --&gt;</span></div><div class="line"><span class="comment">&lt;!-- 起作用前提是设置了'apple-mobile-web-app-capable'为'yes'--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"apple-mobile-web-app-status-bar-style"</span> <span class="attr">content</span>=<span class="string">"black-translucent"</span>&gt;</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p><a href="https://developer.apple.com/library/content/releasenotes/General/RN-iOSSDK-8.0/" target="_blank" rel="external">iOS 8 Release Notes</a></p>
 </blockquote>
-<a id="more"></a>
-<h2 id="Loading-and-Execution"><a href="#Loading-and-Execution" class="headerlink" title="Loading and Execution"></a>Loading and Execution</h2><p>JS有一个显著的特征，即阻塞特征(blocking),也就是说当JS运行时其他的事情不能被浏览器处理，JavaScript运行了多久，浏览器空闲下来响应用户输入之前的等待时间就有多长  </p>
-<p>当浏览器遇到一个<code>&lt;script&gt;</code>标签时，无法预知JS是否会在某个标签中添加内容，因此浏览器会停下来运行JS代码，然后再继续解析翻译页面。此过程中，页面解析和用户交互时<strong>完全被阻塞</strong>的。  </p>
-<h3 id="Script-Positioning-脚本位置"><a href="#Script-Positioning-脚本位置" class="headerlink" title="Script Positioning 脚本位置"></a>Script Positioning 脚本位置</h3><hr>
-<p>多个JS文件逐个下载，运行阻塞了其他文件的下载过程。现在很多浏览器支持并行下载JS文件，但仍然会阻塞其他文件的下载<br>推荐将脚本置于<code>&lt;body&gt;&lt;/body&gt;</code>底部</p>
-<h3 id="Grouping-Scripts-成组脚本"><a href="#Grouping-Scripts-成组脚本" class="headerlink" title="Grouping Scripts 成组脚本"></a>Grouping Scripts 成组脚本</h3><hr>
-<p>脚本过多不仅仅会使页面解析缓慢，额外的HTTP请求也会降低用户体验。<br>所以应当尽量合并脚本，减少HTTP请求数</p>
-<h3 id="Nonblocking-Scripts-非阻塞脚本"><a href="#Nonblocking-Scripts-非阻塞脚本" class="headerlink" title="Nonblocking Scripts 非阻塞脚本"></a>Nonblocking Scripts 非阻塞脚本</h3><hr>
-<p>页面加载完毕之后再加载JS代码</p>
-<h3 id="Deferred-Scripts-延迟脚本"><a href="#Deferred-Scripts-延迟脚本" class="headerlink" title="Deferred Scripts 延迟脚本"></a>Deferred Scripts 延迟脚本</h3><hr>
-<p><code>&lt;script&gt;</code>标签带有defer属性，这个属性指明元素中包含的脚本不打算修改DOM，也就是说会下载脚本但不会立即执行，直到DOM加载完成(onload事件句柄处理之前调用)，也就是说不会阻塞浏览器的其他处理过程<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">sscript</span> <span class="attr">type</span> = <span class="string">"text/javascript"</span> <span class="attr">src</span> = <span class="string">“test.js”</span>  <span class="attr">defer</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<h3 id="Dynamic-Script-Elements-动态脚本元素"><a href="#Dynamic-Script-Elements-动态脚本元素" class="headerlink" title="Dynamic Script Elements 动态脚本元素"></a>Dynamic Script Elements 动态脚本元素</h3><hr>
-<p>文档对象模型允许使用JS动态创建HTML的几乎全部文档内容，包括<code>&lt;script&gt;</code><br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var <span class="keyword">script </span>= document.createElement(<span class="string">"script"</span>)<span class="comment">;</span></div><div class="line"><span class="keyword">script.type </span>= <span class="string">"text/javascript"</span><span class="comment">;</span></div><div class="line"><span class="keyword">script.src </span>= <span class="string">"file.js"</span><span class="comment">;</span></div><div class="line">document.getElementsByTagName(<span class="string">"head"</span>)[<span class="number">0</span>].appendChild(<span class="keyword">script);</span></div></pre></td></tr></table></figure></p>
-<p>此文件在元素添加到页面之后立刻开始下载，但是文件的下载和运行都不会阻塞其他页面处理过程，即为<strong>异步下载运行脚本</strong></p>
-<p>那么如何判断某个动态脚本是否加载完毕了呢？<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadScript</span>(<span class="params">url,callback</span>)</span>&#123;   </div><div class="line">     <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">"script"</span>);</div><div class="line">     script.type = <span class="string">"text/javascript"</span>;</div><div class="line">     <span class="keyword">if</span>(script.readyState)&#123;     <span class="comment">// IE</span></div><div class="line">           script.onreadyStatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                 <span class="keyword">if</span>(script.readyState === <span class="string">"loaded"</span> || script.readyState ===<span class="string">"complete"</span>)&#123;</div><div class="line">                       script.onreadystatechange = <span class="literal">null</span>; <span class="comment">//防止执行第二次</span></div><div class="line">                       callback();</div><div class="line">                 &#125;   </div><div class="line">          &#125;;</div><div class="line">     &#125;<span class="keyword">else</span>&#123;   <span class="comment">//其他浏览器</span></div><div class="line">           script.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                 callback();</div><div class="line">           &#125;;</div><div class="line">    &#125;;</div><div class="line">    script.src = url;</div><div class="line">    <span class="built_in">document</span>.getElementsByTagName(<span class="string">"head"</span>)[<span class="number">0</span>].appendChild(script);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>如何保证多个动态脚本加载顺序？<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">loadScript(<span class="string">"file1.js"</span>,fuinction()&#123;</div><div class="line">      loadScript(<span class="string">"file2.js"</span>,function()&#123;</div><div class="line">            loadScript(<span class="string">"file3.js"</span>,fucntion()&#123;</div><div class="line">               alert(<span class="string">"Done!!!"</span>)<span class="comment">;</span></div><div class="line">            &#125;)<span class="comment">;</span></div><div class="line">      &#125;)<span class="comment">;</span></div><div class="line">&#125;)<span class="comment">;</span></div></pre></td></tr></table></figure></p>
-<h3 id="XMLHttpRequest-Script-Injection-XHR脚本注入"><a href="#XMLHttpRequest-Script-Injection-XHR脚本注入" class="headerlink" title="XMLHttpRequest Script Injection XHR脚本注入"></a>XMLHttpRequest Script Injection XHR脚本注入</h3><hr>
-<p>使用XHR对象将脚本注入到页面中<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">xhr.open(<span class="string">"get"</span>,<span class="string">"file1.js"</span>,<span class="literal">true</span>);</div><div class="line">xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      <span class="keyword">if</span>(xhr.readyState ===<span class="number">4</span>)&#123;</div><div class="line">          <span class="keyword">if</span>(xhr.status&gt;=<span class="number">200</span>&amp;&amp;xhr.status&lt;<span class="number">300</span> ||xhr.status ===<span class="number">304</span>)&#123;</div><div class="line">              <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">"script"</span>);</div><div class="line">              script.type = <span class="string">"text/javascript"</span>;</div><div class="line">              script.text = xhr.responseText;</div><div class="line">              <span class="built_in">document</span>.body.appendChild(script)；</div><div class="line">          &#125;</div><div class="line">      &#125;</div><div class="line">&#125;；</div><div class="line">xhr.send(<span class="literal">null</span>);</div></pre></td></tr></table></figure></p>
-<p>优点：</p>
-<ul>
-<li>可推迟执行；</li>
-<li>兼容性好</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>JS文件必须与页面放置在同一个域中</li>
-</ul>
-<p>参考文章:<br><a href="http://aijuans.iteye.com/blog/1880779" target="_blank" rel="external">js动态加载脚本</a><br><a href="http://www.cnblogs.com/w-y-f/p/3469211.html" target="_blank" rel="external">JS 动态加载脚本 执行回调</a></p>
+<hr>
+<p><strong><code>v-cloak</code>——防止解析时出现闪烁</strong></p>
+<hr>
+<p>结合CSS规则可以隐藏未编译Mustache标签直到实例准备完毕。<br><figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="xml">[v-cloak]</span><span class="template-variable">&#123;</span></div><div class="line">    display: none</div><div class="line">&#125;<span class="xml"></span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-cloak</span>&gt;</span><span class="template-variable">&#123;&#123; msg &#125;</span><span class="xml">&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
+<p>原理：设置了<code>display:none</code>的元素会隐藏掉，直到Vue解析到带有<code>v-cloak</code>的节点的时候会把其属性和class同时<code>remove</code>，这样就可以防止节点闪烁</p>
+<blockquote>
+<p><a href="http://www.cnblogs.com/slly/p/5884656.html" target="_blank" rel="external">防止vuejs在解析时出现闪烁</a></p>
+</blockquote>
+<hr>
+<h3 id="main-js"><a href="#main-js" class="headerlink" title="main.js"></a><code>main.js</code></h3><p><strong><code>Vue.filter(id,[definition])</code></strong></p>
+<hr>
+<p>注册或者获取全局过滤器<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//注册</span></div><div class="line">Vue.filter(<span class="string">'my-filter'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</div><div class="line">    <span class="comment">//...</span></div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">//获取</span></div><div class="line"><span class="keyword">var</span> myFilter = Vue.filter(<span class="string">'my-filter'</span>)</div><div class="line"></div><div class="line"><span class="comment">//利用object.keys将filters对象的属性转换为一个数组</span></div><div class="line"><span class="built_in">Object</span>.keys(filters).forEach(<span class="function"><span class="params">k</span> =&gt;</span> Vue.filter(k,filters[k]))</div></pre></td></tr></table></figure></p>
+<hr>
+<p><strong>关于移动端点透</strong></p>
+<hr>
+<blockquote>
+<p><a href="http://www.ayqy.net/blog/%E7%A7%BB%E5%8A%A8%E9%A1%B5%E9%9D%A2%E7%82%B9%E5%87%BB%E7%A9%BF%E9%80%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" target="_blank" rel="external">移动页面点击穿透问题解决方案</a></p>
+</blockquote>
+<p>这里介绍一个插件<a href="https://github.com/ftlabs/fastclick/" target="_blank" rel="external">FastClick.js</a>，可以解决我们所遇到的点透问题，使用方法:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> FastClick <span class="keyword">from</span> <span class="string">'fastclick'</span></div><div class="line">FastClick.attach(<span class="built_in">document</span>.body)</div></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="router-js"><a href="#router-js" class="headerlink" title="router.js"></a><code>router.js</code></h3><p><strong>路由懒加载</strong></p>
+<hr>
+<p>有的同学可能要问了，干嘛要懒加载啊？把所有代码综合到一块减少http请求难道不好吗？诚然，在某些情况下，打包为一块可以使得页面加载提速，但是如果SPA有很多页面，那么按需加载才是王道，此时结合Vue的异步组件和Webpack的<code>code splitting feature</code>可以轻松实现路由懒加载</p>
+<blockquote>
+<p><a href="http://webpack.github.io/docs/code-splitting.html" target="_blank" rel="external">Webpack code-splitting</a><br> <a href="https://github.com/vuejs/vue-router/blob/1.0/docs/zh-cn/lazy.md" target="_blank" rel="external">动态组件载入lazy load</a><br> <a href="http://router.vuejs.org/zh-cn/advanced/lazy-loading.html" target="_blank" rel="external">路由懒加载</a></p>
+</blockquote>
 
 
                 <hr>
@@ -231,12 +236,13 @@
                 </style>
                 <div class="ds-share"
                     style="text-align: right"
-                    data-thread-key="2016/05/22/2016-05-22-高性能JavaScript编程读书笔记/"
-                    data-title="高性能JavaScript编程读书笔记"
-                    data-url="http://rubicker.github.io/2016/05/22/2016-05-22-高性能JavaScript编程读书笔记/"
-                    data-images=""
-                    data-content="
-JavaScript代码性能一直是前端攻城狮比较关注的一个问题，如何操作才能逐步改善其性能？... | Rubicker的博客 | Rubicker&#39;s Blog " >
+                    data-thread-key="2016/11/20/学习制作cnodejs社区webapp/"
+                    data-title="学习制作cnodejs社区webapp"
+                    data-url="http://rubicker.github.io/2016/11/20/学习制作cnodejs社区webapp/"
+                    data-images="http://rubicker.github.io/2016/11/20/学习制作cnodejs社区webapp/header-bg.png"
+                    data-content="index.html&lt;meta&gt;标签
+
+123456789&lt;!--Safar... | Rubicker的博客 | Rubicker&#39;s Blog " >
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
                         <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
@@ -254,13 +260,9 @@ JavaScript代码性能一直是前端攻城狮比较关注的一个问题，如�
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2016/05/23/2016-05-23-jQuery-Mobile框架学习/" data-toggle="tooltip" data-placement="top" title="jQuery Mobile框架学习">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2016/05/21/2016-05-21-Sass和Compass设计师指南/" data-toggle="tooltip" data-placement="top" title="Sass和Compass设计师指南读书笔记">Next Post &rarr;</a>
+                            <a href="/2016/11/19/weeklyreading2/" data-toggle="tooltip" data-placement="top" title="weeklyreading2">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -269,9 +271,9 @@ JavaScript代码性能一直是前端攻城狮比较关注的一个问题，如�
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="2016/05/22/2016-05-22-高性能JavaScript编程读书笔记/"
-                        data-title="高性能JavaScript编程读书笔记"
-                        data-url="http://rubicker.github.io/2016/05/22/2016-05-22-高性能JavaScript编程读书笔记/" >
+                        data-thread-key="2016/11/20/学习制作cnodejs社区webapp/"
+                        data-title="学习制作cnodejs社区webapp"
+                        data-url="http://rubicker.github.io/2016/11/20/学习制作cnodejs社区webapp/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->
@@ -297,7 +299,11 @@ JavaScript代码性能一直是前端攻城狮比较关注的一个问题，如�
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#javascript" title="javascript">javascript</a>
+                          <a class="tag" href="/tags/#Vue.js" title="Vue.js">Vue.js</a>
+                        
+                          <a class="tag" href="/tags/#Vue-Router" title="Vue-Router">Vue-Router</a>
+                        
+                          <a class="tag" href="/tags/#Vuex" title="Vuex">Vuex</a>
                         
                     </div>
                 </section>
