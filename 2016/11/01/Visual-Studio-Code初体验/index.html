@@ -198,20 +198,31 @@
 <p><kbd>Ctrl</kbd>+<kbd>B</kbd> 可以切换Side-bar;<br><kbd>Ctrl</kbd>+<kbd>U</kbd> 切换顶部Menu-bar(需在快捷键中自定义);<br><kbd>Ctrl</kbd>+<kbd>P</kbd> 通过搜索快速打开某个文件<br><kbd>Alt</kbd>+点击 可以多行选择<br><kbd>Ctrl</kbd>+<kbd>D</kbd> 选择匹配文本<br><kbd>Ctrl</kbd>+<kbd>`</kbd> 打开终端<br><kbd>Shift</kbd>+<kbd>Ctrl</kbd>+方键 扩展选择区域<br><kbd>Shift</kbd>+<kbd>Alt</kbd>+框选 可以选择区域<br><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> 打开控制台<br><kbd>Alt</kbd>+<kbd>Z</kbd> 切换是否自动换行</p>
 <h2 id="Editors"><a href="#Editors" class="headerlink" title="Editors"></a>Editors</h2><p>VS Code允许你同时打开三个编辑区域，如何实现(5种方法)？<br>1.按住<kbd>Ctrl</kbd>点击Side-bar中的文件，则会在当前文件右侧打开新的编辑区域<br>2.<kbd>Ctrl</kbd>+<kbd>\</kbd>会将当前编辑区域一分为二<br>3.右击Side-bar中的文件，选择<code>Open to the side</code><br>4.点击当前文件右上角的<code>Split Editor</code>按钮<br>5.拖拽到左半侧</p>
 <p>如何切换编辑区域?<br><kbd>Ctrl</kbd>+数字键，同时也可以通过拖拽来改变其位置和大小</p>
-<h2 id="Search-Across-Files"><a href="#Search-Across-Files" class="headerlink" title="Search Across Files"></a>Search Across Files</h2><p>VS Code允许搜索文件中的关键字，在Side-bar中使用快捷键<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd>;<br>进一步定制搜索条件<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>J</kbd>，如下:<br><img src="codebasics_searchadvanced.png" alt=""></p>
+<h3 id="Search-Across-Files"><a href="#Search-Across-Files" class="headerlink" title="Search Across Files"></a>Search Across Files</h3><p>VS Code允许搜索文件中的关键字，在Side-bar中使用快捷键<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd>;<br>进一步定制搜索条件<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>J</kbd>，如下:<br><img src="codebasics_searchadvanced.png" alt=""></p>
 <blockquote>
 <p>右键点击文件夹选择<code>Find in folder</code>可以只在该文件夹内搜索</p>
 </blockquote>
 <p>通过<kbd>Alt</kbd>+方向键上下可以迅速定位搜索历史关键词</p>
-<h2 id="Quick-File-Navigation"><a href="#Quick-File-Navigation" class="headerlink" title="Quick File Navigation"></a>Quick File Navigation</h2><p>在同一个编辑区域打开多个文件，它们之间该如何切换?</p>
+<h3 id="Quick-File-Navigation"><a href="#Quick-File-Navigation" class="headerlink" title="Quick File Navigation"></a>Quick File Navigation</h3><p>在同一个编辑区域打开多个文件，它们之间该如何切换?</p>
 <ol>
 <li><kbd>Ctrl</kbd>+<kbd>Tab</kbd>切换到目标文件后松开快捷键</li>
 <li><kbd>Alt</kbd>+<kbd>-&gt;</kbd>/<kbd>&lt;-</kbd>切换</li>
 </ol>
-<h2 id="Command-Line"><a href="#Command-Line" class="headerlink" title="Command Line"></a>Command Line</h2><p>在某个项目目录下输入如下指令，可以在VS Code中打开该项目<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ code .</div></pre></td></tr></table></figure></p>
+<h3 id="Command-Line"><a href="#Command-Line" class="headerlink" title="Command Line"></a>Command Line</h3><p>在某个项目目录下输入如下指令，可以在VS Code中打开该项目<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ code .</div></pre></td></tr></table></figure></p>
 <p>若想要打开某个文件，或者创建某个文件，可以作如下指令:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ code index.html main.css script.js</div></pre></td></tr></table></figure></p>
 <p>更多CMD指令<br><img src="cmd.png" alt=""></p>
-<h2 id="IntelliSense"><a href="#IntelliSense" class="headerlink" title="IntelliSense"></a>IntelliSense</h2><p>智能提示图标含义:<br><img src="icons.png" alt=""></p>
+<h3 id="IntelliSense"><a href="#IntelliSense" class="headerlink" title="IntelliSense"></a>IntelliSense</h3><p>智能提示图标含义:<br><img src="icons.png" alt=""></p>
+<h3 id="Editing-Envolved"><a href="#Editing-Envolved" class="headerlink" title="Editing Envolved"></a>Editing Envolved</h3><p><strong>Goto Symbol</strong><br>在某个文件中按下<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>O</kbd>，会将文件中的函数，变量列出来；另外加上<kbd>:</kbd>可以分类列出，选择即可跳转到相应位置:<br><img src="gotosymbol.gif" alt=""></p>
+<p><strong>Open symbol by name</strong><br><kbd>Ctrl</kbd>+<kbd>T</kbd>跨文件寻找函数<br>这个有点鸡肋，某些函数检验不出来</p>
+<p><strong>Peek</strong><br>快速查找<br><kbd>Shift</kbd>+<kbd>F12</kbd>查找选中文本所有引用；<br><kbd>Alt</kbd>+<kbd>F12</kbd>查找选中函数，变量定义处</p>
+<p><strong>Bracket matching</strong><br>匹配括号<br>鼠标停留在某个括号上，按下<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>\</kbd>则会跳转到相应的另一个括号位置</p>
+<p><strong>Rename symbol</strong><br>重命名<br>选中要更名的函数名或者变量名，按下<kbd>F2</kbd>输入，则会使得全局相关引用的地方都会更名</p>
+<p><strong>Errors &amp; Warnings</strong><br>按下<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>会在底部打开错误检测区；<br>也可以将光标定位在出错的地方，按下<kbd>F8</kbd>，会在相应位置显示此错误提示</p>
+<h3 id="Tabs"><a href="#Tabs" class="headerlink" title="Tabs"></a>Tabs</h3><p><kbd>Ctrl</kbd>+<kbd>Tab</kbd>切换Tab栏</p>
+<h2 id="Customization"><a href="#Customization" class="headerlink" title="Customization"></a>Customization</h2><h3 id="Snippets"><a href="#Snippets" class="headerlink" title="Snippets"></a>Snippets</h3><p>使用代码片段来提高工作效率<kbd>Ctrl</kbd>+<kbd>Space</kbd></p>
+<blockquote>
+<p>可以在插件中搜索相应Snippets</p>
+</blockquote>
 
 
                 <hr>

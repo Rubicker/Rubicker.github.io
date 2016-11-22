@@ -155,7 +155,7 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('/img/home-bg.jpg')
+        background-image: url('header-bg.jpg')
     }
 </style>
 <header class="intro-header" >
@@ -192,16 +192,16 @@
                 post-container">
 
                 <blockquote>
-<p>上午在慕课网学习了正则表达式，总算过了这个坎，那么就继续趁热打铁，进阶一下吧<br><a id="more"></a></p>
+<p>上午在慕课网学习了正则表达式，总算过了这个坎，那么就继续趁热打铁，进阶一下吧</p>
 </blockquote>
 <h2 id="合法性验证和格式化"><a href="#合法性验证和格式化" class="headerlink" title="合法性验证和格式化"></a>合法性验证和格式化</h2><h3 id="E-mail地址的合法性验证"><a href="#E-mail地址的合法性验证" class="headerlink" title="E-mail地址的合法性验证"></a>E-mail地址的合法性验证</h3><ul>
 <li><p>初级版<br><code>^\S+@\S+$</code></p>
-<div style="float:left"><img src="正则表达式进阶/1.svg" alt=""></div><div style="clear:both"></div>
+<div style="float:left"><img src="1.svg" alt=""></div><div style="clear:both"></div>
 
 <p> 该正则表达式只对必须存在@以及不允许存在空白符做了限制</p>
 </li>
 <li><p>升级版1(对字符做限制，默认开启大小写不敏感)<br><code>^[A-Z0-9+_.-]+@[A-Z0-9.-]+$</code></p>
-<div style="float:left"><img src="正则表达式进阶/2.svg" alt=""></div><div style="clear:both"></div>
+<div style="float:left"><img src="2.svg" alt=""></div><div style="clear:both"></div>
 
 <p><strong>连字符<code>-</code>通常会在字符类<code>[...]</code>中创建一个范围，但当它出现在字符类中的最后一个字符时，还是会被当作一个字面量</strong></p>
 </li>
@@ -214,27 +214,27 @@
 <li>(123)456 7890<br>以上为合法格式。若电话号码是合法的，还要把它转换为标准格式(123)456-7890<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var reg = /^\(?([<span class="number">0</span><span class="number">-9</span>]&#123;<span class="number">3</span>&#125;)\)?[-. ]?([<span class="number">0</span><span class="number">-9</span>]&#123;<span class="number">3</span>&#125;)[-. ]?([<span class="number">0</span><span class="number">-9</span>]&#123;<span class="number">4</span>&#125;)$/;</div><div class="line">if (reg.test(subjectString))&#123;</div><div class="line">  var formattedNumber = subjectString.replace(reg,<span class="string">"($1)$2-$3"</span>);</div><div class="line">&#125;else&#123;</div><div class="line">  <span class="comment">//Invalid number</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<div style="float:left"><img src="正则表达式进阶/3.svg" alt=""></div><div style="clear:both"></div>
+<div style="float:left"><img src="3.svg" alt=""></div><div style="clear:both"></div>
 
 <h3 id="传统时间格式的合法性验证"><a href="#传统时间格式的合法性验证" class="headerlink" title="传统时间格式的合法性验证"></a>传统时间格式的合法性验证</h3><p>hh:mm  hh:mm:ss  且要包含12小时制和24小时制</p>
 <ul>
 <li><p>小时，分钟和秒，12小时制<br><code>^(1[0-2]|0?[0-9]):([0-5]?[0-9]):([0-5]?[0-9])$</code></p>
-<div style="float:left"><img src="正则表达式进阶/4.svg" alt=""></div><div style="clear:both"></div>
+<div style="float:left"><img src="4.svg" alt=""></div><div style="clear:both"></div>
 </li>
 <li><p>小时，分钟和秒，24小时制<br><code>^(2[0-3]|[0-1]?[0-9]):([0-5]?[0-9]):([0-5]?[0-9])$</code></p>
-<div style="float:left"><img src="正则表达式进阶/5.svg" alt=""></div><div style="clear:both"></div>
+<div style="float:left"><img src="5.svg" alt=""></div><div style="clear:both"></div>
 
 </li>
 </ul>
 <p>上述正则表达式中的问号使得前导0成为可选</p>
 <h3 id="限制输入只能为字母数字字符"><a href="#限制输入只能为字母数字字符" class="headerlink" title="限制输入只能为字母数字字符"></a>限制输入只能为字母数字字符</h3><p><code>^[A-Z0-9]+$</code>默认关闭大小写敏感</p>
-<div style="float:left"><img src="正则表达式进阶/6.svg" alt=""></div><div style="clear:both"></div>
+<div style="float:left"><img src="6.svg" alt=""></div><div style="clear:both"></div>
 
 <h3 id="限制文本长度"><a href="#限制文本长度" class="headerlink" title="限制文本长度"></a>限制文本长度</h3><p><code>^[A-Z]{1,10}$</code></p>
-<div style="float:left"><img src="正则表达式进阶/7.svg" alt=""></div><div style="clear:both"></div>
+<div style="float:left"><img src="7.svg" alt=""></div><div style="clear:both"></div>
 
 <h3 id="肯定响应的检查"><a href="#肯定响应的检查" class="headerlink" title="肯定响应的检查"></a>肯定响应的检查</h3><p>检查一个配置选项或命令行响应是否返回一个肯定的值(true,t,yes,y,okay,ok和1)<br><code>^(?:1|t(?:rue)?|y(?:es)?|ok(?:ay)?)$</code></p>
-<p><div style="float:left"><img src="正则表达式进阶/8.svg" alt=""></div><div style="clear:both"></div><br><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> <span class="keyword">reg</span> = /^(?:1|t(?:rue)?|<span class="built_in">y</span>(?:es)?|ok(?:ay)?)$/i;</div><div class="line"><span class="keyword">if</span>(<span class="keyword">reg</span>.<span class="keyword">test</span>(subject))&#123;</div><div class="line">  alert('Yes');</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">  alert('<span class="keyword">No</span>');</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><div style="float:left"><img src="8.svg" alt=""></div><div style="clear:both"></div><br><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> <span class="keyword">reg</span> = /^(?:1|t(?:rue)?|<span class="built_in">y</span>(?:es)?|ok(?:ay)?)$/i;</div><div class="line"><span class="keyword">if</span>(<span class="keyword">reg</span>.<span class="keyword">test</span>(subject))&#123;</div><div class="line">  alert('Yes');</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">  alert('<span class="keyword">No</span>');</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
 
                 <hr>
@@ -247,7 +247,7 @@
                     data-thread-key="2016/08/23/正则表达式进阶/"
                     data-title="正则表达式进阶"
                     data-url="http://rubicker.github.io/2016/08/23/正则表达式进阶/"
-                    data-images=""
+                    data-images="http://rubicker.github.io/2016/08/23/正则表达式进阶/header-bg.jpg"
                     data-content="
 上午在慕课网学习了正则表达式，总算过了这个坎，那么就继续趁热打铁，进阶一下吧
 
