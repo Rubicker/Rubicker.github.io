@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Less is More - Rubicker的博客 | Rubicker&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://rubicker.github.io/2016/11/30/less-is-more/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Rubicker&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('header-bg.png')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Less" title="Less">Less</a>
+                        
+                    </div>
+                    <h1>Less is More</h1>
+                    <h2 class="subheading">Less学习笔记</h2>
+                    <span class="meta">
+                        Posted by “Rubicker” on
+                        2016-11-30
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="Variables"><a href="#Variables" class="headerlink" title="Variables"></a>Variables</h3><p>在Less中，变量不仅仅可以用来归纳相同的属性值，如颜色，尺寸等，还可以用在选择器，URL，<code>@import</code>和属性上，甚至可以用来嵌套变量<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*属性值变量*/</span></div><div class="line"><span class="variable">@link-color:</span> blue;</div><div class="line"><span class="selector-tag">a</span> &#123;</div><div class="line">    <span class="attribute">color</span>: <span class="variable">@link-color</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/*选择器变量*/</span></div><div class="line"><span class="variable">@my-selector:</span> a;</div><div class="line"><span class="variable">@&#123;my-selector&#125;</span> &#123;</div><div class="line">    <span class="attribute">color</span>: blue;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/*属性变量*/</span></div><div class="line"><span class="variable">@my-property:</span> color;</div><div class="line"><span class="selector-tag">a</span> &#123;</div><div class="line">    <span class="attribute">@&#123;my-property&#125;</span>: blue;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/*URL变量*/</span></div><div class="line"><span class="variable">@images:</span> <span class="string">'../img'</span>;</div><div class="line"><span class="selector-tag">body</span> &#123;</div><div class="line">    <span class="attribute">background</span>: url(<span class="string">'@&#123;images&#125;/beach.png'</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/*@import*/</span></div><div class="line"><span class="variable">@variables:</span> <span class="string">'../../src/variables'</span></div><div class="line"><span class="variable">@import</span> <span class="string">'@&#123;variables&#125;/my-vals.less'</span></div><div class="line"></div><div class="line"><span class="comment">/*用变量名字作为变量值*/</span></div><div class="line"><span class="variable">@a</span>: <span class="string">'I'</span>m a Joker';</div><div class="line"><span class="variable">@b:</span> <span class="string">'a'</span>;</div><div class="line"><span class="attribute">a</span>:before &#123;</div><div class="line">    <span class="attribute">content</span>: <span class="variable">@@b</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在Less中变量是懒加载的，无需在使用前声明，存在作用域。如下:<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">a</span> &#123;</div><div class="line">    <span class="attribute">color</span>: <span class="variable">@my-color</span>;</div><div class="line">    <span class="comment">//定义在内部的变量是被保护的，不会被覆盖</span></div><div class="line">    <span class="variable">@my-color:</span> red;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">body</span> &#123;</div><div class="line">    <span class="attribute">color</span>: <span class="variable">@my-color</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 在全局定义的变量不受保护</span></div><div class="line"><span class="variable">@my-color:</span> blue</div></pre></td></tr></table></figure></p>
+<p>会被编译为:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">a</span> &#123;</div><div class="line">    <span class="attribute">color</span>: red;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">body</span> &#123;</div><div class="line">    <span class="attribute">color</span>: blue;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="Extend"><a href="#Extend" class="headerlink" title="Extend"></a>Extend</h3><p>简单来说就是相同样式的整合:<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">nav ul &#123;</div><div class="line">    &amp;:extend(.<span class="keyword">inline</span>);</div><div class="line">    <span class="built_in">background</span>: blue;</div><div class="line">&#125;</div><div class="line">.<span class="keyword">inline</span> &#123;</div><div class="line">    color: red;</div><div class="line">&#125;</div><div class="line"><span class="comment">/* 可简写为: */</span></div><div class="line">nav ul:extend(.<span class="keyword">inline</span>) &#123;</div><div class="line">    <span class="comment">/* ... */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>输出为:<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">nav</span> <span class="selector-tag">ul</span> &#123;</div><div class="line">    <span class="attribute">background</span>: blue;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.inline</span>, <span class="selector-tag">nav</span> <span class="selector-tag">ul</span> &#123;</div><div class="line">    <span class="attribute">color</span>: red;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>利用关键字<code>all</code>可以整合所有关于该选择器的样式:<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.a</span>:extend(<span class="selector-class">.b</span> all)&#123;</div><div class="line">    <span class="comment">/*会整合所有关于.b的样式,如.x.b，.b.x*/</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>也可以整合多个类:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.a</span><span class="selector-pseudo">:extend(.b</span>, <span class="selector-class">.c</span>)&#123;</div><div class="line">    <span class="comment">/*...*/</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>需要遵守的规则</strong>:</p>
+<ul>
+<li><code>:extend</code>必须写在选择器最后，后面不能加任何东西: <code>pre:hover:extend(div pre)</code></li>
+<li><code>selector</code>和<code>:extend</code>之间允许有空格: <code>pre:hover :extend(div pre)</code></li>
+<li><p>多个extends可以并存:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">pre</span><span class="selector-pseudo">:hover</span> <span class="selector-pseudo">:extend(div</span> <span class="selector-tag">pre</span>) <span class="selector-pseudo">:extend(a)</span> &#123;</div><div class="line">    <span class="comment">/*...*/</span></div><div class="line">&#125;</div><div class="line"><span class="comment">/*相当于:*/</span></div><div class="line"><span class="selector-tag">pre</span><span class="selector-pseudo">:hover</span> <span class="selector-pseudo">:extend(div</span> <span class="selector-tag">pre</span>, <span class="selector-tag">a</span>) &#123;</div><div class="line">    <span class="comment">/*...*/</span> </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>嵌套选择器是可以被识别的:</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.a</span> &#123;</div><div class="line">    <span class="selector-tag">b</span> ｛</div><div class="line">        <span class="attribute">color</span>:blue</div><div class="line">    ｝</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.c</span>:extend(<span class="selector-class">.a</span> b) &#123;</div><div class="line">    <span class="comment">/*...*/</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>:extend()</code>内部参数无法识别变量！</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@val:</span> .selector;</div><div class="line"><span class="comment">/*无效*/</span></div><div class="line"><span class="attribute">a </span>:extend(<span class="variable">@&#123;val&#125;</span>)&#123;</div><div class="line">    <span class="comment">/* ... */</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/*有效*/</span></div><div class="line"><span class="attribute">@&#123;val&#125; </span>:extend(a) &#123;</div><div class="line">    <span class="comment">/* ... */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>media</code>声明中的extend将只会在当前作用域寻找选择器</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">@media print &#123;</div><div class="line">    <span class="selector-class">.screenClass</span>:extend(.selector)&#123;&#125; </div><div class="line">    <span class="selector-class">.selector</span> &#123;</div><div class="line">        <span class="comment">//只会匹配本条规则</span></div><div class="line">        <span class="attribute">color</span>:black</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.selector</span> &#123;</div><div class="line">    <span class="attribute">color</span>:red;</div><div class="line">&#125;</div><div class="line">@media screen &#123;</div><div class="line">    <span class="selector-class">.selector</span> &#123;</div><div class="line">        <span class="attribute">color</span>: blue;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在顶层作用域的<code>extend</code>可以匹配到所有<code>media</code>内对应的选择器</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">@media screen &#123;</div><div class="line">    <span class="selector-class">.selector</span> &#123;</div><div class="line">        <span class="attribute">color</span>: green</div><div class="line">    &#125;</div><div class="line">    @media (<span class="attribute">min-width</span>: <span class="number">1023px</span>)&#123;</div><div class="line">        <span class="selector-class">.selector</span> &#123;</div><div class="line">            <span class="attribute">color</span>: blue</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.toplevel</span>:extend(.selector) &#123;&#125; <span class="comment">//会匹配所有.selector</span></div></pre></td></tr></table></figure>
+<p>  输出为:</p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> screen &#123;</div><div class="line">    <span class="selector-class">.selector</span>,<span class="selector-class">.toplevel</span> &#123;</div><div class="line">        <span class="attribute">color</span>: green</div><div class="line">    &#125;</div><div class="line">    @<span class="keyword">media</span> (min-width: <span class="number">1023px</span>)&#123;</div><div class="line">        <span class="selector-class">.selector</span>, <span class="selector-class">.toplevel</span> &#123;</div><div class="line">            <span class="attribute">color</span>: blue</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>Extend使用场景</strong></p>
+<ul>
+<li><p>需要更改某个类下的特殊情况<br>通常情况下我们会在类名上再添加一个类，然后为这个新类名添加规则，以覆盖总样式中的某些样式，如下:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span> <span class="attr">class</span>=<span class="string">"animal bear"</span>&gt;</span>bear<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.animal</span> &#123;</div><div class="line">    <span class="attribute">color</span>: red;</div><div class="line">    <span class="attribute">font-size</span>: <span class="number">14px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.bear</span> &#123;</div><div class="line">    <span class="attribute">color</span>: brown;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  在less中则无需在html结构上做改动：</p>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span> <span class="attr">class</span>=<span class="string">"bear"</span>&gt;</span>bear<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
+  <figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.animal</span> &#123;</div><div class="line">    <span class="attribute">color</span>: red;</div><div class="line">    <span class="attribute">font-size</span>: <span class="number">14px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.bear</span> &#123;</div><div class="line">    &amp;:extend(.animal);</div><div class="line">    <span class="attribute">color</span>:brown;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>减小CSS大小<br>利用<code>extend</code>可以将同样式规则归并到一起，减少代码量</p>
+</li>
+</ul>
+<h3 id="Mixins"><a href="#Mixins" class="headerlink" title="Mixins"></a>Mixins</h3><p>使用mixins将已存在的样式混合到某条规则下。</p>
+<p><strong>基本用法</strong><br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.a</span>, <span class="selector-id">#b</span> &#123;</div><div class="line">    <span class="attribute">color</span>: red;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.c</span> &#123;</div><div class="line">    <span class="selector-class">.a</span>();</div><div class="line">    <span class="selector-id">#b</span>();</div><div class="line">    <span class="comment">//也可以省略括号</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>输出为:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.c</span> &#123;</div><div class="line">    <span class="attribute">color</span>: red;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>技巧</strong></p>
+<ul>
+<li><p>不输出mixins，在后面加个括号即可:</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.my-mixin() &#123;</div><div class="line"><span class="symbol">    color:</span> red<span class="comment">;</span></div><div class="line">&#125;</div><div class="line">.<span class="keyword">button </span>&#123;</div><div class="line">    .my-mixin<span class="comment">;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  输出为:</p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.button</span> &#123;</div><div class="line">    <span class="attribute">color</span>: red;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>mixins中有选择器会如何输出?</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">.my-mixins() &#123;</div><div class="line">    &amp;:<span class="class">hover </span>&#123;</div><div class="line"><span class="symbol">        border:</span> <span class="number">1</span>px solid red;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class">button </span>&#123;</div><div class="line">    .my-mixins;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  输出为:</p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">button</span><span class="selector-pseudo">:hover</span> &#123;</div><div class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid red;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>命名空间<br>利用mixins可以构建一个命名空间</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#my-labrary &#123;</span></div><div class="line">    .my-mixins() &#123;</div><div class="line"><span class="symbol">        color:</span> black;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class">button </span>&#123;</div><div class="line">    <span class="meta">#my-labrary.my-mixins;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以为命名空间定义规则,待补充</p>
+</li>
+<li><code>!important</code><br>在mixins后面写明<code>!important</code>，则其内每条属性后面都会加上<code>!important</code><figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.<span class="class">foo </span>&#123;</div><div class="line"><span class="symbol">    color:</span> blue;</div><div class="line">&#125;</div><div class="line">.<span class="class">important </span>&#123;</div><div class="line">    .foo !important;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Parametric-Mixins"><a href="#Parametric-Mixins" class="headerlink" title="Parametric Mixins"></a>Parametric Mixins</h3><p>带参数的mixins更为强大<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.border-radius</span>(<span class="variable">@radius</span>) &#123;</div><div class="line">    <span class="attribute">-webkit-border-radius</span>: <span class="variable">@radius</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-id">#header</span> &#123;</div><div class="line">    <span class="selector-class">.border-radius</span>(<span class="number">5px</span>);</div><div class="line">&#125;</div><div class="line"><span class="comment">//可以带默认值</span></div><div class="line"><span class="selector-class">.border-radius</span>(<span class="variable">@radius</span>: <span class="number">5px</span>)&#123;</div><div class="line">    <span class="attribute">-webkit-border-radius</span>: <span class="variable">@radius</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-id">#header</span> &#123;</div><div class="line">    <span class="selector-class">.border-radius</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">//不带参数只带括号时，表示不输出mixins</span></div></pre></td></tr></table></figure></p>
+<p><strong>需要多少参数就要传多少参数，否则mixins将不会匹配该规则(除去已存在默认参数这种情况)</strong></p>
+<p><strong>传参可以指明参数名称，这样就不必拘泥于参数顺序</strong></p>
+<p><strong><code>@arguement</code>变量表示所有参数，某些属性值较多时有奇效</strong><br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.box-shadow</span>(<span class="variable">@x</span>: <span class="number">0</span>; <span class="variable">@y</span>: <span class="number">0</span>; <span class="variable">@blur</span>: <span class="number">1px</span>; <span class="variable">@color</span>: <span class="number">#000</span>) &#123;</div><div class="line">    <span class="attribute">-webkit-box-shadow</span>: <span class="variable">@arguement</span>;</div><div class="line">    <span class="attribute">-moz-box-shadow</span>: <span class="variable">@arguement</span>;</div><div class="line">    <span class="attribute">box-shadow</span>: <span class="variable">@arguement</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-id">#header</span> &#123;</div><div class="line">    <span class="selector-class">.box-shadow</span>(<span class="number">1px</span>, <span class="number">2px</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>也可以部分参数整合:<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.mixin</span>(<span class="variable">@a</span>; <span class="variable">@rest</span>...)&#123;</div><div class="line">    <span class="comment">//@rest 绑定所有除了@a的参数</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>模式匹配</strong><br>有时候需要mixins函数根据某些条件做出改变:<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.mixin</span>(dark; <span class="variable">@color</span>) &#123;</div><div class="line">    <span class="attribute">color</span>: darken(<span class="variable">@color</span>, <span class="number">10%</span>)</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.mixin</span>(light; <span class="variable">@color</span>) &#123;</div><div class="line">    <span class="attribute">color</span>: lighten(<span class="variable">@color</span>, <span class="number">10%</span>)</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.mixin</span>(<span class="variable">@_</span>; <span class="variable">@color</span>) &#123;</div><div class="line">    <span class="attribute">display</span>: block;</div><div class="line">&#125;</div><div class="line"><span class="variable">@switch:</span> dark;</div><div class="line"><span class="selector-class">.case</span> &#123;</div><div class="line">    <span class="comment">//会匹配第二条，第三条mixin</span></div><div class="line">    <span class="selector-class">.mixin</span>(<span class="variable">@switch</span>; <span class="number">#CCC</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="Mixins-as-Functions"><a href="#Mixins-as-Functions" class="headerlink" title="Mixins as Functions"></a>Mixins as Functions</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.add</span>(<span class="variable">@x</span>, <span class="variable">@y</span>) &#123;</div><div class="line">    <span class="variable">@result:</span> ((<span class="variable">@x</span> + <span class="variable">@y</span>)/<span class="number">2</span>);</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.class</span> &#123;</div><div class="line">    <span class="selector-class">.add</span>(<span class="number">100px</span>, <span class="number">600px</span>); <span class="comment">//调用函数</span></div><div class="line">    <span class="attribute">width</span>: <span class="variable">@result</span> <span class="comment">//设置为返回值</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当然，也可以嵌套函数</p>
+
+
+                <hr>
+
+                
+                <!-- 多说 Share start -->
+                </style>
+                <div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="2016/11/30/less-is-more/"
+                    data-title="Less is More"
+                    data-url="http://rubicker.github.io/2016/11/30/less-is-more/"
+                    data-images="http://rubicker.github.io/2016/11/30/less-is-more/header-bg.png"
+                    data-content="Variables在Less中，变量不仅仅可以用来归纳相同的属性值，如颜色，尺寸等，还可以用在... | Rubicker的博客 | Rubicker&#39;s Blog " >
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/11/23/你不知道的JavaScript读书笔记一/" data-toggle="tooltip" data-placement="top" title="你不知道的JavaScript读书笔记(一)">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2016/11/30/less-is-more/"
+                        data-title="Less is More"
+                        data-url="http://rubicker.github.io/2016/11/30/less-is-more/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Less" title="Less">Less</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'rubicker';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Rubicker">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Rubicker&#39;s Blog 2016 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://rubicker.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
