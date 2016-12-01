@@ -90,13 +90,6 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/archives/">Archives</a>
                         </li>
                         
@@ -105,6 +98,13 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -223,10 +223,10 @@
 <p><strong>Extend使用场景</strong></p>
 <ul>
 <li><p>需要更改某个类下的特殊情况<br>通常情况下我们会在类名上再添加一个类，然后为这个新类名添加规则，以覆盖总样式中的某些样式，如下:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span> <span class="attr">class</span>=<span class="string">"animal bear"</span>&gt;</span>bear<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;a href=<span class="string">""</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"animal bear"</span>&gt;bear&lt;<span class="regexp">/a&gt;</span></div></pre></td></tr></table></figure>
   <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.animal</span> &#123;</div><div class="line">    <span class="attribute">color</span>: red;</div><div class="line">    <span class="attribute">font-size</span>: <span class="number">14px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.bear</span> &#123;</div><div class="line">    <span class="attribute">color</span>: brown;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>  在less中则无需在html结构上做改动：</p>
-  <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span> <span class="attr">class</span>=<span class="string">"bear"</span>&gt;</span>bear<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;a href=<span class="string">""</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"bear"</span>&gt;bear&lt;<span class="regexp">/a&gt;</span></div></pre></td></tr></table></figure>
   <figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.animal</span> &#123;</div><div class="line">    <span class="attribute">color</span>: red;</div><div class="line">    <span class="attribute">font-size</span>: <span class="number">14px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.bear</span> &#123;</div><div class="line">    &amp;:extend(.animal);</div><div class="line">    <span class="attribute">color</span>:brown;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 <li><p>减小CSS大小<br>利用<code>extend</code>可以将同样式规则归并到一起，减少代码量</p>
@@ -292,6 +292,10 @@
                 
 
                 <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/12/01/译-重新思考Vue-js中的验证/" data-toggle="tooltip" data-placement="top" title="[译]重新思考Vue.js中的表单验证">&larr; Previous Post</a>
+                        </li>
                     
                     
                         <li class="next">

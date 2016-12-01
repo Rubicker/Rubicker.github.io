@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          [译]重新思考Vue.js中的表单验证 - Rubicker的博客 | Rubicker&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://rubicker.github.io/2016/12/01/译-重新思考Vue-js中的验证/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Rubicker&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('header-bg.png')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Vue.js" title="Vue.js">Vue.js</a>
+                        
+                    </div>
+                    <h1>[译]重新思考Vue.js中的表单验证</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by “Rubicker” on
+                        2016-12-01
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="最流行的方法"><a href="#最流行的方法" class="headerlink" title="最流行的方法"></a>最流行的方法</h2><p>已经有如<a href="https://github.com/kazupon/vue-validator" target="_blank" rel="external">vue-validator</a>和<a href="https://github.com/logaretm/vee-validate" target="_blank" rel="external">vee-validate</a>这样专为Vue.js设计的表单验证库。</p>
+<blockquote>
+<p>【译者注】: 截至目前,<code>vue-validator</code>尚不支持Vue2.0,<code>vee-validate</code>已提供支持。</p>
+</blockquote>
+<p>所有这些表单验证库工作原理都极其相似，即需要你在模版中填写验证规则。通常这可能就达到了你的应用的需求。那么让我们来看看这个<code>vee-validate</code>的例子:<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;input v-model=<span class="string">"email"</span> </div><div class="line">        v-validate data-rules=<span class="string">"required|email"</span> </div><div class="line">        :<span class="class"><span class="keyword">class</span></span>=<span class="string">"&#123;'input': true, 'is-danger': errors.has('email') &#125;"</span> </div><div class="line">        <span class="class"><span class="keyword">type</span></span>=<span class="string">"text"</span> </div><div class="line">        placeholder=<span class="string">"Email"</span>&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="存在的弊端"><a href="#存在的弊端" class="headerlink" title="存在的弊端"></a>存在的弊端</h3><p>假如你致力于一款数据驱动应用，你将会注意到你验证的部分比你输入的还要多。接下来你将不得不把上述方法和传统表单验证方法或者计算属性结合起来。这样做会在模版和代码中产生不那么和谐的声音。而且我也觉得在模版中声明应用逻辑不是明智的做法。</p>
+<p>在你想要验证来自Vuex getter，用户输入和计算属性的数据或者当你的验证依赖于其他验证结果的时候，这种弊端尤为明显。</p>
+<h2 id="介绍Vuelidate"><a href="#介绍Vuelidate" class="headerlink" title="介绍Vuelidate"></a>介绍Vuelidate</h2><p>就我个人来说，喜欢上Vue的原因就是它可以将你的代码组织的非常合理:数据，方法，计算属性，watcher，vuex和路由——所有的一切都井井有条。那么为何我们不将表单验证也归纳到一个地方呢?</p>
+<p>为了达到这个目的,我与我的同事Pawel Grabarz<a href="https://twitter.com/frizi09" target="_blank" rel="external">@frizio9</a>创建了<code>vuelicate</code>——解决Vue中数据验证的一种新方法。</p>
+<h3 id="不止是表单验证"><a href="#不止是表单验证" class="headerlink" title="不止是表单验证"></a>不止是表单验证</h3><p>最大的区别就是验证与模版完全解耦。这意味着不必在表单中为不同的输入提供规则，而是直接在数据模型中书写规则。这个和<code>Ember</code>的有点类似。</p>
+<p>同时它也可以用来验证Vuex getters,路由对象和计算属性。因此，它可以用来做进一步的验证以及验证其他验证结果，总之尽情地使用它吧。</p>
+<p>上述的例子可以重写为:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></div><div class="line"><span class="keyword">import</span> Validations <span class="keyword">from</span> <span class="string">'vuelidate'</span></div><div class="line"><span class="keyword">import</span> &#123; email, required &#125; <span class="keyword">from</span> <span class="string">'vuelidate/lib/validators'</span></div><div class="line"></div><div class="line">Vue.use(Validations)</div><div class="line"></div><div class="line"><span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="attr">el</span>: <span class="string">'#app'</span>,</div><div class="line">  data () &#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">      <span class="attr">email</span>: <span class="string">''</span></div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">validations</span>: &#123;</div><div class="line">    <span class="attr">email</span>: &#123; required, email &#125; <span class="comment">// rules object</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;input v-model=<span class="string">"email"</span> </div><div class="line">        :<span class="class"><span class="keyword">class</span></span>=<span class="string">"&#123;'input': true, 'is-danger': $v.email.$invalid &#125;"</span> </div><div class="line">        <span class="class"><span class="keyword">type</span></span>=<span class="string">"text"</span> </div><div class="line">        placeholder=<span class="string">"Email"</span>&gt;</div></pre></td></tr></table></figure>
+<p>验证结果对象可以通过<code>this.$v</code>来访问。对于上述例子，它可能长这样:<br><figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$v: &#123;</div><div class="line">    email: &#123;</div><div class="line">        $dirty: <span class="literal">false</span>,</div><div class="line">        $error: <span class="literal">false</span>,</div><div class="line">        $invalid: <span class="literal">true</span>,</div><div class="line">        required: <span class="literal">false</span>,</div><div class="line">        email: <span class="literal">false</span></div><div class="line">    &#125;,</div><div class="line">    $dirty: <span class="literal">false</span>,</div><div class="line">    $error: <span class="literal">false</span>,</div><div class="line">    $invalid: <span class="literal">true</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>当然,刚开始看起来会有些啰嗦而且不如在模版中添加规则那么优雅。然而，当你需要某些复杂验证时，你将会深深地爱上它。</p>
+<h3 id="配置表单验证"><a href="#配置表单验证" class="headerlink" title="配置表单验证"></a>配置表单验证</h3><p>定制你的表单验证非常简单，只需要将函数传递给规则对象即可。想使用<code>Moment.js</code>中类似<code>isBefore</code>和<code>isAfter</code>这样的queries?没问题，非常简单:<br><figure class="highlight axapta"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">validations: &#123;</div><div class="line">    startDate: &#123;</div><div class="line">        isBefore(<span class="keyword">date</span>) &#123;<span class="keyword">return</span> <span class="keyword">date</span>.isBefore(<span class="keyword">this</span>.endDate)&#125;</div><div class="line">    &#125;,</div><div class="line">    endDate: &#123;</div><div class="line">        isAfter(<span class="keyword">date</span>) &#123;<span class="keyword">return</span> <span class="keyword">date</span>.isAfter(<span class="keyword">this</span>.startDate)&#125;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>钟情于<code>lodash</code>和它的函数方法<code>_.pipe</code>和<code>_.compose</code>？我们已经为您准备好了。</p>
+<p>看下面这个例子:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">validations</span>: &#123;</div><div class="line">    <span class="attribute">startDate</span>: &#123;</div><div class="line">        <span class="built_in">isBefore</span>(date) &#123;</div><div class="line">            return _.<span class="built_in">pipe</span>(</div><div class="line">                moment,</div><div class="line">                momentDate =&gt; momentDate.isBefore(this.endDate)</div><div class="line">            )(date)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>你可以轻松驾驭更为复杂的场景，诸如利用<code>moment-range</code>比较日期范围或者建立动态验证等</p>
+<h3 id="用法及复用性"><a href="#用法及复用性" class="headerlink" title="用法及复用性"></a>用法及复用性</h3><p>由于我们没有在核心库中包含任何验证，所以相比起其他验证插件来说整个库非常小。当然我们也内置了一些开箱即用的验证方法，但是它们都被封装成了独立文件。</p>
+<p>目前可用的validator和helper包括:</p>
+<ul>
+<li>alpha</li>
+<li>alphaNum</li>
+<li>and</li>
+<li>between</li>
+<li>maxLength</li>
+<li>minLength</li>
+<li>or</li>
+<li>required</li>
+<li>sameAs</li>
+</ul>
+<p>这份清单会不断更新，但是不会影响核心库的大小，因为你完全可以按需添加。</p>
+<p>你可以这样添加它们:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="built_in">require</span> <span class="keyword">from</span> <span class="string">'vuelicate/lib/validators/require'</span></div><div class="line"><span class="keyword">import</span> between <span class="keyword">from</span> <span class="string">'vuelicate/lib/validators/between'</span></div></pre></td></tr></table></figure></p>
+<p>或者从<code>validators/index.js</code>中引用它们:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; <span class="built_in">require</span>, between &#125; <span class="keyword">from</span> <span class="string">'vuelicate/lib/validators'</span></div></pre></td></tr></table></figure></p>
+<p>多亏了<code>Rollup.js</code>和<code>Webpack2</code>中的<code>tree-shaking特性</code>,上述两种方法产生的包大小一致。</p>
+<blockquote>
+<p>【译者注】：<a href="https://www.zhihu.com/question/41922432" target="_blank" rel="external">tree-shaking</a></p>
+</blockquote>
+<p>假设你在使用上述打包器中的一种(而且我觉得你应该使用！)，如果你想减少核心文件的大小，你甚至无需安装这个插件：</p>
+<p>只需要这样做:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//main.js</span></div><div class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></div><div class="line"><span class="keyword">import</span> Validations <span class="keyword">from</span> <span class="string">'vuelidate'</span></div><div class="line"></div><div class="line">Vue.use(Validations)</div></pre></td></tr></table></figure></p>
+<p>你可以将函数验证插入到组件中即可:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; validationsMixin &#125; <span class="keyword">from</span> <span class="string">'vuelidate'</span></div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">    <span class="attr">mixins</span>: [validationsMixin]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这样做是为了复用性——你可能已经猜到了。就像插件本身，验证规则可以被移入mixins中以及通过应用的不同部分分享。或者存储在一个对象中然后在需要的位置引用它。或者使用闭包创建，确保验证函数根据验证结果返回真假即可。</p>
+<p>为了简便易用，我们利用组件中<code>this</code>上下文调用每条规则，就如同Vue中的<code>methods</code>和<code>computed values</code>一样。</p>
+<h3 id="验证组和collections"><a href="#验证组和collections" class="headerlink" title="验证组和collections"></a>验证组和collections</h3><p>处理某些复杂表单时，将验证归纳为组会显得很方便:<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">validations</span>: &#123;</div><div class="line">  <span class="attribute">name</span>: &#123; alpha &#125;,</div><div class="line">  <span class="attribute">email</span>: &#123; required, email &#125;</div><div class="line">  <span class="attribute">users</span>: &#123;</div><div class="line">    <span class="attribute">minLength</span>: minLength(<span class="number">2</span>)</div><div class="line">  &#125;,</div><div class="line">  <span class="attribute">tags</span>: &#123;</div><div class="line">    <span class="attribute">maxLength</span>: maxLength(<span class="number">5</span>)</div><div class="line">  &#125;,</div><div class="line">  <span class="attribute">formA</span>: [<span class="string">'name'</span>, <span class="string">'email'</span>],</div><div class="line">  <span class="attribute">formB</span>: [<span class="string">'users'</span>, <span class="string">'tags'</span>]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>就是这么简单.:)<br><code>$v.formA</code>的验证对象可能长这样:<br><figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">formA: &#123;</div><div class="line">  $dirty: <span class="literal">false</span>,</div><div class="line">  $error: <span class="literal">false</span>,</div><div class="line">  $invalid: <span class="literal">true</span>,</div><div class="line">  name: &#123;</div><div class="line">    $dirty: <span class="literal">false</span>,</div><div class="line">    $error: <span class="literal">false</span>,</div><div class="line">    $invalid: <span class="literal">true</span>,</div><div class="line">    minLength: <span class="literal">false</span></div><div class="line">  &#125;,</div><div class="line">  name: &#123;</div><div class="line">    $dirty: <span class="literal">false</span>,</div><div class="line">    $error: <span class="literal">false</span>,</div><div class="line">    $invalid: <span class="literal">true</span>,</div><div class="line">    required: <span class="literal">false</span>,</div><div class="line">    email: <span class="literal">false</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如前所述——我们同样支持collections(数组+对象)。为此我们引进了一个特殊的键值<code>$each</code>让你可以为每个元素建立验证规则:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">validations</span>: &#123;</div><div class="line">    <span class="attribute">users</span>: &#123;</div><div class="line">        minLength: <span class="built_in">minLength</span>(1),</div><div class="line">        $each: &#123;</div><div class="line">            email: &#123;</div><div class="line">                required,</div><div class="line">                email</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="回到表单输入"><a href="#回到表单输入" class="headerlink" title="回到表单输入"></a>回到表单输入</h3><ul>
+<li>看起来很不错，类似于<code>$dirty</code>该如何使用呢?</li>
+<li>好问题！</li>
+</ul>
+<p>因为我们决定不使用任何自定义指令(到目前为止)，所以你可以自己掌控。之所以这样做是因为我们暴露了很多方便的函数来处理这些问题:<br><figure class="highlight julia"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;input</div><div class="line">  v-model=<span class="string">"email"</span></div><div class="line">  :class=<span class="string">"&#123;'input': true, 'is-danger': <span class="variable">$v</span>.email.<span class="variable">$error</span> &#125;"</span></div><div class="line">  <span class="meta">@change</span>=<span class="string">"<span class="variable">$v</span>.email.<span class="variable">$touch</span>()"</span></div><div class="line">  <span class="keyword">type</span>=<span class="string">"text"</span></div><div class="line">  placeholder=<span class="string">"Email"</span>&gt;</div></pre></td></tr></table></figure></p>
+<p>看起来貌似没有其他验证控件那么优雅，但我相信这是我们可以掌控这些所付出的合理代价。另外一方面——如果你使用Vuex,那么将上述和update方法结合起来简直是小菜一碟。<br><figure class="highlight julia"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;input</div><div class="line">  :value=<span class="string">"email"</span></div><div class="line">  :class=<span class="string">"&#123;'input': true, 'is-danger': <span class="variable">$v</span>.email.<span class="variable">$error</span> &#125;"</span></div><div class="line">  <span class="meta">@change</span>=<span class="string">"update('email', <span class="variable">$event</span>)"</span></div><div class="line">  <span class="keyword">type</span>=<span class="string">"text"</span></div><div class="line">  placeholder=<span class="string">"Email"</span>&gt;</div></pre></td></tr></table></figure></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">methods: &#123;</div><div class="line">  update (field, e) &#123;</div><div class="line">    this.<span class="variable">$v</span>[field].<span class="variable">$touch</span>()</div><div class="line">    dispatch(<span class="string">'updateField'</span>, field, e<span class="selector-class">.target</span><span class="selector-class">.value</span><span class="selector-class">.trim</span>())</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>根据你触发<code>$touch()</code>的事件，<code>$dirty</code>会标记是否被触碰</p>
+<p>重置dirty标记可以使用<code>$reset()</code><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">this.<span class="variable">$v</span>.<span class="variable">$reset</span>()</div><div class="line"><span class="comment">// 或者</span></div><div class="line">this.<span class="variable">$v</span><span class="selector-class">.email</span>.<span class="variable">$reset</span>()</div></pre></td></tr></table></figure></p>
+<p><code>$touch()</code>和<code>$reset()</code>这两种方法都是全局方法。意味着你调用<code>$reset()</code>后，会自动清理验证组中所有成员的<code>$dirty</code>标志</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我希望这个简介可以给你带来对vuelicate的初步认知。这个项目目前还处于起步阶段，因此核心只有大约230行代码。</p>
+<p>通过<a href="https://monterail.github.io/vuelidate/" target="_blank" rel="external">文档</a>来获取更多的代码实例及新手向导。</p>
+<p>感谢阅读!</p>
+
+
+                <hr>
+
+                
+                <!-- 多说 Share start -->
+                </style>
+                <div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="2016/12/01/译-重新思考Vue-js中的验证/"
+                    data-title="[译]重新思考Vue.js中的表单验证"
+                    data-url="http://rubicker.github.io/2016/12/01/译-重新思考Vue-js中的验证/"
+                    data-images="http://rubicker.github.io/2016/12/01/译-重新思考Vue-js中的验证/header-bg.png"
+                    data-content="最流行的方法已经有如vue-validator和vee-validate这样专为Vue.js设... | Rubicker的博客 | Rubicker&#39;s Blog " >
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/12/01/译-CSS继承，层叠和全局作用域/" data-toggle="tooltip" data-placement="top" title="[译]CSS继承，层叠和全局作用域：你那又爱又恨的新老朋友">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/11/30/less-is-more/" data-toggle="tooltip" data-placement="top" title="Less is More">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2016/12/01/译-重新思考Vue-js中的验证/"
+                        data-title="[译]重新思考Vue.js中的表单验证"
+                        data-url="http://rubicker.github.io/2016/12/01/译-重新思考Vue-js中的验证/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Vue.js" title="Vue.js">Vue.js</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'rubicker';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Rubicker">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Rubicker&#39;s Blog 2016 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://rubicker.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

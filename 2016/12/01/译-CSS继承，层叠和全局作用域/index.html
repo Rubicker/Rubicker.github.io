@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          [译]CSS继承，层叠和全局作用域：你那又爱又恨的新老朋友 - Rubicker的博客 | Rubicker&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://rubicker.github.io/2016/12/01/译-CSS继承，层叠和全局作用域/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Rubicker&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('header-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#CSS" title="CSS">CSS</a>
+                        
+                    </div>
+                    <h1>[译]CSS继承，层叠和全局作用域：你那又爱又恨的新老朋友</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by “Rubicker” on
+                        2016-12-01
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p><a href="https://www.smashingmagazine.com/2016/11/css-inheritance-cascade-global-scope-new-old-worst-best-friends/" target="_blank" rel="external">原文链接</a></p>
+<blockquote>
+<p>译文如下:</p>
+</blockquote>
+<p>我热衷于<a href="https://www.smashingmagazine.com/2016/06/designing-modular-ui-systems-via-style-guide-driven-development/" target="_blank" rel="external">模块化设计</a>。长期以来我一直赞成将网页分割为多个组件而不是多页，并且将这些组件动态地组合成为用户界面。同时兼具灵活性，效率性和可维护性。</p>
+<p>但是我并不希望我的设计看起来是由毫不相干的东西组成。我是在设计一个界面，而不是一个印象派蒙太奇照片。</p>
+<p>幸运的是，已经存在的CSS技术专门用来解决这些问题。通过CSS，我可以通过HTML组件来应用扩散我的样式，稍作努力即可保证设计连贯。这绝大部分要归功于两个CSS关键特性:</p>
+<ul>
+<li>继承</li>
+<li>层叠(CSS中的C，cascade)</li>
+</ul>
+<p>在这里我将重新审视关于模块化界面设计的继承，层叠和作用域。目的在于为你展示如何妙用这些特征来使得你的代码简洁而自律，同时你的界面更易扩展。</p>
+<h2 id="继承和font-family"><a href="#继承和font-family" class="headerlink" title="继承和font-family"></a>继承和<code>font-family</code></h2><p>在CSS中也存在局部作用域和全局作用域，如JS中一样，局部作用域可以访问父级作用域和全局作用域，在CSS中这称之为<strong>继承</strong>。</p>
+<p>举例来说，若我将<code>font-family</code>声明作用在根节点HTML元素，我可以确定这条规则将会应用于此文件中所有后代元素（某些情况例外，会在下部分讲到）:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">html</span> &#123;</div><div class="line">    <span class="attribute">font-family</span>: sans-serif;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"> 这里的声明是多余的</div><div class="line"> p &#123;</div><div class="line">    font-family: sans-serif;</div><div class="line"> &#125;</div><div class="line">*/</div></pre></td></tr></table></figure></p>
+<p>如同JS一样，若我在某个局部作用域中声明样式，它将不会作用于全局，换句话来说，不会对其父级作用域生效，但是它对子作用域有效。在下例中,<code>line-height: 1.5</code>不会作用于<code>&lt;html&gt;</code>,但是<code>&lt;a&gt;</code>会应用这个样式:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">html</span> &#123;</div><div class="line">    <span class="attribute">font-family</span>: sans-serif;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">p</span> &#123;</div><div class="line">    <span class="attribute">line-height</span>: <span class="number">1.5</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">这里的声明是多余的</div><div class="line">p a &#123;</div><div class="line">    line-height: 1.5;</div><div class="line">&#125;</div><div class="line">*/</div></pre></td></tr></table></figure></p>
+<p>继承的伟大之处在于你只需很少代码就可以为一个连贯的视觉设计建立其基本样式。并且这些样式都会作用于你已经写好的HTML结构。</p>
+<h3 id="替代方法"><a href="#替代方法" class="headerlink" title="替代方法"></a>替代方法</h3><p>有很多方法可以用来应用公共样式，比如我可以创建一个<code>.sans-serif</code>的类…<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.sans-serif</span> &#123;</div><div class="line">    <span class="attribute">font-family</span>: sans-serif;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>…然后将它作用在需要的元素之上:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;p <span class="class"><span class="keyword">class</span></span>=<span class="string">"sans-serif"</span>&gt;Lorem ipsum.&lt;<span class="regexp">/p&gt;</span></div></pre></td></tr></table></figure></p>
+<p>这种方法让我可以控制哪些元素接受这些样式，哪些不接受。</p>
+<p>可以控制样式是非常诱惑的，但是也存在很多明显的问题。除了我必须手动将类名添加到任何需要它的元素上，有可能所见即所得编辑器或Markdown中的元素也会受到影响。</p>
+<p>利用继承特性，我们可以减少很多不必要的代码。</p>
+<h2 id="inherit关键字"><a href="#inherit关键字" class="headerlink" title="inherit关键字"></a><code>inherit</code>关键字</h2><p>有一些属性在默认情况下不会继承，有些元素不会继承某些属性。在某些情况下你可以用<code>[property name]: inherit</code>来强制继承。</p>
+<p>举例来说,<code>&lt;input&gt;</code>元素不继承任何字体属性。为了让所有元素都继承全局中的字体属性,我们可以用全局选择器和<code>inherit</code>关键字：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">* &#123;</div><div class="line">    <span class="attribute">font-family</span>: inherit;</div><div class="line">    <span class="attribute">line-height</span>: inherit;</div><div class="line">    <span class="attribute">color</span>: inherit;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">html</span> &#123;</div><div class="line">    <span class="attribute">font-size</span>: <span class="number">125%</span>;</div><div class="line">    <span class="attribute">font-family</span>: sans-serif;</div><div class="line">    <span class="attribute">line-height</span>: <span class="number">1.5</span>;</div><div class="line">    <span class="attribute">color</span>: <span class="number">22</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="特殊样式"><a href="#特殊样式" class="headerlink" title="特殊样式"></a>特殊样式</h2>
+
+                <hr>
+
+                
+                <!-- 多说 Share start -->
+                </style>
+                <div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="2016/12/01/译-CSS继承，层叠和全局作用域/"
+                    data-title="[译]CSS继承，层叠和全局作用域：你那又爱又恨的新老朋友"
+                    data-url="http://rubicker.github.io/2016/12/01/译-CSS继承，层叠和全局作用域/"
+                    data-images="http://rubicker.github.io/2016/12/01/译-CSS继承，层叠和全局作用域/header-bg.jpg"
+                    data-content="原文链接
+
+译文如下:
+
+我热衷于模块化设计。长期以来我一直赞成将网页分割为多个组件而不是多页... | Rubicker的博客 | Rubicker&#39;s Blog " >
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/12/01/译-重新思考Vue-js中的验证/" data-toggle="tooltip" data-placement="top" title="[译]重新思考Vue.js中的表单验证">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2016/12/01/译-CSS继承，层叠和全局作用域/"
+                        data-title="[译]CSS继承，层叠和全局作用域：你那又爱又恨的新老朋友"
+                        data-url="http://rubicker.github.io/2016/12/01/译-CSS继承，层叠和全局作用域/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#CSS" title="CSS">CSS</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'rubicker';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Rubicker">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Rubicker&#39;s Blog 2016 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://rubicker.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
