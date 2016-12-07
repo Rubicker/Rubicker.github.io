@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          CSS中的z-index - Rubicker的博客 | Rubicker&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://rubicker.github.io/2016/12/07/CSS中的z-index/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Rubicker&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('header-bg.png')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#CSS" title="CSS">CSS</a>
+                        
+                    </div>
+                    <h1>CSS中的z-index</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by “Rubicker” on
+                        2016-12-07
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <blockquote>
+<p>总结自<a href="http://www.imooc.com/learn/643" target="_blank" rel="external">张鑫旭老师的CSS深入理解之z-index课程</a></p>
+</blockquote>
+<h2 id="z-index基本用法"><a href="#z-index基本用法" class="headerlink" title="z-index基本用法"></a><code>z-index</code>基本用法</h2><ul>
+<li>含义<br>指定元素及其子元素的<strong>z顺序</strong>，较大<code>z-index</code>值的元素会覆盖较小的那个</li>
+<li>值<br><code>z-index: auto</code> 定位元素默认值<br><code>z-index: &lt;integer&gt;</code> 整数值<br><code>z-index: inherit</code> 继承</li>
+<li>基本特性<br>支持负值;<br>支持CSS3 Animation;<br>在CSS2.1时代需要和定位元素配合使用;</li>
+</ul>
+<h2 id="z-index与CSS定位属性"><a href="#z-index与CSS定位属性" class="headerlink" title="z-index与CSS定位属性"></a><code>z-index</code>与CSS定位属性</h2><p><strong><code>z-index</code>只对定位元素(relative,absolute,fixed,sticky)有作用</strong></p>
+<ul>
+<li><p>若定位元素没有发生嵌套(子元素均为static或者无子元素)：</p>
+<p>后来居上</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 显示为2覆盖1 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"1.img"</span> <span class="attr">style</span>=<span class="string">"position: absolute"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"2.img"</span> <span class="attr">style</span>=<span class="string">"position: relative"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>哪个<code>z-index</code>大哪个在前</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 显示为1覆盖2 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"1.img"</span> <span class="attr">style</span>=<span class="string">"position: absolute; z-index: 2"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"2.img"</span> <span class="attr">style</span>=<span class="string">"position: relative; z-index: 1"</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>若定位元素发生嵌套:</p>
+<p>祖先优先原则(前提<code>z-index</code>为数值而非auto):</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 存在嵌套则优先考虑祖先元素，故第二个div覆盖第一个div --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"position: relative; z-index: 1"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"1.img"</span> <span class="attr">style</span>=<span class="string">"position: absolute; z-index: 2"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"position: relative; z-index: 1"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"1.img"</span> <span class="attr">style</span>=<span class="string">"position: absolute; z-index: 1"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><code>z-index</code>为auto</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 此时第一个div覆盖第二个div --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"position: relative; z-index: auto"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"1.img"</span> <span class="attr">style</span>=<span class="string">"position: absolute; z-index: 2"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"position: relative; z-index: 1"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"1.img"</span> <span class="attr">style</span>=<span class="string">"position: absolute; z-index: 1"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="CSS中的层叠上下文和层叠水平"><a href="#CSS中的层叠上下文和层叠水平" class="headerlink" title="CSS中的层叠上下文和层叠水平"></a>CSS中的层叠上下文和层叠水平</h2><p>CSS中哪些元素具有层叠上下文?<br>1.页面根元素天生具有层叠上下文,称之为”根层叠上下文”;<br>2.<code>z-index</code>值为数值的定位元素也具有层叠上下文；<br>3.<code>z-index</code>值不为auto的flex项(且父元素<code>display: flex</code>或<code>display: inline-flex</code>)<br>4.元素的<code>opacity</code>不为1<br>5.元素的<code>transform</code>不为none<br>6.元素的<code>mix-blend-mode</code>不为normal<br>7.元素的<code>filter</code>不为none<br>8.元素的<code>isolation</code>不为isolate<br>9.<code>position: fixed</code>(chrome等blink/webkit内核浏览器)<br>10.<code>will-change</code>属性值为上面任意一个<br>11.<code>-webkit-overflow-scrolling</code>设为touch</p>
+<p>层叠上下文中的每个元素都有一个层叠水平(stacking level)，决定了同一个层叠上下文中元素在z轴上的显示顺序。</p>
+<p>层叠水平和<code>z-index</code>不一样，普通元素也有层叠水平</p>
+<p>层叠上下文特性:<br>1.层叠上下文可以嵌套，组合成一个分层次的层叠上下文<br>2.每个层叠上下文和兄弟元素独立:当进行层叠变化或渲染的时候只需要考虑后代元素<br>3.每个层叠上下文是自称体系的:当元素的内容被层叠后，整个元素被认为是在父层的层叠顺序中</p>
+<h2 id="理解元素的层叠顺序"><a href="#理解元素的层叠顺序" class="headerlink" title="理解元素的层叠顺序"></a>理解元素的层叠顺序</h2><p>表示元素发生层叠时有着特定的垂直显示顺序<br><img src="7stacks.png" alt="7stacks.png"></p>
+<h2 id="z-index与层叠上下文"><a href="#z-index与层叠上下文" class="headerlink" title="z-index与层叠上下文"></a><code>z-index</code>与层叠上下文</h2><ul>
+<li><p>定位元素默认<code>z-index: auto</code>可以看作<code>z-index: 0</code></p>
+<blockquote>
+<p>本质上, <code>z-index: auto</code>不创建层叠上下文,<code>z-index: 0</code>会创建层叠上下文，所以还是有区别的（IE7下都会创建）</p>
+</blockquote>
+</li>
+<li><p><code>z-index</code>不为auto的定位元素会创建层叠上下文</p>
+</li>
+<li><code>z-index</code>层叠顺序的比较止步于父级层叠上下文</li>
+</ul>
+<h2 id="z-index与其他CSS属性层叠上下文"><a href="#z-index与其他CSS属性层叠上下文" class="headerlink" title="z-index与其他CSS属性层叠上下文"></a><code>z-index</code>与其他CSS属性层叠上下文</h2><p>1.不依赖<code>z-index</code>就具有层叠上下文的元素层叠顺序均为<code>z-index: auto</code>级别<br><img src="7stacks2.png" alt=""><br>2.依赖<code>z-index</code>的层叠上下文元素(定位元素及<code>display:flex</code>或<code>display: inline-flex</code>容器的子flex项)的层叠顺序取决于<code>z-index</code>值</p>
+<h2 id="z-index相关实践"><a href="#z-index相关实践" class="headerlink" title="z-index相关实践"></a><code>z-index</code>相关实践</h2><ul>
+<li>最小化影响原则<br>目的: 避免<code>z-index</code>嵌套层叠关系混乱<br>原因: 元素层叠水平主要由所在层叠上下文决定；IE7下<code>z-index: auto</code>也会创建层叠上下文<br>做法: 避免使用定位属性;定位属性从大容器平级分离为私有小容器</li>
+<li>不犯二准则<br>目的： 避免<code>z-index</code>混乱，一山比一山高的样式问题<br>原因： 多人协作以及后期维护<br>做法： 对于非浮层元素，避免设置<code>z-index</code>，无法避免的情况下也不要超过2</li>
+<li>组件层级计数器<br>目的： 避免浮层组件因<code>z-index</code>被覆盖的问题<br>原因： 意想不到的高层级元素；组件的覆盖规则具有动态性<br>做法： 组件层级计数器(通过js获取body下最大<code>z-index</code>值)</li>
+<li>负值<code>z-index</code>与可访问性隐藏<br><code>z-index</code>负值元素在层叠上下文的背景之上，其他元素之下</li>
+</ul>
+
+
+                <hr>
+
+                
+                <!-- 多说 Share start -->
+                </style>
+                <div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="2016/12/07/CSS中的z-index/"
+                    data-title="CSS中的z-index"
+                    data-url="http://rubicker.github.io/2016/12/07/CSS中的z-index/"
+                    data-images="http://rubicker.github.io/2016/12/07/CSS中的z-index/header-bg.png"
+                    data-content="
+总结自张鑫旭老师的CSS深入理解之z-index课程
+
+z-index基本用法
+含义指定元素... | Rubicker的博客 | Rubicker&#39;s Blog " >
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/12/04/CSS中的border/" data-toggle="tooltip" data-placement="top" title="CSS中的border">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2016/12/07/CSS中的z-index/"
+                        data-title="CSS中的z-index"
+                        data-url="http://rubicker.github.io/2016/12/07/CSS中的z-index/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#CSS" title="CSS">CSS</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'rubicker';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Rubicker">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Rubicker&#39;s Blog 2016 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://rubicker.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://rubicker.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
